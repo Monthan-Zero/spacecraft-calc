@@ -187,6 +187,11 @@
 .scapp .ptable .pcat{color:var(--muted);font-size:11px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.04em}
 .scapp .ptable tbody tr:nth-child(-n+3) .pn{color:var(--secondary)}
 .scapp .pos{color:var(--good)}.scapp .neg{color:var(--bad)}
+.scapp .cx1{color:var(--good);border-color:rgba(95,224,138,.5)}
+.scapp .cx2{color:var(--primary);border-color:rgba(35,198,230,.5)}
+.scapp .cx3{color:var(--warn);border-color:rgba(232,194,26,.5)}
+.scapp .cx4{color:var(--warm);border-color:rgba(198,107,51,.6)}
+.scapp .cx5{color:var(--bad);border-color:rgba(216,69,58,.6)}
 /* Continuous animations intentionally omitted — they caused full-screen repaints/lag.
    Visuals (starfield, hero glow, hex grid, brackets) remain as static effects. */
 `;
@@ -338,6 +343,14 @@
     }
     return { tax: tax, taxComplete: taxComplete, time: time };
   }
+  // structural complexity: chain depth + craft steps + distinct raw inputs (qty-independent)
+  function complexityOf(id) {
+    var g = buildGraph(id, 1), steps = 0, raws = 0, depth = g.maxTier || 0;
+    for (var nid in g.nodes) { var r = RECIPES[nid]; if (r && r.inputs && r.inputs.length) steps++; else raws++; }
+    return { score: steps + depth + raws, steps: steps, depth: depth, raws: raws };
+  }
+  function cplxLabel(s) { return s <= 3 ? "Simple" : s <= 6 ? "Moderate" : s <= 10 ? "Complex" : s <= 15 ? "Advanced" : "Expert"; }
+  function cplxClass(s) { return s <= 3 ? "cx1" : s <= 6 ? "cx2" : s <= 10 ? "cx3" : s <= 15 ? "cx4" : "cx5"; }
   function gatherSources(node, set) { var r = RECIPES[node.id]; if (r && r.sources) for (var i = 0; i < r.sources.length; i++) set[r.sources[i]] = 1; if (node.children) for (var j = 0; j < node.children.length; j++) gatherSources(node.children[j], set); return set; }
 
   function buildGraph(targetId, qty) {
@@ -430,7 +443,7 @@
     <option value="all">All craftable</option><option value="product">Products</option><option value="component">Components</option><option value="refined">Refined</option><option value="raw">Raw</option></select></div>
   <div class="field"><label>&nbsp;</label><button class="minibtn" data-el="export-btn" style="padding:10px 14px">⤓ Export prices</button></div>
 </div>
-<div class="titlerow"><h2 data-el="sel-name">—</h2><span class="badge" data-el="sel-conf"></span><span class="meta" data-el="sel-building" style="color:var(--muted);font-size:13px"></span><span class="flag" data-el="sel-conflict" title=""></span></div>
+<div class="titlerow"><h2 data-el="sel-name">—</h2><span class="badge" data-el="sel-conf"></span><span class="badge" data-el="sel-cplx"></span><span class="meta" data-el="sel-building" style="color:var(--muted);font-size:13px"></span><span class="flag" data-el="sel-conflict" title=""></span></div>
 <div class="grid">
   <div class="card"><div class="k">Store sell price</div><div class="v primary" data-el="m-sell">—</div><div class="note" data-el="m-sell-note"></div><div class="report" data-el="report-box"></div></div>
   <div class="card"><div class="k">Production cost</div><div class="v" data-el="m-cost">—</div><div class="note" data-el="m-cost-note"></div></div>
@@ -458,6 +471,7 @@
     $("sel-conf").className = "badge c-" + r.confidence; $("sel-conf").textContent = r.confidence + (r.userReported ? " (you)" : "");
     $("sel-building").textContent = r.building ? "built at " + r.building : "";
     var cf = $("sel-conflict"); if (r.conflict) { cf.textContent = "⚑ conflict"; cf.title = r.conflict; } else { cf.textContent = ""; cf.title = ""; }
+    if (r.inputs && r.inputs.length) { var cx = complexityOf(id); $("sel-cplx").style.display = ""; $("sel-cplx").className = "badge " + cplxClass(cx.score); $("sel-cplx").textContent = "Complexity " + cx.score + " · " + cplxLabel(cx.score); $("sel-cplx").title = cx.steps + " craft steps · depth " + cx.depth + " · " + cx.raws + " raw inputs"; } else { $("sel-cplx").style.display = "none"; }
     var sell = isNum(r.value) ? r.value * qty : null;
     $("m-sell").textContent = sell === null ? "Not available yet" : credits(sell);
     $("m-sell").className = "v " + (sell === null ? "warn" : "primary");
@@ -532,20 +546,23 @@
       var g = buildGraph(id, 1), gc = graphCosts(g); if (!gc.taxComplete) return;
       var units = 0; for (var k in ex.raw) units += ex.raw[k];
       var mined = r.value - gc.tax, bought = r.value - rc.cost - gc.tax;
-      rows.push({ id: id, name: r.name, cat: r.category || "", sell: r.value, raw: rc.cost, tax: gc.tax, mined: mined, bought: bought, margin: r.value ? mined / r.value * 100 : 0, units: units });
+      var cx = complexityOf(id).score;
+      rows.push({ id: id, name: r.name, cat: r.category || "", sell: r.value, raw: rc.cost, tax: gc.tax, mined: mined, bought: bought, margin: r.value ? mined / r.value * 100 : 0, units: units, cplx: cx, ppc: cx ? mined / cx : 0 });
     });
     return rows;
   }
   function renderProfit() {
     var key = psort.key, dir = psort.dir;
     var rows = profitRows.slice().sort(function (a, b) { var x = a[key], y = b[key]; if (typeof x === "string") return x.localeCompare(y) * dir; return (x < y ? -1 : x > y ? 1 : 0) * dir; });
-    var cols = [["name", "Item", 0], ["cat", "Category", 0], ["mined", "Mine→Sell ⊙", 1], ["margin", "Margin %", 1], ["bought", "Buy→Sell ⊙", 1], ["sell", "Sell ⊙", 1], ["raw", "Raw cost ⊙", 1], ["tax", "Craft tax ⊙", 1], ["units", "Raw units", 1]];
+    var cols = [["name", "Item", 0], ["cat", "Category", 0], ["cplx", "Complexity", 1], ["mined", "Mine→Sell ⊙", 1], ["margin", "Margin %", 1], ["ppc", "Profit / Cplx", 1], ["bought", "Buy→Sell ⊙", 1], ["sell", "Sell ⊙", 1], ["raw", "Raw cost ⊙", 1], ["tax", "Craft tax ⊙", 1], ["units", "Raw units", 1]];
     var h = '<thead><tr>' + cols.map(function (c) { var ar = key === c[0] ? (dir < 0 ? " ▼" : " ▲") : ""; return '<th class="' + (c[2] ? "num" : "") + '" data-k="' + c[0] + '">' + c[1] + ar + '</th>'; }).join("") + '</tr></thead><tbody>';
     h += rows.map(function (r) {
       return '<tr><td><span class="pn" data-id="' + r.id + '">' + esc(r.name) + '</span></td>'
         + '<td class="pcat">' + esc(r.cat) + '</td>'
+        + '<td class="num"><span class="badge ' + cplxClass(r.cplx) + '">' + r.cplx + ' ' + cplxLabel(r.cplx) + '</span></td>'
         + '<td class="num ' + (r.mined >= 0 ? "pos" : "neg") + '">' + fmt(r.mined) + '</td>'
         + '<td class="num ' + (r.margin >= 0 ? "pos" : "neg") + '">' + fmt(r.margin) + '%</td>'
+        + '<td class="num ' + (r.ppc >= 0 ? "pos" : "neg") + '">' + fmt(r.ppc) + '</td>'
         + '<td class="num ' + (r.bought >= 0 ? "pos" : "neg") + '">' + fmt(r.bought) + '</td>'
         + '<td class="num">' + fmt(r.sell) + '</td><td class="num">' + fmt(r.raw) + '</td><td class="num">' + fmt(r.tax) + '</td><td class="num">' + fmt(r.units) + '</td></tr>';
     }).join("") + '</tbody>';
