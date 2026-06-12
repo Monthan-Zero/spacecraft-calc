@@ -192,6 +192,13 @@
 .scapp .cx3{color:var(--warn);border-color:rgba(232,194,26,.5)}
 .scapp .cx4{color:var(--warm);border-color:rgba(198,107,51,.6)}
 .scapp .cx5{color:var(--bad);border-color:rgba(216,69,58,.6)}
+.scapp .combo{position:absolute;top:100%;left:0;right:0;z-index:30;background:var(--panel);border:1px solid var(--primary);border-top:none;border-radius:0 0 6px 6px;max-height:300px;overflow:auto;display:none;box-shadow:0 10px 28px rgba(0,0,0,.55)}
+.scapp .combo.open{display:block}
+.scapp .comboitem{padding:8px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;border-bottom:1px solid rgba(42,58,72,.5)}
+.scapp .comboitem:hover,.scapp .comboitem.active{background:rgba(35,198,230,.12)}
+.scapp .comboitem .ci-cat{color:var(--muted);font-size:10px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.04em}
+.scapp .comboitem .ci-val{color:var(--primary);font-family:"JetBrains Mono";font-size:12px}
+.scapp .comboitem .ci-r{display:flex;gap:8px;align-items:center;white-space:nowrap}
 /* Continuous animations intentionally omitted — they caused full-screen repaints/lag.
    Visuals (starfield, hero glow, hex grid, brackets) remain as static effects. */
 `;
@@ -239,7 +246,8 @@
 
 <section id="sc-profit"><div class="wrap">
   <div class="sechead">Profit Analyzer</div>
-  <div class="pnote">Every craftable item ranked by profit. <b>Mine → sell</b> = you mine the raw ore yourself (free) and only pay processing taxes along the way. <b>Buy → sell</b> = you buy the raw materials at market. Click a column to sort; click an item to open it in the planner. (Only items with a known price and full recipe are shown.)</div>
+  <div class="pnote">Every craftable item ranked by profit. <b>Mine → sell</b> = you mine the raw ore yourself (free) and only pay processing taxes along the way. <b>Buy → sell</b> = you buy the raw materials at market. Click a column to sort; click an item to open it in the planner.</div>
+  <div class="pnote" data-el="pcount" style="margin-bottom:10px"></div>
   <div class="panel lit"><div class="pbody"><div class="pscroll"><table class="ptable" data-el="ptable"></table></div></div></div>
 </div></section>
 
@@ -250,7 +258,7 @@
     <span class="badge c-high">high</span> <span class="badge c-medium">medium</span> <span class="badge c-low">low</span> confidence, sourced from
     official Shiro devblogs, a community Steam guide, and the Solar Alpha datamined wiki. Unknown amounts show as <span class="qmark" style="color:var(--warn)">?</span>
     rather than being guessed, and a <span class="flag">⚑ conflict</span> flag marks numbers sources disagree on.
-    <br><br>Spotted a wrong value? Use the <b>Report price</b> box in the planner — your numbers save locally and can be exported.
+    <br><br>Spotted a wrong value? Use the <b>Report price</b> box in the planner — your numbers save locally and can be exported, or <a data-el="reset-btn" style="cursor:pointer;text-decoration:underline">reset all reported prices</a>.
     <br><br><b>Unofficial fan tool.</b> Not affiliated with or endorsed by Shiro Games. SpaceCraft and all related marks belong to their owners.
   </div>
 </div></section>
@@ -438,10 +446,12 @@
   function plannerSkeleton() {
     $("plannerbody").innerHTML = `
 <div class="controls">
-  <div class="field"><label>Target item</label><select data-el="item"></select></div>
-  <div class="field"><label>Quantity</label><input data-el="qty" type="number" min="1" step="1" value="1"></div>
-  <div class="field"><label>Show only</label><select data-el="filter">
-    <option value="all">All craftable</option><option value="product">Products</option><option value="component">Components</option><option value="refined">Refined</option><option value="raw">Raw</option></select></div>
+  <div class="field" style="position:relative;min-width:280px"><label>Target item</label>
+    <input data-el="item-input" type="text" placeholder="🔍 search 60+ items…" autocomplete="off" role="combobox" aria-label="Search target item" aria-expanded="false">
+    <select data-el="item" style="display:none" aria-hidden="true"></select>
+    <div class="combo" data-el="item-drop"></div></div>
+  <div class="field"><label>Quantity</label><input data-el="qty" type="number" min="1" step="1" value="1" aria-label="Quantity"></div>
+  <div class="field"><label>&nbsp;</label><button class="minibtn" data-el="share-btn" style="padding:10px 14px" title="Copy a shareable link to this item">⧉ Share</button></div>
   <div class="field"><label>&nbsp;</label><button class="minibtn" data-el="export-btn" style="padding:10px 14px">⤓ Export prices</button></div>
 </div>
 <div class="titlerow"><h2 data-el="sel-name">—</h2><span class="badge" data-el="sel-conf"></span><span class="badge" data-el="sel-cplx"></span><span class="meta" data-el="sel-building" style="color:var(--muted);font-size:13px"></span><span class="flag" data-el="sel-conflict" title=""></span></div>
@@ -505,16 +515,27 @@
     $("map").innerHTML = renderMap(g);
     var srcSet = gatherSources(node, {}), srcs = Object.keys(srcSet).map(function (a) { return SOURCES[a] || a; });
     $("sources").innerHTML = srcs.length ? srcs.map(function (s, i) { var lbl = "[" + (i + 1) + "] " + s; return /^https?:/.test(s) ? '<a href="' + s + '" target="_blank" rel="noopener">' + esc(lbl) + "</a>" : '<span class="meta">' + esc(lbl) + "</span>"; }).join("<br>") : "<span class='meta'>—</span>";
+    if ($("item-input") && document.activeElement !== $("item-input")) $("item-input").value = r.name;
+    try { var hh = "#i=" + id + (qty !== 1 ? "&q=" + qty : ""); history.replaceState(null, "", location.pathname + location.search + hh); localStorage.setItem("sc_last", id); } catch (e) {}
   }
 
   function populate() {
-    var filter = $("filter").value, sel = $("item"), prev = sel.value; sel.innerHTML = "";
-    var order = { product: 0, component: 1, refined: 2, raw: 3, unknown: 4 };
-    Object.keys(RECIPES).filter(function (id) { return filter === "all" ? true : RECIPES[id].type === filter; })
-      .sort(function (a, b) { var d = order[RECIPES[a].type] - order[RECIPES[b].type]; return d !== 0 ? d : RECIPES[a].name.localeCompare(RECIPES[b].name); })
-      .forEach(function (id) { var r = RECIPES[id], o = document.createElement("option"); o.value = id; o.textContent = r.name + "  ·  " + r.type + "  ·  " + r.confidence[0].toUpperCase(); sel.appendChild(o); });
+    var sel = $("item"), prev = sel.value; sel.innerHTML = "";
+    Object.keys(RECIPES).sort(function (a, b) { return RECIPES[a].name.localeCompare(RECIPES[b].name); })
+      .forEach(function (id) { var r = RECIPES[id], o = document.createElement("option"); o.value = id; o.textContent = r.name; sel.appendChild(o); });
     var has = false; for (var i = 0; i < sel.options.length; i++) if (sel.options[i].value === prev) has = true; if (has) sel.value = prev;
     compute();
+  }
+  // searchable combobox over all items
+  function comboMatches(filter) {
+    filter = (filter || "").toLowerCase();
+    return Object.keys(RECIPES).filter(function (id) { return RECIPES[id].name.toLowerCase().indexOf(filter) >= 0 || (RECIPES[id].category || "").toLowerCase().indexOf(filter) >= 0; })
+      .sort(function (a, b) { return RECIPES[a].name.localeCompare(RECIPES[b].name); }).slice(0, 50);
+  }
+  function renderCombo(filter) {
+    var drop = $("item-drop"), ids = comboMatches(filter);
+    drop.innerHTML = ids.length ? ids.map(function (id) { var r = RECIPES[id]; return '<div class="comboitem" data-id="' + id + '"><span><span class="dot ' + dc(r.type) + '"></span>' + esc(r.name) + '</span><span class="ci-r"><span class="ci-val">' + (isNum(r.value) ? "⊙" + fmt(r.value) : "—") + '</span><span class="ci-cat">' + esc(r.category || r.type) + '</span></span></div>'; }).join("") : '<div class="comboitem"><span class="meta">No matches</span></div>';
+    Array.prototype.forEach.call(drop.querySelectorAll(".comboitem[data-id]"), function (c) { c.addEventListener("mousedown", function (e) { e.preventDefault(); $("item-drop").classList.remove("open"); selectItem(c.getAttribute("data-id")); }); });
   }
 
   /* ----------------------------- catalog browser (by in-game category) ----------------------------- */
@@ -578,7 +599,12 @@
     Array.prototype.forEach.call($("ptable").querySelectorAll("th"), function (th) { th.onclick = function () { var k = th.getAttribute("data-k"); if (psort.key === k) psort.dir *= -1; else { psort.key = k; psort.dir = (k === "name" || k === "cat") ? 1 : -1; } renderProfit(); }; });
     Array.prototype.forEach.call($("ptable").querySelectorAll(".pn"), function (s) { s.onclick = function () { selectItem(s.getAttribute("data-id")); }; });
   }
-  function buildProfit() { profitRows = computeProfitRows(); renderProfit(); }
+  function buildProfit() {
+    profitRows = computeProfitRows();
+    var craftable = Object.keys(RECIPES).filter(function (id) { return RECIPES[id].inputs && RECIPES[id].inputs.length; }).length;
+    if ($("pcount")) $("pcount").innerHTML = "Showing <b style='color:var(--text)'>" + profitRows.length + "</b> of " + craftable + " craftable items — the rest still need a price or a full recipe.";
+    renderProfit();
+  }
 
   function buildStats() {
     var ids = Object.keys(RECIPES), priced = ids.filter(function (id) { return isNum(RECIPES[id].value); }).length;
@@ -590,16 +616,42 @@
 
   /* ----------------------------- nav / interactions ----------------------------- */
   function scrollTo(sel) { var el = document.querySelector(sel); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); }
-  function selectItem(id) { var sel = $("item"); if (!sel) return; if (RECIPES[id] && RECIPES[id].type !== $("filter").value && $("filter").value !== "all") { $("filter").value = "all"; populate(); } sel.value = id; compute(); scrollTo("#sc-planner"); }
+  function selectItem(id) { var sel = $("item"); if (!sel || !RECIPES[id]) return; sel.value = id; compute(); scrollTo("#sc-planner"); }
 
+  function parseHash(hash) {
+    var h = (hash != null ? hash : location.hash || "").replace(/^#/, ""); if (!h) return null;
+    var p = {}; h.split("&").forEach(function (kv) { var a = kv.split("="); p[a[0]] = decodeURIComponent(a[1] || ""); });
+    return p.i ? { id: p.i, q: p.q ? parseFloat(p.q) : null } : null;
+  }
+  function restoreFromHash() { var f = parseHash(); if (f && RECIPES[f.id]) { if (f.q) $("qty").value = f.q; $("item").value = f.id; compute(); } }
+  function shareLink() {
+    var url = location.href, nm = RECIPES[$("item").value] ? RECIPES[$("item").value].name : "";
+    if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { toast("Link copied — " + nm); }, function () { toast("Couldn't copy — " + url); });
+    else toast(url);
+  }
+  function pickDefault(initHash, initLast) {
+    var f = parseHash(initHash);
+    if (f && RECIPES[f.id]) { $("item").value = f.id; if (f.q) $("qty").value = f.q; return; }
+    if (initLast && RECIPES[initLast]) { $("item").value = initLast; return; }
+    var best = profitRows.length ? profitRows.slice().sort(function (a, b) { return b.mined - a.mined; })[0].id : null;
+    var def = best || "iron_ingot", sel = $("item");
+    for (var i = 0; i < sel.options.length; i++) if (sel.options[i].value === def) { sel.value = def; return; }
+  }
   function initPlanner() {
     plannerSkeleton();
+    var initHash = location.hash, initLast = null; try { initLast = localStorage.getItem("sc_last"); } catch (e) {}
     buildStats(); buildPills(); buildCatalog(); buildProfit();
     $("item").addEventListener("change", compute);
     $("qty").addEventListener("input", compute);
-    $("filter").addEventListener("change", populate);
     $("export-btn").addEventListener("click", exportReported);
+    $("share-btn").addEventListener("click", shareLink);
     $("catsearch").addEventListener("input", buildCatalog);
+    var rst = $("reset-btn"); if (rst) rst.onclick = function () { try { localStorage.removeItem("sc_reported_prices_v1"); } catch (e) {} location.reload(); };
+    var inp = $("item-input");
+    inp.addEventListener("focus", function () { renderCombo(inp.value); $("item-drop").classList.add("open"); inp.setAttribute("aria-expanded", "true"); inp.select(); });
+    inp.addEventListener("input", function () { renderCombo(inp.value); $("item-drop").classList.add("open"); });
+    inp.addEventListener("blur", function () { setTimeout(function () { $("item-drop").classList.remove("open"); inp.setAttribute("aria-expanded", "false"); }, 160); });
+    inp.addEventListener("keydown", function (e) { if (e.key === "Enter") { var m = comboMatches(inp.value); if (m.length) { $("item-drop").classList.remove("open"); selectItem(m[0]); inp.blur(); } } else if (e.key === "Escape") { $("item-drop").classList.remove("open"); inp.blur(); } });
     $("nav-planner").onclick = function () { scrollTo("#sc-planner"); };
     $("nav-launch").onclick = function () { scrollTo("#sc-planner"); };
     $("cta-launch").onclick = function () { scrollTo("#sc-planner"); };
@@ -607,10 +659,9 @@
     $("cta-browse").onclick = function () { scrollTo("#sc-browse"); };
     $("nav-profit").onclick = function () { scrollTo("#sc-profit"); };
     $("nav-about").onclick = function () { scrollTo("#sc-about"); };
+    window.addEventListener("hashchange", restoreFromHash);
     populate();
-    var def = "simple_mining_laser"; var has = false;
-    for (var i = 0; i < $("item").options.length; i++) if ($("item").options[i].value === def) has = true;
-    if (has) { $("item").value = def; }
+    pickDefault(initHash, initLast);
     compute();
   }
 })();
