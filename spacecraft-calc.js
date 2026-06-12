@@ -467,8 +467,7 @@
   <div><div class="sechead" style="margin-bottom:10px">Total raw materials</div>
     <table data-el="raw-table"><thead><tr><th>Resource</th><th class="num">Qty</th><th class="num">Unit ⊙</th><th class="num">Subtotal ⊙</th></tr></thead><tbody></tbody></table>
     <div data-el="unknown-box" class="foot"></div></div>
-  <div><div class="sechead" style="margin-bottom:10px">Recipe outline</div><div class="tree" data-el="tree"></div>
-    <div class="sechead" style="margin:16px 0 8px">Sources</div><div class="srclist" data-el="sources"></div></div>
+  <div><div class="sechead" style="margin-bottom:10px">Sources</div><div class="srclist" data-el="sources"></div></div>
 </div>`;
   }
 
@@ -511,7 +510,6 @@
     if (!rows.length) tb.innerHTML = '<tr><td colspan="4" class="meta">No quantified raw materials.</td></tr>';
     rows.forEach(function (k) { var rr = RECIPES[k], unit = rr && isNum(rr.value) ? rr.value : null, sub = unit !== null ? unit * raw[k] : null; tb.insertAdjacentHTML("beforeend", '<tr><td><span class="dot ' + dc(rr ? rr.type : "unknown") + '"></span><span class="' + (rr ? tc(rr.type) : "") + '">' + (rr ? rr.name : k) + '</span></td><td class="num">' + fmt(raw[k]) + '</td><td class="num">' + (unit === null ? "—" : fmt(unit)) + '</td><td class="num">' + (sub === null ? "—" : fmt(sub)) + "</td></tr>"); });
     var ub = $("unknown-box"), uk = Object.keys(unknown); ub.innerHTML = uk.length ? "⚠ <b>Unknown amounts:</b> " + uk.map(function (u) { return RECIPES[u] ? RECIPES[u].name : u; }).join(", ") + "." : "";
-    $("tree").innerHTML = "<ul><li>" + renderTree(node) + "</li></ul>";
     $("map").innerHTML = renderMap(g);
     var srcSet = gatherSources(node, {}), srcs = Object.keys(srcSet).map(function (a) { return SOURCES[a] || a; });
     $("sources").innerHTML = srcs.length ? srcs.map(function (s, i) { var lbl = "[" + (i + 1) + "] " + s; return /^https?:/.test(s) ? '<a href="' + s + '" target="_blank" rel="noopener">' + esc(lbl) + "</a>" : '<span class="meta">' + esc(lbl) + "</span>"; }).join("<br>") : "<span class='meta'>—</span>";
