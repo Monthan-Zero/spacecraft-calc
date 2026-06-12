@@ -1,80 +1,1315 @@
 {
-  "_README": "SpaceCraft Planner data. EDIT THIS FILE to update item values/recipes — the site reads it at runtime. 'value' = in-game store sell price in credits (null = unknown, shows 'Not available yet'). 'qty' null = recipe input confirmed but amount not public yet. 'confidence': high|medium|low. 'sources' uses the alias keys in the 'sources' map below.",
+  "_README": "SpaceCraft Planner data, rebuilt from in-game screenshots 2026-06-12. value = store sell price (credits). addedValue/craftTax/craftTime/su per smelt/craft step. qty null = unknown.",
   "sources": {
-    "dev1": "https://store.steampowered.com/news/app/3276050/view/1796631172273221",
-    "dev2": "https://store.steampowered.com/news/app/3276050/view/1819386365089878",
-    "ann": "https://steamcommunity.com/games/3276050/announcements/detail/570376084127744645",
-    "annLiq": "https://steamcommunity.com/games/3276050/announcements/detail/518607443608994595",
-    "guide": "https://steamcommunity.com/sharedfiles/filedetails/?id=3742867021",
-    "solar": "https://wiki.solaralpha.co.uk/books/resources",
-    "scwiki": "https://spacecraftgame.wiki/crafting/"
+    "game": "In-game screenshots (Smelter/Workshop/Shop), captured 2026-06-12",
+    "shop": "In-game shop sell screen, 2026-06-12",
+    "solar": "https://wiki.solaralpha.co.uk/books/resources"
   },
   "recipes": {
-    "iron_ore":      { "name": "Iron Ore",      "type": "raw", "value": 2.16, "inputs": [], "confidence": "high",   "sources": ["solar","ann"] },
-    "copper_ore":    { "name": "Copper Ore",    "type": "raw", "value": 3,    "inputs": [], "confidence": "high",   "sources": ["solar","ann"] },
-    "titanium_ore":  { "name": "Titanium Ore",  "type": "raw", "value": 3.36, "inputs": [], "confidence": "high",   "sources": ["solar"] },
-    "zirconium_ore": { "name": "Zirconium Ore", "type": "raw", "value": 10.5, "inputs": [], "confidence": "high",   "sources": ["solar"] },
-    "aluminium_ore": { "name": "Aluminium Ore", "type": "raw", "value": null, "inputs": [], "confidence": "medium", "sources": ["solar"] },
-    "vanadium_ore":  { "name": "Vanadium Ore",  "type": "raw", "value": null, "inputs": [], "confidence": "medium", "sources": ["solar"] },
-    "platinium_ore": { "name": "Platinium Ore", "type": "raw", "value": null, "inputs": [], "confidence": "medium", "sources": ["solar"] },
-    "a_carbon":      { "name": "Carbon (a-Carbon)", "type": "raw", "value": 2, "inputs": [], "confidence": "high",  "sources": ["solar"] },
-    "quartz":        { "name": "Quartz",        "type": "raw", "value": 11,   "inputs": [], "confidence": "high",   "sources": ["solar","ann"] },
-    "silicon":       { "name": "Silicon",       "type": "raw", "value": null, "inputs": [], "confidence": "medium", "sources": ["scwiki"] },
-    "silicate":      { "name": "Silicate",      "type": "raw", "value": null, "inputs": [], "confidence": "low",    "sources": ["scwiki"] },
-    "helium_3":      { "name": "Helium-3",      "type": "raw", "value": null, "inputs": [], "confidence": "medium", "sources": ["scwiki"] },
-    "iridium":       { "name": "Iridium",       "type": "raw", "value": null, "inputs": [], "confidence": "medium", "sources": ["scwiki"] },
-    "water":         { "name": "Water",         "type": "raw", "value": null, "inputs": [], "confidence": "high",   "sources": ["annLiq"] },
-    "sulfur":        { "name": "Sulfur",        "type": "raw", "value": null, "inputs": [], "confidence": "high",   "sources": ["annLiq"] },
-    "vanadium":      { "name": "Vanadium",      "type": "raw", "value": null, "inputs": [], "confidence": "high",   "sources": ["annLiq"] },
-    "graphite":      { "name": "Graphite",      "type": "raw", "value": null, "inputs": [], "confidence": "high",   "sources": ["annLiq"] },
-    "iron_nugget":   { "name": "Iron Nugget",   "type": "raw", "value": 1.14, "inputs": [], "confidence": "medium", "sources": ["solar","dev1"] },
-    "copper_nugget": { "name": "Copper Nugget", "type": "raw", "value": 1.6,  "inputs": [], "confidence": "medium", "sources": ["solar"] },
-
-    "iron_ingot":      { "name": "Iron Ingot",      "type": "refined", "value": 5.8,  "outputQty": 1, "building": "Smelter", "inputs": [{"id":"iron_ore","qty":2}], "confidence": "high", "sources": ["dev1","ann","solar"], "conflict": "Community wiki lists 4 Iron Ore -> 1 Ingot; official Shiro devblog says 2. Using 2 (official). Worth confirming in-game." },
-    "iron_ingot_alt":  { "name": "Iron Ingot (from Nuggets)", "type": "refined", "value": 5.8, "outputQty": 1, "building": "Smelter", "inputs": [{"id":"iron_nugget","qty":4}], "confidence": "high", "sources": ["dev1","ann"] },
-    "copper_ingot":    { "name": "Copper Ingot",    "type": "refined", "value": 8,    "outputQty": 1, "building": "Smelter", "inputs": [{"id":"copper_ore","qty":2}], "confidence": "high", "sources": ["dev1","ann","solar"] },
-    "titanium_ingot":  { "name": "Titanium Ingot",  "type": "refined", "value": 9,    "outputQty": 1, "building": "Smelter", "inputs": [{"id":"titanium_ore","qty":null}], "confidence": "high", "sources": ["solar"] },
-    "zirconium_ingot": { "name": "Zirconium Ingot", "type": "refined", "value": 28,   "outputQty": 1, "building": "Smelter", "inputs": [{"id":"zirconium_ore","qty":null}], "confidence": "high", "sources": ["solar"] },
-    "aluminium_ingot": { "name": "Aluminium Ingot", "type": "refined", "value": 9.6,  "outputQty": 1, "building": "Smelter", "inputs": [{"id":"aluminium_ore","qty":null}], "confidence": "high", "sources": ["solar"] },
-    "vanadium_ingot":  { "name": "Vanadium Ingot",  "type": "refined", "value": 15,   "outputQty": 1, "building": "Smelter", "inputs": [{"id":"vanadium_ore","qty":null}], "confidence": "high", "sources": ["solar"] },
-    "platinium_ingot": { "name": "Platinium Ingot", "type": "refined", "value": 16,   "outputQty": 1, "building": "Smelter", "inputs": [{"id":"platinium_ore","qty":null}], "confidence": "high", "sources": ["solar"] },
-    "silicon_ingot":   { "name": "Silicon Ingot",   "type": "refined", "value": 10,   "outputQty": 1, "building": "Smelter", "inputs": [{"id":"silicate","qty":null}], "confidence": "medium", "sources": ["solar"] },
-    "silver_ingot":    { "name": "Silver Ingot",    "type": "refined", "value": 20,   "outputQty": 1, "building": "Smelter", "inputs": [], "confidence": "high", "sources": ["solar"] },
-    "steel_ingot":     { "name": "Steel Ingot",     "type": "refined", "value": 12.5, "outputQty": 1, "building": "Smelter", "inputs": [{"id":"iron_ingot","qty":null},{"id":"a_carbon","qty":null}], "confidence": "medium", "sources": ["solar"] },
-    "elmerium_core":   { "name": "Elmerium Core",   "type": "refined", "value": 20,   "outputQty": 1, "building": "Refinery", "inputs": [], "confidence": "medium", "sources": ["solar"] },
-    "sulfuric_acid":   { "name": "Sulfuric Acid",   "type": "refined", "value": null, "outputQty": 1, "building": "Chemical Factory", "inputs": [{"id":"water","qty":null},{"id":"sulfur","qty":null}], "confidence": "high", "sources": ["dev2","annLiq"] },
-    "carbon_plate":    { "name": "Carbon Plate",    "type": "refined", "value": null, "outputQty": 1, "building": "Refinery", "inputs": [{"id":"a_carbon","qty":3}], "confidence": "low", "sources": ["scwiki"] },
-    "silicon_wafer":   { "name": "Silicon Wafer",   "type": "refined", "value": null, "outputQty": 1, "building": "Refinery", "inputs": [{"id":"silicon","qty":6}], "confidence": "low", "sources": ["scwiki"] },
-    "quartz_crystal":  { "name": "Quartz Crystal",  "type": "refined", "value": null, "outputQty": 1, "building": "Refinery", "inputs": [{"id":"quartz","qty":3}], "confidence": "low", "sources": ["scwiki"] },
-    "titanium_plate":  { "name": "Titanium Plate",  "type": "refined", "value": null, "outputQty": 1, "building": "Refinery", "inputs": [{"id":"titanium_ore","qty":8}], "confidence": "low", "sources": ["scwiki"] },
-    "plasma_core":     { "name": "Plasma Core",     "type": "refined", "value": null, "outputQty": 1, "building": "Refinery", "inputs": [{"id":"helium_3","qty":null},{"id":"quartz","qty":null}], "confidence": "low", "sources": ["scwiki"] },
-
-    "wire":            { "name": "Wire",            "type": "component", "value": 2.2,  "outputQty": 1, "building": "Workshop", "inputs": [{"id":"copper_ingot","qty":null}], "confidence": "high", "sources": ["dev1","ann","solar"] },
-    "watertight_pipe": { "name": "Watertight Pipe", "type": "component", "value": 4.4,  "outputQty": 1, "building": "Workshop", "inputs": [{"id":"copper_ingot","qty":null}], "confidence": "medium", "sources": ["solar"] },
-    "iron_sheet":      { "name": "Iron Sheet",      "type": "component", "value": null, "outputQty": 1, "building": "Workshop", "inputs": [{"id":"iron_ingot","qty":null}], "confidence": "medium", "sources": ["ann"] },
-    "small_module_kit":{ "name": "Small Module Kit","type": "component", "value": null, "outputQty": 1, "building": "Workshop", "inputs": [], "confidence": "medium", "sources": ["ann"] },
-    "empty_bottle":    { "name": "Empty Bottle",    "type": "component", "value": null, "outputQty": 1, "building": "Workshop", "inputs": [], "confidence": "medium", "sources": ["annLiq"] },
-    "hull_panel_s":    { "name": "Hull Panel S",    "type": "component", "value": null, "outputQty": 1, "building": "Ship Bay", "inputs": [{"id":"iron_ingot","qty":4},{"id":"carbon_plate","qty":2}], "confidence": "low", "sources": ["scwiki"] },
-    "maneuvering_thruster": { "name": "Maneuvering Thruster", "type": "component", "value": null, "outputQty": 1, "building": "Ship Bay", "inputs": [{"id":"iron_ingot","qty":6},{"id":"wire","qty":4}], "confidence": "low", "sources": ["scwiki"] },
-    "ftl_coil_mk1":    { "name": "FTL Coil MK1",    "type": "component", "value": null, "outputQty": 1, "building": "FTL Bench", "inputs": [{"id":"quartz_crystal","qty":6},{"id":"wire","qty":8}], "confidence": "low", "sources": ["scwiki"] },
-
-    "scanalyzer_alpha":{ "name": "Scanalyzer Alpha", "type": "product", "value": null, "outputQty": 1, "building": "Workshop (Babylon 7)", "inputs": [{"id":"small_module_kit","qty":1},{"id":"iron_sheet","qty":1},{"id":"wire","qty":2}], "confidence": "high", "sources": ["dev1","ann"] },
-    "simple_mining_laser": { "name": "Simple Mining Laser", "type": "product", "value": null, "outputQty": 1, "building": "Workshop", "inputs": [{"id":"copper_ingot","qty":6},{"id":"iron_ingot","qty":3},{"id":"quartz","qty":2}], "confidence": "high", "sources": ["guide"] },
-    "simple_resource_detector": { "name": "Simple Resource Detector", "type": "product", "value": null, "outputQty": 1, "building": "Workshop", "inputs": [{"id":"copper_ingot","qty":5},{"id":"iron_ingot","qty":5}], "confidence": "high", "sources": ["guide"] },
-    "ftl_eco_drive":   { "name": "FTL ECO Drive",   "type": "product", "value": null, "outputQty": 1, "building": "Workshop", "inputs": [{"id":"copper_ingot","qty":7},{"id":"iron_ingot","qty":3},{"id":"quartz","qty":2}], "confidence": "high", "sources": ["guide"] },
-    "storage_module_100": { "name": "Storage Module (+100 SU)", "type": "product", "value": null, "outputQty": 1, "building": "Workshop", "inputs": [{"id":"copper_ingot","qty":3},{"id":"iron_ingot","qty":6},{"id":"quartz","qty":1}], "confidence": "high", "sources": ["guide"] },
-    "vanadium_battery":{ "name": "Vanadium Battery", "type": "product", "value": null, "outputQty": 1, "building": "Chemical Factory", "inputs": [{"id":"sulfuric_acid","qty":null},{"id":"vanadium","qty":null},{"id":"graphite","qty":null}], "confidence": "high", "sources": ["dev2","annLiq"] },
-    "bottled_liquid":  { "name": "Bottled Liquid",  "type": "product", "value": null, "outputQty": 1, "building": "Bottling Plant", "inputs": [{"id":"empty_bottle","qty":null},{"id":"water","qty":null}], "confidence": "medium", "sources": ["annLiq"] },
-    "mining_laser_mk1":{ "name": "Mining Laser MK1", "type": "product", "value": null, "outputQty": 1, "building": "Tool Bench", "inputs": [{"id":"carbon_plate","qty":3},{"id":"silicon_wafer","qty":2}], "confidence": "low", "sources": ["scwiki"] },
-    "mining_laser_mk3":{ "name": "Mining Laser MK3", "type": "product", "value": null, "outputQty": 1, "building": "Tool Bench", "inputs": [{"id":"quartz_crystal","qty":4},{"id":"silicon","qty":6}], "confidence": "low", "sources": ["scwiki"] },
-    "cargo_bay_module":{ "name": "Cargo Bay Module", "type": "product", "value": null, "outputQty": 1, "building": "Ship Bay", "inputs": [{"id":"hull_panel_s","qty":8},{"id":"iron_ingot","qty":6}], "confidence": "low", "sources": ["scwiki"] },
-    "shield_generator":{ "name": "Shield Generator", "type": "product", "value": null, "outputQty": 1, "building": "Tool Bench", "inputs": [{"id":"plasma_core","qty":1},{"id":"titanium_plate","qty":4}], "confidence": "low", "sources": ["scwiki"] },
-    "cap_ship_reactor":{ "name": "Cap-ship Reactor", "type": "product", "value": null, "outputQty": 1, "building": "Capital Bay", "inputs": [{"id":"plasma_core","qty":4},{"id":"titanium_plate","qty":16}], "confidence": "low", "sources": ["scwiki"] },
-    "mining_drill_t1": { "name": "Mining Drill T1",  "type": "product", "value": null, "outputQty": 1, "building": "Constructor", "inputs": [{"id":"iron_ingot","qty":10},{"id":"carbon_plate","qty":6}], "confidence": "low", "sources": ["scwiki"] },
-    "refinery_t1_module": { "name": "Refinery T1 (module)", "type": "product", "value": null, "outputQty": 1, "building": "Constructor", "inputs": [{"id":"iron_ingot","qty":20},{"id":"silicon_wafer","qty":8}], "confidence": "low", "sources": ["scwiki"] },
-    "logistics_drone": { "name": "Logistics Drone",  "type": "product", "value": null, "outputQty": 1, "building": "Drone Bay", "inputs": [{"id":"carbon_plate","qty":4},{"id":"wire","qty":6}], "confidence": "low", "sources": ["scwiki"] },
-    "storage_silo":    { "name": "Storage Silo",     "type": "product", "value": null, "outputQty": 1, "building": "Constructor", "inputs": [{"id":"iron_ingot","qty":30}], "confidence": "low", "sources": ["scwiki"] },
-    "solar_array":     { "name": "Solar Array",      "type": "product", "value": null, "outputQty": 1, "building": "Constructor", "inputs": [{"id":"silicon_wafer","qty":12},{"id":"wire","qty":6}], "confidence": "low", "sources": ["scwiki"] },
-    "defense_turret":  { "name": "Defense Turret",   "type": "product", "value": null, "outputQty": 1, "building": "Constructor", "inputs": [{"id":"titanium_plate","qty":6},{"id":"plasma_core","qty":1}], "confidence": "low", "sources": ["scwiki"] }
+    "aluminum_ore": {
+      "name": "Aluminum Ore",
+      "type": "raw",
+      "value": 3.58,
+      "inputs": [],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop",
+        "solar"
+      ]
+    },
+    "aquamarine": {
+      "name": "Aquamarine",
+      "type": "raw",
+      "value": 12,
+      "inputs": [],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop",
+        "solar"
+      ]
+    },
+    "base_core_drive": {
+      "name": "Base Core Drive",
+      "type": "component",
+      "value": null,
+      "inputs": [],
+      "confidence": "low",
+      "sources": [
+        "game"
+      ],
+      "note": "Recipe not captured in screenshots yet"
+    },
+    "copper_nugget": {
+      "name": "Copper Nugget",
+      "type": "raw",
+      "value": 1.6,
+      "inputs": [],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop",
+        "solar"
+      ]
+    },
+    "copper_ore": {
+      "name": "Copper Ore",
+      "type": "raw",
+      "value": 3,
+      "inputs": [],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop",
+        "solar"
+      ]
+    },
+    "iron_nugget": {
+      "name": "Iron Nugget",
+      "type": "raw",
+      "value": 1.13,
+      "inputs": [],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop",
+        "solar"
+      ]
+    },
+    "iron_ore": {
+      "name": "Iron Ore",
+      "type": "raw",
+      "value": 2.16,
+      "inputs": [],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop",
+        "solar"
+      ]
+    },
+    "pyrite": {
+      "name": "Pyrite",
+      "type": "raw",
+      "value": null,
+      "inputs": [],
+      "confidence": "medium",
+      "sources": [
+        "game",
+        "solar"
+      ]
+    },
+    "quartz": {
+      "name": "Quartz",
+      "type": "raw",
+      "value": 11,
+      "inputs": [],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop",
+        "solar"
+      ]
+    },
+    "quartz_powder": {
+      "name": "Quartz Powder",
+      "type": "raw",
+      "value": 0.37,
+      "inputs": [],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "solar"
+      ]
+    },
+    "semiconductor_substrate": {
+      "name": "Semiconductor Substrate",
+      "type": "component",
+      "value": null,
+      "inputs": [],
+      "confidence": "low",
+      "sources": [
+        "game"
+      ],
+      "note": "Recipe not captured in screenshots yet"
+    },
+    "silicate": {
+      "name": "Silicate",
+      "type": "raw",
+      "value": 0.62,
+      "inputs": [],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop",
+        "solar"
+      ]
+    },
+    "small_steel_part_casing": {
+      "name": "Small Steel Part Casing",
+      "type": "component",
+      "value": null,
+      "inputs": [],
+      "confidence": "low",
+      "sources": [
+        "game"
+      ],
+      "note": "Recipe not captured in screenshots yet"
+    },
+    "support_hardware": {
+      "name": "Support Hardware",
+      "type": "component",
+      "value": null,
+      "inputs": [],
+      "confidence": "low",
+      "sources": [
+        "game"
+      ],
+      "note": "Recipe not captured in screenshots yet"
+    },
+    "titanium_nugget": {
+      "name": "Titanium Nugget",
+      "type": "raw",
+      "value": 1.8,
+      "inputs": [],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "solar"
+      ]
+    },
+    "vanadium_ore": {
+      "name": "Vanadium Ore",
+      "type": "raw",
+      "value": 5.6,
+      "inputs": [],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "solar"
+      ]
+    },
+    "a_carbon": {
+      "name": "a-Carbon",
+      "type": "raw",
+      "value": 2.0,
+      "inputs": [],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "solar"
+      ]
+    },
+    "c_crystal_matrix": {
+      "name": "c-Crystal Matrix",
+      "type": "component",
+      "value": null,
+      "inputs": [],
+      "confidence": "low",
+      "sources": [
+        "game"
+      ],
+      "note": "Recipe not captured in screenshots yet"
+    },
+    "iron_ingot": {
+      "name": "Iron Ingot",
+      "type": "refined",
+      "value": 5.8,
+      "outputQty": 1,
+      "building": "Smelter",
+      "inputs": [
+        {
+          "id": "iron_ore",
+          "qty": 2
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 1.48,
+      "craftTax": 0.58,
+      "craftTime": 5,
+      "su": 1
+    },
+    "iron_ingot_alt2": {
+      "name": "Iron Ingot (from Iron Nugget)",
+      "type": "refined",
+      "value": 5.8,
+      "outputQty": 1,
+      "building": "Smelter",
+      "inputs": [
+        {
+          "id": "iron_nugget",
+          "qty": 4
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 1.24,
+      "craftTax": 0.58,
+      "craftTime": 5,
+      "su": 1
+    },
+    "copper_ingot": {
+      "name": "Copper Ingot",
+      "type": "refined",
+      "value": 8.0,
+      "outputQty": 1,
+      "building": "Smelter",
+      "inputs": [
+        {
+          "id": "copper_ore",
+          "qty": 2
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 2,
+      "craftTax": 0.8,
+      "craftTime": 5,
+      "su": 1
+    },
+    "copper_ingot_alt2": {
+      "name": "Copper Ingot (from Copper Nugget)",
+      "type": "refined",
+      "value": 8.0,
+      "outputQty": 1,
+      "building": "Smelter",
+      "inputs": [
+        {
+          "id": "copper_nugget",
+          "qty": 4
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 1.6,
+      "craftTax": 0.8,
+      "craftTime": 5,
+      "su": 1
+    },
+    "aluminum_ingot": {
+      "name": "Aluminum Ingot",
+      "type": "refined",
+      "value": 9.6,
+      "outputQty": 1,
+      "building": "Smelter",
+      "inputs": [
+        {
+          "id": "aluminum_ore",
+          "qty": 2
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop"
+      ],
+      "addedValue": 2.44,
+      "craftTax": 0.96,
+      "craftTime": 5,
+      "su": 1
+    },
+    "titanium_ingot": {
+      "name": "Titanium Ingot",
+      "type": "refined",
+      "value": 9,
+      "outputQty": 1,
+      "building": "Smelter",
+      "inputs": [
+        {
+          "id": "titanium_nugget",
+          "qty": 4
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop"
+      ],
+      "addedValue": 1.8,
+      "craftTax": 0.9,
+      "craftTime": 5,
+      "su": 1
+    },
+    "silicon_ingot": {
+      "name": "Silicon Ingot",
+      "type": "refined",
+      "value": 10.0,
+      "outputQty": 1,
+      "building": "Smelter",
+      "inputs": [
+        {
+          "id": "quartz_powder",
+          "qty": 20
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 2.6,
+      "craftTax": 1,
+      "craftTime": 20,
+      "su": 1
+    },
+    "silicon_ingot_alt2": {
+      "name": "Silicon Ingot (from Silicate)",
+      "type": "refined",
+      "value": 10.0,
+      "outputQty": 1,
+      "building": "Smelter",
+      "inputs": [
+        {
+          "id": "silicate",
+          "qty": 12
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 2.56,
+      "craftTax": 1,
+      "craftTime": 20,
+      "su": 1
+    },
+    "silicon_ingot_alt3": {
+      "name": "Silicon Ingot (from Quartz)",
+      "type": "refined",
+      "value": 10.0,
+      "outputQty": 1,
+      "building": "Smelter",
+      "inputs": [
+        {
+          "id": "quartz",
+          "qty": 1
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": -1,
+      "craftTax": 1,
+      "craftTime": 10,
+      "su": 1
+    },
+    "silicon_ingot_alt4": {
+      "name": "Silicon Ingot (from Aquamarine)",
+      "type": "refined",
+      "value": 10.0,
+      "outputQty": 2,
+      "building": "Smelter",
+      "inputs": [
+        {
+          "id": "aquamarine",
+          "qty": 3
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": -6.4,
+      "craftTax": 2.96,
+      "craftTime": 15,
+      "su": 1
+    },
+    "vanadium_ingot": {
+      "name": "Vanadium Ingot",
+      "type": "refined",
+      "value": 15,
+      "outputQty": 1,
+      "building": "Smelter",
+      "inputs": [
+        {
+          "id": "vanadium_ore",
+          "qty": 2
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop"
+      ],
+      "addedValue": 3.8,
+      "craftTax": 1.5,
+      "craftTime": 5,
+      "su": 1
+    },
+    "sulfur": {
+      "name": "Sulfur",
+      "type": "refined",
+      "value": 0.7,
+      "outputQty": 4,
+      "building": "Smelter",
+      "inputs": [
+        {
+          "id": "pyrite",
+          "qty": 1
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop"
+      ],
+      "addedValue": -1.4,
+      "craftTax": 0.86,
+      "craftTime": 8,
+      "su": 0.1
+    },
+    "concrete": {
+      "name": "Concrete",
+      "type": "refined",
+      "value": 0.25,
+      "outputQty": 5,
+      "building": "Smelter",
+      "inputs": [
+        {
+          "id": "silicate",
+          "qty": 2
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop"
+      ],
+      "addedValue": 0.01,
+      "craftTax": 0.13,
+      "craftTime": 10,
+      "su": 1
+    },
+    "steel_ingot": {
+      "name": "Steel Ingot",
+      "type": "refined",
+      "value": 11.1667,
+      "outputQty": 3,
+      "building": "Smelter",
+      "inputs": [
+        {
+          "id": "iron_ingot",
+          "qty": 4
+        },
+        {
+          "id": "a_carbon",
+          "qty": 4
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 2.3,
+      "craftTax": 3.15,
+      "craftTime": 25,
+      "su": 1
+    },
+    "metal_sheet": {
+      "name": "Metal Sheet",
+      "type": "component",
+      "value": 3,
+      "outputQty": 2,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "iron_ingot",
+          "qty": 1
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop"
+      ],
+      "addedValue": 0.2,
+      "craftTax": 0.2,
+      "craftTime": 2,
+      "su": 1
+    },
+    "nut_and_bolt": {
+      "name": "Nut and Bolt",
+      "type": "component",
+      "value": 0.74,
+      "outputQty": 8,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "iron_ingot",
+          "qty": 1
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop"
+      ],
+      "addedValue": 0.12,
+      "craftTax": 0.26,
+      "craftTime": 4,
+      "su": 0.1
+    },
+    "wire": {
+      "name": "Wire",
+      "type": "component",
+      "value": 2.8,
+      "outputQty": 4,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "copper_ingot",
+          "qty": 1
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop"
+      ],
+      "addedValue": 0.32,
+      "craftTax": 0.31,
+      "craftTime": 2,
+      "su": 0.5
+    },
+    "wire_alt2": {
+      "name": "Wire (from Aluminum Ingot)",
+      "type": "component",
+      "value": 2.8,
+      "outputQty": 9,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "aluminum_ingot",
+          "qty": 2
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": -0.48,
+      "craftTax": 0.69,
+      "craftTime": 4,
+      "su": 0.5
+    },
+    "silicone_gel": {
+      "name": "Silicone Gel",
+      "type": "component",
+      "value": 0.52,
+      "outputQty": 20,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "silicon_ingot",
+          "qty": 1
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop"
+      ],
+      "addedValue": 0.4,
+      "craftTax": 0.48,
+      "craftTime": 8,
+      "su": 0.5
+    },
+    "microchip": {
+      "name": "Microchip",
+      "type": "component",
+      "value": null,
+      "outputQty": 2,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "semiconductor_substrate",
+          "qty": 1
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 0.08,
+      "craftTax": 0.11,
+      "craftTime": 2.9,
+      "su": 0.5
+    },
+    "structural_beam": {
+      "name": "Structural Beam",
+      "type": "component",
+      "value": 23.1334,
+      "outputQty": 1,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "steel_ingot",
+          "qty": 2
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 0.8,
+      "craftTax": 0.29,
+      "craftTime": 24,
+      "su": 2
+    },
+    "stainless_plate": {
+      "name": "Stainless Plate",
+      "type": "component",
+      "value": 14.7,
+      "outputQty": 2,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "aluminum_ingot",
+          "qty": 2
+        },
+        {
+          "id": "copper_ingot",
+          "qty": 1
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 2.2,
+      "craftTax": 0.48,
+      "craftTime": 4,
+      "su": 2
+    },
+    "magnetic_coil": {
+      "name": "Magnetic Coil",
+      "type": "component",
+      "value": 9.5,
+      "outputQty": 2,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "wire",
+          "qty": 5
+        },
+        {
+          "id": "iron_ingot",
+          "qty": 1
+        },
+        {
+          "id": "nut_and_bolt",
+          "qty": 1
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 2.06,
+      "craftTax": 0.39,
+      "craftTime": 5,
+      "su": 1
+    },
+    "crystalline_focuser": {
+      "name": "Crystalline Focuser",
+      "type": "component",
+      "value": 23.1,
+      "outputQty": 4,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "c_crystal_matrix",
+          "qty": 9
+        },
+        {
+          "id": "wire",
+          "qty": 16
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop"
+      ],
+      "addedValue": 41.12,
+      "craftTax": 1.2,
+      "craftTime": 6,
+      "su": 1
+    },
+    "crystalline_focuser_alt2": {
+      "name": "Crystalline Focuser (from Quartz)",
+      "type": "component",
+      "value": 23.1,
+      "outputQty": 3,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "quartz",
+          "qty": 1
+        },
+        {
+          "id": "wire",
+          "qty": 5
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 1.7,
+      "craftTax": 0.3,
+      "craftTime": 4,
+      "su": 1
+    },
+    "diffraction_grating": {
+      "name": "Diffraction Grating",
+      "type": "component",
+      "value": 6.3,
+      "outputQty": 5,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "silicon_ingot",
+          "qty": 1
+        },
+        {
+          "id": "aluminum_ingot",
+          "qty": 2
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 2.3,
+      "craftTax": 0.78,
+      "craftTime": 8,
+      "su": 1
+    },
+    "motor": {
+      "name": "Motor",
+      "type": "component",
+      "value": 59.0,
+      "outputQty": 1,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "metal_sheet",
+          "qty": 1
+        },
+        {
+          "id": "magnetic_coil",
+          "qty": 5
+        },
+        {
+          "id": "silicone_gel",
+          "qty": 5
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 5.9,
+      "craftTax": 0.5,
+      "craftTime": 12.5,
+      "su": 2
+    },
+    "construction_tool": {
+      "name": "Construction Tool",
+      "type": "component",
+      "value": 13.7,
+      "outputQty": 1,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "aluminum_ingot",
+          "qty": 1
+        },
+        {
+          "id": "wire",
+          "qty": 1
+        },
+        {
+          "id": "silicone_gel",
+          "qty": 1
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 1.5,
+      "craftTax": 0.23,
+      "craftTime": 2,
+      "su": 0.1
+    },
+    "simple_mining_laser": {
+      "name": "Simple Mining Laser",
+      "type": "product",
+      "value": null,
+      "outputQty": 1,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "small_module_kit",
+          "qty": 1
+        },
+        {
+          "id": "crystalline_focuser",
+          "qty": 2
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 6.3,
+      "craftTax": 0.67,
+      "craftTime": 10,
+      "su": 10
+    },
+    "overclocked_mining_laser": {
+      "name": "Overclocked Mining Laser",
+      "type": "product",
+      "value": null,
+      "outputQty": 1,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "simple_mining_laser",
+          "qty": 1
+        },
+        {
+          "id": "crystalline_focuser",
+          "qty": 3
+        },
+        {
+          "id": "magnetic_coil",
+          "qty": 3
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 23.2,
+      "craftTax": 1.28,
+      "craftTime": 10,
+      "su": 10
+    },
+    "scanalyzer_alpha": {
+      "name": "Scanalyzer Alpha",
+      "type": "product",
+      "value": 25.5,
+      "outputQty": 2,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "small_module_kit",
+          "qty": 1
+        },
+        {
+          "id": "nut_and_bolt",
+          "qty": 4
+        },
+        {
+          "id": "wire",
+          "qty": 2
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 5.38,
+      "craftTax": 0.46,
+      "craftTime": 10,
+      "su": 10
+    },
+    "scanalyzer_beta": {
+      "name": "Scanalyzer Beta",
+      "type": "product",
+      "value": null,
+      "outputQty": 1,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "scanalyzer_alpha",
+          "qty": 1
+        },
+        {
+          "id": "diffraction_grating",
+          "qty": 5
+        },
+        {
+          "id": "c_crystal_matrix",
+          "qty": 1
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 10.5,
+      "craftTax": 0.69,
+      "craftTime": 10,
+      "su": 10
+    },
+    "simple_resource_detector": {
+      "name": "Simple Resource Detector",
+      "type": "product",
+      "value": 62.0,
+      "outputQty": 1,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "small_module_kit",
+          "qty": 1
+        },
+        {
+          "id": "magnetic_coil",
+          "qty": 2
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 4.5,
+      "craftTax": 0.52,
+      "craftTime": 10,
+      "su": 10
+    },
+    "spectral_resource_detector": {
+      "name": "Spectral Resource Detector",
+      "type": "product",
+      "value": null,
+      "outputQty": 1,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "simple_resource_detector",
+          "qty": 1
+        },
+        {
+          "id": "crystalline_focuser",
+          "qty": 1
+        },
+        {
+          "id": "diffraction_grating",
+          "qty": 3
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 12,
+      "craftTax": 0.8,
+      "craftTime": 10,
+      "su": 10
+    },
+    "ftl_engine_eco": {
+      "name": "FTL Engine - Eco",
+      "type": "component",
+      "value": null,
+      "outputQty": 1,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "small_module_kit",
+          "qty": 1
+        },
+        {
+          "id": "crystalline_focuser",
+          "qty": 1
+        },
+        {
+          "id": "wire",
+          "qty": 7
+        },
+        {
+          "id": "silicone_gel",
+          "qty": 2
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 12.8,
+      "craftTax": 0.66,
+      "craftTime": 10,
+      "su": 10
+    },
+    "cosmic_navigator": {
+      "name": "Cosmic Navigator",
+      "type": "component",
+      "value": null,
+      "outputQty": 1,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "small_module_kit",
+          "qty": 1
+        },
+        {
+          "id": "microchip",
+          "qty": 5
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 3.6,
+      "craftTax": 0.45,
+      "craftTime": 1,
+      "su": 1
+    },
+    "flywheel_battery": {
+      "name": "Flywheel Battery",
+      "type": "component",
+      "value": 110.0,
+      "outputQty": 1,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "small_module_kit",
+          "qty": 1
+        },
+        {
+          "id": "motor",
+          "qty": 1
+        },
+        {
+          "id": "concrete",
+          "qty": 2
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 12,
+      "craftTax": 0.77,
+      "craftTime": 10,
+      "su": 10
+    },
+    "small_module_kit": {
+      "name": "Small Module Kit",
+      "type": "component",
+      "value": 38.5,
+      "outputQty": 1,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "nut_and_bolt",
+          "qty": 20
+        },
+        {
+          "id": "wire",
+          "qty": 10
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game",
+        "shop"
+      ],
+      "addedValue": 2.9,
+      "craftTax": 0.39,
+      "craftTime": 10,
+      "su": 10
+    },
+    "pathfinder_cockpit": {
+      "name": "\"Pathfinder\" Cockpit",
+      "type": "component",
+      "value": null,
+      "outputQty": 1,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "small_steel_part_casing",
+          "qty": 3
+        },
+        {
+          "id": "support_hardware",
+          "qty": 6
+        },
+        {
+          "id": "wire",
+          "qty": 20
+        },
+        {
+          "id": "magnetic_coil",
+          "qty": 8
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 224,
+      "craftTax": 7.97,
+      "craftTime": 30,
+      "su": 20
+    },
+    "spot_light": {
+      "name": "Spot Light",
+      "type": "component",
+      "value": 3.3,
+      "outputQty": 4,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "metal_sheet",
+          "qty": 2
+        },
+        {
+          "id": "wire",
+          "qty": 3
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 0.96,
+      "craftTax": 0.23,
+      "craftTime": 2,
+      "su": 1
+    },
+    "light_strip": {
+      "name": "Light Strip",
+      "type": "component",
+      "value": 3.3,
+      "outputQty": 4,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "metal_sheet",
+          "qty": 2
+        },
+        {
+          "id": "wire",
+          "qty": 3
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 0.96,
+      "craftTax": 0.23,
+      "craftTime": 2,
+      "su": 1
+    },
+    "headlight": {
+      "name": "Headlight",
+      "type": "component",
+      "value": 3.3,
+      "outputQty": 4,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "metal_sheet",
+          "qty": 2
+        },
+        {
+          "id": "wire",
+          "qty": 3
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 0.96,
+      "craftTax": 0.23,
+      "craftTime": 2,
+      "su": 1
+    },
+    "base_deploy_kit": {
+      "name": "Base Deploy Kit",
+      "type": "component",
+      "value": null,
+      "outputQty": 1,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "base_core_drive",
+          "qty": 1
+        },
+        {
+          "id": "stainless_plate",
+          "qty": 4
+        },
+        {
+          "id": "metal_sheet",
+          "qty": 20
+        },
+        {
+          "id": "wire",
+          "qty": 20
+        },
+        {
+          "id": "concrete",
+          "qty": 20
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 56.6,
+      "craftTax": 1.83,
+      "craftTime": 2,
+      "su": 10
+    },
+    "drone": {
+      "name": "Drone",
+      "type": "component",
+      "value": null,
+      "outputQty": 1,
+      "building": "Workshop",
+      "inputs": [
+        {
+          "id": "motor",
+          "qty": 1
+        },
+        {
+          "id": "microchip",
+          "qty": 1
+        },
+        {
+          "id": "metal_sheet",
+          "qty": 1
+        },
+        {
+          "id": "nut_and_bolt",
+          "qty": 6
+        }
+      ],
+      "confidence": "high",
+      "sources": [
+        "game"
+      ],
+      "addedValue": 11.22,
+      "craftTax": 0.61,
+      "craftTime": 2,
+      "su": 1
+    }
   }
 }

@@ -304,6 +304,18 @@
   }
   function setOf(a) { var o = {}; for (var i = 0; i < a.length; i++) o[a[i]] = 1; return o; }
   function rawCost(raw) { var c = 0, mv = false; for (var k in raw) { var r = RECIPES[k]; if (r && isNum(r.value)) c += r.value * raw[k]; else mv = true; } return { cost: c, missingValue: mv }; }
+  function graphCosts(g) {
+    var tax = 0, taxComplete = true, time = 0;
+    for (var id in g.nodes) {
+      var n = g.nodes[id], r = RECIPES[id];
+      if (!r || !r.inputs || !r.inputs.length) continue; // raw/leaf — no craft step
+      if (!(n.need > 0) || n.unknown) { taxComplete = false; continue; }
+      var crafts = n.need / (r.outputQty || 1);
+      if (isNum(r.craftTax)) tax += r.craftTax * crafts; else taxComplete = false;
+      if (isNum(r.craftTime)) time += r.craftTime * crafts;
+    }
+    return { tax: tax, taxComplete: taxComplete, time: time };
+  }
   function gatherSources(node, set) { var r = RECIPES[node.id]; if (r && r.sources) for (var i = 0; i < r.sources.length; i++) set[r.sources[i]] = 1; if (node.children) for (var j = 0; j < node.children.length; j++) gatherSources(node.children[j], set); return set; }
 
   function buildGraph(targetId, qty) {
@@ -372,7 +384,7 @@
 <div class="titlerow"><h2 data-el="sel-name">—</h2><span class="badge" data-el="sel-conf"></span><span class="meta" data-el="sel-building" style="color:var(--muted);font-size:13px"></span><span class="flag" data-el="sel-conflict" title=""></span></div>
 <div class="grid">
   <div class="card"><div class="k">Store sell price</div><div class="v primary" data-el="m-sell">—</div><div class="note" data-el="m-sell-note"></div><div class="report" data-el="report-box"></div></div>
-  <div class="card"><div class="k">Raw material cost</div><div class="v" data-el="m-cost">—</div><div class="note" data-el="m-cost-note"></div></div>
+  <div class="card"><div class="k">Production cost</div><div class="v" data-el="m-cost">—</div><div class="note" data-el="m-cost-note"></div></div>
   <div class="card"><div class="k">Profit</div><div class="v" data-el="m-profit">—</div><div class="note" data-el="m-profit-note"></div></div>
   <div class="card"><div class="k">Margin</div><div class="v" data-el="m-margin">—</div><div class="note"></div></div>
 </div>
@@ -392,6 +404,7 @@
     var qty = Math.max(1, parseFloat($("qty").value) || 1);
     var res = expand(id, qty, {}), node = res.node, raw = res.raw, unknown = res.unknown, incomplete = res.incomplete;
     var rc = rawCost(raw), cost = rc.cost, missingValue = rc.missingValue;
+    var g = buildGraph(id, qty), gc = graphCosts(g), tax = gc.tax, prodCost = cost + tax;
     $("sel-name").textContent = r.name; $("sel-name").className = tc(r.type);
     $("sel-conf").className = "badge c-" + r.confidence; $("sel-conf").textContent = r.confidence + (r.userReported ? " (you)" : "");
     $("sel-building").textContent = r.building ? "built at " + r.building : "";
@@ -405,9 +418,10 @@
     $("price-save").onclick = function () { var v = parseFloat($("price-input").value); if (!isNaN(v) && v >= 0) reportPrice(id, v); };
     var pc = $("price-clear"); if (pc) pc.onclick = function () { reportPrice(id, null); };
     var hasRaw = Object.keys(raw).length > 0;
-    $("m-cost").textContent = hasRaw ? (incomplete || missingValue ? "≥ " : "") + credits(cost) : "—";
-    $("m-cost-note").textContent = incomplete ? "partial — some quantities unknown" : missingValue ? "some raw prices unknown" : "fully resolved to raw";
-    var canProfit = sell !== null && !incomplete && !missingValue && hasRaw, profit = canProfit ? sell - cost : null, pEl = $("m-profit");
+    var costPartial = incomplete || missingValue || !gc.taxComplete;
+    $("m-cost").textContent = hasRaw ? (costPartial ? "≥ " : "") + credits(prodCost) : "—";
+    $("m-cost-note").textContent = (costPartial ? "partial · " : "") + "raw " + credits(cost) + " + tax " + credits(tax) + (gc.time ? " · ~" + fmt(gc.time) + "s" : "");
+    var canProfit = sell !== null && !costPartial && hasRaw, profit = canProfit ? sell - prodCost : null, pEl = $("m-profit");
     pEl.textContent = canProfit ? credits(profit) : "—"; pEl.className = "v " + (canProfit ? (profit >= 0 ? "good" : "bad") : "");
     $("m-profit-note").textContent = canProfit ? "" : "needs price + full quantities";
     $("m-margin").textContent = (canProfit && sell !== 0) ? fmt(profit / sell * 100) + "%" : "—";
@@ -417,9 +431,9 @@
     rows.forEach(function (k) { var rr = RECIPES[k], unit = rr && isNum(rr.value) ? rr.value : null, sub = unit !== null ? unit * raw[k] : null; tb.insertAdjacentHTML("beforeend", '<tr><td><span class="dot ' + dc(rr ? rr.type : "unknown") + '"></span><span class="' + (rr ? tc(rr.type) : "") + '">' + (rr ? rr.name : k) + '</span></td><td class="num">' + fmt(raw[k]) + '</td><td class="num">' + (unit === null ? "—" : fmt(unit)) + '</td><td class="num">' + (sub === null ? "—" : fmt(sub)) + "</td></tr>"); });
     var ub = $("unknown-box"), uk = Object.keys(unknown); ub.innerHTML = uk.length ? "⚠ <b>Unknown amounts:</b> " + uk.map(function (u) { return RECIPES[u] ? RECIPES[u].name : u; }).join(", ") + "." : "";
     $("tree").innerHTML = "<ul><li>" + renderTree(node) + "</li></ul>";
-    $("map").innerHTML = renderMap(buildGraph(id, qty));
+    $("map").innerHTML = renderMap(g);
     var srcSet = gatherSources(node, {}), srcs = Object.keys(srcSet).map(function (a) { return SOURCES[a] || a; });
-    $("sources").innerHTML = srcs.length ? srcs.map(function (s, i) { return '<a href="' + s + '" target="_blank" rel="noopener">[' + (i + 1) + "] " + s + "</a>"; }).join("<br>") : "<span class='meta'>—</span>";
+    $("sources").innerHTML = srcs.length ? srcs.map(function (s, i) { var lbl = "[" + (i + 1) + "] " + s; return /^https?:/.test(s) ? '<a href="' + s + '" target="_blank" rel="noopener">' + esc(lbl) + "</a>" : '<span class="meta">' + esc(lbl) + "</span>"; }).join("<br>") : "<span class='meta'>—</span>";
   }
 
   function populate() {
