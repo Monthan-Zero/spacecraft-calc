@@ -301,9 +301,10 @@
     else toast("See console for export");
   }
 
-  var DATA_URL = /^(localhost|127\.|0\.0\.0\.0|\[?::1)/.test(location.hostname)
-    ? new URL("recipes.json", (document.currentScript && document.currentScript.src) || location.href).href
-    : "https://cdn.jsdelivr.net/gh/Monthan-Zero/spacecraft-calc@main/recipes.json";
+  // Load recipes.json from the SAME folder/commit as this script (immutable when
+  // served commit-pinned via jsDelivr; relative on localhost) — avoids @main edge-cache staleness.
+  var SELF = (document.currentScript && document.currentScript.src) || location.href;
+  var DATA_URL = SELF.split(/[?#]/)[0].replace(/[^\/]*$/, "recipes.json");
 
   fetch(DATA_URL, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
     .then(function (data) { SOURCES = data.sources || {}; RECIPES = data.recipes || {}; applyReported(); initPlanner(); })
@@ -446,9 +447,9 @@
 <div class="titlerow"><h2 data-el="sel-name">—</h2><span class="badge" data-el="sel-conf"></span><span class="badge" data-el="sel-cplx"></span><span class="meta" data-el="sel-building" style="color:var(--muted);font-size:13px"></span><span class="flag" data-el="sel-conflict" title=""></span></div>
 <div class="grid">
   <div class="card"><div class="k">Store sell price</div><div class="v primary" data-el="m-sell">—</div><div class="note" data-el="m-sell-note"></div><div class="report" data-el="report-box"></div></div>
+  <div class="card"><div class="k">Profit · mine → sell</div><div class="v" data-el="m-mined">—</div><div class="note" data-el="m-mined-note"></div></div>
+  <div class="card"><div class="k">Profit · buy → sell</div><div class="v" data-el="m-bought">—</div><div class="note" data-el="m-bought-note"></div></div>
   <div class="card"><div class="k">Production cost</div><div class="v" data-el="m-cost">—</div><div class="note" data-el="m-cost-note"></div></div>
-  <div class="card"><div class="k">Profit</div><div class="v" data-el="m-profit">—</div><div class="note" data-el="m-profit-note"></div></div>
-  <div class="card"><div class="k">Margin</div><div class="v" data-el="m-margin">—</div><div class="note"></div></div>
 </div>
 <div class="maplegend"><span><span class="dot d-raw"></span>Raw</span><span><span class="dot d-refined"></span>Refined</span><span><span class="dot d-component"></span>Component</span><span><span class="dot d-product"></span>Product</span><span>border = confidence</span><span>dashed = unknown qty</span></div>
 <div class="mapscroll"><div class="map" data-el="map"></div></div>
@@ -481,13 +482,20 @@
     $("price-save").onclick = function () { var v = parseFloat($("price-input").value); if (!isNaN(v) && v >= 0) reportPrice(id, v); };
     var pc = $("price-clear"); if (pc) pc.onclick = function () { reportPrice(id, null); };
     var hasRaw = Object.keys(raw).length > 0;
+    var taxPartial = incomplete || !gc.taxComplete;
     var costPartial = incomplete || missingValue || !gc.taxComplete;
+    // Production cost (buying materials) = raw market cost + craft taxes
     $("m-cost").textContent = hasRaw ? (costPartial ? "≥ " : "") + credits(prodCost) : "—";
     $("m-cost-note").textContent = (costPartial ? "partial · " : "") + "raw " + credits(cost) + " + tax " + credits(tax) + (gc.time ? " · ~" + fmt(gc.time) + "s" : "");
-    var canProfit = sell !== null && !costPartial && hasRaw, profit = canProfit ? sell - prodCost : null, pEl = $("m-profit");
-    pEl.textContent = canProfit ? credits(profit) : "—"; pEl.className = "v " + (canProfit ? (profit >= 0 ? "good" : "bad") : "");
-    $("m-profit-note").textContent = canProfit ? "" : "needs price + full quantities";
-    $("m-margin").textContent = (canProfit && sell !== 0) ? fmt(profit / sell * 100) + "%" : "—";
+    // Profit if you MINE the ore yourself (raw is free) = sell − craft taxes
+    var minedOK = sell !== null && !taxPartial;
+    var mined = minedOK ? sell - tax : null, mEl = $("m-mined");
+    mEl.textContent = minedOK ? credits(mined) : "—"; mEl.className = "v " + (minedOK ? (mined >= 0 ? "good" : "bad") : "");
+    $("m-mined-note").textContent = sell === null ? "needs a price" : !minedOK ? "needs full recipe" : (fmt(sell ? mined / sell * 100 : 0) + "% margin · ore mined free");
+    // Profit if you BUY the materials = sell − raw cost − craft taxes
+    var boughtOK = sell !== null && !costPartial && hasRaw, bought = boughtOK ? sell - prodCost : null, bEl = $("m-bought");
+    bEl.textContent = boughtOK ? credits(bought) : "—"; bEl.className = "v " + (boughtOK ? (bought >= 0 ? "good" : "bad") : "");
+    $("m-bought-note").textContent = sell === null ? "needs a price" : !boughtOK ? "needs material prices" : "after buying materials";
     var tb = $("raw-table").querySelector("tbody"); tb.innerHTML = "";
     var rows = Object.keys(raw).sort(function (a, b) { return raw[b] - raw[a]; });
     if (!rows.length) tb.innerHTML = '<tr><td colspan="4" class="meta">No quantified raw materials.</td></tr>';
