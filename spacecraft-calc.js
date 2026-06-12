@@ -85,6 +85,21 @@
 #sc-calc .srclist a{display:inline-block;margin-right:6px}
 #sc-calc .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--panel2);border:1px solid var(--accent);color:var(--txt);padding:10px 16px;border-radius:10px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9999}
 #sc-calc .toast.show{opacity:1}
+#sc-calc .mapwrap h3 .hint{font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)}
+#sc-calc .maplegend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-bottom:10px}
+#sc-calc .mapscroll{overflow:auto;border:1px solid var(--line);border-radius:10px;background:#0a1120;padding:12px;max-height:600px}
+#sc-calc .map svg{display:block}
+#sc-calc .scedge{fill:none;stroke:#2a3f63;stroke-width:1.6}
+#sc-calc .scedge.partial{stroke-dasharray:5 4;stroke:#6b5630}
+#sc-calc .scnode rect.box{fill:#0f1a2e;stroke:var(--line);stroke-width:1.5}
+#sc-calc .scnode.c-high rect.box{stroke:rgba(54,211,153,.85)}
+#sc-calc .scnode.c-medium rect.box{stroke:rgba(255,209,102,.85)}
+#sc-calc .scnode.c-low rect.box{stroke:rgba(255,107,107,.8)}
+#sc-calc .scnode.c-reported rect.box{stroke:rgba(57,194,255,.9)}
+#sc-calc .scnode:hover rect.box{stroke-width:2.5}
+#sc-calc .scnode .nm{fill:var(--txt);font-weight:600;font-size:12.5px}
+#sc-calc .scnode .nq{fill:var(--accent);font-weight:700;font-size:12.5px}
+#sc-calc .scnode .nsub{fill:var(--muted);font-size:10.5px}
 `;
   if (!document.getElementById("sc-calc-styles")) {
     var st = document.createElement("style");
@@ -128,6 +143,15 @@
     <div class="card"><div class="k">Raw material cost</div><div class="v" data-el="m-cost">—</div><div class="note" data-el="m-cost-note"></div></div>
     <div class="card"><div class="k">Profit</div><div class="v" data-el="m-profit">—</div><div class="note" data-el="m-profit-note"></div></div>
     <div class="card"><div class="k">Margin</div><div class="v" data-el="m-margin">—</div><div class="note"></div></div>
+  </div>
+  <div class="section mapwrap">
+    <h3>Production map <span class="hint">— raw materials (left) flow into the final product (right)</span></h3>
+    <div class="maplegend">
+      <span><span class="dot d-raw"></span>Raw</span><span><span class="dot d-refined"></span>Refined</span>
+      <span><span class="dot d-component"></span>Component</span><span><span class="dot d-product"></span>Product</span>
+      <span>Box border = confidence</span><span>Dashed link = unknown amount</span>
+    </div>
+    <div class="mapscroll"><div class="map" data-el="map"></div></div>
   </div>
   <div class="cols">
     <div class="section"><h3>Total raw materials needed</h3>
@@ -288,6 +312,87 @@
     return html;
   }
 
+  // ---- merged production DAG: each item once, with total need + tier ----
+  function buildGraph(targetId, qty){
+    var visited={}, onstack={}, post=[];
+    (function dfs(id){
+      if(visited[id]) return; visited[id]=true; onstack[id]=true;
+      var r=RECIPES[id];
+      if(r && r.inputs) r.inputs.forEach(function(inp){ if(!onstack[inp.id]) dfs(inp.id); });
+      onstack[id]=false; post.push(id);
+    })(targetId);
+    var topo = post.slice().reverse(); // consumers before their inputs
+    var need={}, needUnknown={}, edges=[];
+    need[targetId]=qty;
+    topo.forEach(function(id){
+      var r=RECIPES[id];
+      if(!r || !r.inputs || !r.inputs.length) return;
+      var N=need[id], per=r.outputQty||1;
+      var crafts=(isNum(N) && N>0) ? N/per : null;
+      r.inputs.forEach(function(inp){
+        var amt=(crafts!==null && isNum(inp.qty)) ? inp.qty*crafts : null;
+        if(amt===null){ needUnknown[inp.id]=true; if(need[inp.id]===undefined) need[inp.id]=0; }
+        else { need[inp.id]=(need[inp.id]||0)+amt; }
+        edges.push({from:inp.id, to:id, amt:amt});
+      });
+    });
+    var tierMemo={};
+    function tier(id){
+      if(tierMemo[id]!==undefined) return tierMemo[id];
+      tierMemo[id]=0; var r=RECIPES[id], t=0;
+      if(r && r.inputs && r.inputs.length) r.inputs.forEach(function(inp){ t=Math.max(t, tier(inp.id)+1); });
+      return tierMemo[id]=t;
+    }
+    var nodes={};
+    Object.keys(need).forEach(function(id){ nodes[id]={id:id, need:need[id], unknown:!!needUnknown[id], tier:tier(id)}; });
+    return { nodes:nodes, edges:edges, maxTier:tier(targetId) };
+  }
+
+  function typeColor(t){ return ({raw:'#ffb86b',refined:'#7ee0ff',component:'#b39dff',product:'#65f0b8',unknown:'#8095b3'})[t] || '#8095b3'; }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function trunc(s,n){ s=String(s); return s.length>n ? s.slice(0,n-1)+'…' : s; }
+
+  function renderMap(g){
+    var ids=Object.keys(g.nodes);
+    if(!ids.length) return '<div class="foot">Nothing to map.</div>';
+    var W=178,H=66,GX=76,GY=22,PAD=14;
+    var byTier={}, maxTier=g.maxTier;
+    ids.forEach(function(id){ var n=g.nodes[id]; (byTier[n.tier]=byTier[n.tier]||[]).push(n); });
+    var maxRows=1; Object.keys(byTier).forEach(function(t){ if(byTier[t].length>maxRows) maxRows=byTier[t].length; });
+    var colH=maxRows*(H+GY)-GY; if(colH<H) colH=H;
+    var pos={};
+    Object.keys(byTier).forEach(function(t){
+      var arr=byTier[t].sort(function(a,b){ return (b.need||0)-(a.need||0) || a.id.localeCompare(b.id); });
+      var top=(colH-(arr.length*(H+GY)-GY))/2;
+      arr.forEach(function(n,i){ pos[n.id]={x:PAD+t*(W+GX), y:PAD+top+i*(H+GY)}; });
+    });
+    var svgW=PAD*2+(maxTier+1)*W+maxTier*GX, svgH=PAD*2+colH;
+    var p=['<svg width="'+svgW+'" height="'+svgH+'" viewBox="0 0 '+svgW+' '+svgH+'" xmlns="http://www.w3.org/2000/svg">'];
+    p.push('<defs><marker id="scarrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#3a567f"/></marker></defs>');
+    g.edges.forEach(function(e){
+      var a=pos[e.from], b=pos[e.to]; if(!a||!b) return;
+      var x1=a.x+W, y1=a.y+H/2, x2=b.x, y2=b.y+H/2, mx=(x1+x2)/2;
+      p.push('<path class="scedge'+(e.amt===null?' partial':'')+'" d="M'+x1+','+y1+' C'+mx+','+y1+' '+mx+','+y2+' '+(x2-3)+','+y2+'" marker-end="url(#scarrow)"/>');
+    });
+    ids.forEach(function(id){
+      var n=g.nodes[id], r=RECIPES[id]||{}, q=pos[id];
+      var conf=r.confidence||'low';
+      var qty=(n.need>0)?((n.unknown?'≥':'')+fmt(n.need)+'×'):'?×';
+      var val=isNum(r.value)?credits(r.value)+' ea':'price n/a';
+      var sub=(r.building?trunc(r.building,16)+' · ':'')+val;
+      var title=esc((r.name||id)+' — need '+qty+(r.building?' · '+r.building:'')+(isNum(r.value)?' · '+credits(r.value)+' each':''));
+      p.push('<g class="scnode c-'+conf+'" transform="translate('+q.x+','+q.y+')"><title>'+title+'</title>');
+      p.push('<rect class="box" width="'+W+'" height="'+H+'" rx="9"/>');
+      p.push('<rect x="1.5" y="1.5" width="'+(W-3)+'" height="4" rx="2" fill="'+typeColor(r.type||'unknown')+'"/>');
+      p.push('<text class="nq" x="12" y="27">'+esc(qty)+'</text>');
+      p.push('<text class="nm" x="12" y="45">'+esc(trunc(r.name||id,23))+'</text>');
+      p.push('<text class="nsub" x="12" y="59">'+esc(trunc(sub,32))+'</text>');
+      p.push('</g>');
+    });
+    p.push('</svg>');
+    return p.join('');
+  }
+
   function compute(){
     var sel = $("item"), id = sel.value, r = RECIPES[id];
     if (!r) return;
@@ -340,6 +445,7 @@
     ub.innerHTML = ukeys.length ? '⚠ <b>Unknown amounts</b> (recipe confirmed, quantity not public yet): ' + ukeys.map(function(u){ return RECIPES[u]?RECIPES[u].name:u; }).join(", ") + "." : "";
 
     $("tree").innerHTML = "<ul><li>" + renderTree(node) + "</li></ul>";
+    $("map").innerHTML = renderMap(buildGraph(id, qty));
     var srcs = Object.keys(gatherSources(node, {}));
     $("sources").innerHTML = srcs.length
       ? srcs.map(function(s,i){ return '<a href="'+s+'" target="_blank" rel="noopener">['+(i+1)+'] '+s+'</a>'; }).join("<br>")
