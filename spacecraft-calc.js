@@ -171,6 +171,22 @@
 .scapp .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--panel2);border:1px solid var(--primary);color:var(--text);padding:10px 16px;border-radius:5px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9999}
 .scapp .toast.show{opacity:1}
 .scapp .loading{padding:50px;text-align:center;color:var(--muted);font-family:Rajdhani;letter-spacing:.1em;text-transform:uppercase}
+.scapp .catgroup{margin-bottom:20px}
+.scapp .catgrouphd{font-family:Rajdhani;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--secondary);font-size:13px;margin:0 0 10px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.scapp .catgrouphd .cc{color:var(--muted);font-size:11px;background:var(--panel2);border-radius:10px;padding:1px 8px}
+.scapp .pnote{color:var(--muted);font-size:13px;margin-bottom:14px;line-height:1.6}
+.scapp .pscroll{overflow:auto;max-height:600px}
+.scapp .ptable{width:100%;border-collapse:collapse;font-size:13px}
+.scapp .ptable th{cursor:pointer;user-select:none;color:var(--muted);font-family:Rajdhani;font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:11px;padding:10px 8px;border-bottom:1px solid var(--line);white-space:nowrap;position:sticky;top:0;background:var(--panel2);z-index:1}
+.scapp .ptable th:hover{color:var(--primary)}
+.scapp .ptable th.num,.scapp .ptable td.num{text-align:right;font-family:"JetBrains Mono"}
+.scapp .ptable td{padding:8px;border-bottom:1px solid rgba(42,58,72,.5)}
+.scapp .ptable tbody tr:hover td{background:rgba(35,198,230,.06)}
+.scapp .ptable .pn{font-weight:600;cursor:pointer}
+.scapp .ptable .pn:hover{color:var(--primary)}
+.scapp .ptable .pcat{color:var(--muted);font-size:11px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.04em}
+.scapp .ptable tbody tr:nth-child(-n+3) .pn{color:var(--secondary)}
+.scapp .pos{color:var(--good)}.scapp .neg{color:var(--bad)}
 /* Continuous animations intentionally omitted — they caused full-screen repaints/lag.
    Visuals (starfield, hero glow, hex grid, brackets) remain as static effects. */
 `;
@@ -181,7 +197,7 @@
 <div class="stars" data-el="stars"></div><div class="neb"></div>
 <header class="hud">
   <div class="brand">SPACE<span class="pipe"></span><span class="b2">CRAFT</span> PLANNER</div>
-  <nav><a data-el="nav-planner">Planner</a><a data-el="nav-browse">Recipes</a><a data-el="nav-about">About&nbsp;Data</a></nav>
+  <nav><a data-el="nav-planner">Planner</a><a data-el="nav-browse">Recipes</a><a data-el="nav-profit">Profit</a><a data-el="nav-about">About&nbsp;Data</a></nav>
   <div class="spacer"></div>
   <button class="btn" data-el="nav-launch">Launch Planner</button>
 </header>
@@ -213,7 +229,13 @@
   <div class="sechead">Recipe Catalog</div>
   <div class="pills" data-el="pills"></div>
   <div class="field" style="margin-bottom:14px"><label>Search</label><input data-el="catsearch" type="text" placeholder="filter items…" style="min-width:260px"></div>
-  <div class="catgrid" data-el="catgrid"></div>
+  <div data-el="catgrid"></div>
+</div></section>
+
+<section id="sc-profit"><div class="wrap">
+  <div class="sechead">Profit Analyzer</div>
+  <div class="pnote">Every craftable item ranked by profit. <b>Mine → sell</b> = you mine the raw ore yourself (free) and only pay processing taxes along the way. <b>Buy → sell</b> = you buy the raw materials at market. Click a column to sort; click an item to open it in the planner. (Only items with a known price and full recipe are shown.)</div>
+  <div class="panel lit"><div class="pbody"><div class="pscroll"><table class="ptable" data-el="ptable"></table></div></div></div>
 </div></section>
 
 <section id="sc-about"><div class="wrap">
@@ -338,28 +360,55 @@
 
   function renderMap(g) {
     var ids = Object.keys(g.nodes); if (!ids.length) return '<div class="foot">Nothing to map.</div>';
-    var W = 178, H = 66, GX = 76, GY = 22, PAD = 14, byTier = {}, maxTier = g.maxTier;
-    ids.forEach(function (id) { var n = g.nodes[id]; (byTier[n.tier] = byTier[n.tier] || []).push(n); });
-    var maxRows = 1; Object.keys(byTier).forEach(function (t) { if (byTier[t].length > maxRows) maxRows = byTier[t].length; });
-    var colH = maxRows * (H + GY) - GY; if (colH < H) colH = H; var pos = {};
-    Object.keys(byTier).forEach(function (t) { var arr = byTier[t].sort(function (a, b) { return (b.need || 0) - (a.need || 0) || a.id.localeCompare(b.id); }); var top = (colH - (arr.length * (H + GY) - GY)) / 2; arr.forEach(function (n, i) { pos[n.id] = { x: PAD + t * (W + GX), y: PAD + top + i * (H + GY) }; }); });
+    var W = 170, H = 60, GX = 88, GY = 20, PAD = 14, maxTier = g.maxTier || 0;
+    var tiers = {};
+    ids.forEach(function (id) { var t = g.nodes[id].tier; (tiers[t] = tiers[t] || []).push(id); });
+    var tks = Object.keys(tiers).map(Number).sort(function (a, b) { return a - b; });
+    // adjacency for crossing-reduction
+    var nb = {}; ids.forEach(function (id) { nb[id] = { l: [], r: [] }; });
+    g.edges.forEach(function (e) { if (nb[e.from] && nb[e.to]) { nb[e.from].r.push(e.to); nb[e.to].l.push(e.from); } });
+    tks.forEach(function (t) { tiers[t].sort(function (a, b) { return (g.nodes[b].need || 0) - (g.nodes[a].need || 0) || a.localeCompare(b); }); });
+    var idx = {}; function reindex() { tks.forEach(function (t) { tiers[t].forEach(function (id, i) { idx[id] = i; }); }); } reindex();
+    // barycenter sweeps to minimise edge crossings
+    for (var pass = 0; pass < 8; pass++) {
+      var ltr = pass % 2 === 0, seq = ltr ? tks.slice() : tks.slice().reverse();
+      seq.forEach(function (t) {
+        var arr = tiers[t], bc = {};
+        arr.forEach(function (id) { var ns = ltr ? nb[id].l : nb[id].r; if (ns.length) { var s = 0; ns.forEach(function (n) { s += idx[n]; }); bc[id] = s / ns.length; } else bc[id] = idx[id]; });
+        arr.sort(function (a, b) { return bc[a] - bc[b] || (g.nodes[b].need || 0) - (g.nodes[a].need || 0); });
+        arr.forEach(function (id, i) { idx[id] = i; });
+      });
+    }
+    var maxRows = 1; tks.forEach(function (t) { if (tiers[t].length > maxRows) maxRows = tiers[t].length; });
+    var colH = maxRows * (H + GY) - GY; if (colH < H) colH = H;
+    var pos = {};
+    tks.forEach(function (t) { var arr = tiers[t], top = (colH - (arr.length * (H + GY) - GY)) / 2; arr.forEach(function (id, i) { pos[id] = { x: PAD + t * (W + GX), y: PAD + top + i * (H + GY) }; }); });
     var svgW = PAD * 2 + (maxTier + 1) * W + maxTier * GX, svgH = PAD * 2 + colH;
-    var p = ['<svg width="' + svgW + '" height="' + svgH + '" viewBox="0 0 ' + svgW + ' ' + svgH + '" xmlns="http://www.w3.org/2000/svg">'];
-    p.push('<defs><marker id="scarrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#3a567f"/></marker></defs>');
-    g.edges.forEach(function (e) { var a = pos[e.from], b = pos[e.to]; if (!a || !b) return; var x1 = a.x + W, y1 = a.y + H / 2, x2 = b.x, y2 = b.y + H / 2, mx = (x1 + x2) / 2; p.push('<path class="scedge' + (e.amt === null ? ' partial' : '') + '" d="M' + x1 + ',' + y1 + ' C' + mx + ',' + y1 + ' ' + mx + ',' + y2 + ' ' + (x2 - 3) + ',' + y2 + '" marker-end="url(#scarrow)"/>'); });
+    var out = ['<svg width="' + svgW + '" height="' + svgH + '" viewBox="0 0 ' + svgW + ' ' + svgH + '" xmlns="http://www.w3.org/2000/svg">'];
+    out.push('<defs><marker id="scarrow" markerWidth="8" markerHeight="8" refX="6.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#46618a"/></marker></defs>');
+    // clean orthogonal (elbow) connectors with rounded corners
+    g.edges.forEach(function (e) {
+      var a = pos[e.from], b = pos[e.to]; if (!a || !b) return;
+      var x1 = a.x + W, y1 = a.y + H / 2, x2 = b.x - 2, y2 = b.y + H / 2;
+      var ch = x2 - GX * 0.5; if (ch < x1 + 8) ch = (x1 + x2) / 2;
+      var d, rad = 7, dy = (y2 >= y1) ? 1 : -1;
+      if (Math.abs(y2 - y1) < 1) d = 'M' + x1 + ',' + y1 + ' L' + x2 + ',' + y2;
+      else d = 'M' + x1 + ',' + y1 + ' L' + (ch - rad) + ',' + y1 + ' Q' + ch + ',' + y1 + ' ' + ch + ',' + (y1 + dy * rad) + ' L' + ch + ',' + (y2 - dy * rad) + ' Q' + ch + ',' + y2 + ' ' + (ch + rad) + ',' + y2 + ' L' + x2 + ',' + y2;
+      out.push('<path class="scedge' + (e.amt === null ? ' partial' : '') + '" d="' + d + '" marker-end="url(#scarrow)"/>');
+    });
     ids.forEach(function (id) {
       var n = g.nodes[id], r = RECIPES[id] || {}, q = pos[id], conf = r.confidence || "low";
       var qty = (n.need > 0) ? ((n.unknown ? "≥" : "") + fmt(n.need) + "×") : "?×";
-      var val = isNum(r.value) ? credits(r.value) + " ea" : "price n/a", sub = (r.building ? trunc(r.building, 16) + " · " : "") + val;
+      var val = isNum(r.value) ? credits(r.value) + " ea" : "price n/a", sub = (r.building ? trunc(r.building, 15) + " · " : "") + val;
       var title = esc((r.name || id) + " — need " + qty + (r.building ? " · " + r.building : "") + (isNum(r.value) ? " · " + credits(r.value) + " each" : ""));
-      p.push('<g class="scnode c-' + conf + '" transform="translate(' + q.x + ',' + q.y + ')"><title>' + title + '</title>');
-      p.push('<rect class="box" width="' + W + '" height="' + H + '" rx="4"/>');
-      p.push('<rect x="1.5" y="1.5" width="' + (W - 3) + '" height="4" rx="1" fill="' + typeColor(r.type || "unknown") + '"/>');
-      p.push('<text class="nq" x="12" y="27">' + esc(qty) + '</text>');
-      p.push('<text class="nm" x="12" y="45">' + esc(trunc(r.name || id, 23)) + '</text>');
-      p.push('<text class="nsub" x="12" y="59">' + esc(trunc(sub, 32)) + '</text></g>');
+      out.push('<g class="scnode c-' + conf + '" transform="translate(' + q.x + ',' + q.y + ')"><title>' + title + '</title>');
+      out.push('<rect class="box" width="' + W + '" height="' + H + '" rx="4"/>');
+      out.push('<rect x="1.5" y="1.5" width="' + (W - 3) + '" height="4" rx="1" fill="' + typeColor(r.type || "unknown") + '"/>');
+      out.push('<text class="nq" x="12" y="25">' + esc(qty) + '</text>');
+      out.push('<text class="nm" x="12" y="42">' + esc(trunc(r.name || id, 22)) + '</text>');
+      out.push('<text class="nsub" x="12" y="55">' + esc(trunc(sub, 30)) + '</text></g>');
     });
-    p.push("</svg>"); return p.join("");
+    out.push("</svg>"); return out.join("");
   }
   function confBadge(c) { return c ? '<span class="badge c-' + c + '">' + c + "</span>" : ""; }
   function renderTree(node) {
@@ -446,21 +495,65 @@
     compute();
   }
 
-  /* ----------------------------- catalog browser ----------------------------- */
+  /* ----------------------------- catalog browser (by in-game category) ----------------------------- */
+  var CAT_ORDER = ["Mineral Processing", "Crystal Processing", "Mix", "Alloy", "Material", "Component", "Contractor Equipment", "External Module", "Internal Module", "Ship Component", "Ship Part", "Kit and Casing", "Factory Kit", "Contraption", "Equipment & Module", "Raw Material", "Other"];
+  function catRank(c) { var i = CAT_ORDER.indexOf(c); return i < 0 ? 900 : i; }
   var catFilter = "all";
   function buildCatalog() {
     var grid = $("catgrid"), search = ($("catsearch").value || "").toLowerCase();
-    var order = { product: 0, component: 1, refined: 2, raw: 3 };
-    var ids = Object.keys(RECIPES).filter(function (id) { var r = RECIPES[id]; return (catFilter === "all" || r.type === catFilter) && r.name.toLowerCase().indexOf(search) >= 0; })
-      .sort(function (a, b) { var d = (order[RECIPES[a].type] || 9) - (order[RECIPES[b].type] || 9); return d !== 0 ? d : RECIPES[a].name.localeCompare(RECIPES[b].name); });
-    grid.innerHTML = ids.map(function (id) { var r = RECIPES[id]; return '<div class="catcard k-' + r.type + '" data-id="' + id + '"><div class="cn">' + esc(r.name) + '</div><div class="cm">' + r.type + (isNum(r.value) ? " · ⊙" + fmt(r.value) : "") + " · " + r.confidence + "</div></div>"; }).join("") || '<div class="foot">No items match.</div>';
+    var ids = Object.keys(RECIPES).filter(function (id) { var r = RECIPES[id]; return (catFilter === "all" || (r.category || "Other") === catFilter) && r.name.toLowerCase().indexOf(search) >= 0; });
+    var groups = {}; ids.forEach(function (id) { var c = RECIPES[id].category || "Other"; (groups[c] = groups[c] || []).push(id); });
+    var cats = Object.keys(groups).sort(function (a, b) { return catRank(a) - catRank(b) || a.localeCompare(b); });
+    grid.innerHTML = cats.map(function (c) {
+      var arr = groups[c].sort(function (a, b) { return RECIPES[a].name.localeCompare(RECIPES[b].name); });
+      return '<div class="catgroup"><div class="catgrouphd">' + esc(c) + ' <span class="cc">' + arr.length + '</span></div><div class="catgrid">'
+        + arr.map(function (id) { var r = RECIPES[id]; return '<div class="catcard k-' + r.type + '" data-id="' + id + '"><div class="cn">' + esc(r.name) + '</div><div class="cm">' + (isNum(r.value) ? "⊙" + fmt(r.value) + " · " : "") + r.type + '</div></div>'; }).join("")
+        + '</div></div>';
+    }).join("") || '<div class="foot">No items match.</div>';
     Array.prototype.forEach.call(grid.querySelectorAll(".catcard"), function (c) { c.onclick = function () { selectItem(c.getAttribute("data-id")); }; });
   }
   function buildPills() {
-    var defs = [["all", "All"], ["product", "Products"], ["component", "Components"], ["refined", "Refined"], ["raw", "Raw"]];
-    $("pills").innerHTML = defs.map(function (d) { return '<span class="pill' + (d[0] === catFilter ? " on" : "") + '" data-f="' + d[0] + '">' + d[1] + "</span>"; }).join("");
+    var cats = []; Object.keys(RECIPES).forEach(function (id) { var c = RECIPES[id].category || "Other"; if (cats.indexOf(c) < 0) cats.push(c); });
+    cats.sort(function (a, b) { return catRank(a) - catRank(b) || a.localeCompare(b); });
+    var defs = [["all", "All"]].concat(cats.map(function (c) { return [c, c]; }));
+    $("pills").innerHTML = defs.map(function (d) { return '<span class="pill' + (d[0] === catFilter ? " on" : "") + '" data-f="' + esc(d[0]) + '">' + esc(d[1]) + "</span>"; }).join("");
     Array.prototype.forEach.call($("pills").querySelectorAll(".pill"), function (p) { p.onclick = function () { catFilter = p.getAttribute("data-f"); buildPills(); buildCatalog(); }; });
   }
+
+  /* ----------------------------- profit analyzer ----------------------------- */
+  var profitRows = [], psort = { key: "mined", dir: -1 };
+  function computeProfitRows() {
+    var rows = [];
+    Object.keys(RECIPES).forEach(function (id) {
+      var r = RECIPES[id];
+      if (!isNum(r.value) || !r.inputs || !r.inputs.length) return;        // need price + a recipe
+      var ex = expand(id, 1, {}); if (ex.incomplete) return;               // full recipe known
+      var rc = rawCost(ex.raw); if (rc.missingValue) return;               // all raw prices known
+      var g = buildGraph(id, 1), gc = graphCosts(g); if (!gc.taxComplete) return;
+      var units = 0; for (var k in ex.raw) units += ex.raw[k];
+      var mined = r.value - gc.tax, bought = r.value - rc.cost - gc.tax;
+      rows.push({ id: id, name: r.name, cat: r.category || "", sell: r.value, raw: rc.cost, tax: gc.tax, mined: mined, bought: bought, margin: r.value ? mined / r.value * 100 : 0, units: units });
+    });
+    return rows;
+  }
+  function renderProfit() {
+    var key = psort.key, dir = psort.dir;
+    var rows = profitRows.slice().sort(function (a, b) { var x = a[key], y = b[key]; if (typeof x === "string") return x.localeCompare(y) * dir; return (x < y ? -1 : x > y ? 1 : 0) * dir; });
+    var cols = [["name", "Item", 0], ["cat", "Category", 0], ["mined", "Mine→Sell ⊙", 1], ["margin", "Margin %", 1], ["bought", "Buy→Sell ⊙", 1], ["sell", "Sell ⊙", 1], ["raw", "Raw cost ⊙", 1], ["tax", "Craft tax ⊙", 1], ["units", "Raw units", 1]];
+    var h = '<thead><tr>' + cols.map(function (c) { var ar = key === c[0] ? (dir < 0 ? " ▼" : " ▲") : ""; return '<th class="' + (c[2] ? "num" : "") + '" data-k="' + c[0] + '">' + c[1] + ar + '</th>'; }).join("") + '</tr></thead><tbody>';
+    h += rows.map(function (r) {
+      return '<tr><td><span class="pn" data-id="' + r.id + '">' + esc(r.name) + '</span></td>'
+        + '<td class="pcat">' + esc(r.cat) + '</td>'
+        + '<td class="num ' + (r.mined >= 0 ? "pos" : "neg") + '">' + fmt(r.mined) + '</td>'
+        + '<td class="num ' + (r.margin >= 0 ? "pos" : "neg") + '">' + fmt(r.margin) + '%</td>'
+        + '<td class="num ' + (r.bought >= 0 ? "pos" : "neg") + '">' + fmt(r.bought) + '</td>'
+        + '<td class="num">' + fmt(r.sell) + '</td><td class="num">' + fmt(r.raw) + '</td><td class="num">' + fmt(r.tax) + '</td><td class="num">' + fmt(r.units) + '</td></tr>';
+    }).join("") + '</tbody>';
+    $("ptable").innerHTML = h;
+    Array.prototype.forEach.call($("ptable").querySelectorAll("th"), function (th) { th.onclick = function () { var k = th.getAttribute("data-k"); if (psort.key === k) psort.dir *= -1; else { psort.key = k; psort.dir = (k === "name" || k === "cat") ? 1 : -1; } renderProfit(); }; });
+    Array.prototype.forEach.call($("ptable").querySelectorAll(".pn"), function (s) { s.onclick = function () { selectItem(s.getAttribute("data-id")); }; });
+  }
+  function buildProfit() { profitRows = computeProfitRows(); renderProfit(); }
 
   function buildStats() {
     var ids = Object.keys(RECIPES), priced = ids.filter(function (id) { return isNum(RECIPES[id].value); }).length;
@@ -476,7 +569,7 @@
 
   function initPlanner() {
     plannerSkeleton();
-    buildStats(); buildPills(); buildCatalog();
+    buildStats(); buildPills(); buildCatalog(); buildProfit();
     $("item").addEventListener("change", compute);
     $("qty").addEventListener("input", compute);
     $("filter").addEventListener("change", populate);
@@ -487,6 +580,7 @@
     $("cta-launch").onclick = function () { scrollTo("#sc-planner"); };
     $("nav-browse").onclick = function () { scrollTo("#sc-browse"); };
     $("cta-browse").onclick = function () { scrollTo("#sc-browse"); };
+    $("nav-profit").onclick = function () { scrollTo("#sc-profit"); };
     $("nav-about").onclick = function () { scrollTo("#sc-about"); };
     populate();
     var def = "simple_mining_laser"; var has = false;

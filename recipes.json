@@ -16,7 +16,8 @@
         "game",
         "shop",
         "solar"
-      ]
+      ],
+      "category": "Mineral Processing"
     },
     "aquamarine": {
       "name": "Aquamarine",
@@ -28,7 +29,8 @@
         "game",
         "shop",
         "solar"
-      ]
+      ],
+      "category": "Crystal Processing"
     },
     "base_core_drive": {
       "name": "Base Core Drive",
@@ -39,7 +41,8 @@
       "sources": [
         "game"
       ],
-      "note": "Recipe not captured in screenshots yet"
+      "note": "Recipe not captured in screenshots yet",
+      "category": "Component"
     },
     "copper_nugget": {
       "name": "Copper Nugget",
@@ -51,7 +54,8 @@
         "game",
         "shop",
         "solar"
-      ]
+      ],
+      "category": "Mineral Processing"
     },
     "copper_ore": {
       "name": "Copper Ore",
@@ -63,7 +67,8 @@
         "game",
         "shop",
         "solar"
-      ]
+      ],
+      "category": "Mineral Processing"
     },
     "iron_nugget": {
       "name": "Iron Nugget",
@@ -75,7 +80,8 @@
         "game",
         "shop",
         "solar"
-      ]
+      ],
+      "category": "Mineral Processing"
     },
     "iron_ore": {
       "name": "Iron Ore",
@@ -87,7 +93,8 @@
         "game",
         "shop",
         "solar"
-      ]
+      ],
+      "category": "Mineral Processing"
     },
     "pyrite": {
       "name": "Pyrite",
@@ -98,7 +105,8 @@
       "sources": [
         "game",
         "solar"
-      ]
+      ],
+      "category": "Crystal Processing"
     },
     "quartz": {
       "name": "Quartz",
@@ -110,7 +118,8 @@
         "game",
         "shop",
         "solar"
-      ]
+      ],
+      "category": "Crystal Processing"
     },
     "quartz_powder": {
       "name": "Quartz Powder",
@@ -121,7 +130,8 @@
       "sources": [
         "game",
         "solar"
-      ]
+      ],
+      "category": "Mineral Processing"
     },
     "semiconductor_substrate": {
       "name": "Semiconductor Substrate",
@@ -132,7 +142,8 @@
       "sources": [
         "game"
       ],
-      "note": "Recipe not captured in screenshots yet"
+      "note": "Recipe not captured in screenshots yet",
+      "category": "Component"
     },
     "silicate": {
       "name": "Silicate",
@@ -144,7 +155,8 @@
         "game",
         "shop",
         "solar"
-      ]
+      ],
+      "category": "Mineral Processing"
     },
     "small_steel_part_casing": {
       "name": "Small Steel Part Casing",
@@ -155,7 +167,8 @@
       "sources": [
         "game"
       ],
-      "note": "Recipe not captured in screenshots yet"
+      "note": "Recipe not captured in screenshots yet",
+      "category": "Component"
     },
     "support_hardware": {
       "name": "Support Hardware",
@@ -166,7 +179,8 @@
       "sources": [
         "game"
       ],
-      "note": "Recipe not captured in screenshots yet"
+      "note": "Recipe not captured in screenshots yet",
+      "category": "Component"
     },
     "titanium_nugget": {
       "name": "Titanium Nugget",
@@ -177,7 +191,8 @@
       "sources": [
         "game",
         "solar"
-      ]
+      ],
+      "category": "Mineral Processing"
     },
     "vanadium_ore": {
       "name": "Vanadium Ore",
@@ -188,7 +203,8 @@
       "sources": [
         "game",
         "solar"
-      ]
+      ],
+      "category": "Mineral Processing"
     },
     "a_carbon": {
       "name": "a-Carbon",
@@ -199,7 +215,8 @@
       "sources": [
         "game",
         "solar"
-      ]
+      ],
+      "category": "Raw Material"
     },
     "c_crystal_matrix": {
       "name": "c-Crystal Matrix",
@@ -210,7 +227,8 @@
       "sources": [
         "game"
       ],
-      "note": "Recipe not captured in screenshots yet"
+      "note": "Recipe not captured in screenshots yet",
+      "category": "Component"
     },
     "iron_ingot": {
       "name": "Iron Ingot",
@@ -231,7 +249,8 @@
       "addedValue": 1.48,
       "craftTax": 0.58,
       "craftTime": 5,
-      "su": 1
+      "su": 1,
+      "category": "Mineral Processing"
     },
     "iron_ingot_alt2": {
       "name": "Iron Ingot (from Iron Nugget)",
@@ -252,7 +271,8 @@
       "addedValue": 1.24,
       "craftTax": 0.58,
       "craftTime": 5,
-      "su": 1
+      "su": 1,
+      "category": "Mineral Processing"
     },
     "copper_ingot": {
       "name": "Copper Ingot",
@@ -273,7 +293,8 @@
       "addedValue": 2,
       "craftTax": 0.8,
       "craftTime": 5,
-      "su": 1
+      "su": 1,
+      "category": "Mineral Processing"
     },
     "copper_ingot_alt2": {
       "name": "Copper Ingot (from Copper Nugget)",
@@ -294,7 +315,8 @@
       "addedValue": 1.6,
       "craftTax": 0.8,
       "craftTime": 5,
-      "su": 1
+      "su": 1,
+      "category": "Mineral Processing"
     },
     "aluminum_ingot": {
       "name": "Aluminum Ingot",
@@ -316,7 +338,8 @@
       "addedValue": 2.44,
       "craftTax": 0.96,
       "craftTime": 5,
-      "su": 1
+      "su": 1,
+      "category": "Mineral Processing"
     },
     "titanium_ingot": {
       "name": "Titanium Ingot",
@@ -338,7 +361,8 @@
       "addedValue": 1.8,
       "craftTax": 0.9,
       "craftTime": 5,
-      "su": 1
+      "su": 1,
+      "category": "Mineral Processing"
     },
     "silicon_ingot": {
       "name": "Silicon Ingot",
@@ -359,7 +383,8 @@
       "addedValue": 2.6,
       "craftTax": 1,
       "craftTime": 20,
-      "su": 1
+      "su": 1,
+      "category": "Mineral Processing"
     },
     "silicon_ingot_alt2": {
       "name": "Silicon Ingot (from Silicate)",
@@ -380,7 +405,8 @@
       "addedValue": 2.56,
       "craftTax": 1,
       "craftTime": 20,
-      "su": 1
+      "su": 1,
+      "category": "Mineral Processing"
     },
     "silicon_ingot_alt3": {
       "name": "Silicon Ingot (from Quartz)",
@@ -401,7 +427,8 @@
       "addedValue": -1,
       "craftTax": 1,
       "craftTime": 10,
-      "su": 1
+      "su": 1,
+      "category": "Crystal Processing"
     },
     "silicon_ingot_alt4": {
       "name": "Silicon Ingot (from Aquamarine)",
@@ -422,7 +449,8 @@
       "addedValue": -6.4,
       "craftTax": 2.96,
       "craftTime": 15,
-      "su": 1
+      "su": 1,
+      "category": "Crystal Processing"
     },
     "vanadium_ingot": {
       "name": "Vanadium Ingot",
@@ -444,7 +472,8 @@
       "addedValue": 3.8,
       "craftTax": 1.5,
       "craftTime": 5,
-      "su": 1
+      "su": 1,
+      "category": "Mineral Processing"
     },
     "sulfur": {
       "name": "Sulfur",
@@ -466,7 +495,8 @@
       "addedValue": -1.4,
       "craftTax": 0.86,
       "craftTime": 8,
-      "su": 0.1
+      "su": 0.1,
+      "category": "Crystal Processing"
     },
     "concrete": {
       "name": "Concrete",
@@ -488,7 +518,8 @@
       "addedValue": 0.01,
       "craftTax": 0.13,
       "craftTime": 10,
-      "su": 1
+      "su": 1,
+      "category": "Mix"
     },
     "steel_ingot": {
       "name": "Steel Ingot",
@@ -513,7 +544,8 @@
       "addedValue": 2.3,
       "craftTax": 3.15,
       "craftTime": 25,
-      "su": 1
+      "su": 1,
+      "category": "Alloy"
     },
     "metal_sheet": {
       "name": "Metal Sheet",
@@ -535,7 +567,8 @@
       "addedValue": 0.2,
       "craftTax": 0.2,
       "craftTime": 2,
-      "su": 1
+      "su": 1,
+      "category": "Material"
     },
     "nut_and_bolt": {
       "name": "Nut and Bolt",
@@ -557,7 +590,8 @@
       "addedValue": 0.12,
       "craftTax": 0.26,
       "craftTime": 4,
-      "su": 0.1
+      "su": 0.1,
+      "category": "Material"
     },
     "wire": {
       "name": "Wire",
@@ -579,7 +613,8 @@
       "addedValue": 0.32,
       "craftTax": 0.31,
       "craftTime": 2,
-      "su": 0.5
+      "su": 0.5,
+      "category": "Material"
     },
     "wire_alt2": {
       "name": "Wire (from Aluminum Ingot)",
@@ -600,7 +635,8 @@
       "addedValue": -0.48,
       "craftTax": 0.69,
       "craftTime": 4,
-      "su": 0.5
+      "su": 0.5,
+      "category": "Component"
     },
     "silicone_gel": {
       "name": "Silicone Gel",
@@ -622,7 +658,8 @@
       "addedValue": 0.4,
       "craftTax": 0.48,
       "craftTime": 8,
-      "su": 0.5
+      "su": 0.5,
+      "category": "Material"
     },
     "microchip": {
       "name": "Microchip",
@@ -643,7 +680,8 @@
       "addedValue": 0.08,
       "craftTax": 0.11,
       "craftTime": 2.9,
-      "su": 0.5
+      "su": 0.5,
+      "category": "Material"
     },
     "structural_beam": {
       "name": "Structural Beam",
@@ -664,7 +702,8 @@
       "addedValue": 0.8,
       "craftTax": 0.29,
       "craftTime": 24,
-      "su": 2
+      "su": 2,
+      "category": "Material"
     },
     "stainless_plate": {
       "name": "Stainless Plate",
@@ -689,7 +728,8 @@
       "addedValue": 2.2,
       "craftTax": 0.48,
       "craftTime": 4,
-      "su": 2
+      "su": 2,
+      "category": "Material"
     },
     "magnetic_coil": {
       "name": "Magnetic Coil",
@@ -718,7 +758,8 @@
       "addedValue": 2.06,
       "craftTax": 0.39,
       "craftTime": 5,
-      "su": 1
+      "su": 1,
+      "category": "Material"
     },
     "crystalline_focuser": {
       "name": "Crystalline Focuser",
@@ -744,7 +785,8 @@
       "addedValue": 41.12,
       "craftTax": 1.2,
       "craftTime": 6,
-      "su": 1
+      "su": 1,
+      "category": "Material"
     },
     "crystalline_focuser_alt2": {
       "name": "Crystalline Focuser (from Quartz)",
@@ -769,7 +811,8 @@
       "addedValue": 1.7,
       "craftTax": 0.3,
       "craftTime": 4,
-      "su": 1
+      "su": 1,
+      "category": "Crystal Processing"
     },
     "diffraction_grating": {
       "name": "Diffraction Grating",
@@ -794,7 +837,8 @@
       "addedValue": 2.3,
       "craftTax": 0.78,
       "craftTime": 8,
-      "su": 1
+      "su": 1,
+      "category": "Material"
     },
     "motor": {
       "name": "Motor",
@@ -823,7 +867,8 @@
       "addedValue": 5.9,
       "craftTax": 0.5,
       "craftTime": 12.5,
-      "su": 2
+      "su": 2,
+      "category": "Material"
     },
     "construction_tool": {
       "name": "Construction Tool",
@@ -852,7 +897,8 @@
       "addedValue": 1.5,
       "craftTax": 0.23,
       "craftTime": 2,
-      "su": 0.1
+      "su": 0.1,
+      "category": "Contractor Equipment"
     },
     "simple_mining_laser": {
       "name": "Simple Mining Laser",
@@ -877,7 +923,8 @@
       "addedValue": 6.3,
       "craftTax": 0.67,
       "craftTime": 10,
-      "su": 10
+      "su": 10,
+      "category": "External Module"
     },
     "overclocked_mining_laser": {
       "name": "Overclocked Mining Laser",
@@ -906,7 +953,8 @@
       "addedValue": 23.2,
       "craftTax": 1.28,
       "craftTime": 10,
-      "su": 10
+      "su": 10,
+      "category": "External Module"
     },
     "scanalyzer_alpha": {
       "name": "Scanalyzer Alpha",
@@ -935,7 +983,8 @@
       "addedValue": 5.38,
       "craftTax": 0.46,
       "craftTime": 10,
-      "su": 10
+      "su": 10,
+      "category": "External Module"
     },
     "scanalyzer_beta": {
       "name": "Scanalyzer Beta",
@@ -964,7 +1013,8 @@
       "addedValue": 10.5,
       "craftTax": 0.69,
       "craftTime": 10,
-      "su": 10
+      "su": 10,
+      "category": "External Module"
     },
     "simple_resource_detector": {
       "name": "Simple Resource Detector",
@@ -989,7 +1039,8 @@
       "addedValue": 4.5,
       "craftTax": 0.52,
       "craftTime": 10,
-      "su": 10
+      "su": 10,
+      "category": "External Module"
     },
     "spectral_resource_detector": {
       "name": "Spectral Resource Detector",
@@ -1018,7 +1069,8 @@
       "addedValue": 12,
       "craftTax": 0.8,
       "craftTime": 10,
-      "su": 10
+      "su": 10,
+      "category": "External Module"
     },
     "ftl_engine_eco": {
       "name": "FTL Engine - Eco",
@@ -1051,7 +1103,8 @@
       "addedValue": 12.8,
       "craftTax": 0.66,
       "craftTime": 10,
-      "su": 10
+      "su": 10,
+      "category": "Internal Module"
     },
     "cosmic_navigator": {
       "name": "Cosmic Navigator",
@@ -1076,7 +1129,8 @@
       "addedValue": 3.6,
       "craftTax": 0.45,
       "craftTime": 1,
-      "su": 1
+      "su": 1,
+      "category": "Internal Module"
     },
     "flywheel_battery": {
       "name": "Flywheel Battery",
@@ -1105,7 +1159,8 @@
       "addedValue": 12,
       "craftTax": 0.77,
       "craftTime": 10,
-      "su": 10
+      "su": 10,
+      "category": "Internal Module"
     },
     "small_module_kit": {
       "name": "Small Module Kit",
@@ -1131,7 +1186,8 @@
       "addedValue": 2.9,
       "craftTax": 0.39,
       "craftTime": 10,
-      "su": 10
+      "su": 10,
+      "category": "Ship Component"
     },
     "pathfinder_cockpit": {
       "name": "\"Pathfinder\" Cockpit",
@@ -1164,7 +1220,8 @@
       "addedValue": 224,
       "craftTax": 7.97,
       "craftTime": 30,
-      "su": 20
+      "su": 20,
+      "category": "Ship Part"
     },
     "spot_light": {
       "name": "Spot Light",
@@ -1189,7 +1246,8 @@
       "addedValue": 0.96,
       "craftTax": 0.23,
       "craftTime": 2,
-      "su": 1
+      "su": 1,
+      "category": "Ship Part"
     },
     "light_strip": {
       "name": "Light Strip",
@@ -1214,7 +1272,8 @@
       "addedValue": 0.96,
       "craftTax": 0.23,
       "craftTime": 2,
-      "su": 1
+      "su": 1,
+      "category": "Ship Part"
     },
     "headlight": {
       "name": "Headlight",
@@ -1239,7 +1298,8 @@
       "addedValue": 0.96,
       "craftTax": 0.23,
       "craftTime": 2,
-      "su": 1
+      "su": 1,
+      "category": "Ship Part"
     },
     "base_deploy_kit": {
       "name": "Base Deploy Kit",
@@ -1276,7 +1336,8 @@
       "addedValue": 56.6,
       "craftTax": 1.83,
       "craftTime": 2,
-      "su": 10
+      "su": 10,
+      "category": "Factory Kit"
     },
     "drone": {
       "name": "Drone",
@@ -1309,7 +1370,8 @@
       "addedValue": 11.22,
       "craftTax": 0.61,
       "craftTime": 2,
-      "su": 1
+      "su": 1,
+      "category": "Other"
     }
   }
 }
