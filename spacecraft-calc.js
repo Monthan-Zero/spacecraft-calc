@@ -136,9 +136,13 @@
 .scapp .mapscroll{overflow:auto;border:1px solid var(--line);border-radius:4px;background:#091523;padding:12px;max-height:600px;scrollbar-width:none;-ms-overflow-style:none}
 .scapp .mapscroll::-webkit-scrollbar{width:0;height:0;display:none}
 .scapp .map svg{display:block}
-.scapp .scedge{fill:none;stroke:#33506f;stroke-width:1.7}
-.scapp .scedge.partial{stroke-dasharray:5 4;stroke:#6b5630}
-.scapp .scnode{cursor:pointer}
+.scapp .scedge{fill:none;stroke:#33506f;stroke-width:1.6;opacity:.7;transition:opacity .12s,stroke-width .12s}
+.scapp .scedge.partial{stroke-dasharray:5 4}
+.scapp .scedge.hot{opacity:1;stroke-width:2.6}
+.scapp .scedge.dim{opacity:.07}
+.scapp .scnode{cursor:pointer;transition:opacity .12s}
+.scapp .scnode.dim{opacity:.24}
+.scapp .scnode.hot rect.box{stroke-width:3}
 .scapp .scnode rect.box{fill:#11202f;stroke:var(--line);stroke-width:1.5;transition:stroke-width .12s}
 .scapp .scnode.c-high rect.box{stroke:rgba(95,224,138,.8)}
 .scapp .scnode.c-medium rect.box{stroke:rgba(232,194,26,.85)}
@@ -166,6 +170,21 @@
 .scapp .mm-canvas{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform}
 .scapp .mm-canvas svg{display:block}
 .scapp .mm-hint{padding:7px 18px;font-size:11px;color:var(--muted);font-family:Rajdhani;letter-spacing:.04em;text-align:center;border-top:1px solid var(--line);background:var(--panel)}
+.scapp .mm-detail{position:absolute;top:0;right:0;width:308px;max-width:88%;height:100%;background:var(--panel);border-left:1px solid var(--line);box-shadow:-14px 0 30px rgba(0,0,0,.45);transform:translateX(100%);transition:transform .18s ease;overflow-y:auto;z-index:5;padding:16px 18px;-webkit-user-select:text;user-select:text}
+.scapp .mm-detail.show{transform:translateX(0)}
+.scapp .mm-detail .mdx{position:absolute;top:9px;right:12px;background:none;border:none;color:var(--muted);font-size:19px;cursor:pointer;line-height:1}
+.scapp .mm-detail .mdx:hover{color:var(--text)}
+.scapp .mm-detail h3{font-family:Orbitron;font-size:15px;margin:0 24px 6px 0;color:var(--text)}
+.scapp .mm-detail .md-sum{color:var(--muted);font-size:12.5px;line-height:1.55;margin:9px 0 13px}
+.scapp .mm-detail .md-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.scapp .mm-detail .md-stat{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:7px 9px}
+.scapp .mm-detail .md-stat .k{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.05em;font-family:Rajdhani}
+.scapp .mm-detail .md-stat .v{color:var(--text);font-size:13px;font-family:"JetBrains Mono";margin-top:2px}
+.scapp .mm-detail .md-h{font-family:Rajdhani;font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:11px;color:var(--muted);margin:4px 0 8px}
+.scapp .mm-detail .md-in{display:flex;align-items:center;gap:8px;padding:7px 9px;background:var(--bg2);border:1px solid var(--line);border-radius:6px;margin-bottom:6px;cursor:pointer}
+.scapp .mm-detail .md-in:hover{border-color:var(--primary)}
+.scapp .mm-detail .md-in .iq{color:var(--primary);font-family:"JetBrains Mono";font-size:12px;flex-shrink:0}
+.scapp .mm-detail .md-in .inm{color:var(--text);font-size:13px}
 /* cols / table / tree */
 .scapp .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:900px){.scapp .cols{grid-template-columns:1fr}.scapp .grid{grid-template-columns:repeat(2,1fr)}.scapp select,.scapp input{min-width:160px}}
@@ -526,8 +545,8 @@
       <button data-el="mm-close" class="mm-x" type="button" title="Close (Esc)">✕</button>
     </div>
   </div>
-  <div class="mm-stage" data-el="mm-stage"><div class="mm-canvas" data-el="mm-canvas"></div></div>
-  <div class="mm-hint">drag to pan · scroll to zoom · Esc to close</div>
+  <div class="mm-stage" data-el="mm-stage"><div class="mm-canvas" data-el="mm-canvas"></div><div class="mm-detail" data-el="mm-detail"></div></div>
+  <div class="mm-hint">click a box for details · line color = source · drag to pan · scroll to zoom · Esc to close</div>
 </div>
 <div class="toast" data-el="toast"></div>`;
 
@@ -547,6 +566,8 @@
   function typeColor(t) { return ({ raw: "#B85D28", refined: "#1A9FD8", component: "#6B4FA8", product: "#E8A71D", unknown: "#8B9AAA" })[t] || "#8B9AAA"; }
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
   function trunc(s, n) { s = String(s); return s.length > n ? s.slice(0, n - 1) + "…" : s; }
+  function cap(s) { s = String(s || ""); return s.charAt(0).toUpperCase() + s.slice(1); }
+  function statBox(k, v) { return '<div class="md-stat"><div class="k">' + esc(k) + '</div><div class="v">' + esc(String(v)) + '</div></div>'; }
   var toastT; function toast(m) { var t = $("toast"); if (!t) return; t.textContent = m; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove("show"); }, 2400); }
 
   /* ----------------------------- data ----------------------------- */
@@ -659,7 +680,7 @@
 
   function renderMap(g, fac) {
     var ids = Object.keys(g.nodes); if (!ids.length) return '<div class="foot">Nothing to map.</div>';
-    var W = 170, H = 60, GX = 88, GY = 20, PAD = 14, maxTier = g.maxTier || 0;
+    var W = 170, H = 60, GX = 116, GY = 28, PAD = 14, maxTier = g.maxTier || 0;
     var tiers = {};
     ids.forEach(function (id) { var t = g.nodes[id].tier; (tiers[t] = tiers[t] || []).push(id); });
     var tks = Object.keys(tiers).map(Number).sort(function (a, b) { return a - b; });
@@ -685,15 +706,26 @@
     var svgW = PAD * 2 + (maxTier + 1) * W + maxTier * GX, svgH = PAD * 2 + colH;
     var out = ['<svg width="' + svgW + '" height="' + svgH + '" viewBox="0 0 ' + svgW + ' ' + svgH + '" xmlns="http://www.w3.org/2000/svg">'];
     out.push('<defs><marker id="scarrow" markerWidth="8" markerHeight="8" refX="6.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#46618a"/></marker></defs>');
-    // clean orthogonal (elbow) connectors with rounded corners
+    // stagger incoming edges per target so fan-in lines separate (distinct entry port + channel lane)
+    var inByTarget = {};
+    g.edges.forEach(function (e) { (inByTarget[e.to] = inByTarget[e.to] || []).push(e); });
+    Object.keys(inByTarget).forEach(function (t) {
+      var arr = inByTarget[t];
+      arr.sort(function (p, q) { var a = pos[p.from], b = pos[q.from]; return (a ? a.y : 0) - (b ? b.y : 0); });
+      arr.forEach(function (e, i) { e._lane = i; e._lanes = arr.length; });
+    });
+    // clean orthogonal (elbow) connectors with rounded corners, colour-coded by source type
     g.edges.forEach(function (e) {
       var a = pos[e.from], b = pos[e.to]; if (!a || !b) return;
-      var x1 = a.x + W, y1 = a.y + H / 2, x2 = b.x - 2, y2 = b.y + H / 2;
-      var ch = x2 - GX * 0.5; if (ch < x1 + 8) ch = (x1 + x2) / 2;
-      var d, rad = 7, dy = (y2 >= y1) ? 1 : -1;
+      var lanes = e._lanes || 1, lane = e._lane || 0;
+      var spread = Math.min(12, (H - 18) / lanes);
+      var x1 = a.x + W, y1 = a.y + H / 2, x2 = b.x - 2, y2 = b.y + H / 2 + (lane - (lanes - 1) / 2) * spread;
+      var ch = x2 - 16 - lane * Math.min(11, (GX - 28) / lanes); if (ch < x1 + 8) ch = (x1 + x2) / 2;
+      var d, rad = 6, dy = (y2 >= y1) ? 1 : -1;
       if (Math.abs(y2 - y1) < 1) d = 'M' + x1 + ',' + y1 + ' L' + x2 + ',' + y2;
       else d = 'M' + x1 + ',' + y1 + ' L' + (ch - rad) + ',' + y1 + ' Q' + ch + ',' + y1 + ' ' + ch + ',' + (y1 + dy * rad) + ' L' + ch + ',' + (y2 - dy * rad) + ' Q' + ch + ',' + y2 + ' ' + (ch + rad) + ',' + y2 + ' L' + x2 + ',' + y2;
-      out.push('<path class="scedge' + (e.amt === null ? ' partial' : '') + '" d="' + d + '" marker-end="url(#scarrow)"/>');
+      var col = typeColor((RECIPES[e.from] || {}).type || "unknown");
+      out.push('<path class="scedge' + (e.amt === null ? ' partial' : '') + '" data-from="' + esc(e.from) + '" data-to="' + esc(e.to) + '" stroke="' + col + '" d="' + d + '" marker-end="url(#scarrow)"/>');
     });
     ids.forEach(function (id) {
       var n = g.nodes[id], r = RECIPES[id] || {}, q = pos[id], conf = r.confidence || "low";
@@ -741,18 +773,70 @@
     mmSize.h = parseFloat(src.getAttribute("height")) || src.getBoundingClientRect().height || 400;
     var cv = $("mm-canvas"); cv.innerHTML = ""; cv.appendChild(clone);
     if ($("mm-title")) $("mm-title").textContent = titleText || "Production map";
+    hideDetail();
     $("mapmodal").classList.add("open");
     if (!mmWired) { wireMapModal(); mmWired = true; }
     (window.requestAnimationFrame || function (f) { setTimeout(f, 16); })(mmFit);
   }
-  function closeMapModal() { var m = $("mapmodal"); if (m) m.classList.remove("open"); }
+  function closeMapModal() { var m = $("mapmodal"); if (m) m.classList.remove("open"); hideDetail(); }
+  function mmDetailHTML(id) {
+    var r = RECIPES[id]; if (!r) return '<button class="mdx" data-el="md-close" title="Close">✕</button><div class="md-sum">No data for this item.</div>';
+    var typeC = typeColor(r.type || "unknown"), ins = r.inputs || [];
+    var confLabel = ({ game: "verified", high: "high", medium: "medium", low: "low", reported: "your price" })[r.confidence] || r.confidence || "";
+    var sum;
+    if (!ins.length) sum = cap(r.type || "raw") + " resource — gathered directly, not crafted. Sells for " + credits(r.value) + " each.";
+    else sum = (r.category ? r.category + ". " : "") + cap(r.type || "item") + " crafted at " + (r.building || "?") + ". Yields " + (r.outputQty || 1) + "× per craft" + (isNum(r.craftTime) ? " in " + r.craftTime + "s" : "") + (isNum(r.power) ? " using " + r.power + "⚡" : "") + ". Sells for " + credits(r.value) + " each.";
+    var stats = '<div class="md-stats">' + statBox("Sell value", credits(r.value)) + statBox("Type", cap(r.type || "—")) +
+      (ins.length ? statBox("Built in", r.building || "—") : statBox("Source", "Mined")) +
+      (isNum(r.craftTime) ? statBox("Craft time", r.craftTime + "s") : "") +
+      (isNum(r.power) ? statBox("Power", r.power + " ⚡") : "") +
+      (r.outputQty && r.outputQty !== 1 ? statBox("Yield", "×" + r.outputQty) : "") + '</div>';
+    var inputsHTML = ins.length
+      ? '<div class="md-h">Made from</div>' + ins.map(function (x) { var ir = RECIPES[x.id] || {}; return '<div class="md-in" data-jump="' + esc(x.id) + '"><span class="iq">' + esc(String(x.qty)) + '×</span><span class="dot ' + (ir.type ? dc(ir.type) : "d-raw") + '"></span><span class="inm">' + esc(ir.name || x.id) + '</span></div>'; }).join("")
+      : '<div class="md-h">Made from</div><div class="md-sum" style="margin-top:0">Raw resource — gather it directly.</div>';
+    var unlock = r.unlock ? '<div class="md-h" style="margin-top:14px">Unlock</div><div class="md-sum" style="margin-top:0">🔒 Requires the <b>' + esc(r.unlock.permit) + '</b> permit' + (isNum(r.unlock.totalScience) ? ' · ' + r.unlock.totalScience + ' science' : '') + '.</div>' : "";
+    var altsNote = (r.alts && r.alts.length) ? '<div class="md-sum">+ ' + r.alts.length + ' alternative recipe' + (r.alts.length > 1 ? 's' : '') + ' available.</div>' : "";
+    return '<button class="mdx" data-el="md-close" title="Close">✕</button><h3>' + esc(r.name || id) + '</h3>' +
+      '<span class="badge" style="border-color:' + typeC + ';color:' + typeC + '">' + cap(r.type || "item") + '</span> ' +
+      (confLabel ? '<span class="badge c-' + (r.confidence || "low") + '">' + esc(confLabel) + '</span>' : '') +
+      '<div class="md-sum">' + esc(sum) + '</div>' + stats + inputsHTML + unlock + altsNote;
+  }
+  function showNodeDetail(id) {
+    var p = $("mm-detail"); if (!p) return;
+    p.innerHTML = mmDetailHTML(id); p.classList.add("show"); p.scrollTop = 0;
+    var c = p.querySelector("[data-el=md-close]"); if (c) c.onclick = function () { hideDetail(); clearHighlight(); };
+    Array.prototype.forEach.call(p.querySelectorAll(".md-in[data-jump]"), function (el) { el.onclick = function () { var j = el.getAttribute("data-jump"); showNodeDetail(j); highlightConn(j); }; });
+  }
+  function hideDetail() { var p = $("mm-detail"); if (p) p.classList.remove("show"); }
+  function highlightConn(id) {
+    var cv = $("mm-canvas"); if (!cv) return; var conn = {}; conn[id] = true;
+    Array.prototype.forEach.call(cv.querySelectorAll(".scedge"), function (p) {
+      var f = p.getAttribute("data-from"), t = p.getAttribute("data-to");
+      if (f === id || t === id) { p.classList.add("hot"); p.classList.remove("dim"); conn[f] = true; conn[t] = true; }
+      else { p.classList.add("dim"); p.classList.remove("hot"); }
+    });
+    Array.prototype.forEach.call(cv.querySelectorAll(".scnode[data-id]"), function (g) {
+      var nid = g.getAttribute("data-id");
+      if (conn[nid]) { g.classList.add("hot"); g.classList.remove("dim"); } else { g.classList.add("dim"); g.classList.remove("hot"); }
+    });
+  }
+  function clearHighlight() { var cv = $("mm-canvas"); if (!cv) return; Array.prototype.forEach.call(cv.querySelectorAll(".scedge, .scnode"), function (el) { el.classList.remove("hot", "dim"); }); }
+  function mmTap(e) {
+    var el = document.elementFromPoint(e.clientX, e.clientY);
+    var node = (el && el.closest) ? el.closest(".scnode[data-id]") : null;
+    if (node) { var id = node.getAttribute("data-id"); showNodeDetail(id); highlightConn(id); }
+    else { clearHighlight(); hideDetail(); }
+  }
   function wireMapModal() {
-    var stage = $("mm-stage");
-    stage.addEventListener("pointerdown", function (e) { e.preventDefault(); mmDrag = { x: e.clientX, y: e.clientY }; stage.classList.add("drag"); try { stage.setPointerCapture(e.pointerId); } catch (x) {} });
-    stage.addEventListener("pointermove", function (e) { if (!mmDrag) return; mmT.x += (e.clientX - mmDrag.x); mmT.y += (e.clientY - mmDrag.y); mmDrag = { x: e.clientX, y: e.clientY }; applyMM(); });
+    var stage = $("mm-stage"), mmMoved = 0;
+    stage.addEventListener("pointerdown", function (e) { e.preventDefault(); mmDrag = { x: e.clientX, y: e.clientY }; mmMoved = 0; stage.classList.add("drag"); try { stage.setPointerCapture(e.pointerId); } catch (x) {} });
+    stage.addEventListener("pointermove", function (e) { if (!mmDrag) return; var dx = e.clientX - mmDrag.x, dy = e.clientY - mmDrag.y; mmMoved += Math.abs(dx) + Math.abs(dy); mmT.x += dx; mmT.y += dy; mmDrag = { x: e.clientX, y: e.clientY }; applyMM(); });
     var end = function () { mmDrag = null; stage.classList.remove("drag"); };
-    stage.addEventListener("pointerup", end); stage.addEventListener("pointercancel", end); stage.addEventListener("pointerleave", end);
+    stage.addEventListener("pointerup", function (e) { var tap = mmDrag && mmMoved < 6; end(); if (tap) mmTap(e); });
+    stage.addEventListener("pointercancel", end); stage.addEventListener("pointerleave", end);
     stage.addEventListener("wheel", function (e) { e.preventDefault(); var r = stage.getBoundingClientRect(); mmZoom(e.deltaY < 0 ? 1.15 : 1 / 1.15, e.clientX - r.left, e.clientY - r.top); }, { passive: false });
+    var det = $("mm-detail"); if (det) { det.addEventListener("pointerdown", function (e) { e.stopPropagation(); }); det.addEventListener("pointerup", function (e) { e.stopPropagation(); }); det.addEventListener("wheel", function (e) { e.stopPropagation(); }); }
+    document.addEventListener("keydown", function (e) { if ((e.key === "Escape" || e.keyCode === 27) && $("mapmodal") && $("mapmodal").classList.contains("open")) { if ($("mm-detail") && $("mm-detail").classList.contains("show")) { hideDetail(); clearHighlight(); } else closeMapModal(); } });
     $("mm-zin").onclick = function () { mmZoom(1.25); };
     $("mm-zout").onclick = function () { mmZoom(1 / 1.25); };
     $("mm-fit").onclick = mmFit;
