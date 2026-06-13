@@ -269,6 +269,7 @@
 .scapp .catcard{display:flex;align-items:center;gap:10px}
 .scapp .catimg{width:36px;height:36px;object-fit:contain;flex-shrink:0}
 .scapp .sel-img{width:42px;height:42px;object-fit:contain;background:var(--bg2);border:1px solid var(--line);border-radius:7px;padding:3px;flex-shrink:0}
+.scapp .cico{width:1em;height:1em;object-fit:contain;vertical-align:-0.13em;display:inline-block}
 .scapp.view-profit > .hero,.scapp.view-profit #sc-planner,.scapp.view-profit #sc-browse,.scapp.view-profit #sc-about,.scapp.view-profit #sc-roadmap{display:none}
 .scapp:not(.view-profit) #sc-profit{display:none}
 .scapp .charts{display:grid;grid-template-columns:1fr 1fr;gap:18px}
@@ -442,7 +443,7 @@
   <div class="sechead">Production Planner</div>
   <div class="panel lit brk" data-el="planner">
     <span class="cb tl"></span><span class="cb tr"></span><span class="cb bl"></span><span class="cb br"></span>
-    <div class="ph"><h3>Supply Chain</h3><span class="sub">raw materials → final product · prices in credits (⊙)</span></div>
+    <div class="ph"><h3>Supply Chain</h3><span class="sub">raw materials → final product · prices in credits</span></div>
     <div class="pbody" data-el="plannerbody"><div class="loading">▣ Initialising telemetry…</div></div>
   </div>
 </div></section>
@@ -572,7 +573,8 @@
   function $(n) { return root.querySelector('[data-el="' + n + '"]'); }
   function isNum(n) { return n !== null && n !== undefined && !isNaN(n); }
   function fmt(n) { return (Math.round(n * 100) / 100).toLocaleString(undefined, { maximumFractionDigits: 2 }); }
-  function credits(n) { return isNum(n) ? "⊙ " + fmt(n) : "—"; }
+  function credits(n) { return isNum(n) ? cico() + " " + fmt(n) : "—"; }
+  function statBoxRaw(k, v) { return '<div class="md-stat"><div class="k">' + esc(k) + '</div><div class="v">' + v + '</div></div>'; }
   function tc(t) { return "t-" + t; } function dc(t) { return "d-" + t; }
   function typeColor(t) { return ({ raw: "#B85D28", refined: "#1A9FD8", component: "#6B4FA8", product: "#E8A71D", unknown: "#8B9AAA" })[t] || "#8B9AAA"; }
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
@@ -596,7 +598,7 @@
       else { RECIPES[id].value = val; RECIPES[id].confidence = "reported"; RECIPES[id].userReported = true; }
     }
     populate(); compute(); buildCatalog(); buildProfit();
-    toast(val === null ? "Price cleared" : "Saved ⊙" + fmt(val) + " for " + (RECIPES[id] ? RECIPES[id].name : id));
+    toast(val === null ? "Price cleared" : "Saved " + creditsTxt(val) + " for " + (RECIPES[id] ? RECIPES[id].name : id));
   }
   function exportReported() {
     var rep = loadReported(), ids = Object.keys(rep);
@@ -612,8 +614,11 @@
   var SELF = (document.currentScript && document.currentScript.src) || location.href;
   var DATA_URL = SELF.split(/[?#]/)[0].replace(/[^\/]*$/, "recipes.json");
   var IMG_BASE = SELF.split(/[?#]/)[0].replace(/[^\/]*$/, "images/");
+  var CRED_IMG = IMG_BASE + "credit.webp";
   function itemImg(id) { var r = RECIPES[id]; return (r && r.img) ? (IMG_BASE + "items/" + id + ".webp") : (IMG_BASE + "unknown.webp"); }
   function buildingImg(name) { var s = BUILDING_ICONS[name]; return s ? (IMG_BASE + "buildings/" + s + ".webp") : null; }
+  function cico() { return '<img class="cico" src="' + CRED_IMG + '" alt="cr">'; }
+  function creditsTxt(n) { return isNum(n) ? fmt(n) + " cr" : "—"; }
 
   fetch(DATA_URL, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
     .then(function (data) { SOURCES = data.sources || {}; RECIPES = data.recipes || {}; CONSTS = data.constants || {}; BUILDING_ICONS = data.buildingIcons || {}; BUYMULT = 1 + (isNum(CONSTS.marketBuyTaxPercent) ? CONSTS.marketBuyTaxPercent / 100 : 0); ORIGVAL = {}; for (var _k in RECIPES) ORIGVAL[_k] = RECIPES[_k].value; applyReported(); initPlanner(); })
@@ -751,8 +756,8 @@
         title = esc((r.name || id) + " — " + qty + (fi.buildings != null ? " · ×" + fi.buildings + " " + r.building : (r.building ? " · " + r.building : "")) + (fi.power ? " · ⚡" + fmt(fi.power) : ""));
       } else {
         qty = (n.need > 0) ? ((n.unknown ? "≥" : "") + fmt(n.need) + "×") : "?×";
-        var val = isNum(r.value) ? credits(r.value) + " ea" : "price n/a"; sub = (r.building ? trunc(r.building, 15) + " · " : "") + val;
-        title = esc((r.name || id) + " — need " + qty + (r.building ? " · " + r.building : "") + (isNum(r.value) ? " · " + credits(r.value) + " each" : ""));
+        var val = isNum(r.value) ? creditsTxt(r.value) + " ea" : "price n/a"; sub = (r.building ? trunc(r.building, 15) + " · " : "") + val;
+        title = esc((r.name || id) + " — need " + qty + (r.building ? " · " + r.building : "") + (isNum(r.value) ? " · " + creditsTxt(r.value) + " each" : ""));
       }
       var icon = fac ? (buildingImg(r.building) || itemImg(id)) : itemImg(id);
       out.push('<g class="scnode c-' + conf + '" data-id="' + esc(id) + '" transform="translate(' + q.x + ',' + q.y + ')"><title>' + title + ' · click for details</title>');
@@ -800,9 +805,9 @@
     var typeC = typeColor(r.type || "unknown"), ins = r.inputs || [];
     var confLabel = ({ game: "verified", high: "high", medium: "medium", low: "low", reported: "your price" })[r.confidence] || r.confidence || "";
     var sum;
-    if (!ins.length) sum = cap(r.type || "raw") + " resource — gathered directly, not crafted. Sells for " + credits(r.value) + " each.";
-    else sum = (r.category ? r.category + ". " : "") + cap(r.type || "item") + " crafted at " + (r.building || "?") + ". Yields " + (r.outputQty || 1) + "× per craft" + (isNum(r.craftTime) ? " in " + r.craftTime + "s" : "") + (isNum(r.power) ? " using " + r.power + "⚡" : "") + ". Sells for " + credits(r.value) + " each.";
-    var stats = '<div class="md-stats">' + statBox("Sell value", credits(r.value)) + statBox("Type", cap(r.type || "—")) +
+    if (!ins.length) sum = cap(r.type || "raw") + " resource — gathered directly, not crafted. Sells for " + creditsTxt(r.value) + " each.";
+    else sum = (r.category ? r.category + ". " : "") + cap(r.type || "item") + " crafted at " + (r.building || "?") + ". Yields " + (r.outputQty || 1) + "× per craft" + (isNum(r.craftTime) ? " in " + r.craftTime + "s" : "") + (isNum(r.power) ? " using " + r.power + "⚡" : "") + ". Sells for " + creditsTxt(r.value) + " each.";
+    var stats = '<div class="md-stats">' + statBoxRaw("Sell value", credits(r.value)) + statBox("Type", cap(r.type || "—")) +
       (ins.length ? statBox("Built in", r.building || "—") : statBox("Source", "Mined")) +
       statBox("Weight", isNum(r.su) ? r.su + " SU" : "—") +
       (isNum(r.craftTime) ? statBox("Craft time", r.craftTime + "s") : "") +
@@ -900,7 +905,7 @@
 <div class="mapscroll"><div class="map" data-el="map"></div></div>
 <div class="cols" style="margin-top:16px">
   <div><div class="sechead" style="margin-bottom:10px">Total raw materials</div>
-    <table data-el="raw-table"><thead><tr><th>Resource</th><th class="num">Qty</th><th class="num">Unit ⊙</th><th class="num">Subtotal ⊙</th></tr></thead><tbody></tbody></table>
+    <table data-el="raw-table"><thead><tr><th>Resource</th><th class="num">Qty</th><th class="num">Unit ${cico()}</th><th class="num">Subtotal ${cico()}</th></tr></thead><tbody></tbody></table>
     <div data-el="unknown-box" class="foot"></div></div>
   <div><div class="sechead" style="margin-bottom:10px">Sources</div><div class="srclist" data-el="sources"></div></div>
 </div>`;
@@ -924,27 +929,27 @@
       else { su.className = "unlockinfo open"; su.innerHTML = '⛏ Raw resource — gather it directly'; }
     }
     var sell = isNum(r.value) ? r.value * qty : null;
-    $("m-sell").textContent = sell === null ? "Not available yet" : credits(sell);
+    $("m-sell").innerHTML = sell === null ? "Not available yet" : credits(sell);
     $("m-sell").className = "v " + (sell === null ? "warn" : "primary");
     $("m-sell-note").textContent = r.userReported ? "you reported this price" : sell === null ? "report it below ↓" : "store base price";
     var rb = $("report-box"), cur = isNum(r.value) ? r.value : "";
-    rb.innerHTML = '<input type="number" min="0" step="0.01" data-el="price-input" placeholder="⊙ per unit" value="' + cur + '"><button class="minibtn" data-el="price-save">' + (isNum(r.value) ? "Update" : "Report") + '</button>' + (r.userReported ? '<button class="minibtn" data-el="price-clear">clear</button>' : "");
+    rb.innerHTML = '<input type="number" min="0" step="0.01" data-el="price-input" placeholder="Credits per unit" value="' + cur + '"><button class="minibtn" data-el="price-save">' + (isNum(r.value) ? "Update" : "Report") + '</button>' + (r.userReported ? '<button class="minibtn" data-el="price-clear">clear</button>' : "");
     $("price-save").onclick = function () { var v = parseFloat($("price-input").value); if (!isFinite(v) || v < 0 || v > 1e12) { toast("Enter a valid price (0–1,000,000,000,000)"); return; } reportPrice(id, v); };
     var pc = $("price-clear"); if (pc) pc.onclick = function () { reportPrice(id, null); };
     var hasRaw = Object.keys(raw).length > 0;
     var taxPartial = incomplete || !gc.taxComplete;
     var costPartial = incomplete || missingValue || !gc.taxComplete;
     // Production cost (buying materials) = raw market cost + craft taxes
-    $("m-cost").textContent = hasRaw ? (costPartial ? "≥ " : "") + credits(prodCost) : "—";
-    $("m-cost-note").textContent = (costPartial ? "partial · " : "") + "materials " + credits(buyCost) + (BUYMULT > 1 ? " (incl. " + fmt((BUYMULT - 1) * 100) + "% buy tax)" : "") + (gc.power ? " · ⚡" + fmt(gc.power) : "") + (gc.time ? " · ~" + fmt(gc.time) + "s" : "");
+    $("m-cost").innerHTML = hasRaw ? (costPartial ? "≥ " : "") + credits(prodCost) : "—";
+    $("m-cost-note").innerHTML = (costPartial ? "partial · " : "") + "materials " + credits(buyCost) + (BUYMULT > 1 ? " (incl. " + fmt((BUYMULT - 1) * 100) + "% buy tax)" : "") + (gc.power ? " · ⚡" + fmt(gc.power) : "") + (gc.time ? " · ~" + fmt(gc.time) + "s" : "");
     // Profit if you MINE the ore yourself (raw is free) = sell − craft taxes
     var minedOK = sell !== null && !taxPartial;
     var mined = minedOK ? sell - tax : null, mEl = $("m-mined");
-    mEl.textContent = minedOK ? credits(mined) : "—"; mEl.className = "v " + (minedOK ? (mined >= 0 ? "good" : "bad") : "");
+    mEl.innerHTML = minedOK ? credits(mined) : "—"; mEl.className = "v " + (minedOK ? (mined >= 0 ? "good" : "bad") : "");
     $("m-mined-note").textContent = sell === null ? "needs a price" : !minedOK ? "needs full recipe" : "all profit · raw materials mined free";
     // Profit if you BUY the materials = sell − raw cost − craft taxes
     var boughtOK = sell !== null && !costPartial && hasRaw, bought = boughtOK ? sell - prodCost : null, bEl = $("m-bought");
-    bEl.textContent = boughtOK ? credits(bought) : "—"; bEl.className = "v " + (boughtOK ? (bought >= 0 ? "good" : "bad") : "");
+    bEl.innerHTML = boughtOK ? credits(bought) : "—"; bEl.className = "v " + (boughtOK ? (bought >= 0 ? "good" : "bad") : "");
     $("m-bought-note").textContent = sell === null ? "needs a price" : !boughtOK ? "needs material prices" : "after buying materials";
     var tb = $("raw-table").querySelector("tbody");
     var rows = Object.keys(raw).sort(function (a, b) { return raw[b] - raw[a]; });
@@ -978,7 +983,7 @@
   }
   function renderCombo(filter) {
     var drop = $("item-drop"), ids = comboMatches(filter);
-    drop.innerHTML = ids.length ? ids.map(function (id) { var r = RECIPES[id]; return '<div class="comboitem" data-id="' + id + '"><span><img class="ci-img" src="' + esc(itemImg(id)) + '" alt="">' + esc(r.name) + '</span><span class="ci-r"><span class="ci-val">' + (isNum(r.value) ? "⊙" + fmt(r.value) : "—") + '</span><span class="ci-cat">' + esc(r.category || r.type) + '</span></span></div>'; }).join("") : '<div class="comboitem"><span class="meta">No matches</span></div>';
+    drop.innerHTML = ids.length ? ids.map(function (id) { var r = RECIPES[id]; return '<div class="comboitem" data-id="' + id + '"><span><img class="ci-img" src="' + esc(itemImg(id)) + '" alt="">' + esc(r.name) + '</span><span class="ci-r"><span class="ci-val">' + credits(r.value) + '</span><span class="ci-cat">' + esc(r.category || r.type) + '</span></span></div>'; }).join("") : '<div class="comboitem"><span class="meta">No matches</span></div>';
     Array.prototype.forEach.call(drop.querySelectorAll(".comboitem[data-id]"), function (c) { c.addEventListener("mousedown", function (e) { e.preventDefault(); $("item-drop").classList.remove("open"); selectItem(c.getAttribute("data-id")); }); });
   }
 
@@ -994,7 +999,7 @@
     grid.innerHTML = cats.map(function (c) {
       var arr = groups[c].sort(function (a, b) { return RECIPES[a].name.localeCompare(RECIPES[b].name); });
       return '<div class="catgroup"><div class="catgrouphd">' + esc(c) + ' <span class="cc">' + arr.length + '</span></div><div class="catgrid">'
-        + arr.map(function (id) { var r = RECIPES[id]; return '<div class="catcard k-' + r.type + '" data-id="' + id + '"><img class="catimg" src="' + esc(itemImg(id)) + '" alt=""><div><div class="cn">' + esc(r.name) + '</div><div class="cm">' + (isNum(r.value) ? "⊙" + fmt(r.value) + " · " : "") + r.type + '</div></div></div>'; }).join("")
+        + arr.map(function (id) { var r = RECIPES[id]; return '<div class="catcard k-' + r.type + '" data-id="' + id + '"><img class="catimg" src="' + esc(itemImg(id)) + '" alt=""><div><div class="cn">' + esc(r.name) + '</div><div class="cm">' + (isNum(r.value) ? credits(r.value) + " · " : "") + r.type + '</div></div></div>'; }).join("")
         + '</div></div>';
     }).join("") || '<div class="foot">No items match.</div>';
     Array.prototype.forEach.call(grid.querySelectorAll(".catcard"), function (c) { c.onclick = function () { selectItem(c.getAttribute("data-id")); }; });
@@ -1027,7 +1032,7 @@
   function renderProfit() {
     var key = psort.key, dir = psort.dir;
     var rows = profitRows.slice().sort(function (a, b) { var x = a[key], y = b[key]; if (typeof x === "string") return x.localeCompare(y) * dir; return (x < y ? -1 : x > y ? 1 : 0) * dir; });
-    var cols = [["name", "Item", 0], ["cat", "Category", 0], ["cplx", "Complexity", 1], ["mined", "Mine→Sell ⊙", 1], ["margin", "Buy margin %", 1], ["ppc", "Profit / Cplx", 1], ["bought", "Buy→Sell ⊙", 1], ["sell", "Sell ⊙", 1], ["raw", "Raw cost ⊙", 1], ["power", "Power ⚡", 1], ["units", "Raw units", 1]];
+    var cols = [["name", "Item", 0], ["cat", "Category", 0], ["cplx", "Complexity", 1], ["mined", "Mine→Sell " + cico(), 1], ["margin", "Buy margin %", 1], ["ppc", "Profit / Cplx", 1], ["bought", "Buy→Sell " + cico(), 1], ["sell", "Sell " + cico(), 1], ["raw", "Raw cost " + cico(), 1], ["power", "Power ⚡", 1], ["units", "Raw units", 1]];
     var h = '<thead><tr>' + cols.map(function (c) { var ar = key === c[0] ? (dir < 0 ? " ▼" : " ▲") : ""; return '<th class="' + (c[2] ? "num" : "") + '" data-k="' + c[0] + '">' + c[1] + ar + '</th>'; }).join("") + '</tr></thead><tbody>';
     h += rows.map(function (r) {
       return '<tr><td><span class="pn" data-id="' + r.id + '">' + esc(r.name) + '</span></td>'
@@ -1073,8 +1078,8 @@
     // linear X ticks
     for (var j = 0; j <= 4; j++) { var xv = maxX * j / 4, x = sx(xv); s.push('<text class="axt" x="' + x.toFixed(1) + '" y="' + (H - pb + 14) + '" text-anchor="middle">' + Math.round(xv) + '</text>'); }
     s.push('<text class="axlbl" x="' + ((pl + W - pr) / 2).toFixed(0) + '" y="' + (H - 3) + '" text-anchor="middle">Complexity →</text>');
-    s.push('<text class="axlbl" transform="translate(11,' + ((pt + H - pb) / 2).toFixed(0) + ') rotate(-90)" text-anchor="middle">Mine→Sell profit ⊙ (log)</text>');
-    rows.forEach(function (r) { var c = typeColor((RECIPES[r.id] || {}).type || "product"); s.push('<circle class="pt" data-id="' + r.id + '" cx="' + sx(r.cplx).toFixed(1) + '" cy="' + sy(r.mined).toFixed(1) + '" r="4" fill="' + c + '" fill-opacity=".72"><title>' + esc(r.name + " · profit ⊙" + fmt(r.mined) + " · complexity " + r.cplx + " · ⊙" + fmt(r.ppc) + "/cplx") + '</title></circle>'); });
+    s.push('<text class="axlbl" transform="translate(11,' + ((pt + H - pb) / 2).toFixed(0) + ') rotate(-90)" text-anchor="middle">Mine→Sell profit (cr, log)</text>');
+    rows.forEach(function (r) { var c = typeColor((RECIPES[r.id] || {}).type || "product"); s.push('<circle class="pt" data-id="' + r.id + '" cx="' + sx(r.cplx).toFixed(1) + '" cy="' + sy(r.mined).toFixed(1) + '" r="4" fill="' + c + '" fill-opacity=".72"><title>' + esc(r.name + " · profit " + creditsTxt(r.mined) + " · complexity " + r.cplx + " · " + creditsTxt(r.ppc) + "/cplx") + '</title></circle>'); });
     // label best value-for-effort (top ppc) + the single biggest-profit item, de-duped, edge-flipped
     var labeled = {}, lbl = [];
     rows.slice().sort(function (a, b) { return b.ppc - a.ppc; }).slice(0, 4).forEach(function (r) { if (!labeled[r.id]) { labeled[r.id] = 1; lbl.push(r); } });
@@ -1094,7 +1099,7 @@
     var s = ['<svg viewBox="0 0 ' + W + ' ' + H + '">'];
     top.forEach(function (r, i) {
       var y = pt + i * rh, bw = r.mined / maxV * (W - pl - pr), c = typeColor((RECIPES[r.id] || {}).type || "product");
-      s.push('<g class="barrow" data-id="' + r.id + '"><title>' + esc(r.name + " · ⊙" + fmt(r.mined)) + '</title>');
+      s.push('<g class="barrow" data-id="' + r.id + '"><title>' + esc(r.name + " · " + creditsTxt(r.mined)) + '</title>');
       s.push('<text class="barlbl" x="' + (pl - 8) + '" y="' + (y + rh / 2 + 4) + '" text-anchor="end">' + esc(trunc(r.name, 18)) + '</text>');
       s.push('<rect class="bar" x="' + pl + '" y="' + (y + 4) + '" width="' + bw.toFixed(1) + '" height="' + (rh - 9) + '" rx="2" fill="' + c + '"/>');
       s.push('<text class="barval" x="' + (pl + bw + 5).toFixed(1) + '" y="' + (y + rh / 2 + 4) + '">' + fmt(r.mined) + '</text></g>');
@@ -1215,7 +1220,7 @@
     h += '<div class="sechead2">Production line</div><table class="factbl"><thead><tr><th>Make</th><th>Building</th><th class="num">Buildings</th><th class="num">Rate / hr</th><th class="num">Power</th></tr></thead><tbody>';
     h += fc.steps.map(function (s) { return '<tr><td><span class="pn" data-id="' + s.id + '">' + esc(s.name) + '</span></td><td>' + esc(s.building || "—") + '</td><td class="num">' + (s.buildings != null ? "×" + s.buildings : "—") + '</td><td class="num">' + fmt(s.rate) + '</td><td class="num">' + (s.power ? "⚡" + fmt(s.power) : "—") + "</td></tr>"; }).join("");
     h += "</tbody></table>";
-    h += '<div class="sechead2">Raw materials · per hour</div><table class="factbl"><thead><tr><th>Resource</th><th class="num">Rate / hr</th><th class="num">Unit ⊙</th><th class="num">Cost / hr ⊙</th></tr></thead><tbody>';
+    h += '<div class="sechead2">Raw materials · per hour</div><table class="factbl"><thead><tr><th>Resource</th><th class="num">Rate / hr</th><th class="num">Unit ' + cico() + '</th><th class="num">Cost / hr ' + cico() + '</th></tr></thead><tbody>';
     h += fc.raws.map(function (rw) { var cost = isNum(rw.value) ? rw.value * rw.rate : null; return '<tr><td><span class="pn" data-id="' + rw.id + '">' + esc(rw.name) + '</span></td><td class="num">' + fmt(rw.rate) + '</td><td class="num">' + (isNum(rw.value) ? fmt(rw.value) : "—") + '</td><td class="num">' + (cost != null ? fmt(cost) : "—") + "</td></tr>"; }).join("") || '<tr><td colspan="4" class="meta">No quantified raw inputs.</td></tr>';
     h += "</tbody></table>";
     out.innerHTML = h;
