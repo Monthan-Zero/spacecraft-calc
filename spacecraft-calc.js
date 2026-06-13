@@ -236,6 +236,25 @@
 .scapp .barval{fill:var(--primary);font-size:11px;font-family:"JetBrains Mono"}
 .scapp.view-map > .hero,.scapp.view-map #sc-planner,.scapp.view-map #sc-browse,.scapp.view-map #sc-about,.scapp.view-map #sc-profit{display:none}
 .scapp:not(.view-map) #sc-map{display:none}
+.scapp.view-factory > .hero,.scapp.view-factory #sc-planner,.scapp.view-factory #sc-browse,.scapp.view-factory #sc-about{display:none}
+.scapp:not(.view-factory) #sc-factory{display:none}
+.scapp .facbar{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end;margin-bottom:20px}
+.scapp .facbar select{min-width:240px}
+.scapp .facrate{display:flex;align-items:center;gap:8px}
+.scapp .facrate input{width:110px}
+.scapp .facunit{color:var(--muted);font-family:Rajdhani;font-size:13px}
+.scapp .facsum{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:8px}
+.scapp .sechead2{font-family:Orbitron;font-size:14px;font-weight:700;color:var(--text);margin:22px 0 10px;text-transform:uppercase;letter-spacing:.05em}
+.scapp .facbldgs{display:flex;flex-wrap:wrap;gap:8px}
+.scapp .facbtag{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:7px 12px;font-size:13px;color:var(--muted)}
+.scapp .facbtag b{color:var(--primary);font-family:"JetBrains Mono"}
+.scapp .facnote{color:var(--muted);font-size:12px;margin-top:10px;font-style:italic}
+.scapp table.factbl{width:100%;border-collapse:collapse;font-size:13px}
+.scapp table.factbl th{text-align:left;color:var(--muted);font-family:Rajdhani;text-transform:uppercase;letter-spacing:.05em;font-size:11px;border-bottom:1px solid var(--line);padding:7px 10px}
+.scapp table.factbl td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.04)}
+.scapp table.factbl th.num,.scapp table.factbl td.num{text-align:right;font-family:"JetBrains Mono"}
+.scapp table.factbl .pn{cursor:pointer;color:var(--text)}
+.scapp table.factbl .pn:hover{color:var(--primary);text-decoration:underline}
 .scapp .atlasbar{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
 .scapp .atlasbar input{flex:1;min-width:220px;max-width:440px;padding:9px 13px;background:var(--panel);border:1px solid var(--line);border-radius:6px;color:var(--text);font-size:14px}
 .scapp .atlasbar input:focus{outline:none;border-color:var(--primary)}
@@ -305,7 +324,7 @@
 <div class="stars" data-el="stars"></div><div class="neb"></div>
 <header class="hud">
   <div class="brand">SPACE<span class="pipe"></span><span class="b2">CRAFT</span> PLANNER</div>
-  <nav><a data-el="nav-planner">Planner</a><a data-el="nav-browse">Recipes</a><a data-el="nav-profit">Profit</a><a data-el="nav-map">Galaxy</a><a data-el="nav-about">About&nbsp;Data</a></nav>
+  <nav><a data-el="nav-planner">Planner</a><a data-el="nav-browse">Recipes</a><a data-el="nav-profit">Profit</a><a data-el="nav-factory">Factory</a><a data-el="nav-map">Galaxy</a><a data-el="nav-about">About&nbsp;Data</a></nav>
   <div class="spacer"></div>
   <button class="btn" data-el="nav-launch">Launch Planner</button>
 </header>
@@ -373,6 +392,15 @@
   </div>
 </div></section>
 
+<section id="sc-factory"><div class="wrap">
+  <div class="sechead">Factory Planner <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-family:Inter;font-size:12px">— pick a product and a target rate; we lay out the whole automated production line</span></div>
+  <div class="facbar">
+    <div class="field"><label>Make</label><select data-el="fac-item"></select></div>
+    <div class="field"><label>Target rate</label><div class="facrate"><input type="number" data-el="fac-rate" min="1" step="1" value="60"><span class="facunit">/ hour</span></div></div>
+  </div>
+  <div data-el="fac-out"></div>
+</div></section>
+
 <section id="sc-about"><div class="wrap">
   <div class="sechead">About The Data</div>
   <div class="about">
@@ -426,7 +454,7 @@
 
   /* ----------------------------- data ----------------------------- */
   var RECIPES = {}, SOURCES = {}, CONSTS = {}, BUYMULT = 1, pendingScroll = null;
-  var ATLAS = { deposits: [] }, atlasFilter = "all", atlasSearch = "", galaxyWired = false, galT = { x: 0, y: 0, s: 1 }, galDrag = null, galWired = false, sectorSel = null;
+  var ATLAS = { deposits: [] }, atlasFilter = "all", atlasSearch = "", galaxyWired = false, galT = { x: 0, y: 0, s: 1 }, galDrag = null, galWired = false, sectorSel = null, facWired = false;
   var LS_KEY = "sc_reported_prices_v1";
   function loadReported() { try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch (e) { return {}; } }
   function applyReported() { var rep = loadReported(); for (var id in rep) { if (RECIPES[id]) { RECIPES[id].value = rep[id]; RECIPES[id].confidence = "reported"; RECIPES[id].userReported = true; } } }
@@ -851,18 +879,22 @@
     var p = location.pathname, h = location.hash;
     if (/\/profit/i.test(p) || /^#\/?profit/i.test(h)) return "profit";
     if (/\/(map|galaxy)/i.test(p) || /^#\/?(map|galaxy)/i.test(h)) return "map";
+    if (/\/factory/i.test(p) || /^#\/?factory/i.test(h)) return "factory";
     return "home";
   }
   function applyView() {
     var v = currentView();
     root.classList.toggle("view-profit", v === "profit");
     root.classList.toggle("view-map", v === "map");
-    var np = $("nav-profit"), npl = $("nav-planner"), nm = $("nav-map");
+    root.classList.toggle("view-factory", v === "factory");
+    var np = $("nav-profit"), npl = $("nav-planner"), nm = $("nav-map"), nf = $("nav-factory");
     if (np) np.style.color = v === "profit" ? "var(--primary)" : "";
     if (nm) nm.style.color = v === "map" ? "var(--primary)" : "";
+    if (nf) nf.style.color = v === "factory" ? "var(--primary)" : "";
     if (npl) npl.style.color = v === "home" ? "var(--primary)" : "";
     if (v !== "home") window.scrollTo(0, 0);
     if (v === "map" && ATLAS.deposits.length) buildGalaxy();
+    if (v === "factory") buildFactory();
   }
   function route() {
     applyView();
@@ -874,6 +906,63 @@
     }
   }
 
+  /* ----------------------------- factory / automation planner ----------------------------- */
+  function buildFactory() {
+    var sel = $("fac-item"); if (!sel || !Object.keys(RECIPES).length) return;
+    if (!sel.options.length) {
+      var ids = Object.keys(RECIPES).filter(function (id) { return RECIPES[id].inputs && RECIPES[id].inputs.length; })
+        .sort(function (a, b) { return RECIPES[a].name.localeCompare(RECIPES[b].name); });
+      sel.innerHTML = ids.map(function (id) { return '<option value="' + id + '">' + esc(RECIPES[id].name) + "</option>"; }).join("");
+      if (RECIPES["coil"]) sel.value = "coil"; else if (RECIPES["iron_ingot"]) sel.value = "iron_ingot";
+    }
+    if (!facWired) {
+      sel.addEventListener("change", renderFactory);
+      if ($("fac-rate")) $("fac-rate").addEventListener("input", renderFactory);
+      facWired = true;
+    }
+    renderFactory();
+  }
+  function computeFactory(id, rate) {
+    var g = buildGraph(id, rate), steps = [], raws = [], byBldg = {}, totalPower = 0, totalBuildings = 0, anyNoTime = false;
+    Object.keys(g.nodes).forEach(function (nid) {
+      var n = g.nodes[nid], r = RECIPES[nid]; if (!(n.need > 0)) return;
+      if (r && r.inputs && r.inputs.length) {
+        var craftsHr = n.need / (r.outputQty || 1), ct = r.craftTime, buildings = null, power = 0;
+        if (isNum(ct) && ct > 0) buildings = Math.ceil(craftsHr * ct / 3600); else anyNoTime = true;
+        if (buildings && isNum(r.power)) power = buildings * r.power;
+        totalPower += power; if (buildings) { totalBuildings += buildings; byBldg[r.building] = (byBldg[r.building] || 0) + buildings; }
+        steps.push({ id: nid, name: r.name, rate: n.need, building: r.building, buildings: buildings, power: power, tier: n.tier });
+      } else {
+        raws.push({ id: nid, name: (RECIPES[nid] && RECIPES[nid].name) || nid, rate: n.need, value: RECIPES[nid] ? RECIPES[nid].value : null });
+      }
+    });
+    steps.sort(function (a, b) { return b.tier - a.tier || a.name.localeCompare(b.name); });
+    raws.sort(function (a, b) { return b.rate - a.rate; });
+    return { steps: steps, raws: raws, byBldg: byBldg, totalPower: totalPower, totalBuildings: totalBuildings, anyNoTime: anyNoTime };
+  }
+  function facCard(k, v, sub) { return '<div class="card"><div class="k">' + esc(k) + '</div><div class="v primary">' + v + '</div><div class="note">' + esc(sub) + "</div></div>"; }
+  function renderFactory() {
+    var sel = $("fac-item"), out = $("fac-out"); if (!sel || !out) return;
+    var id = sel.value, r = RECIPES[id], rate = Math.max(1, parseFloat(($("fac-rate") || {}).value) || 60);
+    if (!r) { out.innerHTML = '<div class="foot">Pick a craftable item.</div>'; return; }
+    var fc = computeFactory(id, rate);
+    var h = '<div class="facsum">'
+      + facCard("Target", fmt(rate) + "/hr", r.name)
+      + facCard("Buildings", fmt(fc.totalBuildings), Object.keys(fc.byBldg).length + " type" + (Object.keys(fc.byBldg).length === 1 ? "" : "s"))
+      + facCard("Raw inputs", fmt(fc.raws.length), "kinds / hr")
+      + facCard("Power", "⚡" + fmt(fc.totalPower), "while running") + "</div>";
+    var bk = Object.keys(fc.byBldg).sort(function (a, b) { return fc.byBldg[b] - fc.byBldg[a]; });
+    if (bk.length) h += '<div class="sechead2">Buildings needed</div><div class="facbldgs">' + bk.map(function (b) { return '<span class="facbtag">' + esc(b) + " <b>×" + fc.byBldg[b] + "</b></span>"; }).join("") + "</div>";
+    if (fc.anyNoTime) h += '<div class="facnote">Constructed buildings / seeds have no auto-craft time, so they show without a building count.</div>';
+    h += '<div class="sechead2">Production line</div><table class="factbl"><thead><tr><th>Make</th><th>Building</th><th class="num">Buildings</th><th class="num">Rate / hr</th><th class="num">Power</th></tr></thead><tbody>';
+    h += fc.steps.map(function (s) { return '<tr><td><span class="pn" data-id="' + s.id + '">' + esc(s.name) + '</span></td><td>' + esc(s.building || "—") + '</td><td class="num">' + (s.buildings != null ? "×" + s.buildings : "—") + '</td><td class="num">' + fmt(s.rate) + '</td><td class="num">' + (s.power ? "⚡" + fmt(s.power) : "—") + "</td></tr>"; }).join("");
+    h += "</tbody></table>";
+    h += '<div class="sechead2">Raw materials · per hour</div><table class="factbl"><thead><tr><th>Resource</th><th class="num">Rate / hr</th><th class="num">Unit ⊙</th><th class="num">Cost / hr ⊙</th></tr></thead><tbody>';
+    h += fc.raws.map(function (rw) { var cost = isNum(rw.value) ? rw.value * rw.rate : null; return '<tr><td><span class="pn" data-id="' + rw.id + '">' + esc(rw.name) + '</span></td><td class="num">' + fmt(rw.rate) + '</td><td class="num">' + (isNum(rw.value) ? fmt(rw.value) : "—") + '</td><td class="num">' + (cost != null ? fmt(cost) : "—") + "</td></tr>"; }).join("") || '<tr><td colspan="4" class="meta">No quantified raw inputs.</td></tr>';
+    h += "</tbody></table>";
+    out.innerHTML = h;
+    Array.prototype.forEach.call(out.querySelectorAll(".pn[data-id]"), function (c) { c.onclick = function () { selectItem(c.getAttribute("data-id")); }; });
+  }
   /* ----------------------------- galaxy: sectors + atlas ----------------------------- */
   function buildGalaxy() {
     buildSectors(); buildAtlas();
@@ -1097,6 +1186,7 @@
     $("nav-browse").onclick = homeScroll("#sc-browse");
     $("nav-about").onclick = homeScroll("#sc-about");
     $("nav-profit").onclick = function (e) { e.preventDefault(); location.hash = "#profit"; };
+    $("nav-factory").onclick = function (e) { e.preventDefault(); location.hash = "#factory"; };
     $("nav-map").onclick = function (e) { e.preventDefault(); location.hash = "#map"; };
     if ($("ph-profit")) $("ph-profit").onclick = function () { location.hash = "#profit"; };
     window.addEventListener("hashchange", route);
