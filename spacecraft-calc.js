@@ -29,8 +29,9 @@
   --raw:#B85D28;--refined:#1A9FD8;--component:#6B4FA8;--product:#E8A71D;
   --glow-primary:rgba(26,159,216,.15);--hover-highlight:rgba(26,159,216,.08);--border-accent:rgba(26,159,216,.22);
   position:relative;display:block;min-height:100vh;background:var(--bg);color:var(--text);
-  font-family:Inter,system-ui,-apple-system,sans-serif;line-height:1.5;overflow-x:hidden;font-size:15px}
+  font-family:Inter,system-ui,-apple-system,sans-serif;line-height:1.5;overflow-x:clip;font-size:15px}
 .scapp *{box-sizing:border-box}
+.scapp .hero,.scapp section{scroll-margin-top:72px}
 .scapp a{color:var(--primary);text-decoration:none}
 .scapp h1,.scapp h2,.scapp h3,.scapp .ortho{font-family:Orbitron,Inter,sans-serif;letter-spacing:.04em}
 .scapp .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
@@ -359,6 +360,9 @@
 .scapp .rqaside .rqlink:hover{text-decoration:underline}
 .scapp .rqcta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin-bottom:20px}
 .scapp .rqcta .rqctatxt{color:var(--muted);font-size:13px;flex:1;min-width:180px}
+.scapp .rqformwrap{position:relative;width:100%;background:#fff;border-radius:6px;overflow:hidden}
+.scapp .gform{display:block;width:100%;min-height:760px;border:0;background:#fff}
+.scapp .rqsoon{background:var(--bg2);border:1px dashed var(--line);border-radius:6px;padding:30px 24px;color:var(--muted);font-size:14px;line-height:1.6;text-align:center}
 .scapp .rmcount{color:var(--muted);font-size:12px;font-family:Rajdhani;letter-spacing:.04em}
 .scapp .rmhead{margin-bottom:14px}
 .scapp .rmgroup{margin-bottom:18px}
@@ -477,20 +481,17 @@
 <section id="sc-requests"><div class="wrap">
   <div class="sechead">Request a Feature</div>
   <div class="rqpage">
-    <div class="rmform panel lit" style="padding:20px">
+    <div class="rmform panel lit" style="padding:18px">
       <h3 style="font-family:Orbitron;font-size:15px;margin:0 0 4px;color:var(--text)">Tell us what would help</h3>
-      <p style="color:var(--muted);font-size:13px;margin:0 0 14px;line-height:1.5">Got an idea for the planner? Submitting opens a quick GitHub ticket we review — the best ideas land on the roadmap.</p>
-      <div class="field"><label>Type</label><select data-el="rq-cat"><option>Feature</option><option>Quality of Life</option><option>Data fix</option><option>Bug</option></select></div>
-      <div class="field" style="margin-top:10px"><label>Title</label><input data-el="rq-title" type="text" maxlength="80" placeholder="e.g. Add a contract profit browser"></div>
-      <div class="field" style="margin-top:10px"><label>Details</label><textarea data-el="rq-body" maxlength="600" rows="4" placeholder="What should it do? Why would it help?"></textarea></div>
-      <div style="margin-top:13px;display:flex;align-items:center;gap:12px;flex-wrap:wrap"><button class="btn amber" data-el="rq-send" type="button">Submit suggestion →</button><span style="color:var(--muted);font-size:12px">opens a GitHub ticket — no sign-in info shared</span></div>
+      <p style="color:var(--muted);font-size:13px;margin:0 0 14px;line-height:1.5">Got an idea for the planner? Fill out the quick form below — we read every submission, and the best ideas land on the roadmap.</p>
+      <div class="rqformwrap"><iframe class="gform" data-el="rq-iframe" src="__GOOGLE_FORM_EMBED_URL__" title="SpaceCraft Planner feature request form" loading="lazy">Loading the request form…</iframe></div>
     </div>
     <div class="rqaside">
       <h4>How it works</h4>
       <ol>
-        <li>Pick a type and describe your idea.</li>
-        <li>Submitting opens a pre-filled GitHub ticket in a new tab.</li>
-        <li>We review every ticket; popular ideas move to the roadmap.</li>
+        <li>Tell us what you'd like to see, and why it would help.</li>
+        <li>Submit the form — no account or sign-in needed.</li>
+        <li>We review every request; popular ideas move to the roadmap.</li>
       </ol>
       <a class="rqlink" data-el="rq-toroadmap">See the roadmap →</a>
     </div>
@@ -1052,16 +1053,6 @@
         + '</div>';
     }).join("");
   }
-  function sendRequest() {
-    var cat = ($("rq-cat") || {}).value || "Feature";
-    var title = (($("rq-title") || {}).value || "").trim();
-    var body = (($("rq-body") || {}).value || "").trim();
-    if (title.length < 3) { toast("Add a short title first"); if ($("rq-title")) $("rq-title").focus(); return; }
-    var t = encodeURIComponent("[" + cat + "] " + title.slice(0, 80));
-    var b = encodeURIComponent("**Type:** " + cat + "\n\n" + (body || "(no details given)").slice(0, 600) + "\n\n_Submitted via spacecraftplanner.com_");
-    window.open("https://github.com/Monthan-Zero/spacecraft-calc/issues/new?title=" + t + "&body=" + b, "_blank", "noopener");
-    toast("Opening a GitHub ticket for your suggestion…");
-  }
   /* ----------------------------- factory / automation planner ----------------------------- */
   function buildFactory() {
     var sel = $("fac-item"); if (!sel || !Object.keys(RECIPES).length) return;
@@ -1359,7 +1350,7 @@
     if ($("rm-torequest")) $("rm-torequest").onclick = goView("#requests");
     if ($("rq-toroadmap")) $("rq-toroadmap").onclick = goView("#roadmap");
     if ($("nav-toggle")) $("nav-toggle").onclick = function () { var hud = root.querySelector(".hud"); if (hud) hud.classList.toggle("navopen"); };
-    if ($("rq-send")) $("rq-send").onclick = sendRequest;
+    (function () { var fr = $("rq-iframe"); if (fr && /__GOOGLE_FORM/.test(fr.getAttribute("src") || "")) { var w = fr.parentNode; if (w) { w.className = "rqsoon"; w.innerHTML = 'The request form is being set up — it’ll be live here shortly. In the meantime, see what’s planned on the <a href="#roadmap">roadmap</a>.'; } } })();
     if ($("ph-profit")) $("ph-profit").onclick = function () { location.hash = "#profit"; };
     window.addEventListener("hashchange", route);
     populate();
