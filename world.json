@@ -1,0 +1,41 @@
+{
+  "_README": "SAMPLE galaxy data for the SpaceCraft Planner map — placeholder systems/planets so the map UI works end-to-end. Replace with real data from the game files or your exploration. Each system has x/y (galaxy coords), a star colour, jump links to other system ids, and planets. Each planet lists resource item ids (matching recipes.json raw items) so the map links into the planner.",
+  "systems": [
+    { "id": "solar_alpha", "name": "Solar Alpha", "x": 0, "y": 0, "star": "#F2D24A", "links": ["raqmu", "ferros", "quill"],
+      "planets": [
+        { "id": "babylon7", "name": "Babylon 7", "type": "station", "resources": [] },
+        { "id": "terra_nova", "name": "Terra Nova", "type": "planet", "resources": ["iron_ore", "copper_ore", "a_carbon"] },
+        { "id": "aridus", "name": "Aridus", "type": "planet", "resources": ["silicate", "quartz_powder"] }
+      ] },
+    { "id": "raqmu", "name": "Raqmu", "x": 240, "y": -90, "star": "#F2A81D", "links": ["solar_alpha", "helios_gate"],
+      "planets": [
+        { "id": "raqmu_prime", "name": "Raqmu Prime", "type": "planet", "resources": ["copper_ore", "aluminum_ore"] },
+        { "id": "dustbowl", "name": "Dustbowl", "type": "moon", "resources": ["titanium_nugget", "vanadium_ore"] }
+      ] },
+    { "id": "ferros", "name": "Ferros", "x": 140, "y": 200, "star": "#E06A4A", "links": ["solar_alpha", "helios_gate"],
+      "planets": [
+        { "id": "ferros_i", "name": "Ferros I", "type": "planet", "resources": ["iron_ore", "iron_nugget"] },
+        { "id": "slag", "name": "Slag", "type": "asteroid", "resources": ["a_carbon", "pyrite"] }
+      ] },
+    { "id": "veil_cluster", "name": "Veil Cluster", "x": -200, "y": 140, "star": "#23C6E6", "links": ["solar_alpha", "cobalt_reach"],
+      "planets": [
+        { "id": "cryo", "name": "Cryo", "type": "planet", "resources": ["water", "helium_3"] },
+        { "id": "shard", "name": "Shard", "type": "asteroid", "resources": ["aquamarine", "quartz"] }
+      ] },
+    { "id": "cobalt_reach", "name": "Cobalt Reach", "x": -300, "y": -150, "star": "#7A5CC4", "links": ["veil_cluster", "quill"],
+      "planets": [
+        { "id": "cobalt", "name": "Cobalt", "type": "planet", "resources": ["copper_ore", "copper_nugget"] },
+        { "id": "frost", "name": "Frost", "type": "moon", "resources": ["silicate"] }
+      ] },
+    { "id": "helios_gate", "name": "Helios Gate", "x": 330, "y": 110, "star": "#FFE08A", "links": ["raqmu", "ferros"],
+      "planets": [
+        { "id": "helios", "name": "Helios", "type": "planet", "resources": ["zirconium_ore", "platinium_ore"] },
+        { "id": "ember", "name": "Ember", "type": "planet", "resources": ["sulfur"] }
+      ] },
+    { "id": "quill", "name": "Quill", "x": -80, "y": -230, "star": "#5FE08A", "links": ["solar_alpha", "cobalt_reach"],
+      "planets": [
+        { "id": "quill_minor", "name": "Quill Minor", "type": "planet", "resources": ["quartz", "quartz_powder"] },
+        { "id": "mote", "name": "Mote", "type": "asteroid", "resources": ["graphite"] }
+      ] }
+  ]
+}

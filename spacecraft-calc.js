@@ -216,6 +216,37 @@
 .scapp .bar{opacity:.82}
 .scapp .barlbl{fill:var(--text);font-size:11px}
 .scapp .barval{fill:var(--primary);font-size:11px;font-family:"JetBrains Mono"}
+.scapp.view-map > .hero,.scapp.view-map #sc-planner,.scapp.view-map #sc-browse,.scapp.view-map #sc-about,.scapp.view-map #sc-profit{display:none}
+.scapp:not(.view-map) #sc-map{display:none}
+.scapp .maplayout{display:grid;grid-template-columns:1fr 320px;gap:16px}
+@media(max-width:880px){.scapp .maplayout{grid-template-columns:1fr}}
+.scapp .galaxywrap{position:relative;height:600px;background:radial-gradient(900px 600px at 50% 42%,#0c1626,#070b14);border:1px solid var(--line);border-radius:8px;overflow:hidden;cursor:grab;touch-action:none}
+.scapp .galaxywrap.drag{cursor:grabbing}
+.scapp .galaxywrap svg{display:block;width:100%;height:100%}
+.scapp .mapctl{position:absolute;top:10px;right:10px;z-index:5;display:flex;flex-direction:column;gap:6px}
+.scapp .mapctl button{width:34px;height:34px;border:1px solid var(--line);background:rgba(20,32,46,.92);color:var(--primary);border-radius:6px;cursor:pointer;font-size:17px;line-height:1;font-family:"JetBrains Mono"}
+.scapp .mapctl button:hover{border-color:var(--primary)}
+.scapp .maphud{position:absolute;left:10px;bottom:10px;z-index:5;font-size:11px;color:var(--muted);font-family:Rajdhani;letter-spacing:.04em;background:rgba(11,22,34,.7);padding:5px 10px;border-radius:6px;border:1px solid var(--line)}
+.scapp .jump{stroke:rgba(35,198,230,.22);stroke-width:1.4}
+.scapp .sysnode{cursor:pointer}
+.scapp .sysnode .glow{transition:r .15s}
+.scapp .sysnode:hover .glow,.scapp .sysnode.sel .glow{r:19}
+.scapp .sysnode text{fill:var(--text);font-size:12px;font-family:Rajdhani;font-weight:600;pointer-events:none}
+.scapp .sysnode.dim{opacity:.25}
+.scapp .mapside{background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;align-self:start}
+.scapp .mapside .msh{background:var(--panel2);border-bottom:2px solid var(--secondary);padding:12px 14px}
+.scapp .mapside .msh h3{margin:0;font-size:15px;font-family:Orbitron}
+.scapp .mapside .msh .mssub{color:var(--muted);font-size:11px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.06em}
+.scapp .mapside .msb{padding:14px;max-height:540px;overflow:auto}
+.scapp .planet{border:1px solid var(--line);border-left:3px solid var(--refined);border-radius:5px;padding:10px 12px;margin-bottom:10px}
+.scapp .planet .pntop{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.scapp .planet .pnn{font-weight:600}
+.scapp .planet .pntype{color:var(--muted);font-size:10px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.06em}
+.scapp .planet .res{display:flex;flex-wrap:wrap;gap:6px}
+.scapp .planet .rchip{font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--line);cursor:pointer;display:flex;align-items:center;gap:5px}
+.scapp .planet .rchip:hover{border-color:var(--primary);color:var(--primary)}
+.scapp .resfilter{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px;align-items:center}
+.scapp .resfilter .rfl{color:var(--muted);font-size:11px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.08em;margin-right:4px}
 /* Continuous animations intentionally omitted — they caused full-screen repaints/lag.
    Visuals (starfield, hero glow, hex grid, brackets) remain as static effects. */
 `;
@@ -226,7 +257,7 @@
 <div class="stars" data-el="stars"></div><div class="neb"></div>
 <header class="hud">
   <div class="brand">SPACE<span class="pipe"></span><span class="b2">CRAFT</span> PLANNER</div>
-  <nav><a data-el="nav-planner">Planner</a><a data-el="nav-browse">Recipes</a><a data-el="nav-profit">Profit</a><a data-el="nav-about">About&nbsp;Data</a></nav>
+  <nav><a data-el="nav-planner">Planner</a><a data-el="nav-browse">Recipes</a><a data-el="nav-profit">Profit</a><a data-el="nav-map">Galaxy&nbsp;Map</a><a data-el="nav-about">About&nbsp;Data</a></nav>
   <div class="spacer"></div>
   <button class="btn" data-el="nav-launch">Launch Planner</button>
 </header>
@@ -270,6 +301,19 @@
   <div class="panel lit"><div class="pbody"><div class="pscroll"><table class="ptable" data-el="ptable"></table></div></div></div>
 </div></section>
 
+<section id="sc-map"><div class="wrap" style="max-width:1320px">
+  <div class="sechead">Galaxy Map <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-family:Inter;font-size:12px">— sample systems · drag to pan · scroll to zoom · click a system</span></div>
+  <div class="maplayout">
+    <div class="galaxywrap" data-el="galaxywrap">
+      <div class="mapctl"><button data-el="zin" title="Zoom in">+</button><button data-el="zout" title="Zoom out">−</button><button data-el="zreset" title="Reset view">⟲</button></div>
+      <div class="maphud" data-el="maphud"></div>
+      <svg data-el="galaxy" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+    <div class="mapside" data-el="mapside"></div>
+  </div>
+  <div class="resfilter" data-el="resfilter"></div>
+</div></section>
+
 <section id="sc-about"><div class="wrap">
   <div class="sechead">About The Data</div>
   <div class="about">
@@ -309,6 +353,7 @@
 
   /* ----------------------------- data ----------------------------- */
   var RECIPES = {}, SOURCES = {}, pendingScroll = null;
+  var WORLD = { systems: [] }, mapT = { x: 0, y: 0, s: 1 }, mapSel = null, resFilter = null, mapDrag = null, mapBuilt = false;
   var LS_KEY = "sc_reported_prices_v1";
   function loadReported() { try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch (e) { return {}; } }
   function applyReported() { var rep = loadReported(); for (var id in rep) { if (RECIPES[id]) { RECIPES[id].value = rep[id]; RECIPES[id].confidence = "reported"; RECIPES[id].userReported = true; } } }
@@ -335,7 +380,12 @@
 
   fetch(DATA_URL, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
     .then(function (data) { SOURCES = data.sources || {}; RECIPES = data.recipes || {}; applyReported(); initPlanner(); })
-    .catch(function (e) { $("plannerbody").innerHTML = '<div class="loading" style="color:var(--bad)">⚠ Could not load recipe data (' + esc(e.message) + ').<br>Check recipes.json.</div>'; });
+    .catch(function (e) { var pb = $("plannerbody"); if (pb) pb.innerHTML = '<div class="loading" style="color:var(--bad)">⚠ Could not load recipe data (' + esc(e.message) + ').<br>Check recipes.json.</div>'; });
+
+  var WORLD_URL = SELF.split(/[?#]/)[0].replace(/[^\/]*$/, "world.json");
+  fetch(WORLD_URL, { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : { systems: [] }; })
+    .then(function (w) { WORLD = (w && w.systems) ? w : { systems: [] }; if (currentView() === "map") buildMap(); })
+    .catch(function () {});
 
   /* ----------------------------- engine ----------------------------- */
   function expand(id, qty, seen) {
@@ -533,7 +583,7 @@
     var srcSet = gatherSources(node, {}), srcs = Object.keys(srcSet).map(function (a) { return SOURCES[a] || a; });
     $("sources").innerHTML = srcs.length ? srcs.map(function (s, i) { var lbl = "[" + (i + 1) + "] " + s; return /^https?:/.test(s) ? '<a href="' + s + '" target="_blank" rel="noopener">' + esc(lbl) + "</a>" : '<span class="meta">' + esc(lbl) + "</span>"; }).join("<br>") : "<span class='meta'>—</span>";
     if ($("item-input") && document.activeElement !== $("item-input")) $("item-input").value = r.name;
-    try { localStorage.setItem("sc_last", id); if (currentView() !== "profit") { var hh = "#i=" + id + (qty !== 1 ? "&q=" + qty : ""); history.replaceState(null, "", location.pathname + location.search + hh); } } catch (e) {}
+    try { localStorage.setItem("sc_last", id); if (currentView() === "home") { var hh = "#i=" + id + (qty !== 1 ? "&q=" + qty : ""); history.replaceState(null, "", location.pathname + location.search + hh); } } catch (e) {}
   }
 
   function populate() {
@@ -661,14 +711,22 @@
       + '<div class="chartcard"><h4>Top 12 · Mine→Sell profit</h4><div class="chs">Most profit per unit if you mine the ore yourself</div>' + chartBars(profitRows) + '</div>';
     Array.prototype.forEach.call(el.querySelectorAll("[data-id]"), function (n) { n.style.cursor = "pointer"; n.addEventListener("click", function () { selectItem(n.getAttribute("data-id")); }); });
   }
-  function currentView() { return (/\/profit/i.test(location.pathname) || /^#\/?profit/i.test(location.hash)) ? "profit" : "home"; }
+  function currentView() {
+    var p = location.pathname, h = location.hash;
+    if (/\/profit/i.test(p) || /^#\/?profit/i.test(h)) return "profit";
+    if (/\/(map|galaxy)/i.test(p) || /^#\/?(map|galaxy)/i.test(h)) return "map";
+    return "home";
+  }
   function applyView() {
     var v = currentView();
-    if (v === "profit") root.classList.add("view-profit"); else root.classList.remove("view-profit");
-    var np = $("nav-profit"), npl = $("nav-planner");
+    root.classList.toggle("view-profit", v === "profit");
+    root.classList.toggle("view-map", v === "map");
+    var np = $("nav-profit"), npl = $("nav-planner"), nm = $("nav-map");
     if (np) np.style.color = v === "profit" ? "var(--primary)" : "";
+    if (nm) nm.style.color = v === "map" ? "var(--primary)" : "";
     if (npl) npl.style.color = v === "home" ? "var(--primary)" : "";
-    if (v === "profit") window.scrollTo(0, 0);
+    if (v !== "home") window.scrollTo(0, 0);
+    if (v === "map" && WORLD.systems.length) buildMap();
   }
   function route() {
     applyView();
@@ -678,6 +736,73 @@
       else if (/^#i=/.test(h)) restoreFromHash();
       else if (h === "#sc-browse" || h === "#sc-about") scrollTo(h);
     }
+  }
+
+  /* ----------------------------- galaxy map ----------------------------- */
+  function buildMap() {
+    var svg = $("galaxy"), wrap = $("galaxywrap"); if (!svg || !wrap || !WORLD.systems.length) return;
+    var W = wrap.clientWidth || 900, H = wrap.clientHeight || 600;
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    var xs = WORLD.systems.map(function (s) { return s.x; }), ys = WORLD.systems.map(function (s) { return s.y; });
+    var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs), minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
+    var gw = (maxX - minX) || 1, gh = (maxY - minY) || 1, pad = 110;
+    var fit = Math.min((W - pad * 2) / gw, (H - pad * 2) / gh); if (!isFinite(fit) || fit <= 0) fit = 1;
+    mapT.s = Math.min(fit, 1.4);
+    mapT.x = W / 2 - ((minX + maxX) / 2) * mapT.s;
+    mapT.y = H / 2 - ((minY + maxY) / 2) * mapT.s;
+    drawGalaxy(); applyMapT(); buildResFilter();
+    var planetN = WORLD.systems.reduce(function (a, s) { return a + (s.planets ? s.planets.length : 0); }, 0);
+    if ($("maphud")) $("maphud").textContent = WORLD.systems.length + " systems · " + planetN + " planets · sample data";
+    if (!mapSel && $("mapside")) $("mapside").innerHTML = '<div class="msh"><h3>The Galaxy</h3><div class="mssub">' + WORLD.systems.length + ' systems</div></div><div class="msb foot">Click a star system to view its planets and what you can mine there.</div>';
+    if (!wrap._wired) { wireMap(wrap, svg); wrap._wired = true; }
+    mapBuilt = true;
+  }
+  function drawGalaxy() {
+    var svg = $("galaxy"), byId = {}; WORLD.systems.forEach(function (s) { byId[s.id] = s; });
+    var p = ['<g data-el="galaxy-g">'], done = {};
+    WORLD.systems.forEach(function (s) { (s.links || []).forEach(function (lid) { var key = [s.id, lid].sort().join("|"); if (done[key]) return; done[key] = 1; var t = byId[lid]; if (!t) return; p.push('<line class="jump" x1="' + s.x + '" y1="' + s.y + '" x2="' + t.x + '" y2="' + t.y + '"/>'); }); });
+    WORLD.systems.forEach(function (s) {
+      var match = !resFilter || (s.planets || []).some(function (pl) { return (pl.resources || []).indexOf(resFilter) >= 0; });
+      p.push('<g class="sysnode' + (mapSel === s.id ? ' sel' : '') + (resFilter && !match ? ' dim' : '') + '" data-sys="' + s.id + '" transform="translate(' + s.x + ',' + s.y + ')">');
+      p.push('<circle class="glow" r="13" fill="' + (s.star || "#F2D24A") + '" fill-opacity=".18"/>');
+      p.push('<circle r="6" fill="' + (s.star || "#F2D24A") + '"/><circle r="6" fill="none" stroke="rgba(255,255,255,.5)"/>');
+      p.push('<text y="26" text-anchor="middle">' + esc(s.name) + '</text></g>');
+    });
+    p.push('</g>'); svg.innerHTML = p.join("");
+    Array.prototype.forEach.call(svg.querySelectorAll(".sysnode"), function (g) { g.addEventListener("click", function () { selectSystem(g.getAttribute("data-sys")); }); });
+  }
+  function applyMapT() { var g = $("galaxy") && $("galaxy").querySelector('[data-el="galaxy-g"]'); if (g) g.setAttribute("transform", "translate(" + mapT.x.toFixed(1) + "," + mapT.y.toFixed(1) + ") scale(" + mapT.s.toFixed(3) + ")"); }
+  function svgPt(svg, ev) { var r = svg.getBoundingClientRect(), k = svg.viewBox.baseVal.width / (r.width || 1); return { x: (ev.clientX - r.left) * k, y: (ev.clientY - r.top) * k }; }
+  function wireMap(wrap, svg) {
+    wrap.addEventListener("pointerdown", function (e) { mapDrag = svgPt(svg, e); wrap.classList.add("drag"); try { wrap.setPointerCapture(e.pointerId); } catch (x) {} });
+    wrap.addEventListener("pointermove", function (e) { if (!mapDrag) return; var p = svgPt(svg, e); mapT.x += (p.x - mapDrag.x); mapT.y += (p.y - mapDrag.y); mapDrag = p; applyMapT(); });
+    var end = function (e) { mapDrag = null; wrap.classList.remove("drag"); };
+    wrap.addEventListener("pointerup", end); wrap.addEventListener("pointercancel", end); wrap.addEventListener("pointerleave", end);
+    wrap.addEventListener("wheel", function (e) { e.preventDefault(); var p = svgPt(svg, e), f = e.deltaY < 0 ? 1.15 : 1 / 1.15, ns = Math.max(0.3, Math.min(4, mapT.s * f)); mapT.x = p.x - (p.x - mapT.x) * (ns / mapT.s); mapT.y = p.y - (p.y - mapT.y) * (ns / mapT.s); mapT.s = ns; applyMapT(); }, { passive: false });
+    if ($("zin")) $("zin").onclick = function () { zoomBtn(1.25); };
+    if ($("zout")) $("zout").onclick = function () { zoomBtn(1 / 1.25); };
+    if ($("zreset")) $("zreset").onclick = function () { buildMap(); };
+  }
+  function zoomBtn(f) { var svg = $("galaxy"), cx = svg.viewBox.baseVal.width / 2, cy = svg.viewBox.baseVal.height / 2, ns = Math.max(0.3, Math.min(4, mapT.s * f)); mapT.x = cx - (cx - mapT.x) * (ns / mapT.s); mapT.y = cy - (cy - mapT.y) * (ns / mapT.s); mapT.s = ns; applyMapT(); }
+  function selectSystem(id) {
+    var s = null; WORLD.systems.forEach(function (x) { if (x.id === id) s = x; }); if (!s) return; mapSel = id;
+    Array.prototype.forEach.call($("galaxy").querySelectorAll(".sysnode"), function (g) { g.classList.toggle("sel", g.getAttribute("data-sys") === id); });
+    var h = '<div class="msh"><h3>' + esc(s.name) + '</h3><div class="mssub">' + (s.planets ? s.planets.length : 0) + ' planets</div></div><div class="msb">';
+    (s.planets || []).forEach(function (pl) {
+      h += '<div class="planet"><div class="pntop"><span class="pnn">' + esc(pl.name) + '</span><span class="pntype">' + esc(pl.type || "planet") + '</span></div>';
+      h += (pl.resources && pl.resources.length) ? '<div class="res">' + pl.resources.map(function (rid) { var r = RECIPES[rid]; return '<span class="rchip" data-res="' + rid + '"><span class="dot ' + dc(r ? r.type : "raw") + '"></span>' + esc(r ? r.name : rid) + '</span>'; }).join("") + '</div>' : '<div class="foot">No mineable resources listed.</div>';
+      h += '</div>';
+    });
+    h += '</div>'; $("mapside").innerHTML = h;
+    Array.prototype.forEach.call($("mapside").querySelectorAll(".rchip[data-res]"), function (c) { c.onclick = function () { selectItem(c.getAttribute("data-res")); }; });
+  }
+  function buildResFilter() {
+    var set = {}; WORLD.systems.forEach(function (s) { (s.planets || []).forEach(function (pl) { (pl.resources || []).forEach(function (r) { set[r] = 1; }); }); });
+    var ids = Object.keys(set).sort(function (a, b) { return (RECIPES[a] ? RECIPES[a].name : a).localeCompare(RECIPES[b] ? RECIPES[b].name : b); });
+    var h = '<span class="rfl">Highlight resource</span><span class="pill' + (!resFilter ? " on" : "") + '" data-res="">All</span>';
+    h += ids.map(function (r) { return '<span class="pill' + (resFilter === r ? " on" : "") + '" data-res="' + r + '">' + esc(RECIPES[r] ? RECIPES[r].name : r) + '</span>'; }).join("");
+    $("resfilter").innerHTML = h;
+    Array.prototype.forEach.call($("resfilter").querySelectorAll(".pill[data-res]"), function (p) { p.onclick = function () { resFilter = p.getAttribute("data-res") || null; buildResFilter(); drawGalaxy(); applyMapT(); }; });
   }
 
   function buildStats() {
@@ -690,7 +815,7 @@
 
   /* ----------------------------- nav / interactions ----------------------------- */
   function scrollTo(sel) { var el = document.querySelector(sel); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); }
-  function selectItem(id) { if (!RECIPES[id]) return; if (root.classList.contains("view-profit")) { location.hash = "#i=" + id; return; } var sel = $("item"); if (!sel) return; sel.value = id; compute(); scrollTo("#sc-planner"); }
+  function selectItem(id) { if (!RECIPES[id]) return; if (currentView() !== "home") { location.hash = "#i=" + id; return; } var sel = $("item"); if (!sel) return; sel.value = id; compute(); scrollTo("#sc-planner"); }
 
   function parseHash(hash) {
     var h = (hash != null ? hash : location.hash || "").replace(/^#/, ""); if (!h) return null;
@@ -734,6 +859,7 @@
     $("nav-browse").onclick = homeScroll("#sc-browse");
     $("nav-about").onclick = homeScroll("#sc-about");
     $("nav-profit").onclick = function (e) { e.preventDefault(); location.hash = "#profit"; };
+    $("nav-map").onclick = function (e) { e.preventDefault(); location.hash = "#map"; };
     if ($("ph-profit")) $("ph-profit").onclick = function () { location.hash = "#profit"; };
     window.addEventListener("hashchange", route);
     populate();
