@@ -133,7 +133,8 @@
 .scapp .t-raw{color:var(--raw)}.scapp .t-refined{color:var(--refined)}.scapp .t-component{color:var(--component)}.scapp .t-product{color:var(--product)}.scapp .t-unknown{color:var(--muted)}
 /* production map */
 .scapp .maplegend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:11px;color:var(--muted);margin-bottom:10px;font-family:Rajdhani}
-.scapp .mapscroll{overflow:auto;border:1px solid var(--line);border-radius:4px;background:#091523;padding:12px;max-height:600px}
+.scapp .mapscroll{overflow:auto;border:1px solid var(--line);border-radius:4px;background:#091523;padding:12px;max-height:600px;scrollbar-width:none;-ms-overflow-style:none}
+.scapp .mapscroll::-webkit-scrollbar{width:0;height:0;display:none}
 .scapp .map svg{display:block}
 .scapp .scedge{fill:none;stroke:#33506f;stroke-width:1.7}
 .scapp .scedge.partial{stroke-dasharray:5 4;stroke:#6b5630}
