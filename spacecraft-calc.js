@@ -101,6 +101,11 @@
 .scapp select:focus,.scapp input:focus{border-color:var(--primary);box-shadow:0 0 0 1px rgba(26,159,216,.18)}
 .scapp .titlerow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0 14px}
 .scapp .titlerow h2{margin:0;font-size:20px;font-family:Orbitron;font-weight:600}
+.scapp .unlockinfo{margin:0 0 16px;font-size:13px;font-family:Rajdhani;font-weight:600;letter-spacing:.02em;display:flex;flex-wrap:wrap;align-items:center;gap:5px 12px;padding:9px 13px;border-radius:6px;border:1px solid var(--line)}
+.scapp .unlockinfo.locked{color:var(--secondary);background:rgba(232,167,29,.06);border-color:rgba(232,167,29,.3)}
+.scapp .unlockinfo.open{color:var(--good);background:rgba(79,208,132,.05);border-color:rgba(79,208,132,.25)}
+.scapp .unlockinfo b{color:var(--text)}
+.scapp .unlockinfo .ulneeds{flex-basis:100%;color:var(--muted);font-weight:400;font-size:12px;font-family:Inter}
 /* metric cards */
 .scapp .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
 .scapp .card{position:relative;background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:14px 16px;overflow:hidden;transition:border-color .15s,background .15s}
@@ -131,7 +136,8 @@
 .scapp .map svg{display:block}
 .scapp .scedge{fill:none;stroke:#33506f;stroke-width:1.7}
 .scapp .scedge.partial{stroke-dasharray:5 4;stroke:#6b5630}
-.scapp .scnode rect.box{fill:#11202f;stroke:var(--line);stroke-width:1.5}
+.scapp .scnode{cursor:pointer}
+.scapp .scnode rect.box{fill:#11202f;stroke:var(--line);stroke-width:1.5;transition:stroke-width .12s}
 .scapp .scnode.c-high rect.box{stroke:rgba(95,224,138,.8)}
 .scapp .scnode.c-medium rect.box{stroke:rgba(232,194,26,.85)}
 .scapp .scnode.c-low rect.box{stroke:rgba(216,69,58,.8)}
@@ -673,7 +679,7 @@
         var val = isNum(r.value) ? credits(r.value) + " ea" : "price n/a"; sub = (r.building ? trunc(r.building, 15) + " · " : "") + val;
         title = esc((r.name || id) + " — need " + qty + (r.building ? " · " + r.building : "") + (isNum(r.value) ? " · " + credits(r.value) + " each" : ""));
       }
-      out.push('<g class="scnode c-' + conf + '" transform="translate(' + q.x + ',' + q.y + ')"><title>' + title + '</title>');
+      out.push('<g class="scnode c-' + conf + '" data-id="' + esc(id) + '" transform="translate(' + q.x + ',' + q.y + ')"><title>' + title + ' · click for details</title>');
       out.push('<rect class="box" width="' + W + '" height="' + H + '" rx="4"/>');
       out.push('<rect x="1.5" y="1.5" width="' + (W - 3) + '" height="4" rx="1" fill="' + typeColor(r.type || "unknown") + '"/>');
       out.push('<text class="nq" x="12" y="25">' + esc(qty) + '</text>');
@@ -750,6 +756,7 @@
   </div>
 </div>
 <div class="titlerow"><h2 data-el="sel-name">—</h2><span class="badge" data-el="sel-conf"></span><span class="badge" data-el="sel-cplx"></span><span class="meta" data-el="sel-building" style="color:var(--muted);font-size:13px"></span><span class="flag" data-el="sel-conflict" title=""></span></div>
+<div class="unlockinfo" data-el="sel-unlock"></div>
 <div class="grid">
   <div class="card"><div class="k">Store sell price</div><div class="v primary" data-el="m-sell">—</div><div class="note" data-el="m-sell-note"></div><div class="report" data-el="report-box"></div></div>
   <div class="card"><div class="k">Profit · mine → sell</div><div class="v" data-el="m-mined">—</div><div class="note" data-el="m-mined-note"></div></div>
@@ -777,6 +784,11 @@
     $("sel-building").textContent = r.building ? "built at " + r.building : "";
     var cf = $("sel-conflict"); if (r.conflict) { cf.textContent = "⚑ conflict"; cf.title = r.conflict; } else { cf.textContent = ""; cf.title = ""; }
     if (r.inputs && r.inputs.length) { var cx = complexityOf(id); $("sel-cplx").style.display = ""; $("sel-cplx").className = "badge " + cplxClass(cx.score); $("sel-cplx").textContent = "Complexity " + cx.score + " · " + cplxLabel(cx.score); $("sel-cplx").title = cx.steps + " craft steps · depth " + cx.depth + " · " + cx.raws + " raw inputs"; } else { $("sel-cplx").style.display = "none"; }
+    var su = $("sel-unlock"); if (su) {
+      if (r.unlock) { su.className = "unlockinfo locked"; su.innerHTML = '🔒 Requires the <b>' + esc(r.unlock.permit) + '</b> permit' + (isNum(r.unlock.totalScience) && r.unlock.totalScience > 0 ? ' · ' + fmt(r.unlock.totalScience) + ' science to fully unlock' : '') + (r.unlock.needs && r.unlock.needs.length ? '<span class="ulneeds">prerequisites: ' + r.unlock.needs.map(esc).join(' → ') + '</span>' : ''); }
+      else if (r.inputs && r.inputs.length) { su.className = "unlockinfo open"; su.innerHTML = '✓ Buildable from the start — no permit needed'; }
+      else { su.className = "unlockinfo open"; su.innerHTML = '⛏ Raw resource — gather it directly'; }
+    }
     var sell = isNum(r.value) ? r.value * qty : null;
     $("m-sell").textContent = sell === null ? "Not available yet" : credits(sell);
     $("m-sell").className = "v " + (sell === null ? "warn" : "primary");
@@ -809,6 +821,7 @@
       }).join("");
     var ub = $("unknown-box"), uk = Object.keys(unknown); ub.innerHTML = uk.length ? "⚠ <b>Unknown amounts:</b> " + uk.map(function (u) { return RECIPES[u] ? RECIPES[u].name : u; }).join(", ") + "." : "";
     $("map").innerHTML = renderMap(g);
+    Array.prototype.forEach.call($("map").querySelectorAll(".scnode[data-id]"), function (g2) { g2.addEventListener("click", function () { var nid = g2.getAttribute("data-id"); if (nid && nid !== id && RECIPES[nid]) selectItem(nid); }); });
     if ($("map-expand")) $("map-expand").style.display = $("map").querySelector("svg") ? "" : "none";
     var srcSet = gatherSources(node, {}), srcs = Object.keys(srcSet).map(function (a) { return SOURCES[a] || a; });
     $("sources").innerHTML = srcs.length ? srcs.map(function (s, i) { var lbl = "[" + (i + 1) + "] " + s; return /^https?:/.test(s) ? '<a href="' + s + '" target="_blank" rel="noopener">' + esc(lbl) + "</a>" : '<span class="meta">' + esc(lbl) + "</span>"; }).join("<br>") : "<span class='meta'>—</span>";

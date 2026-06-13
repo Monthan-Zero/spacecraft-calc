@@ -991,7 +991,21 @@
           "outputQty": 4,
           "category": "Other"
         }
-      ]
+      ],
+      "unlock": {
+        "permit": "Very Light Alloys",
+        "cost": 50000,
+        "totalScience": 64040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel",
+          "Better Titanium"
+        ]
+      }
     },
     "vitriol": {
       "name": "Sulphuric Acid",
@@ -1085,7 +1099,19 @@
       "category": "Intermediary Components",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Liquid Logistics",
+        "cost": 800,
+        "totalScience": 5590,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Modular Systems 2",
+          "Plumbing"
+        ]
+      }
     },
     "bottle_water": {
       "name": "Water Bottle",
@@ -1293,7 +1319,16 @@
       "category": "Intermediary Components",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Plasma Containment",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel",
+          "Advanced Spectrometry"
+        ]
+      }
     },
     "bottle_plasma_ftoi_l": {
       "name": "Mag-Plasma Bottle",
@@ -1375,7 +1410,15 @@
       "category": "Intermediary Components",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Molecular Materials",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling"
+        ]
+      }
     },
     "copper_ingot": {
       "name": "Copper Ingot",
@@ -1745,7 +1788,18 @@
       "category": "Alloys",
       "craftTime": 360,
       "power": 12,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Automated Factories",
+        "cost": 450,
+        "totalScience": 1040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory"
+        ]
+      }
     },
     "alu_k": {
       "name": "Alu-K Ingot",
@@ -1771,7 +1825,15 @@
       "category": "Alloys",
       "craftTime": 270.0,
       "power": 12,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Molecular Materials",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling"
+        ]
+      }
     },
     "btitanium": {
       "name": "B-Titanium Ingot",
@@ -1797,7 +1859,20 @@
       "category": "Alloys",
       "craftTime": 270.0,
       "power": 12,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Better Titanium",
+        "cost": 10000,
+        "totalScience": 14040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel"
+        ]
+      }
     },
     "levinium": {
       "name": "Levinium Ingot",
@@ -1827,7 +1902,21 @@
       "category": "Alloys",
       "craftTime": 180,
       "power": 12,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Very Light Alloys",
+        "cost": 50000,
+        "totalScience": 64040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel",
+          "Better Titanium"
+        ]
+      }
     },
     "unbendinium": {
       "name": "Unbendinium Ingot",
@@ -1857,7 +1946,19 @@
       "category": "Alloys",
       "craftTime": 360,
       "power": 12,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Modular Systems 3",
+        "cost": 25000,
+        "totalScience": 29790,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Modular Systems 2",
+          "Plumbing"
+        ]
+      }
     },
     "elmerium": {
       "name": "Elmerium Core",
@@ -1938,7 +2039,12 @@
           "outputQty": 9,
           "category": "Intermediary Components"
         }
-      ]
+      ],
+      "unlock": {
+        "permit": "Modular Systems",
+        "cost": 40,
+        "totalScience": 40
+      }
     },
     "pipe_1": {
       "name": "Watertight Pipe",
@@ -2057,7 +2163,15 @@
           "outputQty": 2,
           "category": "Intermediary Components"
         }
-      ]
+      ],
+      "unlock": {
+        "permit": "Electromagnetism",
+        "cost": 100,
+        "totalScience": 140,
+        "needs": [
+          "Modular Systems"
+        ]
+      }
     },
     "motor": {
       "name": "Motor",
@@ -2087,7 +2201,16 @@
       "category": "Intermediary Components",
       "craftTime": 1125.0,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Electric Motors",
+        "cost": 150,
+        "totalScience": 290,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism"
+        ]
+      }
     },
     "pump": {
       "name": "Pump",
@@ -2117,7 +2240,18 @@
       "category": "Intermediary Components",
       "craftTime": 1125.0,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Plumbing",
+        "cost": 2500,
+        "totalScience": 4790,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Modular Systems 2"
+        ]
+      }
     },
     "actuator": {
       "name": "Hydraulic Actuator",
@@ -2147,7 +2281,19 @@
       "category": "Other",
       "craftTime": 180,
       "power": 5,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Modular Systems 3",
+        "cost": 25000,
+        "totalScience": 29790,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Modular Systems 2",
+          "Plumbing"
+        ]
+      }
     },
     "elmerium_engine": {
       "name": "Elmerium Engine",
@@ -2177,7 +2323,17 @@
       "category": "Intermediary Components",
       "craftTime": 1125.0,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Asteroid Mining",
+        "cost": 1000,
+        "totalScience": 1290,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "focuser": {
       "name": "Crystalline Focuser",
@@ -2250,7 +2406,15 @@
           "outputQty": 4,
           "category": "Intermediary Components"
         }
-      ]
+      ],
+      "unlock": {
+        "permit": "Electromagnetism",
+        "cost": 100,
+        "totalScience": 140,
+        "needs": [
+          "Modular Systems"
+        ]
+      }
     },
     "focuser_2": {
       "name": "Hyper Lens",
@@ -2288,7 +2452,16 @@
       "category": "Intermediary Components",
       "craftTime": 1080,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Crystal Structuring",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling",
+          "Molecular Materials"
+        ]
+      }
     },
     "focuser_3": {
       "name": "Ciliary Lens",
@@ -2318,7 +2491,18 @@
       "category": "Intermediary Components",
       "craftTime": 1080,
       "power": 5,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Heat Management",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling",
+          "Molecular Materials",
+          "Crystal Structuring",
+          "Xenic Adaptation"
+        ]
+      }
     },
     "graphenoid": {
       "name": "Quantic Graphenoid",
@@ -2352,7 +2536,16 @@
       "category": "Intermediary Components",
       "craftTime": 1800,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Crystal Structuring",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling",
+          "Molecular Materials"
+        ]
+      }
     },
     "alternator": {
       "name": "Hall Alternator",
@@ -2382,7 +2575,18 @@
       "category": "Intermediary Components",
       "craftTime": 1080,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Modular Structures",
+        "cost": 300,
+        "totalScience": 890,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory"
+        ]
+      }
     },
     "grating": {
       "name": "Diffraction Grating",
@@ -2432,7 +2636,15 @@
           "outputQty": 1,
           "category": "Intermediary Components"
         }
-      ]
+      ],
+      "unlock": {
+        "permit": "Advanced Spectrometry",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel"
+        ]
+      }
     },
     "magnetic_chamber": {
       "name": "Confinement Chamber",
@@ -2458,7 +2670,16 @@
       "category": "Intermediary Components",
       "craftTime": 900,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Plasma Containment",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel",
+          "Advanced Spectrometry"
+        ]
+      }
     },
     "metal_bolt": {
       "name": "Nut and Bolt",
@@ -2634,7 +2855,19 @@
       "category": "Intermediary Components",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Modular Systems 3",
+        "cost": 25000,
+        "totalScience": 29790,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Modular Systems 2",
+          "Plumbing"
+        ]
+      }
     },
     "mag_sheet": {
       "name": "Monomagnetic Sheet",
@@ -2664,7 +2897,16 @@
       "category": "Intermediary Components",
       "craftTime": 360,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Plasma Containment",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel",
+          "Advanced Spectrometry"
+        ]
+      }
     },
     "thermal_sheet": {
       "name": "Thermal Sheet",
@@ -2686,7 +2928,15 @@
       "category": "Intermediary Components",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Molecular Materials",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling"
+        ]
+      }
     },
     "plate_1": {
       "name": "Stainless Plate",
@@ -2744,7 +2994,17 @@
           "outputQty": 5,
           "category": "Intermediary Components"
         }
-      ]
+      ],
+      "unlock": {
+        "permit": "Personal Factory",
+        "cost": 300,
+        "totalScience": 590,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "plate_2": {
       "name": "Inert Plate",
@@ -2766,7 +3026,20 @@
       "category": "Intermediary Components",
       "craftTime": 360,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Better Titanium",
+        "cost": 10000,
+        "totalScience": 14040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel"
+        ]
+      }
     },
     "plate_light": {
       "name": "Very Light Plate",
@@ -2788,7 +3061,21 @@
       "category": "Intermediary Components",
       "craftTime": 360,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Very Light Alloys",
+        "cost": 50000,
+        "totalScience": 64040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel",
+          "Better Titanium"
+        ]
+      }
     },
     "beam_1": {
       "name": "Structural Beam",
@@ -2827,7 +3114,18 @@
           "outputQty": 2,
           "category": "Intermediary Components"
         }
-      ]
+      ],
+      "unlock": {
+        "permit": "Automated Factories",
+        "cost": 450,
+        "totalScience": 1040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory"
+        ]
+      }
     },
     "beam_2": {
       "name": "Heavy-Duty Beam",
@@ -2853,7 +3151,20 @@
       "category": "Intermediary Components",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Better Titanium",
+        "cost": 10000,
+        "totalScience": 14040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel"
+        ]
+      }
     },
     "beam_3": {
       "name": "Unbending Beam",
@@ -2879,7 +3190,21 @@
       "category": "Intermediary Components",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Advanced Frames",
+        "cost": 50000,
+        "totalScience": 64040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel",
+          "Better Titanium"
+        ]
+      }
     },
     "solar_cell": {
       "name": "Solar Cell",
@@ -2909,7 +3234,18 @@
       "category": "Intermediary Components",
       "craftTime": 450.0,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Solar Panel",
+        "cost": 300,
+        "totalScience": 890,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory"
+        ]
+      }
     },
     "silicone_gel": {
       "name": "Silicone Gel",
@@ -2931,7 +3267,12 @@
       "category": "Intermediary Components",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Metalloid Gelling",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "semiconductor": {
       "name": "Semiconductor Substrate",
@@ -2977,7 +3318,15 @@
           "outputQty": 4,
           "category": "Intermediary Components"
         }
-      ]
+      ],
+      "unlock": {
+        "permit": "Molecular Materials",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling"
+        ]
+      }
     },
     "micro_chip": {
       "name": "Microchip",
@@ -2999,7 +3348,18 @@
       "category": "Intermediary Components",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Automated Factories",
+        "cost": 450,
+        "totalScience": 1040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory"
+        ]
+      }
     },
     "gunpowder": {
       "name": "Solid Explosive",
@@ -3042,7 +3402,17 @@
           "outputQty": 100,
           "category": "Intermediary Components"
         }
-      ]
+      ],
+      "unlock": {
+        "permit": "Chemical Explosives",
+        "cost": 800,
+        "totalScience": 1090,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "alu_powder": {
       "name": "Aluminum Powder",
@@ -3082,7 +3452,17 @@
       "category": "Other",
       "craftTime": 180,
       "power": 5,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Xenic Adaptation",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling",
+          "Molecular Materials",
+          "Crystal Structuring"
+        ]
+      }
     },
     "fertilizer_acidic": {
       "name": "Acidic Fertilizer",
@@ -3168,7 +3548,17 @@
       "category": "Other",
       "craftTime": 180,
       "power": 5,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Xenic Adaptation",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling",
+          "Molecular Materials",
+          "Crystal Structuring"
+        ]
+      }
     },
     "activated_coal": {
       "name": "Activated Charcoal",
@@ -3194,7 +3584,15 @@
       "category": "Intermediary Components",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "[NOT IMPL]",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "[NOT IMPL]"
+        ]
+      }
     },
     "carbonic_fuel": {
       "name": "Carbonic Superfuel",
@@ -3271,7 +3669,19 @@
       "category": "Other",
       "craftTime": 180,
       "power": 5,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Chemical Battery",
+        "cost": 3000,
+        "totalScience": 7790,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Modular Systems 2",
+          "Plumbing"
+        ]
+      }
     },
     "thermal_isolant": {
       "name": "Thermal Wool",
@@ -3351,7 +3761,17 @@
       "category": "Other",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Chemical Explosives",
+        "cost": 800,
+        "totalScience": 1090,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "concrete": {
       "name": "Concrete",
@@ -3390,7 +3810,16 @@
           "outputQty": 7,
           "category": "Chemicals"
         }
-      ]
+      ],
+      "unlock": {
+        "permit": "Electric Motors",
+        "cost": 150,
+        "totalScience": 290,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism"
+        ]
+      }
     },
     "protein": {
       "name": "Xenic Protein",
@@ -3695,7 +4124,12 @@
       "category": "Casings",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Modular Systems",
+        "cost": 40,
+        "totalScience": 40
+      }
     },
     "module_casing_2": {
       "name": "Module Kit",
@@ -3725,7 +4159,17 @@
       "category": "Casings",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Modular Systems 2",
+        "cost": 2000,
+        "totalScience": 2290,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "module_casing_3": {
       "name": "Large Module Kit",
@@ -3755,7 +4199,19 @@
       "category": "Casings",
       "craftTime": 1440,
       "power": 10,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Modular Systems 3",
+        "cost": 25000,
+        "totalScience": 29790,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Modular Systems 2",
+          "Plumbing"
+        ]
+      }
     },
     "support_casing": {
       "name": "Support Hardware",
@@ -3781,7 +4237,19 @@
       "category": "Casings",
       "craftTime": 540,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Ship of Steel",
+        "cost": 3000,
+        "totalScience": 4040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories"
+        ]
+      }
     },
     "steel_casing_mk_1": {
       "name": "Small Steel Part Casing",
@@ -3807,7 +4275,19 @@
       "category": "Casings",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Ship of Steel",
+        "cost": 3000,
+        "totalScience": 4040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories"
+        ]
+      }
     },
     "titanium_casing_mk_1": {
       "name": "Small Titanium Part Casing",
@@ -3833,7 +4313,20 @@
       "category": "Casings",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Better Titanium",
+        "cost": 10000,
+        "totalScience": 14040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel"
+        ]
+      }
     },
     "titanium_casing_mk_2": {
       "name": "Titanium Part Casing",
@@ -3859,7 +4352,20 @@
       "category": "Casings",
       "craftTime": 1440,
       "power": 10,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Better Titanium",
+        "cost": 10000,
+        "totalScience": 14040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel"
+        ]
+      }
     },
     "platinum_casing_mk_1": {
       "name": "Small Solid Frame Casing",
@@ -3885,7 +4391,21 @@
       "category": "Casings",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Advanced Frames",
+        "cost": 50000,
+        "totalScience": 64040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel",
+          "Better Titanium"
+        ]
+      }
     },
     "platinum_casing_mk_2": {
       "name": "Solid Frame Casing",
@@ -3911,7 +4431,21 @@
       "category": "Casings",
       "craftTime": 1440,
       "power": 10,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Advanced Frames",
+        "cost": 50000,
+        "totalScience": 64040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel",
+          "Better Titanium"
+        ]
+      }
     },
     "levinium_casing_mk_1": {
       "name": "Small Levinium Part Casing",
@@ -3937,7 +4471,21 @@
       "category": "Casings",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Very Light Alloys",
+        "cost": 50000,
+        "totalScience": 64040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel",
+          "Better Titanium"
+        ]
+      }
     },
     "alloy_xcasing_mk_1": {
       "name": "Small Alloy X Part Casing",
@@ -4014,7 +4562,17 @@
       "category": "BuildingKit",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Personal Factory",
+        "cost": 300,
+        "totalScience": 590,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "control_base_core": {
       "name": "Base Core Drive",
@@ -4054,7 +4612,19 @@
       "category": "Ship Parts",
       "craftTime": 1800,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Ship of Steel",
+        "cost": 3000,
+        "totalScience": 4040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories"
+        ]
+      }
     },
     "wing_01": {
       "name": "\"Nimbus\" Spoiler",
@@ -4080,7 +4650,19 @@
       "category": "Ship Parts",
       "craftTime": 900,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Ship of Steel",
+        "cost": 3000,
+        "totalScience": 4040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories"
+        ]
+      }
     },
     "wing_02": {
       "name": "\"Catfin\" Spoiler",
@@ -4106,7 +4688,19 @@
       "category": "Ship Parts",
       "craftTime": 900,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Ship of Steel",
+        "cost": 3000,
+        "totalScience": 4040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories"
+        ]
+      }
     },
     "wing_03": {
       "name": "\"Warden\" Wing",
@@ -4132,7 +4726,19 @@
       "category": "Ship Parts",
       "craftTime": 900,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Ship of Steel",
+        "cost": 3000,
+        "totalScience": 4040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories"
+        ]
+      }
     },
     "hull_mk_1_005": {
       "name": "Steel 6x3x1",
@@ -4158,7 +4764,19 @@
       "category": "Ship Parts",
       "craftTime": 2700,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Ship of Steel",
+        "cost": 3000,
+        "totalScience": 4040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories"
+        ]
+      }
     },
     "hull_mk_1_006": {
       "name": "Steel 8x3x1",
@@ -4184,7 +4802,19 @@
       "category": "Ship Parts",
       "craftTime": 3600,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Ship of Steel",
+        "cost": 3000,
+        "totalScience": 4040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories"
+        ]
+      }
     },
     "hull_mk_1_001": {
       "name": "Steel 4x3x2",
@@ -4210,7 +4840,19 @@
       "category": "Ship Parts",
       "craftTime": 1800,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Ship of Steel",
+        "cost": 3000,
+        "totalScience": 4040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories"
+        ]
+      }
     },
     "hull_mk_1_002": {
       "name": "Steel 6x3x2",
@@ -4236,7 +4878,19 @@
       "category": "Ship Parts",
       "craftTime": 2700,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Ship of Steel",
+        "cost": 3000,
+        "totalScience": 4040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories"
+        ]
+      }
     },
     "hull_mk_1_003": {
       "name": "Steel 8x3x2",
@@ -4262,7 +4916,19 @@
       "category": "Ship Parts",
       "craftTime": 3600,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Ship of Steel",
+        "cost": 3000,
+        "totalScience": 4040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories"
+        ]
+      }
     },
     "hull_mk_1_004_steel_alu_k": {
       "name": "Thermal Steel 4x3x1",
@@ -4522,7 +5188,20 @@
       "category": "Ship Parts",
       "craftTime": 1800,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Better Titanium",
+        "cost": 10000,
+        "totalScience": 14040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel"
+        ]
+      }
     },
     "hull_mk_1_005_tit": {
       "name": "Titanium 6x3x1",
@@ -4548,7 +5227,20 @@
       "category": "Ship Parts",
       "craftTime": 2700,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Better Titanium",
+        "cost": 10000,
+        "totalScience": 14040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel"
+        ]
+      }
     },
     "hull_mk_1_006_tit": {
       "name": "Titanium 8x3x1",
@@ -4574,7 +5266,20 @@
       "category": "Ship Parts",
       "craftTime": 3600,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Better Titanium",
+        "cost": 10000,
+        "totalScience": 14040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel"
+        ]
+      }
     },
     "hull_mk_1_001_tit": {
       "name": "Titanium 4x3x2",
@@ -4600,7 +5305,20 @@
       "category": "Ship Parts",
       "craftTime": 1800,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Better Titanium",
+        "cost": 10000,
+        "totalScience": 14040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel"
+        ]
+      }
     },
     "hull_mk_1_002_tit": {
       "name": "Titanium 6x3x2",
@@ -4626,7 +5344,20 @@
       "category": "Ship Parts",
       "craftTime": 2700,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Better Titanium",
+        "cost": 10000,
+        "totalScience": 14040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel"
+        ]
+      }
     },
     "hull_mk_1_003_tit": {
       "name": "Titanium 8x3x2",
@@ -4652,7 +5383,20 @@
       "category": "Ship Parts",
       "craftTime": 3600,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Better Titanium",
+        "cost": 10000,
+        "totalScience": 14040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel"
+        ]
+      }
     },
     "hull_mk_2_004_tit": {
       "name": "Titanium 8x6x2",
@@ -4678,7 +5422,20 @@
       "category": "Ship Parts",
       "craftTime": 3600,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Better Titanium",
+        "cost": 10000,
+        "totalScience": 14040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel"
+        ]
+      }
     },
     "wing_04": {
       "name": "\"Condor\" Wing",
@@ -4704,7 +5461,20 @@
       "category": "Ship Parts",
       "craftTime": 3600,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Better Titanium",
+        "cost": 10000,
+        "totalScience": 14040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel"
+        ]
+      }
     },
     "hull_mk_2_005_tit": {
       "name": "Titanium 12x6x2",
@@ -4730,7 +5500,20 @@
       "category": "Ship Parts",
       "craftTime": 5400,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Better Titanium",
+        "cost": 10000,
+        "totalScience": 14040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel"
+        ]
+      }
     },
     "hull_mk_2_006_tit": {
       "name": "Titanium 16x6x2",
@@ -4756,7 +5539,20 @@
       "category": "Ship Parts",
       "craftTime": 7200,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Better Titanium",
+        "cost": 10000,
+        "totalScience": 14040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel"
+        ]
+      }
     },
     "hull_mk_1_004_tit_alu_k": {
       "name": "Thermal Titanium 4x3x1",
@@ -5168,7 +5964,21 @@
       "category": "Ship Parts",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Very Light Alloys",
+        "cost": 50000,
+        "totalScience": 64040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel",
+          "Better Titanium"
+        ]
+      }
     },
     "hull_mk_1_002_lev": {
       "name": "Levinium 6x3x2",
@@ -5194,7 +6004,21 @@
       "category": "Ship Parts",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Very Light Alloys",
+        "cost": 50000,
+        "totalScience": 64040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel",
+          "Better Titanium"
+        ]
+      }
     },
     "hull_mk_1_003_lev": {
       "name": "Levinium 8x3x2",
@@ -5220,7 +6044,21 @@
       "category": "Ship Parts",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Very Light Alloys",
+        "cost": 50000,
+        "totalScience": 64040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel",
+          "Better Titanium"
+        ]
+      }
     },
     "hull_mk_1_004_plat": {
       "name": "Solid Frame 4x3x1",
@@ -5242,7 +6080,21 @@
       "category": "Ship Parts",
       "craftTime": 1800,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Advanced Frames",
+        "cost": 50000,
+        "totalScience": 64040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel",
+          "Better Titanium"
+        ]
+      }
     },
     "hull_mk_1_005_plat": {
       "name": "Solid Frame 6x3x1",
@@ -5264,7 +6116,21 @@
       "category": "Ship Parts",
       "craftTime": 2700,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Advanced Frames",
+        "cost": 50000,
+        "totalScience": 64040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel",
+          "Better Titanium"
+        ]
+      }
     },
     "hull_mk_1_006_plat": {
       "name": "Solid Frame 8x3x1",
@@ -5286,7 +6152,21 @@
       "category": "Ship Parts",
       "craftTime": 3600,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Advanced Frames",
+        "cost": 50000,
+        "totalScience": 64040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel",
+          "Better Titanium"
+        ]
+      }
     },
     "hull_mk_2_004_plat": {
       "name": "Solid Frame 8x6x2",
@@ -5308,7 +6188,21 @@
       "category": "Ship Parts",
       "craftTime": 3600,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Advanced Frames",
+        "cost": 50000,
+        "totalScience": 64040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel",
+          "Better Titanium"
+        ]
+      }
     },
     "hull_mk_2_005_plat": {
       "name": "Solid Frame 12x6x2",
@@ -5330,7 +6224,21 @@
       "category": "Ship Parts",
       "craftTime": 5400,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Advanced Frames",
+        "cost": 50000,
+        "totalScience": 64040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel",
+          "Better Titanium"
+        ]
+      }
     },
     "hull_mk_2_006_plat": {
       "name": "Solid Frame 16x6x2",
@@ -5352,7 +6260,21 @@
       "category": "Ship Parts",
       "craftTime": 7200,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Advanced Frames",
+        "cost": 50000,
+        "totalScience": 64040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories",
+          "Ship of Steel",
+          "Better Titanium"
+        ]
+      }
     },
     "hull_mk_1_004_ax": {
       "name": "Alloy X 4x3x1",
@@ -5640,7 +6562,12 @@
       "category": "Ship Parts",
       "craftTime": 2700,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "[NOT IMPL]",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "cockpit_lr_2": {
       "name": "LR \"Raptor\" Cockpit",
@@ -5666,7 +6593,12 @@
       "category": "Ship Parts",
       "craftTime": 7200,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "[NOT IMPL]",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "cockpit_lr_3": {
       "name": "LR \"Marauder\" Deck",
@@ -5692,7 +6624,12 @@
       "category": "Ship Parts",
       "craftTime": 7200,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "[NOT IMPL]",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "cockpit_ae_1": {
       "name": "\"Pathfinder\" Cockpit",
@@ -5726,7 +6663,15 @@
       "category": "Ship Parts",
       "craftTime": 2700,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Advanced Spectrometry",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel"
+        ]
+      }
     },
     "cockpit_ae_2": {
       "name": "\"Wanderback\" Cockpit",
@@ -5764,7 +6709,17 @@
       "category": "Ship Parts",
       "craftTime": 7200,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Refined Superluminal Travel",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel",
+          "Advanced Spectrometry",
+          "Plasma Containment"
+        ]
+      }
     },
     "cockpit_ae_3": {
       "name": "AE \"Skygazer\" Deck",
@@ -5790,7 +6745,12 @@
       "category": "Ship Parts",
       "craftTime": 7200,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Aegir Experimental Sponsorship",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "cockpit_tc_1": {
       "name": "\"Brick\" Cockpit",
@@ -5820,7 +6780,18 @@
       "category": "Ship Parts",
       "craftTime": 2700,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Modular Structures",
+        "cost": 300,
+        "totalScience": 890,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory"
+        ]
+      }
     },
     "cockpit_mk_1": {
       "name": "\"Beaver\" Cockpit",
@@ -5854,7 +6825,15 @@
       "category": "Ship Parts",
       "craftTime": 2700,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Economic Expansion",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Footprint Management"
+        ]
+      }
     },
     "cockpit_mk_2": {
       "name": "\"Anvil\" Cockpit",
@@ -5892,7 +6871,17 @@
       "category": "Ship Parts",
       "craftTime": 7200,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Interplanetary Commuting",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Footprint Management",
+          "Economic Expansion",
+          "Combustion Engine"
+        ]
+      }
     },
     "cockpit_mk_3": {
       "name": "M&K \"Foreman\" Deck",
@@ -5918,7 +6907,12 @@
       "category": "Ship Parts",
       "craftTime": 7200,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Meitner&Karls Experimental Sponsorship",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "cockpit_da_1": {
       "name": "\"Cocoon\" Cockpit",
@@ -5948,7 +6942,15 @@
       "category": "Ship Parts",
       "craftTime": 2700,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Molecular Materials",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling"
+        ]
+      }
     },
     "cockpit_da_2": {
       "name": "\"Reality\" Cockpit",
@@ -6044,7 +7046,15 @@
       "category": "Ship Parts",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Cargo Accommodation",
+        "cost": 100,
+        "totalScience": 140,
+        "needs": [
+          "Modular Systems"
+        ]
+      }
     },
     "light_02": {
       "name": "Light Strip",
@@ -6070,7 +7080,15 @@
       "category": "Ship Parts",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Cargo Accommodation",
+        "cost": 100,
+        "totalScience": 140,
+        "needs": [
+          "Modular Systems"
+        ]
+      }
     },
     "light_03": {
       "name": "Headlight",
@@ -6096,7 +7114,15 @@
       "category": "Ship Parts",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Cargo Accommodation",
+        "cost": 100,
+        "totalScience": 140,
+        "needs": [
+          "Modular Systems"
+        ]
+      }
     },
     "thruster_0": {
       "name": "\"Cart Pusher\" Thruster",
@@ -6126,7 +7152,18 @@
       "category": "Ship Parts",
       "craftTime": 1800,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Modular Structures",
+        "cost": 300,
+        "totalScience": 890,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory"
+        ]
+      }
     },
     "thruster_1": {
       "name": "\"Long Haul Booster\"",
@@ -6220,7 +7257,16 @@
       "category": "Ship Parts",
       "craftTime": 10800,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Plasma Containment",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel",
+          "Advanced Spectrometry"
+        ]
+      }
     },
     "thruster_mk_1": {
       "name": "\"Grasshopper\" Thruster",
@@ -6258,7 +7304,16 @@
       "category": "Ship Parts",
       "craftTime": 10800,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Combustion Engine",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Footprint Management",
+          "Economic Expansion"
+        ]
+      }
     },
     "thruster_da_1": {
       "name": "\"Voidseeker\" Thruster",
@@ -6296,7 +7351,16 @@
       "category": "Ship Parts",
       "craftTime": 10800,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Crystal Structuring",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling",
+          "Molecular Materials"
+        ]
+      }
     },
     "storage_1": {
       "name": "Small Cargo Hold",
@@ -6326,7 +7390,15 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Cargo Accommodation",
+        "cost": 100,
+        "totalScience": 140,
+        "needs": [
+          "Modular Systems"
+        ]
+      }
     },
     "storage_2": {
       "name": "Cargo Hold",
@@ -6356,7 +7428,17 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Modular Systems 2",
+        "cost": 2000,
+        "totalScience": 2290,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "storage_3": {
       "name": "Large Cargo Hold",
@@ -6390,7 +7472,19 @@
       "category": "Ship Modules",
       "craftTime": 1440,
       "power": 10,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Modular Systems 3",
+        "cost": 25000,
+        "totalScience": 29790,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Modular Systems 2",
+          "Plumbing"
+        ]
+      }
     },
     "liquid_storage_1": {
       "name": "Small Liquid Tank",
@@ -6424,7 +7518,18 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Plumbing",
+        "cost": 2500,
+        "totalScience": 4790,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Modular Systems 2"
+        ]
+      }
     },
     "liquid_storage_2": {
       "name": "Medium Liquid Tank",
@@ -6584,7 +7689,12 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Superluminal Travel",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "ftlengine_2_light": {
       "name": "FTL Engine - Light",
@@ -6622,7 +7732,17 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Refined Superluminal Travel",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel",
+          "Advanced Spectrometry",
+          "Plasma Containment"
+        ]
+      }
     },
     "ftlengine_2_medium": {
       "name": "FTL Engine - Mid-weight",
@@ -6660,7 +7780,17 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Refined Superluminal Travel",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel",
+          "Advanced Spectrometry",
+          "Plasma Containment"
+        ]
+      }
     },
     "ftlengine_2_heavy": {
       "name": "FTL Engine - Heavy",
@@ -6698,7 +7828,17 @@
       "category": "Ship Modules",
       "craftTime": 1440,
       "power": 10,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Refined Superluminal Travel",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel",
+          "Advanced Spectrometry",
+          "Plasma Containment"
+        ]
+      }
     },
     "ftlengine_3_solo": {
       "name": "Advanced FTL Engine - Solo",
@@ -6752,7 +7892,16 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Plasma Containment",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel",
+          "Advanced Spectrometry"
+        ]
+      }
     },
     "ftltank_2": {
       "name": "Mag-Plasma Tank",
@@ -6778,7 +7927,16 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Plasma Containment",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel",
+          "Advanced Spectrometry"
+        ]
+      }
     },
     "ftltank_3": {
       "name": "Big Mag-Plasma Tank",
@@ -6808,7 +7966,16 @@
       "category": "Ship Modules",
       "craftTime": 1440,
       "power": 10,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Moderation Fields",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Aegir Experimental Sponsorship",
+          "Optimal FTL Experience"
+        ]
+      }
     },
     "navigator": {
       "name": "Cosmic Navigator",
@@ -6834,7 +8001,15 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Advanced Spectrometry",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel"
+        ]
+      }
     },
     "battery_0": {
       "name": "Crude Battery",
@@ -6874,7 +8049,19 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Chemical Battery",
+        "cost": 3000,
+        "totalScience": 7790,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Modular Systems 2",
+          "Plumbing"
+        ]
+      }
     },
     "battery_2": {
       "name": "BESS Module",
@@ -6934,7 +8121,16 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Electric Motors",
+        "cost": 150,
+        "totalScience": 290,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism"
+        ]
+      }
     },
     "pbattery": {
       "name": "Paradoxical Battery",
@@ -6960,7 +8156,12 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Aegir Experimental Sponsorship",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "isotopic_generator": {
       "name": "Isotopic Generator",
@@ -6986,7 +8187,12 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Aegir Experimental Sponsorship",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "fusion_generator": {
       "name": "Fusion Generator",
@@ -7012,7 +8218,12 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Aegir Experimental Sponsorship",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "power_sharer_ph": {
       "name": "Power Projector",
@@ -7038,7 +8249,16 @@
       "category": "Tools",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Energy Support",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Meitner&Karls Experimental Sponsorship",
+          "Logistical Scaling"
+        ]
+      }
     },
     "nitrogenerator": {
       "name": "LR Nitrogenerator",
@@ -7086,7 +8306,16 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Combustion Engine",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Footprint Management",
+          "Economic Expansion"
+        ]
+      }
     },
     "carbon_generator_2": {
       "name": "Large Fuel Generator",
@@ -7130,7 +8359,18 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Heat Management",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling",
+          "Molecular Materials",
+          "Crystal Structuring",
+          "Xenic Adaptation"
+        ]
+      }
     },
     "heater_2": {
       "name": "Boiler Heater",
@@ -7168,7 +8408,18 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 5,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Heat Management",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling",
+          "Molecular Materials",
+          "Crystal Structuring",
+          "Xenic Adaptation"
+        ]
+      }
     },
     "heat_recouper": {
       "name": "Heat Condenser",
@@ -7212,7 +8463,17 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Asteroid Mining",
+        "cost": 1000,
+        "totalScience": 1290,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "kinetic_shield_2": {
       "name": "Reactive Shield",
@@ -7246,7 +8507,17 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Asteroid Mining",
+        "cost": 1000,
+        "totalScience": 1290,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "kinetic_shield_3": {
       "name": "Hyper Reactive Shield",
@@ -7558,7 +8829,12 @@
       "category": "Tools",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Aegir Experimental Sponsorship",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "stealth_module_group": {
       "name": "Stealth Macro-Projector",
@@ -7584,7 +8860,16 @@
       "category": "Tools",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Moderation Fields",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Aegir Experimental Sponsorship",
+          "Optimal FTL Experience"
+        ]
+      }
     },
     "auto_boost_module": {
       "name": "Booster Control Mod",
@@ -7614,7 +8899,19 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Customized Controls",
+        "cost": 400,
+        "totalScience": 1440,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories"
+        ]
+      }
     },
     "auto_mine_module": {
       "name": "Mining Laser Control Mod",
@@ -7640,7 +8937,19 @@
       "category": "Ship Modules",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Customized Controls",
+        "cost": 400,
+        "totalScience": 1440,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories"
+        ]
+      }
     },
     "engine_booster": {
       "name": "LR \"Speedster\"",
@@ -7696,7 +9005,18 @@
       "category": "Tools",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Solar Panel",
+        "cost": 300,
+        "totalScience": 890,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory"
+        ]
+      }
     },
     "solar_panel_2": {
       "name": "Medium Solar Panel",
@@ -7722,7 +9042,18 @@
       "category": "Tools",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Solar Panel",
+        "cost": 300,
+        "totalScience": 890,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory"
+        ]
+      }
     },
     "solar_panel_3": {
       "name": "Large Solar Panel",
@@ -7782,7 +9113,15 @@
       "category": "Tools",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Molecular Materials",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling"
+        ]
+      }
     },
     "radiator_1": {
       "name": "Medium Radiator",
@@ -7860,7 +9199,15 @@
       "category": "Tools",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Electromagnetism",
+        "cost": 100,
+        "totalScience": 140,
+        "needs": [
+          "Modular Systems"
+        ]
+      }
     },
     "radar_sniffer": {
       "name": "Mimetic Detector",
@@ -7894,7 +9241,17 @@
       "category": "Tools",
       "craftTime": 900,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Refined Superluminal Travel",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel",
+          "Advanced Spectrometry",
+          "Plasma Containment"
+        ]
+      }
     },
     "radar_smart": {
       "name": "Spectral Resource Detector",
@@ -7924,7 +9281,15 @@
       "category": "Tools",
       "craftTime": 900,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Advanced Spectrometry",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel"
+        ]
+      }
     },
     "gravite_detector": {
       "name": "Gravitron",
@@ -7988,7 +9353,12 @@
       "category": "Tools",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Modular Systems",
+        "cost": 40,
+        "totalScience": 40
+      }
     },
     "scanner_1": {
       "name": "Scanalyzer Beta",
@@ -8018,7 +9388,15 @@
       "category": "Tools",
       "craftTime": 900,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Advanced Spectrometry",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel"
+        ]
+      }
     },
     "mining_tool_0": {
       "name": "Crude Mining Laser",
@@ -8058,7 +9436,15 @@
       "category": "Tools",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Electromagnetism",
+        "cost": 100,
+        "totalScience": 140,
+        "needs": [
+          "Modular Systems"
+        ]
+      }
     },
     "mining_tool_1_oc": {
       "name": "Overclocked Mining Laser",
@@ -8088,7 +9474,15 @@
       "category": "Tools",
       "craftTime": 900,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Electromagnetism",
+        "cost": 100,
+        "totalScience": 140,
+        "needs": [
+          "Modular Systems"
+        ]
+      }
     },
     "mining_tool_cold": {
       "name": "Cooling Laser",
@@ -8144,7 +9538,17 @@
       "category": "Tools",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Modular Systems 2",
+        "cost": 2000,
+        "totalScience": 2290,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "mining_tool_2_oc": {
       "name": "Overclocked Hi-Pi Laser",
@@ -8174,7 +9578,17 @@
       "category": "Tools",
       "craftTime": 2250.0,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Modular Systems 2",
+        "cost": 2000,
+        "totalScience": 2290,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "mining_tool_3": {
       "name": "Giant Laser",
@@ -8232,7 +9646,18 @@
       "category": "Tools",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Plumbing",
+        "cost": 2500,
+        "totalScience": 4790,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Modular Systems 2"
+        ]
+      }
     },
     "exploding_tool_mk_1": {
       "name": "Single-Tube Missile Launcher",
@@ -8262,7 +9687,17 @@
       "category": "Tools",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Chemical Explosives",
+        "cost": 800,
+        "totalScience": 1090,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "exploding_tool_mk_2": {
       "name": "8-Tube Missile Launcher",
@@ -8354,7 +9789,18 @@
       "category": "Tools",
       "craftTime": 720,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Spacetime Hole-Punching",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel",
+          "Advanced Spectrometry",
+          "Plasma Containment",
+          "Refined Superluminal Travel"
+        ]
+      }
     },
     "seeker_missile_0": {
       "name": "Seeker Missile",
@@ -8414,7 +9860,17 @@
       "category": "Other",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Chemical Explosives",
+        "cost": 800,
+        "totalScience": 1090,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "combat_missile_anti_matter": {
       "name": "Anti-matter Torpedo",
@@ -8440,7 +9896,12 @@
       "category": "Other",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "[NOT IMPL]",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "beacon": {
       "name": "Quantum Beacon",
@@ -8496,7 +9957,18 @@
       "category": "Other",
       "craftTime": 450.0,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Spacetime Hole-Punching",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel",
+          "Advanced Spectrometry",
+          "Plasma Containment",
+          "Refined Superluminal Travel"
+        ]
+      }
     },
     "hypergate_beacon": {
       "name": "Hypergate Beacon",
@@ -8518,7 +9990,17 @@
       "category": "Other",
       "craftTime": 450.0,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "[NOT IMPL]",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "[NOT IMPL]",
+          "[NOT IMPL]",
+          "[NOT IMPL]"
+        ]
+      }
     },
     "locked_capsule": {
       "name": "Personal Capsule",
@@ -8540,7 +10022,12 @@
       "category": "Other",
       "craftTime": 450.0,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Meitner&Karls Experimental Sponsorship",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "nitro_capsule": {
       "name": "Nitro Capsule",
@@ -8580,7 +10067,17 @@
       "category": "Other",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Chemical Explosives",
+        "cost": 800,
+        "totalScience": 1090,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "p_multi_tool": {
       "name": "Debug Machine",
@@ -8624,7 +10121,17 @@
       "category": "Player Gear",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Personal Factory",
+        "cost": 300,
+        "totalScience": 590,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "p_dismentling_tool": {
       "name": "Construction Tool 2.0",
@@ -8654,7 +10161,15 @@
       "category": "Player Gear",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Economic Expansion",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Footprint Management"
+        ]
+      }
     },
     "p_moving_tool": {
       "name": "Construction Tool 3.0",
@@ -8684,7 +10199,16 @@
       "category": "Player Gear",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Combustion Engine",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Footprint Management",
+          "Economic Expansion"
+        ]
+      }
     },
     "p_farming_tool": {
       "name": "Farming Tool",
@@ -8714,7 +10238,17 @@
       "category": "Player Gear",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Xenic Adaptation",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling",
+          "Molecular Materials",
+          "Crystal Structuring"
+        ]
+      }
     },
     "p_jetpack": {
       "name": "Jetpack",
@@ -8884,7 +10418,15 @@
       "category": "Player Gear",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "[NOT IMPL]",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "[NOT IMPL]"
+        ]
+      }
     },
     "access_corpo_1": {
       "name": "CPAF Pass (Test Subject)",
@@ -9044,7 +10586,18 @@
       "category": "Other",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Automated Factories",
+        "cost": 450,
+        "totalScience": 1040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory"
+        ]
+      }
     },
     "shuttle_0": {
       "name": "Shuttle",
@@ -9086,7 +10639,17 @@
       "category": "Other",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Interplanetary Commuting",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Footprint Management",
+          "Economic Expansion",
+          "Combustion Engine"
+        ]
+      }
     },
     "shuttle_1": {
       "name": "Freighter",
@@ -9124,7 +10687,15 @@
       "category": "Other",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Logistical Scaling",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Meitner&Karls Experimental Sponsorship"
+        ]
+      }
     },
     "pshuttle": {
       "name": "Power Shuttle",
@@ -9162,7 +10733,12 @@
       "category": "Other",
       "craftTime": 180,
       "power": 4,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Meitner&Karls Experimental Sponsorship",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "fps_instance_entrance": {
       "name": "FPS_Instance_Entrance",
@@ -9281,7 +10857,17 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Personal Factory",
+        "cost": 300,
+        "totalScience": 590,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "b_control_base_2": {
       "name": "Command Tower",
@@ -9314,7 +10900,12 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Footprint Management",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "b_control_base_3_ph": {
       "name": "Command Relay",
@@ -9365,7 +10956,15 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Industrial Centers",
+        "cost": 2000,
+        "totalScience": 2100,
+        "needs": [
+          "Corporate HQ"
+        ]
+      }
     },
     "b_extractor": {
       "name": "Extractor",
@@ -9390,7 +10989,17 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Personal Factory",
+        "cost": 300,
+        "totalScience": 590,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "b_liquid_extractor": {
       "name": "Liquid Extractor",
@@ -9427,7 +11036,19 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Liquid Logistics",
+        "cost": 800,
+        "totalScience": 5590,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Modular Systems 2",
+          "Plumbing"
+        ]
+      }
     },
     "b_extractor_1_ph": {
       "name": "Advanced Extractor",
@@ -9464,7 +11085,15 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Logistical Scaling",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Meitner&Karls Experimental Sponsorship"
+        ]
+      }
     },
     "b_solar_panel": {
       "name": "Solar Plant",
@@ -9493,7 +11122,18 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Solar Panel",
+        "cost": 300,
+        "totalScience": 890,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory"
+        ]
+      }
     },
     "b_warehouse": {
       "name": "Warehouse",
@@ -9526,7 +11166,18 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Automated Factories",
+        "cost": 450,
+        "totalScience": 1040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory"
+        ]
+      }
     },
     "b_organiser": {
       "name": "Drone Dispatcher",
@@ -9551,7 +11202,18 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Automated Factories",
+        "cost": 450,
+        "totalScience": 1040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory"
+        ]
+      }
     },
     "b_chest": {
       "name": "Trading Box",
@@ -9572,7 +11234,12 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Gift Giving",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "b_cistern": {
       "name": "Cistern",
@@ -9609,7 +11276,18 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Plumbing",
+        "cost": 2500,
+        "totalScience": 4790,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Modular Systems 2"
+        ]
+      }
     },
     "b_ftlcistern": {
       "name": "Mag-Plasma Cistern",
@@ -9642,7 +11320,16 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Plasma Containment",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel",
+          "Advanced Spectrometry"
+        ]
+      }
     },
     "b_ftlgatherer": {
       "name": "Cosmic Condenser",
@@ -9667,7 +11354,18 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Mag-Plasma Secrets",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Aegir Experimental Sponsorship",
+          "Optimal FTL Experience",
+          "Moderation Fields",
+          "Spatial Unfolding"
+        ]
+      }
     },
     "b_crystaliser": {
       "name": "Crystallizer",
@@ -9700,7 +11398,16 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Crystal Structuring",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling",
+          "Molecular Materials"
+        ]
+      }
     },
     "b_farm": {
       "name": "Xenic Farm",
@@ -9737,7 +11444,17 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Xenic Adaptation",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling",
+          "Molecular Materials",
+          "Crystal Structuring"
+        ]
+      }
     },
     "b_antimatter_synth_ph": {
       "name": "Antimatter Synthesizer",
@@ -9762,7 +11479,12 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "[NOT IMPL]",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "b_labo_ph": {
       "name": "Laboratory",
@@ -9791,7 +11513,18 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Heat Management",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Metalloid Gelling",
+          "Molecular Materials",
+          "Crystal Structuring",
+          "Xenic Adaptation"
+        ]
+      }
     },
     "b_connector": {
       "name": "Cable",
@@ -9812,7 +11545,17 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Personal Factory",
+        "cost": 300,
+        "totalScience": 590,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "b_electric_pillar": {
       "name": "Pylon",
@@ -9833,7 +11576,17 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Personal Factory",
+        "cost": 300,
+        "totalScience": 590,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "b_generator": {
       "name": "Fuel Power Plant",
@@ -9866,7 +11619,16 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Combustion Engine",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Footprint Management",
+          "Economic Expansion"
+        ]
+      }
     },
     "b_generator_2": {
       "name": "Advanced Fuel Power Plant",
@@ -9909,7 +11671,12 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Aegir Experimental Sponsorship",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "b_heat_recouper": {
       "name": "Heat Capacitor",
@@ -9960,7 +11727,18 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Power Transfer",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Footprint Management",
+          "Economic Expansion",
+          "Combustion Engine",
+          "Interplanetary Commuting"
+        ]
+      }
     },
     "b_battery": {
       "name": "Battery Array",
@@ -9993,7 +11771,16 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Combustion Engine",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Footprint Management",
+          "Economic Expansion"
+        ]
+      }
     },
     "b_factory_1": {
       "name": "Assembler",
@@ -10026,7 +11813,18 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Automated Factories",
+        "cost": 450,
+        "totalScience": 1040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory"
+        ]
+      }
     },
     "b_factory_2": {
       "name": "Factory",
@@ -10067,7 +11865,19 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Modular Systems 3",
+        "cost": 25000,
+        "totalScience": 29790,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Modular Systems 2",
+          "Plumbing"
+        ]
+      }
     },
     "b_smelter": {
       "name": "Smelter",
@@ -10092,7 +11902,17 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Personal Factory",
+        "cost": 300,
+        "totalScience": 590,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors"
+        ]
+      }
     },
     "b_smelter_sa": {
       "name": "Micro-Furnace",
@@ -10121,7 +11941,12 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Footprint Management",
+        "cost": 0,
+        "totalScience": 0
+      }
     },
     "b_chemical": {
       "name": "Chemical Factory",
@@ -10158,7 +11983,18 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Plumbing",
+        "cost": 2500,
+        "totalScience": 4790,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Modular Systems 2"
+        ]
+      }
     },
     "b_bottling_plant": {
       "name": "Bottling Plant",
@@ -10195,7 +12031,19 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Liquid Logistics",
+        "cost": 800,
+        "totalScience": 5590,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Modular Systems 2",
+          "Plumbing"
+        ]
+      }
     },
     "b_recycling_plant": {
       "name": "Recycling Plant",
@@ -10228,7 +12076,17 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Interplanetary Commuting",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Footprint Management",
+          "Economic Expansion",
+          "Combustion Engine"
+        ]
+      }
     },
     "b_shuttle_pad": {
       "name": "Shuttle Landing Pad",
@@ -10265,7 +12123,17 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Interplanetary Commuting",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Footprint Management",
+          "Economic Expansion",
+          "Combustion Engine"
+        ]
+      }
     },
     "b_landing_pad": {
       "name": "Landing Pad",
@@ -10290,7 +12158,18 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Automated Factories",
+        "cost": 450,
+        "totalScience": 1040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory"
+        ]
+      }
     },
     "b_shipyard": {
       "name": "Shipyard",
@@ -10319,7 +12198,19 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Ship of Steel",
+        "cost": 3000,
+        "totalScience": 4040,
+        "needs": [
+          "Modular Systems",
+          "Electromagnetism",
+          "Electric Motors",
+          "Personal Factory",
+          "Automated Factories"
+        ]
+      }
     },
     "b_standalone_foundation": {
       "name": "Stand-alone Foundation",
@@ -10366,7 +12257,18 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Spacetime Hole-Punching",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Superluminal Travel",
+          "Advanced Spectrometry",
+          "Plasma Containment",
+          "Refined Superluminal Travel"
+        ]
+      }
     },
     "b_atmo_dome": {
       "name": "Atmo-dome Generator",
@@ -10391,7 +12293,18 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "[NOT IMPL]",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "[NOT IMPL]",
+          "[NOT IMPL]",
+          "[NOT IMPL]",
+          "[NOT IMPL]"
+        ]
+      }
     },
     "b_observatory": {
       "name": "Observatory",
@@ -10416,7 +12329,17 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Spatial Unfolding",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Aegir Experimental Sponsorship",
+          "Optimal FTL Experience",
+          "Moderation Fields"
+        ]
+      }
     },
     "b_hypergate": {
       "name": "Hypergate",
@@ -10445,7 +12368,17 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "[NOT IMPL]",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "[NOT IMPL]",
+          "[NOT IMPL]",
+          "[NOT IMPL]"
+        ]
+      }
     },
     "b_sun_station": {
       "name": "Sun Station",
@@ -10474,7 +12407,18 @@
       "building": "Construction Bay",
       "category": "Base Building",
       "power": 0,
-      "craftTax": 0
+      "craftTax": 0,
+      "unlock": {
+        "permit": "Stellar Engineering",
+        "cost": 0,
+        "totalScience": 0,
+        "needs": [
+          "Meitner&Karls Experimental Sponsorship",
+          "Logistical Scaling",
+          "Energy Support",
+          "Graywashing"
+        ]
+      }
     },
     "b_deco_test": {
       "name": "Test deco",
