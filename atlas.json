@@ -2514,5 +2514,2510 @@
         }
       ]
     }
+  ],
+  "sectors": [
+    {
+      "id": "sec_tuto",
+      "name": "Pioneer",
+      "tier": 0,
+      "explore": 0,
+      "minSystems": 1,
+      "maxSystems": 1,
+      "maxLoot": 3,
+      "station": "Solar Alpha",
+      "mission": null,
+      "special": false,
+      "loot": [
+        "iron_ingot",
+        "copper_ingot"
+      ],
+      "mine": []
+    },
+    {
+      "id": "sec_threshold",
+      "name": "Threshold",
+      "tier": 1,
+      "explore": 1,
+      "minSystems": 14,
+      "maxSystems": 14,
+      "maxLoot": 4,
+      "station": "Janus",
+      "mission": null,
+      "special": false,
+      "loot": [
+        "iron_ingot",
+        "copper_ingot",
+        "carbon",
+        "sandstone"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "azurite_stone",
+          "name": "Azurite Stone"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "copper_nugget",
+          "name": "Copper Nugget"
+        },
+        {
+          "id": "copper_ore",
+          "name": "Copper Ore"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "hematite",
+          "name": "Hematite"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "iron_ore",
+          "name": "Iron Ore"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "malachite_stone",
+          "name": "Malachite Stone"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_cairn",
+      "name": "Cairn",
+      "tier": 2,
+      "explore": 1,
+      "minSystems": 22,
+      "maxSystems": 22,
+      "maxLoot": 4,
+      "station": "Hypatia",
+      "mission": null,
+      "special": false,
+      "loot": [
+        "iron_ingot",
+        "copper_ingot",
+        "sulfur",
+        "carbon",
+        "sandstone",
+        "silicium_ingot"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "azurite_stone",
+          "name": "Azurite Stone"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "cinnabar",
+          "name": "Cinnabar"
+        },
+        {
+          "id": "copper_nugget",
+          "name": "Copper Nugget"
+        },
+        {
+          "id": "copper_ore",
+          "name": "Copper Ore"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "hematite",
+          "name": "Hematite"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "iron_ore",
+          "name": "Iron Ore"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "malachite_stone",
+          "name": "Malachite Stone"
+        },
+        {
+          "id": "platinum_nugget",
+          "name": "Platinum Nugget"
+        },
+        {
+          "id": "platinum_ore",
+          "name": "Platinum Ore"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "sulfur",
+          "name": "Sulfur"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "tungsten_nugget",
+          "name": "Tungsten Nugget"
+        },
+        {
+          "id": "tungsten_ore",
+          "name": "Tungsten Ore"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_terminus",
+      "name": "Terminus",
+      "tier": 2,
+      "explore": 1,
+      "minSystems": 22,
+      "maxSystems": 22,
+      "maxLoot": 4,
+      "station": "Sawma",
+      "mission": null,
+      "special": false,
+      "loot": [
+        "copper_ingot",
+        "aluminium_ingot",
+        "sandstone",
+        "sulfur"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aluminium_ore",
+          "name": "Aluminum Ore"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "azurite_stone",
+          "name": "Azurite Stone"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "cinnabar",
+          "name": "Cinnabar"
+        },
+        {
+          "id": "copper_nugget",
+          "name": "Copper Nugget"
+        },
+        {
+          "id": "copper_ore",
+          "name": "Copper Ore"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "malachite_stone",
+          "name": "Malachite Stone"
+        },
+        {
+          "id": "platinum_nugget",
+          "name": "Platinum Nugget"
+        },
+        {
+          "id": "platinum_ore",
+          "name": "Platinum Ore"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "sulfur",
+          "name": "Sulfur"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "turquoise",
+          "name": "Turquoise"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        }
+      ]
+    },
+    {
+      "id": "sec_landmark",
+      "name": "Landmark",
+      "tier": 3,
+      "explore": 2,
+      "minSystems": 10,
+      "maxSystems": 15,
+      "maxLoot": 4,
+      "station": null,
+      "mission": null,
+      "special": false,
+      "loot": [
+        "iron_ingot",
+        "aluminium_ingot",
+        "copper_ingot",
+        "carbon",
+        "kaolinite"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aluminium_ore",
+          "name": "Aluminum Ore"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "azurite_stone",
+          "name": "Azurite Stone"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "copper_nugget",
+          "name": "Copper Nugget"
+        },
+        {
+          "id": "copper_ore",
+          "name": "Copper Ore"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "hematite",
+          "name": "Hematite"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "iron_ore",
+          "name": "Iron Ore"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "malachite_stone",
+          "name": "Malachite Stone"
+        },
+        {
+          "id": "platinum_nugget",
+          "name": "Platinum Nugget"
+        },
+        {
+          "id": "platinum_ore",
+          "name": "Platinum Ore"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "sulfur",
+          "name": "Sulfur"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "titanium_ore",
+          "name": "Titanium Ore"
+        },
+        {
+          "id": "tungsten_nugget",
+          "name": "Tungsten Nugget"
+        },
+        {
+          "id": "tungsten_ore",
+          "name": "Tungsten Ore"
+        },
+        {
+          "id": "turquoise",
+          "name": "Turquoise"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_moor",
+      "name": "Moor",
+      "tier": 3,
+      "explore": 2,
+      "minSystems": 20,
+      "maxSystems": 30,
+      "maxLoot": 4,
+      "station": null,
+      "mission": null,
+      "special": false,
+      "loot": [
+        "iron_ingot",
+        "aluminium_ingot",
+        "copper_ingot",
+        "carbon",
+        "kaolinite"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aluminium_ore",
+          "name": "Aluminum Ore"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "azurite_stone",
+          "name": "Azurite Stone"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "copper_nugget",
+          "name": "Copper Nugget"
+        },
+        {
+          "id": "copper_ore",
+          "name": "Copper Ore"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "hematite",
+          "name": "Hematite"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "iron_ore",
+          "name": "Iron Ore"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "malachite_stone",
+          "name": "Malachite Stone"
+        },
+        {
+          "id": "platinum_nugget",
+          "name": "Platinum Nugget"
+        },
+        {
+          "id": "platinum_ore",
+          "name": "Platinum Ore"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "sulfur",
+          "name": "Sulfur"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "titanium_ore",
+          "name": "Titanium Ore"
+        },
+        {
+          "id": "tungsten_nugget",
+          "name": "Tungsten Nugget"
+        },
+        {
+          "id": "tungsten_ore",
+          "name": "Tungsten Ore"
+        },
+        {
+          "id": "turquoise",
+          "name": "Turquoise"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_rim",
+      "name": "Fool's Rim",
+      "tier": 3,
+      "explore": 2,
+      "minSystems": 60,
+      "maxSystems": 70,
+      "maxLoot": 6,
+      "station": null,
+      "mission": null,
+      "special": false,
+      "loot": [
+        "iron_ingot",
+        "copper_ingot",
+        "titanium_ingot",
+        "sulfur",
+        "carbon",
+        "sandstone",
+        "silicium_ingot",
+        "kaolinite",
+        "plumbing_loot"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "azurite_stone",
+          "name": "Azurite Stone"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "cinnabar",
+          "name": "Cinnabar"
+        },
+        {
+          "id": "copper_nugget",
+          "name": "Copper Nugget"
+        },
+        {
+          "id": "copper_ore",
+          "name": "Copper Ore"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "hematite",
+          "name": "Hematite"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "iron_ore",
+          "name": "Iron Ore"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "malachite_stone",
+          "name": "Malachite Stone"
+        },
+        {
+          "id": "platinum_nugget",
+          "name": "Platinum Nugget"
+        },
+        {
+          "id": "platinum_ore",
+          "name": "Platinum Ore"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "sulfur",
+          "name": "Sulfur"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "titanium_ore",
+          "name": "Titanium Ore"
+        },
+        {
+          "id": "tungsten_nugget",
+          "name": "Tungsten Nugget"
+        },
+        {
+          "id": "tungsten_ore",
+          "name": "Tungsten Ore"
+        },
+        {
+          "id": "turquoise",
+          "name": "Turquoise"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_strand",
+      "name": "Strand",
+      "tier": 3,
+      "explore": 3,
+      "minSystems": 30,
+      "maxSystems": 50,
+      "maxLoot": 6,
+      "station": null,
+      "mission": null,
+      "special": false,
+      "loot": [
+        "iron_ingot",
+        "copper_ingot",
+        "titanium_ingot",
+        "sulfur",
+        "carbon",
+        "sandstone",
+        "silicium_ingot",
+        "plumbing_loot"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "azurite_stone",
+          "name": "Azurite Stone"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "cinnabar",
+          "name": "Cinnabar"
+        },
+        {
+          "id": "copper_nugget",
+          "name": "Copper Nugget"
+        },
+        {
+          "id": "copper_ore",
+          "name": "Copper Ore"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "hematite",
+          "name": "Hematite"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "iron_ore",
+          "name": "Iron Ore"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "malachite_stone",
+          "name": "Malachite Stone"
+        },
+        {
+          "id": "platinum_nugget",
+          "name": "Platinum Nugget"
+        },
+        {
+          "id": "platinum_ore",
+          "name": "Platinum Ore"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "sulfur",
+          "name": "Sulfur"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "titanium_ore",
+          "name": "Titanium Ore"
+        },
+        {
+          "id": "tungsten_nugget",
+          "name": "Tungsten Nugget"
+        },
+        {
+          "id": "tungsten_ore",
+          "name": "Tungsten Ore"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_obst_hubris_1",
+      "name": "Hubris Alpha",
+      "tier": 3,
+      "explore": 4,
+      "minSystems": 36,
+      "maxSystems": 40,
+      "maxLoot": 9,
+      "station": null,
+      "mission": null,
+      "special": true,
+      "loot": [
+        "sulfur",
+        "carbon",
+        "graphene",
+        "silicium_ingot",
+        "sandstone",
+        "iron_ingot",
+        "plumbing_loot"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "cinnabar",
+          "name": "Cinnabar"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "hematite",
+          "name": "Hematite"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "iron_ore",
+          "name": "Iron Ore"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "sulfur",
+          "name": "Sulfur"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "titanium_ore",
+          "name": "Titanium Ore"
+        },
+        {
+          "id": "tungsten_nugget",
+          "name": "Tungsten Nugget"
+        },
+        {
+          "id": "tungsten_ore",
+          "name": "Tungsten Ore"
+        },
+        {
+          "id": "turquoise",
+          "name": "Turquoise"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_obst_hubris_2",
+      "name": "Hubris Omega",
+      "tier": 3,
+      "explore": 4,
+      "minSystems": 36,
+      "maxSystems": 40,
+      "maxLoot": 9,
+      "station": null,
+      "mission": null,
+      "special": true,
+      "loot": [
+        "sulfur",
+        "carbon",
+        "graphene",
+        "silicium_ingot",
+        "sandstone",
+        "iron_ingot",
+        "plumbing_loot"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "cinnabar",
+          "name": "Cinnabar"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "hematite",
+          "name": "Hematite"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "iron_ore",
+          "name": "Iron Ore"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "sulfur",
+          "name": "Sulfur"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "titanium_ore",
+          "name": "Titanium Ore"
+        },
+        {
+          "id": "tungsten_nugget",
+          "name": "Tungsten Nugget"
+        },
+        {
+          "id": "tungsten_ore",
+          "name": "Tungsten Ore"
+        },
+        {
+          "id": "turquoise",
+          "name": "Turquoise"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_obst_blank",
+      "name": "Blank",
+      "tier": 3,
+      "explore": 4,
+      "minSystems": 90,
+      "maxSystems": 100,
+      "maxLoot": 6,
+      "station": null,
+      "mission": null,
+      "special": true,
+      "loot": [
+        "sulfur",
+        "carbon",
+        "graphene",
+        "silicium_ingot",
+        "sandstone",
+        "plumbing_loot"
+      ],
+      "mine": []
+    },
+    {
+      "id": "sec_obst_hubris_big",
+      "name": "Hubris Major",
+      "tier": 3,
+      "explore": 4,
+      "minSystems": 90,
+      "maxSystems": 100,
+      "maxLoot": 9,
+      "station": null,
+      "mission": null,
+      "special": true,
+      "loot": [
+        "sulfur",
+        "carbon",
+        "graphene",
+        "silicium_ingot",
+        "sandstone",
+        "iron_ingot",
+        "plumbing_loot"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "cinnabar",
+          "name": "Cinnabar"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "hematite",
+          "name": "Hematite"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "iron_ore",
+          "name": "Iron Ore"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "sulfur",
+          "name": "Sulfur"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "titanium_ore",
+          "name": "Titanium Ore"
+        },
+        {
+          "id": "tungsten_nugget",
+          "name": "Tungsten Nugget"
+        },
+        {
+          "id": "tungsten_ore",
+          "name": "Tungsten Ore"
+        },
+        {
+          "id": "turquoise",
+          "name": "Turquoise"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_obst_jester",
+      "name": "Jester",
+      "tier": 3,
+      "explore": 6,
+      "minSystems": 50,
+      "maxSystems": 85,
+      "maxLoot": 9,
+      "station": null,
+      "mission": null,
+      "special": true,
+      "loot": [
+        "aluminium_ingot",
+        "copper_ingot",
+        "iron_ingot",
+        "kaolinite",
+        "titanium_ingot",
+        "plumbing_loot"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aluminium_ore",
+          "name": "Aluminum Ore"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "azurite_stone",
+          "name": "Azurite Stone"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "cinnabar",
+          "name": "Cinnabar"
+        },
+        {
+          "id": "copper_nugget",
+          "name": "Copper Nugget"
+        },
+        {
+          "id": "copper_ore",
+          "name": "Copper Ore"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "hematite",
+          "name": "Hematite"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "iron_ore",
+          "name": "Iron Ore"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "malachite_stone",
+          "name": "Malachite Stone"
+        },
+        {
+          "id": "platinum_nugget",
+          "name": "Platinum Nugget"
+        },
+        {
+          "id": "platinum_ore",
+          "name": "Platinum Ore"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "sulfur",
+          "name": "Sulfur"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "titanium_ore",
+          "name": "Titanium Ore"
+        },
+        {
+          "id": "tungsten_nugget",
+          "name": "Tungsten Nugget"
+        },
+        {
+          "id": "tungsten_ore",
+          "name": "Tungsten Ore"
+        },
+        {
+          "id": "turquoise",
+          "name": "Turquoise"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_ebb",
+      "name": "Ebb",
+      "tier": 4,
+      "explore": 2,
+      "minSystems": 12,
+      "maxSystems": 18,
+      "maxLoot": 8,
+      "station": null,
+      "mission": null,
+      "special": false,
+      "loot": [
+        "iron_ingot",
+        "sandstone",
+        "silicium_ingot",
+        "carbon",
+        "graphene",
+        "titanium_ingot",
+        "plumbing_loot"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "cinnabar",
+          "name": "Cinnabar"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "hematite",
+          "name": "Hematite"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "iron_ore",
+          "name": "Iron Ore"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "titanium_ore",
+          "name": "Titanium Ore"
+        },
+        {
+          "id": "tungsten_nugget",
+          "name": "Tungsten Nugget"
+        },
+        {
+          "id": "tungsten_ore",
+          "name": "Tungsten Ore"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_justice",
+      "name": "Justice",
+      "tier": 4,
+      "explore": 2,
+      "minSystems": 12,
+      "maxSystems": 18,
+      "maxLoot": 8,
+      "station": "Nevada",
+      "mission": null,
+      "special": false,
+      "loot": [
+        "vanadium_ingot",
+        "iron_ingot",
+        "copper_ingot",
+        "carbon",
+        "graphene",
+        "sulfur",
+        "sandstone",
+        "silicium_ingot",
+        "aluminium_ingot",
+        "kaolinite",
+        "plumbing_loot"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aluminium_ore",
+          "name": "Aluminum Ore"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "azurite_stone",
+          "name": "Azurite Stone"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "cinnabar",
+          "name": "Cinnabar"
+        },
+        {
+          "id": "copper_nugget",
+          "name": "Copper Nugget"
+        },
+        {
+          "id": "copper_ore",
+          "name": "Copper Ore"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "hematite",
+          "name": "Hematite"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "iron_ore",
+          "name": "Iron Ore"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "malachite_stone",
+          "name": "Malachite Stone"
+        },
+        {
+          "id": "platinum_nugget",
+          "name": "Platinum Nugget"
+        },
+        {
+          "id": "platinum_ore",
+          "name": "Platinum Ore"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "sulfur",
+          "name": "Sulfur"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "titanium_ore",
+          "name": "Titanium Ore"
+        },
+        {
+          "id": "tungsten_nugget",
+          "name": "Tungsten Nugget"
+        },
+        {
+          "id": "tungsten_ore",
+          "name": "Tungsten Ore"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_axon",
+      "name": "Axon",
+      "tier": 4,
+      "explore": 2,
+      "minSystems": 15,
+      "maxSystems": 25,
+      "maxLoot": 8,
+      "station": null,
+      "mission": null,
+      "special": false,
+      "loot": [
+        "aluminium_ingot",
+        "kaolinite",
+        "copper_ingot",
+        "sandstone",
+        "silicium_ingot",
+        "carbon",
+        "graphene",
+        "titanium_ingot",
+        "plumbing_loot"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aluminium_ore",
+          "name": "Aluminum Ore"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "azurite_stone",
+          "name": "Azurite Stone"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "copper_nugget",
+          "name": "Copper Nugget"
+        },
+        {
+          "id": "copper_ore",
+          "name": "Copper Ore"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "malachite_stone",
+          "name": "Malachite Stone"
+        },
+        {
+          "id": "platinum_nugget",
+          "name": "Platinum Nugget"
+        },
+        {
+          "id": "platinum_ore",
+          "name": "Platinum Ore"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "sulfur",
+          "name": "Sulfur"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "titanium_ore",
+          "name": "Titanium Ore"
+        },
+        {
+          "id": "tungsten_nugget",
+          "name": "Tungsten Nugget"
+        },
+        {
+          "id": "turquoise",
+          "name": "Turquoise"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_glimmer",
+      "name": "Glimmer",
+      "tier": 4,
+      "explore": 2,
+      "minSystems": 15,
+      "maxSystems": 25,
+      "maxLoot": 8,
+      "station": null,
+      "mission": null,
+      "special": false,
+      "loot": [
+        "vanadium_ingot",
+        "iron_ingot",
+        "copper_ingot",
+        "carbon",
+        "graphene",
+        "sulfur",
+        "sandstone",
+        "silicium_ingot",
+        "plumbing_loot"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "azurite_stone",
+          "name": "Azurite Stone"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "cinnabar",
+          "name": "Cinnabar"
+        },
+        {
+          "id": "copper_nugget",
+          "name": "Copper Nugget"
+        },
+        {
+          "id": "copper_ore",
+          "name": "Copper Ore"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "hematite",
+          "name": "Hematite"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "iron_ore",
+          "name": "Iron Ore"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "malachite_stone",
+          "name": "Malachite Stone"
+        },
+        {
+          "id": "platinum_nugget",
+          "name": "Platinum Nugget"
+        },
+        {
+          "id": "platinum_ore",
+          "name": "Platinum Ore"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "sulfur",
+          "name": "Sulfur"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "titanium_ore",
+          "name": "Titanium Ore"
+        },
+        {
+          "id": "tungsten_nugget",
+          "name": "Tungsten Nugget"
+        },
+        {
+          "id": "tungsten_ore",
+          "name": "Tungsten Ore"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_horizon",
+      "name": "Horizon",
+      "tier": 4,
+      "explore": 2,
+      "minSystems": 20,
+      "maxSystems": 30,
+      "maxLoot": 7,
+      "station": "Amundsen",
+      "mission": "ReachHorizonStation",
+      "special": false,
+      "loot": [
+        "iron_ingot",
+        "copper_ingot",
+        "sandstone",
+        "silicium_ingot",
+        "carbon",
+        "graphene",
+        "sulfur",
+        "titanium_ingot",
+        "plumbing_loot"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "azurite_stone",
+          "name": "Azurite Stone"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "cinnabar",
+          "name": "Cinnabar"
+        },
+        {
+          "id": "copper_nugget",
+          "name": "Copper Nugget"
+        },
+        {
+          "id": "copper_ore",
+          "name": "Copper Ore"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "hematite",
+          "name": "Hematite"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "iron_ore",
+          "name": "Iron Ore"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "malachite_stone",
+          "name": "Malachite Stone"
+        },
+        {
+          "id": "platinum_nugget",
+          "name": "Platinum Nugget"
+        },
+        {
+          "id": "platinum_ore",
+          "name": "Platinum Ore"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "sulfur",
+          "name": "Sulfur"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "titanium_ore",
+          "name": "Titanium Ore"
+        },
+        {
+          "id": "tungsten_nugget",
+          "name": "Tungsten Nugget"
+        },
+        {
+          "id": "tungsten_ore",
+          "name": "Tungsten Ore"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_obst_riddle",
+      "name": "Riddle",
+      "tier": 4,
+      "explore": 4,
+      "minSystems": 50,
+      "maxSystems": 85,
+      "maxLoot": null,
+      "station": null,
+      "mission": null,
+      "special": true,
+      "loot": [],
+      "mine": []
+    },
+    {
+      "id": "sec_idol",
+      "name": "Idol",
+      "tier": 5,
+      "explore": 3,
+      "minSystems": 30,
+      "maxSystems": 50,
+      "maxLoot": 9,
+      "station": null,
+      "mission": null,
+      "special": false,
+      "loot": [
+        "iron_ingot",
+        "sandstone",
+        "silicium_ingot",
+        "carbon",
+        "graphene",
+        "titanium_ingot",
+        "sulfur",
+        "plumbing_loot"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "cinnabar",
+          "name": "Cinnabar"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "hematite",
+          "name": "Hematite"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "iron_ore",
+          "name": "Iron Ore"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "rockwood_seed",
+          "name": "Rockwood Nut"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "sulfur",
+          "name": "Sulfur"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "titanium_ore",
+          "name": "Titanium Ore"
+        },
+        {
+          "id": "tungsten_nugget",
+          "name": "Tungsten Nugget"
+        },
+        {
+          "id": "tungsten_ore",
+          "name": "Tungsten Ore"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_vestige",
+      "name": "Vestige",
+      "tier": 5,
+      "explore": 3,
+      "minSystems": 30,
+      "maxSystems": 50,
+      "maxLoot": 9,
+      "station": null,
+      "mission": null,
+      "special": false,
+      "loot": [
+        "aluminium_ingot",
+        "kaolinite",
+        "copper_ingot",
+        "sandstone",
+        "silicium_ingot",
+        "carbon",
+        "graphene",
+        "titanium_ingot",
+        "sulfur",
+        "plumbing_loot"
+      ],
+      "mine": [
+        {
+          "id": "aluminium_nugget",
+          "name": "Aluminum Nugget"
+        },
+        {
+          "id": "aluminium_ore",
+          "name": "Aluminum Ore"
+        },
+        {
+          "id": "aquamarine",
+          "name": "Aquamarine"
+        },
+        {
+          "id": "azurite_stone",
+          "name": "Azurite Stone"
+        },
+        {
+          "id": "calcite",
+          "name": "Calcite"
+        },
+        {
+          "id": "cinnabar",
+          "name": "Cinnabar"
+        },
+        {
+          "id": "copper_nugget",
+          "name": "Copper Nugget"
+        },
+        {
+          "id": "copper_ore",
+          "name": "Copper Ore"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond"
+        },
+        {
+          "id": "elmerium_shavings",
+          "name": "Elmerium Dust"
+        },
+        {
+          "id": "elmerium_nugget",
+          "name": "Elmerium Nugget"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald"
+        },
+        {
+          "id": "graphite_crystal",
+          "name": "Graphite Crystal"
+        },
+        {
+          "id": "iron_nugget",
+          "name": "Iron Nugget"
+        },
+        {
+          "id": "kaolinite",
+          "name": "Kaolinite"
+        },
+        {
+          "id": "malachite_stone",
+          "name": "Malachite Stone"
+        },
+        {
+          "id": "platinum_nugget",
+          "name": "Platinum Nugget"
+        },
+        {
+          "id": "platinum_ore",
+          "name": "Platinum Ore"
+        },
+        {
+          "id": "pyrite",
+          "name": "Pyrite"
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz"
+        },
+        {
+          "id": "sandstone",
+          "name": "Silicate"
+        },
+        {
+          "id": "sulfur",
+          "name": "Sulfur"
+        },
+        {
+          "id": "titanium_nugget",
+          "name": "Titanium Nugget"
+        },
+        {
+          "id": "titanium_ore",
+          "name": "Titanium Ore"
+        },
+        {
+          "id": "tungsten_nugget",
+          "name": "Tungsten Nugget"
+        },
+        {
+          "id": "turquoise",
+          "name": "Turquoise"
+        },
+        {
+          "id": "vanadium_ore",
+          "name": "Vanadium Ore"
+        },
+        {
+          "id": "zirconium_nugget",
+          "name": "Zirconium Nugget"
+        },
+        {
+          "id": "carbon",
+          "name": "a-Carbon"
+        }
+      ]
+    },
+    {
+      "id": "sec_zenith",
+      "name": "Zenith",
+      "tier": 5,
+      "explore": 5,
+      "minSystems": 40,
+      "maxSystems": 50,
+      "maxLoot": null,
+      "station": null,
+      "mission": null,
+      "special": false,
+      "loot": [],
+      "mine": []
+    },
+    {
+      "id": "sec_chimera",
+      "name": "Chimera",
+      "tier": 5,
+      "explore": 5,
+      "minSystems": 85,
+      "maxSystems": 150,
+      "maxLoot": null,
+      "station": null,
+      "mission": null,
+      "special": false,
+      "loot": [],
+      "mine": []
+    }
   ]
 }

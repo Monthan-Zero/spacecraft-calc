@@ -258,6 +258,14 @@
 .scapp .depcard .ych .yq{color:var(--muted);font-family:"JetBrains Mono";font-size:10.5px}
 .scapp .depcard .ych .dot{width:7px;height:7px;border-radius:50%}
 .scapp .atlasnote{margin-top:20px;color:var(--muted);font-size:12px;line-height:1.6;border-top:1px solid var(--line);padding-top:14px}
+.scapp .gtabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.scapp .gtab{background:var(--panel2);border:1px solid var(--line);color:var(--muted);font-family:Rajdhani;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding:8px 16px;border-radius:6px;cursor:pointer}
+.scapp .gtab.on{color:var(--primary);border-color:var(--primary);background:rgba(35,198,230,.08)}
+.scapp .depcard .secsub{font-size:10px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:11px 0 7px}
+.scapp .depcard .secsub.mut{margin:11px 0 0;font-style:italic}
+.scapp .depcard .tag.sta{color:var(--secondary);border-color:rgba(242,168,29,.45)}
+.scapp .depcard .tag.warn{color:var(--bad);border-color:rgba(216,69,58,.45)}
+.scapp .ych.more{cursor:pointer;color:var(--primary);border-style:dashed}
 /* Continuous animations intentionally omitted — they caused full-screen repaints/lag.
    Visuals (starfield, hero glow, hex grid, brackets) remain as static effects. */
 `;
@@ -268,7 +276,7 @@
 <div class="stars" data-el="stars"></div><div class="neb"></div>
 <header class="hud">
   <div class="brand">SPACE<span class="pipe"></span><span class="b2">CRAFT</span> PLANNER</div>
-  <nav><a data-el="nav-planner">Planner</a><a data-el="nav-browse">Recipes</a><a data-el="nav-profit">Profit</a><a data-el="nav-map">Resource&nbsp;Atlas</a><a data-el="nav-about">About&nbsp;Data</a></nav>
+  <nav><a data-el="nav-planner">Planner</a><a data-el="nav-browse">Recipes</a><a data-el="nav-profit">Profit</a><a data-el="nav-map">Galaxy</a><a data-el="nav-about">About&nbsp;Data</a></nav>
   <div class="spacer"></div>
   <button class="btn" data-el="nav-launch">Launch Planner</button>
 </header>
@@ -313,14 +321,26 @@
 </div></section>
 
 <section id="sc-map"><div class="wrap" style="max-width:1320px">
-  <div class="sechead">Resource Atlas <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-family:Inter;font-size:12px">— every minable deposit and what it yields · click an item to open it in the planner</span></div>
-  <div class="atlasbar">
-    <input type="text" data-el="atlas-search" placeholder="Search deposits or resources…" autocomplete="off" />
-    <span class="atlas-count" data-el="atlas-count"></span>
+  <div class="sechead">Galaxy <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-family:Inter;font-size:12px">— the 24 sectors are the same on every server; the systems inside them are generated per-server</span></div>
+  <div class="gtabs">
+    <button class="gtab on" data-el="tab-sectors" data-tab="sectors" type="button">Sectors</button>
+    <button class="gtab" data-el="tab-deposits" data-tab="deposits" type="button">Resource Atlas</button>
   </div>
-  <div class="atlaspills" data-el="atlas-pills"></div>
-  <div class="atlasgrid" data-el="atlasgrid"></div>
-  <div class="atlasnote" data-el="atlas-note"></div>
+  <div data-el="pane-sectors">
+    <div class="atlasbar"><span class="atlas-count" data-el="sector-count"></span></div>
+    <div class="atlaspills" data-el="sector-pills"></div>
+    <div class="atlasgrid" data-el="sectorgrid"></div>
+    <div class="atlasnote" data-el="sector-note"></div>
+  </div>
+  <div data-el="pane-deposits" style="display:none">
+    <div class="atlasbar">
+      <input type="text" data-el="atlas-search" placeholder="Search deposits or resources…" autocomplete="off" />
+      <span class="atlas-count" data-el="atlas-count"></span>
+    </div>
+    <div class="atlaspills" data-el="atlas-pills"></div>
+    <div class="atlasgrid" data-el="atlasgrid"></div>
+    <div class="atlasnote" data-el="atlas-note"></div>
+  </div>
 </div></section>
 
 <section id="sc-about"><div class="wrap">
@@ -376,7 +396,7 @@
 
   /* ----------------------------- data ----------------------------- */
   var RECIPES = {}, SOURCES = {}, CONSTS = {}, BUYMULT = 1, pendingScroll = null;
-  var ATLAS = { deposits: [] }, atlasFilter = "all", atlasSearch = "";
+  var ATLAS = { deposits: [] }, atlasFilter = "all", atlasSearch = "", sectorFilter = "all", expandedSectors = {}, galaxyWired = false;
   var LS_KEY = "sc_reported_prices_v1";
   function loadReported() { try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch (e) { return {}; } }
   function applyReported() { var rep = loadReported(); for (var id in rep) { if (RECIPES[id]) { RECIPES[id].value = rep[id]; RECIPES[id].confidence = "reported"; RECIPES[id].userReported = true; } } }
@@ -407,7 +427,7 @@
 
   var ATLAS_URL = SELF.split(/[?#]/)[0].replace(/[^\/]*$/, "atlas.json");
   fetch(ATLAS_URL, { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : { deposits: [] }; })
-    .then(function (w) { ATLAS = (w && w.deposits) ? w : { deposits: [] }; if (currentView() === "map") buildAtlas(); })
+    .then(function (w) { ATLAS = (w && w.deposits) ? w : { deposits: [] }; if (currentView() === "map") buildGalaxy(); })
     .catch(function () {});
 
   /* ----------------------------- engine ----------------------------- */
@@ -812,7 +832,7 @@
     if (nm) nm.style.color = v === "map" ? "var(--primary)" : "";
     if (npl) npl.style.color = v === "home" ? "var(--primary)" : "";
     if (v !== "home") window.scrollTo(0, 0);
-    if (v === "map" && ATLAS.deposits.length) buildAtlas();
+    if (v === "map" && ATLAS.deposits.length) buildGalaxy();
   }
   function route() {
     applyView();
@@ -824,6 +844,56 @@
     }
   }
 
+  /* ----------------------------- galaxy: sectors + atlas ----------------------------- */
+  function buildGalaxy() {
+    buildSectors(); buildAtlas();
+    if (!galaxyWired) {
+      if ($("tab-sectors")) $("tab-sectors").onclick = function () { showGalaxyTab("sectors"); };
+      if ($("tab-deposits")) $("tab-deposits").onclick = function () { showGalaxyTab("deposits"); };
+      galaxyWired = true;
+    }
+  }
+  function showGalaxyTab(tab) {
+    var sec = tab === "sectors";
+    if ($("pane-sectors")) $("pane-sectors").style.display = sec ? "" : "none";
+    if ($("pane-deposits")) $("pane-deposits").style.display = sec ? "none" : "";
+    if ($("tab-sectors")) $("tab-sectors").classList.toggle("on", sec);
+    if ($("tab-deposits")) $("tab-deposits").classList.toggle("on", !sec);
+  }
+  function tierColor(t) { return ["#6FB1E0", "#5FE08A", "#23C6E6", "#F2A81D", "#E06A4A", "#7A5CC4"][t] || "#7A5CC4"; }
+  function buildSectors() {
+    if (!$("sectorgrid") || !ATLAS.sectors) return;
+    buildSectorPills();
+    renderSectors();
+    if ($("sector-note")) $("sector-note").innerHTML = "The galaxy's sectors are the same on every server — only the systems inside them are generated per-server. Sorted by progression: deeper sectors need a higher <b>Exploration</b> level and hold richer resources. <b>⌂</b> marks a sector with a station. Click any resource to open it in the planner.";
+  }
+  function buildSectorPills() {
+    var t = {}; ATLAS.sectors.forEach(function (s) { t[s.tier] = (t[s.tier] || 0) + 1; });
+    var defs = [["all", "All", ATLAS.sectors.length]].concat(Object.keys(t).sort().map(function (k) { return [k, "Tier " + k, t[k]]; }));
+    $("sector-pills").innerHTML = defs.map(function (d) { return '<span class="pill' + (String(d[0]) === String(sectorFilter) ? " on" : "") + '" data-t="' + esc(d[0]) + '">' + esc(d[1]) + ' <span class="cc">' + d[2] + '</span></span>'; }).join("");
+    Array.prototype.forEach.call($("sector-pills").querySelectorAll(".pill"), function (p) { p.onclick = function () { sectorFilter = p.getAttribute("data-t"); buildSectorPills(); renderSectors(); }; });
+  }
+  function renderSectors() {
+    var list = ATLAS.sectors.filter(function (s) { return sectorFilter === "all" || String(s.tier) === String(sectorFilter); });
+    if ($("sector-count")) $("sector-count").textContent = list.length + " of " + ATLAS.sectors.length + " sectors";
+    $("sectorgrid").innerHTML = list.map(function (s) {
+      var col = tierColor(s.tier), cap = expandedSectors[s.id] ? s.mine.length : 10;
+      var chips = s.mine.slice(0, cap).map(function (m) { var r = RECIPES[m.id], dotc = r ? dc(r.type) : "d-raw"; return '<span class="ych" data-id="' + esc(m.id) + '"><span class="dot ' + dotc + '"></span>' + esc(m.name) + '</span>'; }).join("");
+      var more = s.mine.length > cap ? '<span class="ych more" data-more="' + esc(s.id) + '">+' + (s.mine.length - cap) + ' more</span>' : "";
+      var sys = (s.minSystems != null) ? (s.minSystems + (s.maxSystems !== s.minSystems ? "–" + s.maxSystems : "") + " system" + ((s.maxSystems || s.minSystems) > 1 ? "s" : "")) : "";
+      var meta = '<span class="tag tier" style="color:' + col + ';border-color:' + col + '66">Tier ' + s.tier + '</span>'
+        + '<span class="tag">Exploration ' + s.explore + '</span>'
+        + (sys ? '<span class="tag">' + sys + '</span>' : "")
+        + (isNum(s.maxLoot) ? '<span class="tag">loot Lv ' + s.maxLoot + '</span>' : "")
+        + (s.station ? '<span class="tag sta">⌂ ' + esc(s.station) + '</span>' : "")
+        + (s.special ? '<span class="tag warn">obstacle</span>' : "");
+      return '<div class="depcard" style="border-left-color:' + col + '"><div class="dcn">' + esc(s.name) + '</div><div class="dcmeta">' + meta + '</div>'
+        + (s.mine.length ? '<div class="secsub">Mine here · ' + s.mine.length + '</div><div class="yields">' + chips + more + '</div>' : '<div class="secsub mut">Hub / transit sector — nothing to mine</div>')
+        + '</div>';
+    }).join("") || '<div class="foot">No sectors.</div>';
+    Array.prototype.forEach.call($("sectorgrid").querySelectorAll(".ych[data-id]"), function (c) { c.onclick = function () { selectItem(c.getAttribute("data-id")); }; });
+    Array.prototype.forEach.call($("sectorgrid").querySelectorAll(".ych[data-more]"), function (c) { c.onclick = function () { expandedSectors[c.getAttribute("data-more")] = 1; renderSectors(); }; });
+  }
   /* ----------------------------- resource atlas ----------------------------- */
   function buildAtlas() {
     if (!$("atlasgrid")) return;
