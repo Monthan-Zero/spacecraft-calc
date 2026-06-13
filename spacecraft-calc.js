@@ -266,6 +266,30 @@
 .scapp .depcard .tag.sta{color:var(--secondary);border-color:rgba(242,168,29,.45)}
 .scapp .depcard .tag.warn{color:var(--bad);border-color:rgba(216,69,58,.45)}
 .scapp .ych.more{cursor:pointer;color:var(--primary);border-style:dashed}
+.scapp .galaxylayout{display:grid;grid-template-columns:1fr 330px;gap:16px}
+@media(max-width:900px){.scapp .galaxylayout{grid-template-columns:1fr}}
+.scapp .galaxymap{position:relative;height:640px;background:radial-gradient(900px 640px at 50% 45%,#0c1626,#060a12);border:1px solid var(--line);border-radius:8px;overflow:hidden;cursor:grab;touch-action:none}
+.scapp .galaxymap.drag{cursor:grabbing}
+.scapp .galaxymap svg{display:block;width:100%;height:100%}
+.scapp .mapctl{position:absolute;top:10px;right:10px;z-index:5;display:flex;flex-direction:column;gap:6px}
+.scapp .mapctl button{width:34px;height:34px;border:1px solid var(--line);background:rgba(20,32,46,.92);color:var(--primary);border-radius:6px;cursor:pointer;font-size:17px;line-height:1;font-family:"JetBrains Mono"}
+.scapp .mapctl button:hover{border-color:var(--primary)}
+.scapp .slane{stroke:rgba(130,160,200,.22);stroke-width:1.4;stroke-dasharray:5 4}
+.scapp .smapnode{cursor:pointer}
+.scapp .snebula{opacity:.10}
+.scapp .sblob{fill-opacity:.14;stroke-width:1.8;transition:fill-opacity .12s}
+.scapp .smapnode:hover .sblob{fill-opacity:.28}
+.scapp .smapnode.sel .sblob{fill-opacity:.34;stroke-width:3}
+.scapp .smapnode.obst .sblob{stroke-dasharray:6 5}
+.scapp .sdot{fill:rgba(190,215,245,.8)}
+.scapp .sname{fill:var(--text);font-size:21px;font-family:Rajdhani;font-weight:600;text-anchor:middle;pointer-events:none;text-transform:uppercase;letter-spacing:.05em}
+.scapp .smapnode.sel .sname{fill:var(--primary)}
+.scapp .sstn{fill:var(--secondary);font-size:15px;font-family:Rajdhani;text-anchor:middle;pointer-events:none;letter-spacing:.04em}
+.scapp .smark{fill:var(--secondary);stroke:#0b1622;stroke-width:1.5}
+.scapp .sectorside{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px;align-self:start;max-height:640px;overflow:auto}
+.scapp .sectorside .sdh{border-bottom:2px solid;padding-bottom:11px;margin-bottom:11px}
+.scapp .sectorside .dcn{font-family:Orbitron;font-size:16px;font-weight:700}
+.scapp .sectorside .dcmeta{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:7px}
 /* Continuous animations intentionally omitted — they caused full-screen repaints/lag.
    Visuals (starfield, hero glow, hex grid, brackets) remain as static effects. */
 `;
@@ -327,9 +351,13 @@
     <button class="gtab" data-el="tab-deposits" data-tab="deposits" type="button">Resource Atlas</button>
   </div>
   <div data-el="pane-sectors">
-    <div class="atlasbar"><span class="atlas-count" data-el="sector-count"></span></div>
-    <div class="atlaspills" data-el="sector-pills"></div>
-    <div class="atlasgrid" data-el="sectorgrid"></div>
+    <div class="galaxylayout">
+      <div class="galaxymap" data-el="galaxywrap">
+        <div class="mapctl"><button data-el="g-zin" type="button" title="Zoom in">+</button><button data-el="g-zout" type="button" title="Zoom out">−</button><button data-el="g-fit" type="button" title="Reset view">⤢</button></div>
+        <svg data-el="galaxysvg" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+      <div class="sectorside" data-el="sector-detail"></div>
+    </div>
     <div class="atlasnote" data-el="sector-note"></div>
   </div>
   <div data-el="pane-deposits" style="display:none">
@@ -396,7 +424,7 @@
 
   /* ----------------------------- data ----------------------------- */
   var RECIPES = {}, SOURCES = {}, CONSTS = {}, BUYMULT = 1, pendingScroll = null;
-  var ATLAS = { deposits: [] }, atlasFilter = "all", atlasSearch = "", sectorFilter = "all", expandedSectors = {}, galaxyWired = false;
+  var ATLAS = { deposits: [] }, atlasFilter = "all", atlasSearch = "", galaxyWired = false, galT = { x: 0, y: 0, s: 1 }, galDrag = null, galWired = false, sectorSel = null;
   var LS_KEY = "sc_reported_prices_v1";
   function loadReported() { try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch (e) { return {}; } }
   function applyReported() { var rep = loadReported(); for (var id in rep) { if (RECIPES[id]) { RECIPES[id].value = rep[id]; RECIPES[id].confidence = "reported"; RECIPES[id].userReported = true; } } }
@@ -862,37 +890,74 @@
   }
   function tierColor(t) { return ["#6FB1E0", "#5FE08A", "#23C6E6", "#F2A81D", "#E06A4A", "#7A5CC4"][t] || "#7A5CC4"; }
   function buildSectors() {
-    if (!$("sectorgrid") || !ATLAS.sectors) return;
-    buildSectorPills();
-    renderSectors();
-    if ($("sector-note")) $("sector-note").innerHTML = "The galaxy's sectors are the same on every server — only the systems inside them are generated per-server. Sorted by progression: deeper sectors need a higher <b>Exploration</b> level and hold richer resources. <b>⌂</b> marks a sector with a station. Click any resource to open it in the planner.";
+    if (!$("galaxysvg") || !ATLAS.sectors) return;
+    drawSectorMap();
+    if (!galWired) { wireGalaxyMap(); galWired = true; }
+    galFit();
+    if (sectorSel) renderSectorDetail(sectorSel); else if (ATLAS.sectors[0]) selectSector(ATLAS.sectors[0].id);
+    if ($("sector-note")) $("sector-note").innerHTML = "The sectors are the same on every server — only the systems inside them are generated per-server, so this is our own clean layout of the real sector data (tier, size, station, resources), not exact in-game coordinates. Bigger blob = more systems · <span style='color:var(--secondary)'>◆</span> = station. Drag to pan, scroll to zoom, click a sector for what you can mine there.";
   }
-  function buildSectorPills() {
-    var t = {}; ATLAS.sectors.forEach(function (s) { t[s.tier] = (t[s.tier] || 0) + 1; });
-    var defs = [["all", "All", ATLAS.sectors.length]].concat(Object.keys(t).sort().map(function (k) { return [k, "Tier " + k, t[k]]; }));
-    $("sector-pills").innerHTML = defs.map(function (d) { return '<span class="pill' + (String(d[0]) === String(sectorFilter) ? " on" : "") + '" data-t="' + esc(d[0]) + '">' + esc(d[1]) + ' <span class="cc">' + d[2] + '</span></span>'; }).join("");
-    Array.prototype.forEach.call($("sector-pills").querySelectorAll(".pill"), function (p) { p.onclick = function () { sectorFilter = p.getAttribute("data-t"); buildSectorPills(); renderSectors(); }; });
+  function avgSysOf(s) { var a = s.minSystems || 1, b = s.maxSystems || a; return (a + b) / 2; }
+  function shash(str) { var h = 0, i; for (i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) | 0; return Math.abs(h); }
+  function frand(n) { var x = Math.sin(n * 12.9898) * 43758.5453; return x - Math.floor(x); }
+  function drawSectorMap() {
+    var svg = $("galaxysvg"); if (!svg) return;
+    svg.setAttribute("viewBox", "0 0 1000 1000");
+    var byId = {}; ATLAS.sectors.forEach(function (s) { byId[s.id] = s; });
+    var p = ['<g data-el="galaxy-g">'];
+    (ATLAS.sectorLinks || []).forEach(function (e) { var a = byId[e[0]], b = byId[e[1]]; if (a && b) p.push('<line class="slane" x1="' + a.x + '" y1="' + a.y + '" x2="' + b.x + '" y2="' + b.y + '"/>'); });
+    ATLAS.sectors.forEach(function (s) {
+      var col = tierColor(s.tier);
+      p.push('<g class="smapnode' + (sectorSel === s.id ? ' sel' : '') + (s.special ? ' obst' : '') + '" data-id="' + esc(s.id) + '" transform="translate(' + s.x + ',' + s.y + ')">');
+      p.push('<circle class="snebula" r="' + (s.r + 13) + '" fill="' + col + '"/>');
+      p.push('<circle class="sblob" r="' + s.r + '" fill="' + col + '" stroke="' + col + '"/>');
+      var nd = Math.min(Math.round(avgSysOf(s)), 36), seed = shash(s.id), i;
+      for (i = 0; i < nd; i++) { var ang = frand(seed + i * 2) * 6.2832, rr = Math.sqrt(frand(seed + i * 2 + 1)) * (s.r - 3); p.push('<circle class="sdot" cx="' + (Math.cos(ang) * rr).toFixed(1) + '" cy="' + (Math.sin(ang) * rr).toFixed(1) + '" r="2.1"/>'); }
+      if (s.station) { p.push('<circle class="smark" r="6"/><text class="sstn" y="' + (s.r + 20) + '">' + esc(s.station) + '</text>'); }
+      p.push('<text class="sname" y="' + (-(s.r) - 9) + '">' + esc(s.name) + '</text></g>');
+    });
+    p.push('</g>'); svg.innerHTML = p.join("");
+    Array.prototype.forEach.call(svg.querySelectorAll(".smapnode"), function (g) { g.addEventListener("click", function () { selectSector(g.getAttribute("data-id")); }); });
+    applyGalT();
   }
-  function renderSectors() {
-    var list = ATLAS.sectors.filter(function (s) { return sectorFilter === "all" || String(s.tier) === String(sectorFilter); });
-    if ($("sector-count")) $("sector-count").textContent = list.length + " of " + ATLAS.sectors.length + " sectors";
-    $("sectorgrid").innerHTML = list.map(function (s) {
-      var col = tierColor(s.tier), cap = expandedSectors[s.id] ? s.mine.length : 10;
-      var chips = s.mine.slice(0, cap).map(function (m) { var r = RECIPES[m.id], dotc = r ? dc(r.type) : "d-raw"; return '<span class="ych" data-id="' + esc(m.id) + '"><span class="dot ' + dotc + '"></span>' + esc(m.name) + '</span>'; }).join("");
-      var more = s.mine.length > cap ? '<span class="ych more" data-more="' + esc(s.id) + '">+' + (s.mine.length - cap) + ' more</span>' : "";
-      var sys = (s.minSystems != null) ? (s.minSystems + (s.maxSystems !== s.minSystems ? "–" + s.maxSystems : "") + " system" + ((s.maxSystems || s.minSystems) > 1 ? "s" : "")) : "";
-      var meta = '<span class="tag tier" style="color:' + col + ';border-color:' + col + '66">Tier ' + s.tier + '</span>'
-        + '<span class="tag">Exploration ' + s.explore + '</span>'
-        + (sys ? '<span class="tag">' + sys + '</span>' : "")
-        + (isNum(s.maxLoot) ? '<span class="tag">loot Lv ' + s.maxLoot + '</span>' : "")
-        + (s.station ? '<span class="tag sta">⌂ ' + esc(s.station) + '</span>' : "")
-        + (s.special ? '<span class="tag warn">obstacle</span>' : "");
-      return '<div class="depcard" style="border-left-color:' + col + '"><div class="dcn">' + esc(s.name) + '</div><div class="dcmeta">' + meta + '</div>'
-        + (s.mine.length ? '<div class="secsub">Mine here · ' + s.mine.length + '</div><div class="yields">' + chips + more + '</div>' : '<div class="secsub mut">Hub / transit sector — nothing to mine</div>')
-        + '</div>';
-    }).join("") || '<div class="foot">No sectors.</div>';
-    Array.prototype.forEach.call($("sectorgrid").querySelectorAll(".ych[data-id]"), function (c) { c.onclick = function () { selectItem(c.getAttribute("data-id")); }; });
-    Array.prototype.forEach.call($("sectorgrid").querySelectorAll(".ych[data-more]"), function (c) { c.onclick = function () { expandedSectors[c.getAttribute("data-more")] = 1; renderSectors(); }; });
+  function applyGalT() { var g = $("galaxysvg") && $("galaxysvg").querySelector('[data-el="galaxy-g"]'); if (g) g.setAttribute("transform", "translate(" + galT.x.toFixed(1) + "," + galT.y.toFixed(1) + ") scale(" + galT.s.toFixed(3) + ")"); }
+  function gpt(svg, ev) { var r = svg.getBoundingClientRect(), k = (svg.viewBox.baseVal.width || 1000) / (r.width || 1); return { x: (ev.clientX - r.left) * k, y: (ev.clientY - r.top) * k }; }
+  function galZoom(f) { var svg = $("galaxysvg"), c = (svg.viewBox.baseVal.width || 1000) / 2, ns = Math.max(0.6, Math.min(7, galT.s * f)); galT.x = c - (c - galT.x) * (ns / galT.s); galT.y = c - (c - galT.y) * (ns / galT.s); galT.s = ns; applyGalT(); }
+  function galFit() { galT.x = 0; galT.y = 0; galT.s = 1; applyGalT(); }
+  function wireGalaxyMap() {
+    var wrap = $("galaxywrap"), svg = $("galaxysvg");
+    wrap.addEventListener("pointerdown", function (e) { if (e.target.closest && e.target.closest(".smapnode")) return; galDrag = gpt(svg, e); wrap.classList.add("drag"); try { wrap.setPointerCapture(e.pointerId); } catch (x) {} });
+    wrap.addEventListener("pointermove", function (e) { if (!galDrag) return; var q = gpt(svg, e); galT.x += (q.x - galDrag.x); galT.y += (q.y - galDrag.y); galDrag = q; applyGalT(); });
+    var end = function () { galDrag = null; wrap.classList.remove("drag"); };
+    wrap.addEventListener("pointerup", end); wrap.addEventListener("pointercancel", end); wrap.addEventListener("pointerleave", end);
+    wrap.addEventListener("wheel", function (e) { e.preventDefault(); var q = gpt(svg, e), f = e.deltaY < 0 ? 1.15 : 1 / 1.15, ns = Math.max(0.6, Math.min(7, galT.s * f)); galT.x = q.x - (q.x - galT.x) * (ns / galT.s); galT.y = q.y - (q.y - galT.y) * (ns / galT.s); galT.s = ns; applyGalT(); }, { passive: false });
+    if ($("g-zin")) $("g-zin").onclick = function () { galZoom(1.25); };
+    if ($("g-zout")) $("g-zout").onclick = function () { galZoom(1 / 1.25); };
+    if ($("g-fit")) $("g-fit").onclick = galFit;
+  }
+  function selectSector(id) {
+    sectorSel = id;
+    if ($("galaxysvg")) Array.prototype.forEach.call($("galaxysvg").querySelectorAll(".smapnode"), function (g) { g.classList.toggle("sel", g.getAttribute("data-id") === id); });
+    renderSectorDetail(id);
+  }
+  function renderSectorDetail(id) {
+    var s = null; ATLAS.sectors.forEach(function (x) { if (x.id === id) s = x; });
+    var el = $("sector-detail"); if (!el) return;
+    if (!s) { el.innerHTML = '<div class="foot">Click a sector to see what you can mine there.</div>'; return; }
+    var col = tierColor(s.tier);
+    var sys = (s.minSystems != null) ? (s.minSystems + (s.maxSystems !== s.minSystems ? "–" + s.maxSystems : "") + " system" + ((s.maxSystems || s.minSystems) > 1 ? "s" : "")) : "";
+    var meta = '<span class="tag tier" style="color:' + col + ';border-color:' + col + '66">Tier ' + s.tier + '</span>'
+      + '<span class="tag">Exploration ' + s.explore + '</span>'
+      + (sys ? '<span class="tag">' + sys + '</span>' : "")
+      + (isNum(s.maxLoot) ? '<span class="tag">loot Lv ' + s.maxLoot + '</span>' : "")
+      + (s.station ? '<span class="tag sta">⌂ ' + esc(s.station) + '</span>' : "")
+      + (s.special ? '<span class="tag warn">obstacle</span>' : "");
+    var chips = s.mine.map(function (m) { var r = RECIPES[m.id], dotc = r ? dc(r.type) : "d-raw"; return '<span class="ych" data-id="' + esc(m.id) + '"><span class="dot ' + dotc + '"></span>' + esc(m.name) + '</span>'; }).join("");
+    el.innerHTML = '<div class="depcard" style="border:none;background:none;padding:0;margin:0">'
+      + '<div class="sdh" style="border-color:' + col + '"><div class="dcn">' + esc(s.name) + '</div><div class="dcmeta">' + meta + '</div></div>'
+      + (s.mine.length ? '<div class="secsub">Mine here · ' + s.mine.length + '</div><div class="yields">' + chips + '</div>' : '<div class="secsub mut">Hub / transit sector — nothing to mine</div>')
+      + '</div>';
+    Array.prototype.forEach.call(el.querySelectorAll(".ych[data-id]"), function (c) { c.onclick = function () { selectItem(c.getAttribute("data-id")); }; });
   }
   /* ----------------------------- resource atlas ----------------------------- */
   function buildAtlas() {

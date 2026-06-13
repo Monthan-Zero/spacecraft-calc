@@ -2531,7 +2531,10 @@
         "iron_ingot",
         "copper_ingot"
       ],
-      "mine": []
+      "mine": [],
+      "x": 438.2,
+      "y": 499.5,
+      "r": 12.1
     },
     {
       "id": "sec_threshold",
@@ -2635,7 +2638,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 489.7,
+      "y": 542.9,
+      "r": 19.4
     },
     {
       "id": "sec_cairn",
@@ -2773,7 +2779,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 462.6,
+      "y": 641.4,
+      "r": 22.0
     },
     {
       "id": "sec_terminus",
@@ -2897,7 +2906,10 @@
           "id": "zirconium_nugget",
           "name": "Zirconium Nugget"
         }
-      ]
+      ],
+      "x": 410.0,
+      "y": 336.4,
+      "r": 22.0
     },
     {
       "id": "sec_landmark",
@@ -3042,7 +3054,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 217.1,
+      "y": 417.6,
+      "r": 18.9
     },
     {
       "id": "sec_moor",
@@ -3187,7 +3202,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 183.1,
+      "y": 590.7,
+      "r": 22.8
     },
     {
       "id": "sec_rim",
@@ -3336,7 +3354,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 319.1,
+      "y": 703.0,
+      "r": 31.0
     },
     {
       "id": "sec_strand",
@@ -3480,7 +3501,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 304.0,
+      "y": 264.1,
+      "r": 26.4
     },
     {
       "id": "sec_obst_hubris_1",
@@ -3603,7 +3627,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 673.9,
+      "y": 500.8,
+      "r": 25.9
     },
     {
       "id": "sec_obst_hubris_2",
@@ -3726,7 +3753,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 644.7,
+      "y": 674.8,
+      "r": 25.9
     },
     {
       "id": "sec_obst_blank",
@@ -3747,7 +3777,10 @@
         "sandstone",
         "plumbing_loot"
       ],
-      "mine": []
+      "mine": [],
+      "x": 480.4,
+      "y": 267.5,
+      "r": 35.5
     },
     {
       "id": "sec_obst_hubris_big",
@@ -3870,7 +3903,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 646.6,
+      "y": 326.5,
+      "r": 35.5
     },
     {
       "id": "sec_obst_jester",
@@ -4016,7 +4052,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 477.8,
+      "y": 731.9,
+      "r": 31.4
     },
     {
       "id": "sec_ebb",
@@ -4131,7 +4170,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 802.3,
+      "y": 370.0,
+      "r": 19.8
     },
     {
       "id": "sec_justice",
@@ -4282,7 +4324,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 694.2,
+      "y": 717.6,
+      "r": 19.8
     },
     {
       "id": "sec_axon",
@@ -4419,7 +4464,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 144.0,
+      "y": 248.9,
+      "r": 21.4
     },
     {
       "id": "sec_glimmer",
@@ -4564,7 +4612,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 499.0,
+      "y": 168.7,
+      "r": 21.4
     },
     {
       "id": "sec_horizon",
@@ -4709,7 +4760,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 121.2,
+      "y": 612.2,
+      "r": 22.8
     },
     {
       "id": "sec_obst_riddle",
@@ -4723,7 +4777,10 @@
       "mission": null,
       "special": true,
       "loot": [],
-      "mine": []
+      "mine": [],
+      "x": 368.2,
+      "y": 879.6,
+      "r": 31.4
     },
     {
       "id": "sec_idol",
@@ -4847,7 +4904,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 26.4,
+      "y": 345.2,
+      "r": 26.4
     },
     {
       "id": "sec_vestige",
@@ -4989,7 +5049,10 @@
           "id": "carbon",
           "name": "a-Carbon"
         }
-      ]
+      ],
+      "x": 615.4,
+      "y": 26.4,
+      "r": 26.4
     },
     {
       "id": "sec_zenith",
@@ -5003,7 +5066,10 @@
       "mission": null,
       "special": false,
       "loot": [],
-      "mine": []
+      "mine": [],
+      "x": 260.9,
+      "y": 972.6,
+      "r": 27.4
     },
     {
       "id": "sec_chimera",
@@ -5017,7 +5083,176 @@
       "mission": null,
       "special": false,
       "loot": [],
-      "mine": []
+      "mine": [],
+      "x": 850.0,
+      "y": 653.7,
+      "r": 38.4
     }
+  ],
+  "sectorLinks": [
+    [
+      "sec_axon",
+      "sec_glimmer"
+    ],
+    [
+      "sec_axon",
+      "sec_horizon"
+    ],
+    [
+      "sec_axon",
+      "sec_idol"
+    ],
+    [
+      "sec_axon",
+      "sec_strand"
+    ],
+    [
+      "sec_cairn",
+      "sec_obst_hubris_2"
+    ],
+    [
+      "sec_cairn",
+      "sec_obst_jester"
+    ],
+    [
+      "sec_cairn",
+      "sec_rim"
+    ],
+    [
+      "sec_cairn",
+      "sec_threshold"
+    ],
+    [
+      "sec_chimera",
+      "sec_justice"
+    ],
+    [
+      "sec_chimera",
+      "sec_vestige"
+    ],
+    [
+      "sec_chimera",
+      "sec_zenith"
+    ],
+    [
+      "sec_ebb",
+      "sec_glimmer"
+    ],
+    [
+      "sec_ebb",
+      "sec_justice"
+    ],
+    [
+      "sec_ebb",
+      "sec_obst_hubris_big"
+    ],
+    [
+      "sec_glimmer",
+      "sec_obst_blank"
+    ],
+    [
+      "sec_glimmer",
+      "sec_vestige"
+    ],
+    [
+      "sec_horizon",
+      "sec_moor"
+    ],
+    [
+      "sec_horizon",
+      "sec_obst_riddle"
+    ],
+    [
+      "sec_idol",
+      "sec_vestige"
+    ],
+    [
+      "sec_idol",
+      "sec_zenith"
+    ],
+    [
+      "sec_justice",
+      "sec_obst_hubris_2"
+    ],
+    [
+      "sec_justice",
+      "sec_obst_riddle"
+    ],
+    [
+      "sec_landmark",
+      "sec_moor"
+    ],
+    [
+      "sec_landmark",
+      "sec_strand"
+    ],
+    [
+      "sec_landmark",
+      "sec_terminus"
+    ],
+    [
+      "sec_moor",
+      "sec_rim"
+    ],
+    [
+      "sec_moor",
+      "sec_tuto"
+    ],
+    [
+      "sec_obst_blank",
+      "sec_obst_hubris_big"
+    ],
+    [
+      "sec_obst_blank",
+      "sec_strand"
+    ],
+    [
+      "sec_obst_blank",
+      "sec_terminus"
+    ],
+    [
+      "sec_obst_hubris_1",
+      "sec_obst_hubris_2"
+    ],
+    [
+      "sec_obst_hubris_1",
+      "sec_obst_hubris_big"
+    ],
+    [
+      "sec_obst_hubris_1",
+      "sec_threshold"
+    ],
+    [
+      "sec_obst_hubris_2",
+      "sec_obst_jester"
+    ],
+    [
+      "sec_obst_hubris_big",
+      "sec_terminus"
+    ],
+    [
+      "sec_obst_jester",
+      "sec_rim"
+    ],
+    [
+      "sec_obst_riddle",
+      "sec_rim"
+    ],
+    [
+      "sec_obst_riddle",
+      "sec_zenith"
+    ],
+    [
+      "sec_strand",
+      "sec_terminus"
+    ],
+    [
+      "sec_terminus",
+      "sec_tuto"
+    ],
+    [
+      "sec_threshold",
+      "sec_tuto"
+    ]
   ]
 }
