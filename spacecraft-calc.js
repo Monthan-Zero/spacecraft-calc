@@ -185,6 +185,11 @@
 .scapp .mm-detail .md-in:hover{border-color:var(--primary)}
 .scapp .mm-detail .md-in .iq{color:var(--primary);font-family:"JetBrains Mono";font-size:12px;flex-shrink:0}
 .scapp .mm-detail .md-in .inm{color:var(--text);font-size:13px}
+.scapp .mm-detail .md-top{display:flex;gap:12px;align-items:flex-start;margin:2px 22px 8px 0}
+.scapp .mm-detail .md-img{width:64px;height:64px;flex-shrink:0;object-fit:contain;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:5px}
+.scapp .mm-detail .md-titles h3{margin:0 0 6px}
+.scapp .mm-detail .md-in .md-inimg{width:24px;height:24px;flex-shrink:0;object-fit:contain;border-radius:4px}
+.scapp .scnode .nicon{pointer-events:none}
 /* cols / table / tree */
 .scapp .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:900px){.scapp .cols{grid-template-columns:1fr}.scapp .grid{grid-template-columns:repeat(2,1fr)}.scapp select,.scapp input{min-width:160px}}
@@ -258,6 +263,11 @@
 .scapp .comboitem .ci-cat{color:var(--muted);font-size:10px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.04em}
 .scapp .comboitem .ci-val{color:var(--primary);font-family:"JetBrains Mono";font-size:12px}
 .scapp .comboitem .ci-r{display:flex;gap:8px;align-items:center;white-space:nowrap}
+.scapp .comboitem>span:first-child{display:flex;align-items:center;gap:8px;min-width:0}
+.scapp .comboitem .ci-img{width:22px;height:22px;object-fit:contain;flex-shrink:0}
+.scapp .catcard{display:flex;align-items:center;gap:10px}
+.scapp .catimg{width:36px;height:36px;object-fit:contain;flex-shrink:0}
+.scapp .sel-img{width:42px;height:42px;object-fit:contain;background:var(--bg2);border:1px solid var(--line);border-radius:7px;padding:3px;flex-shrink:0}
 .scapp.view-profit > .hero,.scapp.view-profit #sc-planner,.scapp.view-profit #sc-browse,.scapp.view-profit #sc-about,.scapp.view-profit #sc-roadmap{display:none}
 .scapp:not(.view-profit) #sc-profit{display:none}
 .scapp .charts{display:grid;grid-template-columns:1fr 1fr;gap:18px}
@@ -571,7 +581,7 @@
   var toastT; function toast(m) { var t = $("toast"); if (!t) return; t.textContent = m; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove("show"); }, 2400); }
 
   /* ----------------------------- data ----------------------------- */
-  var RECIPES = {}, SOURCES = {}, CONSTS = {}, BUYMULT = 1, pendingScroll = null, facPendingItem = null, ORIGVAL = {};
+  var RECIPES = {}, SOURCES = {}, CONSTS = {}, BUYMULT = 1, pendingScroll = null, facPendingItem = null, ORIGVAL = {}, BUILDING_ICONS = {};
   var ATLAS = { deposits: [] }, atlasFilter = "all", atlasSearch = "", galaxyWired = false, galT = { x: 0, y: 0, s: 1 }, galDrag = null, galWired = false, sectorSel = null, facWired = false;
   var LS_KEY = "sc_reported_prices_v1";
   function loadReported() { try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch (e) { return {}; } }
@@ -600,9 +610,12 @@
   // served commit-pinned via jsDelivr; relative on localhost) — avoids @main edge-cache staleness.
   var SELF = (document.currentScript && document.currentScript.src) || location.href;
   var DATA_URL = SELF.split(/[?#]/)[0].replace(/[^\/]*$/, "recipes.json");
+  var IMG_BASE = SELF.split(/[?#]/)[0].replace(/[^\/]*$/, "images/");
+  function itemImg(id) { var r = RECIPES[id]; return (r && r.img) ? (IMG_BASE + "items/" + id + ".webp") : (IMG_BASE + "unknown.webp"); }
+  function buildingImg(name) { var s = BUILDING_ICONS[name]; return s ? (IMG_BASE + "buildings/" + s + ".webp") : null; }
 
   fetch(DATA_URL, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-    .then(function (data) { SOURCES = data.sources || {}; RECIPES = data.recipes || {}; CONSTS = data.constants || {}; BUYMULT = 1 + (isNum(CONSTS.marketBuyTaxPercent) ? CONSTS.marketBuyTaxPercent / 100 : 0); ORIGVAL = {}; for (var _k in RECIPES) ORIGVAL[_k] = RECIPES[_k].value; applyReported(); initPlanner(); })
+    .then(function (data) { SOURCES = data.sources || {}; RECIPES = data.recipes || {}; CONSTS = data.constants || {}; BUILDING_ICONS = data.buildingIcons || {}; BUYMULT = 1 + (isNum(CONSTS.marketBuyTaxPercent) ? CONSTS.marketBuyTaxPercent / 100 : 0); ORIGVAL = {}; for (var _k in RECIPES) ORIGVAL[_k] = RECIPES[_k].value; applyReported(); initPlanner(); })
     .catch(function (e) { try { window.__loadErr = (e && e.stack) || String(e); } catch (_) {} var pb = $("plannerbody"); if (pb) pb.innerHTML = '<div class="loading" style="color:var(--bad)">⚠ Could not load recipe data (' + esc(e.message) + ').<br>Check recipes.json.</div>'; });
 
   var ATLAS_URL = SELF.split(/[?#]/)[0].replace(/[^\/]*$/, "atlas.json");
@@ -740,12 +753,14 @@
         var val = isNum(r.value) ? credits(r.value) + " ea" : "price n/a"; sub = (r.building ? trunc(r.building, 15) + " · " : "") + val;
         title = esc((r.name || id) + " — need " + qty + (r.building ? " · " + r.building : "") + (isNum(r.value) ? " · " + credits(r.value) + " each" : ""));
       }
+      var icon = fac ? (buildingImg(r.building) || itemImg(id)) : itemImg(id);
       out.push('<g class="scnode c-' + conf + '" data-id="' + esc(id) + '" transform="translate(' + q.x + ',' + q.y + ')"><title>' + title + ' · click for details</title>');
       out.push('<rect class="box" width="' + W + '" height="' + H + '" rx="4"/>');
       out.push('<rect x="1.5" y="1.5" width="' + (W - 3) + '" height="4" rx="1" fill="' + typeColor(r.type || "unknown") + '"/>');
-      out.push('<text class="nq" x="12" y="25">' + esc(qty) + '</text>');
-      out.push('<text class="nm" x="12" y="42">' + esc(trunc(r.name || id, 22)) + '</text>');
-      out.push('<text class="nsub" x="12" y="55">' + esc(trunc(sub, 30)) + '</text></g>');
+      out.push('<image class="nicon" x="10" y="13" width="36" height="36" preserveAspectRatio="xMidYMid meet" href="' + esc(icon) + '"/>');
+      out.push('<text class="nq" x="54" y="25">' + esc(qty) + '</text>');
+      out.push('<text class="nm" x="54" y="42">' + esc(trunc(r.name || id, 17)) + '</text>');
+      out.push('<text class="nsub" x="54" y="55">' + esc(trunc(sub, 22)) + '</text></g>');
     });
     out.push("</svg>"); return out.join("");
   }
@@ -788,17 +803,20 @@
     else sum = (r.category ? r.category + ". " : "") + cap(r.type || "item") + " crafted at " + (r.building || "?") + ". Yields " + (r.outputQty || 1) + "× per craft" + (isNum(r.craftTime) ? " in " + r.craftTime + "s" : "") + (isNum(r.power) ? " using " + r.power + "⚡" : "") + ". Sells for " + credits(r.value) + " each.";
     var stats = '<div class="md-stats">' + statBox("Sell value", credits(r.value)) + statBox("Type", cap(r.type || "—")) +
       (ins.length ? statBox("Built in", r.building || "—") : statBox("Source", "Mined")) +
+      statBox("Weight", isNum(r.su) ? r.su + " SU" : "—") +
       (isNum(r.craftTime) ? statBox("Craft time", r.craftTime + "s") : "") +
       (isNum(r.power) ? statBox("Power", r.power + " ⚡") : "") +
       (r.outputQty && r.outputQty !== 1 ? statBox("Yield", "×" + r.outputQty) : "") + '</div>';
     var inputsHTML = ins.length
-      ? '<div class="md-h">Made from</div>' + ins.map(function (x) { var ir = RECIPES[x.id] || {}; return '<div class="md-in" data-jump="' + esc(x.id) + '"><span class="iq">' + esc(String(x.qty)) + '×</span><span class="dot ' + (ir.type ? dc(ir.type) : "d-raw") + '"></span><span class="inm">' + esc(ir.name || x.id) + '</span></div>'; }).join("")
+      ? '<div class="md-h">Made from</div>' + ins.map(function (x) { var ir = RECIPES[x.id] || {}; return '<div class="md-in" data-jump="' + esc(x.id) + '"><img class="md-inimg" src="' + esc(itemImg(x.id)) + '" alt=""><span class="iq">' + esc(String(x.qty)) + '×</span><span class="inm">' + esc(ir.name || x.id) + '</span></div>'; }).join("")
       : '<div class="md-h">Made from</div><div class="md-sum" style="margin-top:0">Raw resource — gather it directly.</div>';
     var unlock = r.unlock ? '<div class="md-h" style="margin-top:14px">Unlock</div><div class="md-sum" style="margin-top:0">🔒 Requires the <b>' + esc(r.unlock.permit) + '</b> permit' + (isNum(r.unlock.totalScience) ? ' · ' + r.unlock.totalScience + ' science' : '') + '.</div>' : "";
     var altsNote = (r.alts && r.alts.length) ? '<div class="md-sum">+ ' + r.alts.length + ' alternative recipe' + (r.alts.length > 1 ? 's' : '') + ' available.</div>' : "";
-    return '<button class="mdx" data-el="md-close" title="Close">✕</button><h3>' + esc(r.name || id) + '</h3>' +
+    return '<button class="mdx" data-el="md-close" title="Close">✕</button>' +
+      '<div class="md-top"><img class="md-img" src="' + esc(itemImg(id)) + '" alt=""><div class="md-titles"><h3>' + esc(r.name || id) + '</h3><div>' +
       '<span class="badge" style="border-color:' + typeC + ';color:' + typeC + '">' + cap(r.type || "item") + '</span> ' +
       (confLabel ? '<span class="badge c-' + (r.confidence || "low") + '">' + esc(confLabel) + '</span>' : '') +
+      '</div></div></div>' +
       '<div class="md-sum">' + esc(sum) + '</div>' + stats + inputsHTML + unlock + altsNote;
   }
   function showNodeDetail(id) {
@@ -868,7 +886,7 @@
     <button class="btn" data-el="go-profit" type="button">📊 See in Profit Analyzer →</button>
   </div>
 </div>
-<div class="titlerow"><h2 data-el="sel-name">—</h2><span class="badge" data-el="sel-conf"></span><span class="badge" data-el="sel-cplx"></span><span class="meta" data-el="sel-building" style="color:var(--muted);font-size:13px"></span><span class="flag" data-el="sel-conflict" title=""></span></div>
+<div class="titlerow"><img class="sel-img" data-el="sel-img" alt=""><h2 data-el="sel-name">—</h2><span class="badge" data-el="sel-conf"></span><span class="badge" data-el="sel-cplx"></span><span class="meta" data-el="sel-building" style="color:var(--muted);font-size:13px"></span><span class="flag" data-el="sel-conflict" title=""></span></div>
 <div class="unlockinfo" data-el="sel-unlock"></div>
 <div class="grid">
   <div class="card"><div class="k">Store sell price</div><div class="v primary" data-el="m-sell">—</div><div class="note" data-el="m-sell-note"></div><div class="report" data-el="report-box"></div></div>
@@ -893,8 +911,9 @@
     var rc = rawCost(raw), cost = rc.cost, missingValue = rc.missingValue;
     var g = buildGraph(id, qty), gc = graphCosts(g), tax = gc.tax, buyCost = cost * BUYMULT, prodCost = buyCost + tax;
     $("sel-name").textContent = r.name; $("sel-name").className = tc(r.type);
+    if ($("sel-img")) { $("sel-img").src = itemImg(id); $("sel-img").alt = r.name; }
     $("sel-conf").className = "badge c-" + r.confidence; $("sel-conf").textContent = r.confidence + (r.userReported ? " (you)" : "");
-    $("sel-building").textContent = r.building ? "built at " + r.building : "";
+    $("sel-building").textContent = [r.building ? "built at " + r.building : "", isNum(r.su) ? r.su + " SU" : ""].filter(Boolean).join(" · ");
     var cf = $("sel-conflict"); if (r.conflict) { cf.textContent = "⚑ conflict"; cf.title = r.conflict; } else { cf.textContent = ""; cf.title = ""; }
     if (r.inputs && r.inputs.length) { var cx = complexityOf(id); $("sel-cplx").style.display = ""; $("sel-cplx").className = "badge " + cplxClass(cx.score); $("sel-cplx").textContent = "Complexity " + cx.score + " · " + cplxLabel(cx.score); $("sel-cplx").title = cx.steps + " craft steps · depth " + cx.depth + " · " + cx.raws + " raw inputs"; } else { $("sel-cplx").style.display = "none"; }
     var su = $("sel-unlock"); if (su) {
@@ -957,7 +976,7 @@
   }
   function renderCombo(filter) {
     var drop = $("item-drop"), ids = comboMatches(filter);
-    drop.innerHTML = ids.length ? ids.map(function (id) { var r = RECIPES[id]; return '<div class="comboitem" data-id="' + id + '"><span><span class="dot ' + dc(r.type) + '"></span>' + esc(r.name) + '</span><span class="ci-r"><span class="ci-val">' + (isNum(r.value) ? "⊙" + fmt(r.value) : "—") + '</span><span class="ci-cat">' + esc(r.category || r.type) + '</span></span></div>'; }).join("") : '<div class="comboitem"><span class="meta">No matches</span></div>';
+    drop.innerHTML = ids.length ? ids.map(function (id) { var r = RECIPES[id]; return '<div class="comboitem" data-id="' + id + '"><span><img class="ci-img" src="' + esc(itemImg(id)) + '" alt="">' + esc(r.name) + '</span><span class="ci-r"><span class="ci-val">' + (isNum(r.value) ? "⊙" + fmt(r.value) : "—") + '</span><span class="ci-cat">' + esc(r.category || r.type) + '</span></span></div>'; }).join("") : '<div class="comboitem"><span class="meta">No matches</span></div>';
     Array.prototype.forEach.call(drop.querySelectorAll(".comboitem[data-id]"), function (c) { c.addEventListener("mousedown", function (e) { e.preventDefault(); $("item-drop").classList.remove("open"); selectItem(c.getAttribute("data-id")); }); });
   }
 
@@ -973,7 +992,7 @@
     grid.innerHTML = cats.map(function (c) {
       var arr = groups[c].sort(function (a, b) { return RECIPES[a].name.localeCompare(RECIPES[b].name); });
       return '<div class="catgroup"><div class="catgrouphd">' + esc(c) + ' <span class="cc">' + arr.length + '</span></div><div class="catgrid">'
-        + arr.map(function (id) { var r = RECIPES[id]; return '<div class="catcard k-' + r.type + '" data-id="' + id + '"><div class="cn">' + esc(r.name) + '</div><div class="cm">' + (isNum(r.value) ? "⊙" + fmt(r.value) + " · " : "") + r.type + '</div></div>'; }).join("")
+        + arr.map(function (id) { var r = RECIPES[id]; return '<div class="catcard k-' + r.type + '" data-id="' + id + '"><img class="catimg" src="' + esc(itemImg(id)) + '" alt=""><div><div class="cn">' + esc(r.name) + '</div><div class="cm">' + (isNum(r.value) ? "⊙" + fmt(r.value) + " · " : "") + r.type + '</div></div></div>'; }).join("")
         + '</div></div>';
     }).join("") || '<div class="foot">No items match.</div>';
     Array.prototype.forEach.call(grid.querySelectorAll(".catcard"), function (c) { c.onclick = function () { selectItem(c.getAttribute("data-id")); }; });
