@@ -199,6 +199,23 @@
 .scapp .comboitem .ci-cat{color:var(--muted);font-size:10px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.04em}
 .scapp .comboitem .ci-val{color:var(--primary);font-family:"JetBrains Mono";font-size:12px}
 .scapp .comboitem .ci-r{display:flex;gap:8px;align-items:center;white-space:nowrap}
+.scapp.view-profit > .hero,.scapp.view-profit #sc-planner,.scapp.view-profit #sc-browse,.scapp.view-profit #sc-about{display:none}
+.scapp:not(.view-profit) #sc-profit{display:none}
+.scapp .charts{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:900px){.scapp .charts{grid-template-columns:1fr}}
+.scapp .chartcard{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px}
+.scapp .chartcard h4{margin:0 0 3px;font-family:Orbitron;font-size:14px;font-weight:600;color:var(--text)}
+.scapp .chartcard .chs{color:var(--muted);font-size:12px;margin-bottom:12px;font-family:Rajdhani}
+.scapp .chartcard svg{display:block;width:100%;height:auto;overflow:visible}
+.scapp .ax{stroke:var(--line)}
+.scapp .axt{fill:var(--muted);font-size:10px;font-family:"JetBrains Mono"}
+.scapp .axlbl{fill:var(--muted);font-size:10px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.06em}
+.scapp .pt:hover{stroke:#fff;stroke-width:1.5}
+.scapp .ptlbl{fill:var(--muted);font-size:9.5px;font-family:Inter;pointer-events:none}
+.scapp .barrow:hover .bar{opacity:1}
+.scapp .bar{opacity:.82}
+.scapp .barlbl{fill:var(--text);font-size:11px}
+.scapp .barval{fill:var(--primary);font-size:11px;font-family:"JetBrains Mono"}
 /* Continuous animations intentionally omitted — they caused full-screen repaints/lag.
    Visuals (starfield, hero glow, hex grid, brackets) remain as static effects. */
 `;
@@ -232,7 +249,7 @@
   <div class="sechead">Production Planner</div>
   <div class="panel lit brk" data-el="planner">
     <span class="cb tl"></span><span class="cb tr"></span><span class="cb bl"></span><span class="cb br"></span>
-    <div class="ph"><h3>Supply Chain</h3><span class="sub">raw materials → final product · prices in credits (⊙)</span></div>
+    <div class="ph"><h3>Supply Chain</h3><span class="sub">raw materials → final product · prices in credits (⊙)</span><button class="btn" data-el="ph-profit" style="margin-left:auto;padding:6px 12px;font-size:12px">📊 See in Profit Analyzer →</button></div>
     <div class="pbody" data-el="plannerbody"><div class="loading">▣ Initialising telemetry…</div></div>
   </div>
 </div></section>
@@ -246,7 +263,9 @@
 
 <section id="sc-profit"><div class="wrap">
   <div class="sechead">Profit Analyzer</div>
-  <div class="pnote">Every craftable item ranked by profit. <b>Mine → sell</b> = you mine the raw ore yourself (free) and only pay processing taxes along the way. <b>Buy → sell</b> = you buy the raw materials at market. Click a column to sort; click an item to open it in the planner.</div>
+  <div class="charts" data-el="charts"></div>
+  <div class="sechead" style="margin-top:30px">Full Ranking</div>
+  <div class="pnote"><b>Mine → sell</b> = mine the raw ore yourself (free) and only pay processing taxes. <b>Buy → sell</b> = buy the raw materials at market. <b>Profit / Cplx</b> = profit per unit of complexity — the best value for effort. Click a column to sort; click an item to open it in the planner.</div>
   <div class="pnote" data-el="pcount" style="margin-bottom:10px"></div>
   <div class="panel lit"><div class="pbody"><div class="pscroll"><table class="ptable" data-el="ptable"></table></div></div></div>
 </div></section>
@@ -289,7 +308,7 @@
   var toastT; function toast(m) { var t = $("toast"); if (!t) return; t.textContent = m; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove("show"); }, 2400); }
 
   /* ----------------------------- data ----------------------------- */
-  var RECIPES = {}, SOURCES = {};
+  var RECIPES = {}, SOURCES = {}, pendingScroll = null;
   var LS_KEY = "sc_reported_prices_v1";
   function loadReported() { try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch (e) { return {}; } }
   function applyReported() { var rep = loadReported(); for (var id in rep) { if (RECIPES[id]) { RECIPES[id].value = rep[id]; RECIPES[id].confidence = "reported"; RECIPES[id].userReported = true; } } }
@@ -514,7 +533,7 @@
     var srcSet = gatherSources(node, {}), srcs = Object.keys(srcSet).map(function (a) { return SOURCES[a] || a; });
     $("sources").innerHTML = srcs.length ? srcs.map(function (s, i) { var lbl = "[" + (i + 1) + "] " + s; return /^https?:/.test(s) ? '<a href="' + s + '" target="_blank" rel="noopener">' + esc(lbl) + "</a>" : '<span class="meta">' + esc(lbl) + "</span>"; }).join("<br>") : "<span class='meta'>—</span>";
     if ($("item-input") && document.activeElement !== $("item-input")) $("item-input").value = r.name;
-    try { var hh = "#i=" + id + (qty !== 1 ? "&q=" + qty : ""); history.replaceState(null, "", location.pathname + location.search + hh); localStorage.setItem("sc_last", id); } catch (e) {}
+    try { localStorage.setItem("sc_last", id); if (currentView() !== "profit") { var hh = "#i=" + id + (qty !== 1 ? "&q=" + qty : ""); history.replaceState(null, "", location.pathname + location.search + hh); } } catch (e) {}
   }
 
   function populate() {
@@ -601,7 +620,64 @@
     profitRows = computeProfitRows();
     var craftable = Object.keys(RECIPES).filter(function (id) { return RECIPES[id].inputs && RECIPES[id].inputs.length; }).length;
     if ($("pcount")) $("pcount").innerHTML = "Showing <b style='color:var(--text)'>" + profitRows.length + "</b> of " + craftable + " craftable items — the rest still need a price or a full recipe.";
+    buildCharts();
     renderProfit();
+  }
+  function chartScatter(rows) {
+    if (!rows.length) return '<div class="foot">No data.</div>';
+    var W = 460, H = 340, pl = 46, pr = 14, pt = 14, pb = 38;
+    var maxX = Math.max(5, Math.max.apply(null, rows.map(function (r) { return r.cplx; })));
+    var maxY = Math.max(10, Math.max.apply(null, rows.map(function (r) { return r.mined; })));
+    var sx = function (v) { return pl + v / maxX * (W - pl - pr); }, sy = function (v) { return H - pb - v / maxY * (H - pt - pb); };
+    var s = ['<svg viewBox="0 0 ' + W + ' ' + H + '">'];
+    s.push('<rect x="' + pl + '" y="' + pt + '" width="' + ((W - pl - pr) * 0.42).toFixed(0) + '" height="' + ((H - pt - pb) * 0.5).toFixed(0) + '" fill="rgba(95,224,138,.06)"/>');
+    for (var i = 0; i <= 4; i++) { var yv = maxY * i / 4, y = sy(yv); s.push('<line class="ax" x1="' + pl + '" y1="' + y.toFixed(1) + '" x2="' + (W - pr) + '" y2="' + y.toFixed(1) + '" stroke-opacity="' + (i ? ".2" : ".5") + '"/>'); s.push('<text class="axt" x="' + (pl - 6) + '" y="' + (y + 3).toFixed(1) + '" text-anchor="end">' + fmt(yv) + '</text>'); }
+    for (var j = 0; j <= 4; j++) { var xv = maxX * j / 4, x = sx(xv); s.push('<text class="axt" x="' + x.toFixed(1) + '" y="' + (H - pb + 14) + '" text-anchor="middle">' + Math.round(xv) + '</text>'); }
+    s.push('<text class="axlbl" x="' + ((pl + W - pr) / 2).toFixed(0) + '" y="' + (H - 3) + '" text-anchor="middle">Complexity →</text>');
+    s.push('<text class="axlbl" transform="translate(11,' + ((pt + H - pb) / 2).toFixed(0) + ') rotate(-90)" text-anchor="middle">Mine→Sell profit ⊙</text>');
+    rows.forEach(function (r) { var c = typeColor((RECIPES[r.id] || {}).type || "product"); s.push('<circle class="pt" data-id="' + r.id + '" cx="' + sx(r.cplx).toFixed(1) + '" cy="' + sy(r.mined).toFixed(1) + '" r="5" fill="' + c + '" fill-opacity=".85"><title>' + esc(r.name + " · profit ⊙" + fmt(r.mined) + " · complexity " + r.cplx) + '</title></circle>'); });
+    rows.slice().sort(function (a, b) { return b.ppc - a.ppc; }).slice(0, 4).forEach(function (r) { s.push('<text class="ptlbl" x="' + (sx(r.cplx) + 7).toFixed(1) + '" y="' + (sy(r.mined) + 3).toFixed(1) + '">' + esc(trunc(r.name, 15)) + '</text>'); });
+    s.push('</svg>'); return s.join('');
+  }
+  function chartBars(rows) {
+    var top = rows.slice().sort(function (a, b) { return b.mined - a.mined; }).slice(0, 12);
+    if (!top.length) return '<div class="foot">No data.</div>';
+    var W = 460, rh = 25, pl = 132, pr = 44, pt = 6, H = pt * 2 + top.length * rh;
+    var maxV = Math.max(1, Math.max.apply(null, top.map(function (r) { return r.mined; })));
+    var s = ['<svg viewBox="0 0 ' + W + ' ' + H + '">'];
+    top.forEach(function (r, i) {
+      var y = pt + i * rh, bw = r.mined / maxV * (W - pl - pr), c = typeColor((RECIPES[r.id] || {}).type || "product");
+      s.push('<g class="barrow" data-id="' + r.id + '"><title>' + esc(r.name + " · ⊙" + fmt(r.mined)) + '</title>');
+      s.push('<text class="barlbl" x="' + (pl - 8) + '" y="' + (y + rh / 2 + 4) + '" text-anchor="end">' + esc(trunc(r.name, 18)) + '</text>');
+      s.push('<rect class="bar" x="' + pl + '" y="' + (y + 4) + '" width="' + bw.toFixed(1) + '" height="' + (rh - 9) + '" rx="2" fill="' + c + '"/>');
+      s.push('<text class="barval" x="' + (pl + bw + 5).toFixed(1) + '" y="' + (y + rh / 2 + 4) + '">' + fmt(r.mined) + '</text></g>');
+    });
+    s.push('</svg>'); return s.join('');
+  }
+  function buildCharts() {
+    var el = $("charts"); if (!el) return;
+    el.innerHTML =
+      '<div class="chartcard"><h4>Profit vs Complexity</h4><div class="chs">Top-left (green) = best value for effort — high profit, low complexity</div>' + chartScatter(profitRows) + '</div>'
+      + '<div class="chartcard"><h4>Top 12 · Mine→Sell profit</h4><div class="chs">Most profit per unit if you mine the ore yourself</div>' + chartBars(profitRows) + '</div>';
+    Array.prototype.forEach.call(el.querySelectorAll("[data-id]"), function (n) { n.style.cursor = "pointer"; n.addEventListener("click", function () { selectItem(n.getAttribute("data-id")); }); });
+  }
+  function currentView() { return (/\/profit/i.test(location.pathname) || /^#\/?profit/i.test(location.hash)) ? "profit" : "home"; }
+  function applyView() {
+    var v = currentView();
+    if (v === "profit") root.classList.add("view-profit"); else root.classList.remove("view-profit");
+    var np = $("nav-profit"), npl = $("nav-planner");
+    if (np) np.style.color = v === "profit" ? "var(--primary)" : "";
+    if (npl) npl.style.color = v === "home" ? "var(--primary)" : "";
+    if (v === "profit") window.scrollTo(0, 0);
+  }
+  function route() {
+    applyView();
+    var h = location.hash;
+    if (currentView() === "home") {
+      if (pendingScroll) { var ps = pendingScroll; pendingScroll = null; setTimeout(function () { scrollTo(ps); }, 30); }
+      else if (/^#i=/.test(h)) restoreFromHash();
+      else if (h === "#sc-browse" || h === "#sc-about") scrollTo(h);
+    }
   }
 
   function buildStats() {
@@ -614,7 +690,7 @@
 
   /* ----------------------------- nav / interactions ----------------------------- */
   function scrollTo(sel) { var el = document.querySelector(sel); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); }
-  function selectItem(id) { var sel = $("item"); if (!sel || !RECIPES[id]) return; sel.value = id; compute(); scrollTo("#sc-planner"); }
+  function selectItem(id) { if (!RECIPES[id]) return; if (root.classList.contains("view-profit")) { location.hash = "#i=" + id; return; } var sel = $("item"); if (!sel) return; sel.value = id; compute(); scrollTo("#sc-planner"); }
 
   function parseHash(hash) {
     var h = (hash != null ? hash : location.hash || "").replace(/^#/, ""); if (!h) return null;
@@ -650,16 +726,19 @@
     inp.addEventListener("input", function () { renderCombo(inp.value); $("item-drop").classList.add("open"); });
     inp.addEventListener("blur", function () { setTimeout(function () { $("item-drop").classList.remove("open"); inp.setAttribute("aria-expanded", "false"); }, 160); });
     inp.addEventListener("keydown", function (e) { if (e.key === "Enter") { var m = comboMatches(inp.value); if (m.length) { $("item-drop").classList.remove("open"); selectItem(m[0]); inp.blur(); } } else if (e.key === "Escape") { $("item-drop").classList.remove("open"); inp.blur(); } });
-    $("nav-planner").onclick = function () { scrollTo("#sc-planner"); };
-    $("nav-launch").onclick = function () { scrollTo("#sc-planner"); };
-    $("cta-launch").onclick = function () { scrollTo("#sc-planner"); };
-    $("nav-browse").onclick = function () { scrollTo("#sc-browse"); };
-    $("cta-browse").onclick = function () { scrollTo("#sc-browse"); };
-    $("nav-profit").onclick = function () { scrollTo("#sc-profit"); };
-    $("nav-about").onclick = function () { scrollTo("#sc-about"); };
-    window.addEventListener("hashchange", restoreFromHash);
+    var homeScroll = function (sec) { return function (e) { if (e) e.preventDefault(); if (root.classList.contains("view-profit")) { pendingScroll = sec; location.hash = ""; } else scrollTo(sec); }; };
+    $("nav-planner").onclick = function (e) { e.preventDefault(); if (root.classList.contains("view-profit")) location.hash = ""; else window.scrollTo({ top: 0, behavior: "smooth" }); };
+    $("nav-launch").onclick = homeScroll("#sc-planner");
+    $("cta-launch").onclick = homeScroll("#sc-planner");
+    $("cta-browse").onclick = homeScroll("#sc-browse");
+    $("nav-browse").onclick = homeScroll("#sc-browse");
+    $("nav-about").onclick = homeScroll("#sc-about");
+    $("nav-profit").onclick = function (e) { e.preventDefault(); location.hash = "#profit"; };
+    if ($("ph-profit")) $("ph-profit").onclick = function () { location.hash = "#profit"; };
+    window.addEventListener("hashchange", route);
     populate();
     pickDefault(initHash, initLast);
     compute();
+    applyView();
   }
 })();
