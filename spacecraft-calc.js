@@ -484,7 +484,7 @@
     <div class="rmform panel lit" style="padding:18px">
       <h3 style="font-family:Orbitron;font-size:15px;margin:0 0 4px;color:var(--text)">Tell us what would help</h3>
       <p style="color:var(--muted);font-size:13px;margin:0 0 14px;line-height:1.5">Got an idea for the planner? Fill out the quick form below — we read every submission, and the best ideas land on the roadmap.</p>
-      <div class="rqformwrap"><iframe class="gform" data-el="rq-iframe" src="__GOOGLE_FORM_EMBED_URL__" title="SpaceCraft Planner feature request form" loading="lazy">Loading the request form…</iframe></div>
+      <div class="rqformwrap"><iframe class="gform" data-el="rq-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLScQypr3c2EsZJMcJ2hxG26RVRL578Qb_o3YMKuPm_vqVKNQFw/viewform?embedded=true" title="SpaceCraft Planner feature request form" loading="lazy">Loading the request form…</iframe></div>
     </div>
     <div class="rqaside">
       <h4>How it works</h4>
