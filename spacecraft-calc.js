@@ -274,14 +274,15 @@
 .scapp .mapctl{position:absolute;top:10px;right:10px;z-index:5;display:flex;flex-direction:column;gap:6px}
 .scapp .mapctl button{width:34px;height:34px;border:1px solid var(--line);background:rgba(20,32,46,.92);color:var(--primary);border-radius:6px;cursor:pointer;font-size:17px;line-height:1;font-family:"JetBrains Mono"}
 .scapp .mapctl button:hover{border-color:var(--primary)}
-.scapp .slane{stroke:rgba(130,160,200,.22);stroke-width:1.4;stroke-dasharray:5 4}
+.scapp .sgrid{stroke:rgba(60,135,140,.09);stroke-width:1}
+.scapp .slane{stroke:rgba(150,170,200,.16);stroke-width:1}
 .scapp .smapnode{cursor:pointer}
-.scapp .snebula{opacity:.10}
-.scapp .sblob{fill-opacity:.14;stroke-width:1.8;transition:fill-opacity .12s}
-.scapp .smapnode:hover .sblob{fill-opacity:.28}
-.scapp .smapnode.sel .sblob{fill-opacity:.34;stroke-width:3}
-.scapp .smapnode.obst .sblob{stroke-dasharray:6 5}
-.scapp .sdot{fill:rgba(190,215,245,.8)}
+.scapp .smesh{stroke:rgba(150,170,200,.14);stroke-width:.8}
+.scapp .shull{fill-opacity:.06;stroke-width:1.8;stroke-opacity:.9;stroke-linejoin:round;transition:fill-opacity .12s}
+.scapp .smapnode:hover .shull{fill-opacity:.16}
+.scapp .smapnode.sel .shull{fill-opacity:.2;stroke-width:2.6}
+.scapp .smapnode.obst .shull{stroke-dasharray:6 5}
+.scapp .sdot{stroke:rgba(8,14,22,.55);stroke-width:.5}
 .scapp .sname{fill:var(--text);font-size:21px;font-family:Rajdhani;font-weight:600;text-anchor:middle;pointer-events:none;text-transform:uppercase;letter-spacing:.05em}
 .scapp .smapnode.sel .sname{fill:var(--primary)}
 .scapp .sstn{fill:var(--secondary);font-size:15px;font-family:Rajdhani;text-anchor:middle;pointer-events:none;letter-spacing:.04em}
@@ -900,21 +901,47 @@
   function avgSysOf(s) { var a = s.minSystems || 1, b = s.maxSystems || a; return (a + b) / 2; }
   function shash(str) { var h = 0, i; for (i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) | 0; return Math.abs(h); }
   function frand(n) { var x = Math.sin(n * 12.9898) * 43758.5453; return x - Math.floor(x); }
+  var DOTPAL = ["#6f9bd6", "#d6a766", "#5bc8c0", "#9d8fd6"];
+  function convexHull(pts) {
+    if (pts.length < 3) return pts.slice();
+    var p = pts.slice().sort(function (a, b) { return a.x - b.x || a.y - b.y; });
+    function cr(o, a, b) { return (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x); }
+    var lo = [], up = [], i;
+    for (i = 0; i < p.length; i++) { while (lo.length >= 2 && cr(lo[lo.length - 2], lo[lo.length - 1], p[i]) <= 0) lo.pop(); lo.push(p[i]); }
+    for (i = p.length - 1; i >= 0; i--) { while (up.length >= 2 && cr(up[up.length - 2], up[up.length - 1], p[i]) <= 0) up.pop(); up.push(p[i]); }
+    lo.pop(); up.pop(); return lo.concat(up);
+  }
+  function expandHull(pts, k) {
+    var h = convexHull(pts); if (h.length < 3) return h;
+    var cx = 0, cy = 0; h.forEach(function (q) { cx += q.x; cy += q.y; }); cx /= h.length; cy /= h.length;
+    return h.map(function (q) { return { x: cx + (q.x - cx) * k, y: cy + (q.y - cy) * k }; });
+  }
   function drawSectorMap() {
     var svg = $("galaxysvg"); if (!svg) return;
     svg.setAttribute("viewBox", "0 0 1000 1000");
-    var byId = {}; ATLAS.sectors.forEach(function (s) { byId[s.id] = s; });
-    var p = ['<g data-el="galaxy-g">'];
-    (ATLAS.sectorLinks || []).forEach(function (e) { var a = byId[e[0]], b = byId[e[1]]; if (a && b) p.push('<line class="slane" x1="' + a.x + '" y1="' + a.y + '" x2="' + b.x + '" y2="' + b.y + '"/>'); });
+    var dotsBy = {};
     ATLAS.sectors.forEach(function (s) {
-      var col = tierColor(s.tier);
-      p.push('<g class="smapnode' + (sectorSel === s.id ? ' sel' : '') + (s.special ? ' obst' : '') + '" data-id="' + esc(s.id) + '" transform="translate(' + s.x + ',' + s.y + ')">');
-      p.push('<circle class="snebula" r="' + (s.r + 13) + '" fill="' + col + '"/>');
-      p.push('<circle class="sblob" r="' + s.r + '" fill="' + col + '" stroke="' + col + '"/>');
-      var nd = Math.min(Math.round(avgSysOf(s)), 36), seed = shash(s.id), i;
-      for (i = 0; i < nd; i++) { var ang = frand(seed + i * 2) * 6.2832, rr = Math.sqrt(frand(seed + i * 2 + 1)) * (s.r - 3); p.push('<circle class="sdot" cx="' + (Math.cos(ang) * rr).toFixed(1) + '" cy="' + (Math.sin(ang) * rr).toFixed(1) + '" r="2.1"/>'); }
-      if (s.station) { p.push('<circle class="smark" r="6"/><text class="sstn" y="' + (s.r + 20) + '">' + esc(s.station) + '</text>'); }
-      p.push('<text class="sname" y="' + (-(s.r) - 9) + '">' + esc(s.name) + '</text></g>');
+      var nd = Math.max(1, Math.min(Math.round(avgSysOf(s)), 40)), seed = shash(s.id), arr = [], i;
+      for (i = 0; i < nd; i++) { var ang = frand(seed + i * 2) * 6.2832, rr = Math.sqrt(frand(seed + i * 2 + 1)) * s.r; arr.push({ x: s.x + Math.cos(ang) * rr, y: s.y + Math.sin(ang) * rr }); }
+      dotsBy[s.id] = arr;
+    });
+    var p = ['<g data-el="galaxy-g">'], gi;
+    for (gi = 0; gi <= 1000; gi += 50) { p.push('<line class="sgrid" x1="' + gi + '" y1="0" x2="' + gi + '" y2="1000"/><line class="sgrid" x1="0" y1="' + gi + '" x2="1000" y2="' + gi + '"/>'); }
+    (ATLAS.sectorLinks || []).forEach(function (e) {
+      var A = dotsBy[e[0]], B = dotsBy[e[1]]; if (!A || !B || !A.length || !B.length) return;
+      var best = null, bd = 1e18, ai, bi;
+      for (ai = 0; ai < A.length; ai++) for (bi = 0; bi < B.length; bi++) { var dx = A[ai].x - B[bi].x, dy = A[ai].y - B[bi].y, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = [A[ai], B[bi]]; } }
+      if (best) p.push('<line class="slane" x1="' + best[0].x.toFixed(1) + '" y1="' + best[0].y.toFixed(1) + '" x2="' + best[1].x.toFixed(1) + '" y2="' + best[1].y.toFixed(1) + '"/>');
+    });
+    ATLAS.sectors.forEach(function (s) {
+      var col = tierColor(s.tier), dots = dotsBy[s.id], sh = shash(s.id);
+      p.push('<g class="smapnode' + (sectorSel === s.id ? ' sel' : '') + (s.special ? ' obst' : '') + '" data-id="' + esc(s.id) + '">');
+      if (dots.length >= 4) { var h = expandHull(dots, 1.2); p.push('<polygon class="shull" points="' + h.map(function (q) { return q.x.toFixed(1) + ',' + q.y.toFixed(1); }).join(" ") + '" fill="' + col + '" stroke="' + col + '"/>'); }
+      else { p.push('<circle class="shull" cx="' + s.x + '" cy="' + s.y + '" r="' + Math.max(s.r, 14) + '" fill="' + col + '" stroke="' + col + '"/>'); }
+      if (dots.length > 2) { var seen = {}; dots.forEach(function (d, di) { var nn = dots.map(function (o, oi) { return { oi: oi, d: (o.x - d.x) * (o.x - d.x) + (o.y - d.y) * (o.y - d.y) }; }).filter(function (z) { return z.oi !== di; }).sort(function (a, b) { return a.d - b.d; }).slice(0, 2); nn.forEach(function (z) { var key = Math.min(di, z.oi) + "_" + Math.max(di, z.oi); if (seen[key]) return; seen[key] = 1; p.push('<line class="smesh" x1="' + d.x.toFixed(1) + '" y1="' + d.y.toFixed(1) + '" x2="' + dots[z.oi].x.toFixed(1) + '" y2="' + dots[z.oi].y.toFixed(1) + '"/>'); }); }); }
+      dots.forEach(function (d, di) { p.push('<circle class="sdot" cx="' + d.x.toFixed(1) + '" cy="' + d.y.toFixed(1) + '" r="4" fill="' + DOTPAL[(sh + di) % DOTPAL.length] + '"/>'); });
+      if (s.station) p.push('<circle class="smark" cx="' + s.x + '" cy="' + s.y + '" r="6"/><text class="sstn" x="' + s.x + '" y="' + (s.y + s.r + 22) + '">' + esc(s.station) + '</text>');
+      p.push('<text class="sname" x="' + s.x + '" y="' + (s.y - s.r - 12) + '">' + esc(s.name) + '</text></g>');
     });
     p.push('</g>'); svg.innerHTML = p.join("");
     Array.prototype.forEach.call(svg.querySelectorAll(".smapnode"), function (g) { g.addEventListener("click", function () { selectSector(g.getAttribute("data-id")); }); });
