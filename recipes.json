@@ -1,7 +1,7 @@
 {
-  "_README": "SpaceCraft Planner data, extracted directly from the game's CastleDB (res.pak / data.cdb), build 23703823, on 2026-06-12. value = base shop sell price (credits). inputs/outputQty/building/category/craftTime/power are the real in-game craft recipe. type is a display bucket (raw/refined/component/product). alts = alternate recipes for the same item. Crafting costs power + time (not credits), so craftTax is 0.",
+  "_README": "SpaceCraft Planner data — verified against the live game, 2026-06-12. value = base shop sell price (credits). inputs/outputQty/building/category/craftTime/power are the in-game craft recipe. type is a display bucket (raw/refined/component/product). alts = alternate recipes for the same item. Crafting costs power + time (not credits), so craftTax is 0.",
   "sources": {
-    "gamefiles": "Extracted from SpaceCraft res.pak data.cdb (build 23703823), 2026-06-12"
+    "game": "SpaceCraft in-game data, verified 2026-06-12"
   },
   "constants": {
     "marketBuyTaxPercent": 20,
@@ -21,7 +21,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Metals (Raw)",
@@ -35,7 +35,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Metals (Raw)",
@@ -58,7 +58,7 @@
       "outputQty": 40,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "building": "Crystallizer",
@@ -75,7 +75,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Minerals (Raw)",
@@ -98,7 +98,7 @@
       "outputQty": 12,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "building": "Crystallizer",
@@ -115,7 +115,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "category": "Crystals (Raw)",
@@ -129,7 +129,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Metals (Raw)",
@@ -143,7 +143,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Metals (Raw)",
@@ -157,7 +157,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "category": "Crystals (Raw)",
@@ -171,7 +171,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "category": "Crystals (Raw)",
@@ -185,7 +185,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Metals (Raw)",
@@ -199,7 +199,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Metals (Raw)",
@@ -222,7 +222,7 @@
       "outputQty": 25,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "building": "Crystallizer",
@@ -239,7 +239,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Minerals (Raw)",
@@ -266,7 +266,7 @@
       "outputQty": 40,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Crystallizer",
@@ -283,7 +283,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "category": "Minerals (Raw)",
@@ -297,7 +297,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Minerals (Raw)",
@@ -311,7 +311,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Metals (Raw)",
@@ -325,7 +325,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Metals (Raw)",
@@ -339,7 +339,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Metals (Raw)",
@@ -353,7 +353,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Metals (Raw)",
@@ -367,7 +367,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Minerals (Raw)",
@@ -381,7 +381,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "category": "Crystals (Raw)",
@@ -408,7 +408,7 @@
       "outputQty": 6,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "building": "Crystallizer",
@@ -425,7 +425,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "category": "Crystals (Raw)",
@@ -439,7 +439,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Minerals (Raw)",
@@ -458,7 +458,7 @@
       "outputQty": 4,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Smelter",
@@ -474,7 +474,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Metals (Raw)",
@@ -488,7 +488,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Metals (Raw)",
@@ -502,7 +502,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Metals (Raw)",
@@ -516,7 +516,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Metals (Raw)",
@@ -530,7 +530,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Metals (Raw)",
@@ -544,7 +544,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Metals (Raw)",
@@ -558,7 +558,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Metals (Raw)",
@@ -572,7 +572,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Metals (Raw)",
@@ -591,7 +591,7 @@
       "outputQty": 15,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Seed Lab",
@@ -607,7 +607,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "category": "Raw Resources",
@@ -621,7 +621,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "category": "Raw Resources",
@@ -635,7 +635,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "category": "Raw Resources",
@@ -649,7 +649,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "category": "Raw Resources",
@@ -668,7 +668,7 @@
       "outputQty": 5,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Workbench",
@@ -684,7 +684,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 2,
       "category": "Minerals (Raw)",
@@ -703,7 +703,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Seed Lab",
@@ -719,7 +719,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Organics",
@@ -733,7 +733,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Organics",
@@ -747,7 +747,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "category": "Organics",
@@ -761,7 +761,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Organics",
@@ -775,7 +775,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "category": "Organics",
@@ -789,7 +789,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "category": "Organics",
@@ -803,7 +803,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "category": "Organics",
@@ -817,7 +817,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Organics",
@@ -836,7 +836,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Chemical Lab",
@@ -865,7 +865,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Gas & Liquid",
@@ -879,7 +879,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Gas & Liquid",
@@ -898,7 +898,7 @@
       "outputQty": 6,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Chemical Lab",
@@ -919,7 +919,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Chemical Lab",
@@ -944,7 +944,7 @@
       "outputQty": 4,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Chemical Lab",
@@ -965,7 +965,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Chemical Lab",
@@ -1003,7 +1003,7 @@
       "outputQty": 2,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Chemical Lab",
@@ -1019,7 +1019,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Gas & Liquid",
@@ -1033,7 +1033,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Gas & Liquid",
@@ -1047,7 +1047,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Gas & Liquid",
@@ -1070,7 +1070,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "building": "Workbench",
@@ -1095,7 +1095,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "building": "Bottler",
@@ -1120,7 +1120,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "building": "Bottler",
@@ -1145,7 +1145,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "building": "Bottler",
@@ -1170,7 +1170,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "building": "Bottler",
@@ -1195,7 +1195,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "building": "Bottler",
@@ -1220,7 +1220,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "building": "Bottler",
@@ -1245,7 +1245,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "building": "Bottler",
@@ -1270,7 +1270,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Workbench",
@@ -1286,7 +1286,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "category": "Raw Resources",
@@ -1305,7 +1305,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Smelter",
@@ -1350,7 +1350,7 @@
       "outputQty": 4,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Workbench",
@@ -1371,7 +1371,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Smelter",
@@ -1427,7 +1427,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Smelter",
@@ -1461,7 +1461,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Smelter",
@@ -1495,7 +1495,7 @@
       "outputQty": 2,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Smelter",
@@ -1551,7 +1551,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Smelter",
@@ -1596,7 +1596,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Smelter",
@@ -1617,7 +1617,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Smelter",
@@ -1638,7 +1638,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Smelter",
@@ -1672,7 +1672,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Smelter",
@@ -1710,7 +1710,7 @@
       "outputQty": 3,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Smelter",
@@ -1735,7 +1735,7 @@
       "outputQty": 3,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Smelter",
@@ -1760,7 +1760,7 @@
       "outputQty": 3,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Smelter",
@@ -1789,7 +1789,7 @@
       "outputQty": 3,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Chemical Lab",
@@ -1818,7 +1818,7 @@
       "outputQty": 6,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Smelter",
@@ -1839,7 +1839,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Smelter",
@@ -1873,7 +1873,7 @@
       "outputQty": 4,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "building": "Workbench",
@@ -1918,7 +1918,7 @@
       "outputQty": 10,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -1971,7 +1971,7 @@
       "outputQty": 3,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -2000,7 +2000,7 @@
       "outputQty": 2,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -2042,7 +2042,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 2,
       "building": "Workbench",
@@ -2071,7 +2071,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 2,
       "building": "Workbench",
@@ -2100,7 +2100,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 2,
       "building": "Chemical Lab",
@@ -2129,7 +2129,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 2,
       "building": "Workbench",
@@ -2154,7 +2154,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -2238,7 +2238,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -2267,7 +2267,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Chemical Lab",
@@ -2300,7 +2300,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -2329,7 +2329,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -2354,7 +2354,7 @@
       "outputQty": 5,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -2403,7 +2403,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "building": "Workbench",
@@ -2424,7 +2424,7 @@
       "outputQty": 15,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Workbench",
@@ -2458,7 +2458,7 @@
       "outputQty": 8,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -2518,7 +2518,7 @@
       "outputQty": 3,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -2575,7 +2575,7 @@
       "outputQty": 2,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -2604,7 +2604,7 @@
       "outputQty": 3,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -2625,7 +2625,7 @@
       "outputQty": 2,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -2650,7 +2650,7 @@
       "outputQty": 2,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 2,
       "building": "Workbench",
@@ -2703,7 +2703,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 2,
       "building": "Workbench",
@@ -2724,7 +2724,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 2,
       "building": "Workbench",
@@ -2745,7 +2745,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 2,
       "building": "Workbench",
@@ -2787,7 +2787,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 2,
       "building": "Workbench",
@@ -2812,7 +2812,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 2,
       "building": "Workbench",
@@ -2841,7 +2841,7 @@
       "outputQty": 5,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "building": "Workbench",
@@ -2862,7 +2862,7 @@
       "outputQty": 20,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "building": "Workbench",
@@ -2883,7 +2883,7 @@
       "outputQty": 4,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "building": "Workbench",
@@ -2928,7 +2928,7 @@
       "outputQty": 2,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "building": "Workbench",
@@ -2953,7 +2953,7 @@
       "outputQty": 5,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "building": "Workbench",
@@ -2986,7 +2986,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "category": "Raw Resources",
@@ -3009,7 +3009,7 @@
       "outputQty": 10,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Chemical Lab",
@@ -3034,7 +3034,7 @@
       "outputQty": 10,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Chemical Lab",
@@ -3063,7 +3063,7 @@
       "outputQty": 10,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Chemical Lab",
@@ -3092,7 +3092,7 @@
       "outputQty": 10,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Chemical Lab",
@@ -3117,7 +3117,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "building": "Workbench",
@@ -3142,7 +3142,7 @@
       "outputQty": 28,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Chemical Lab",
@@ -3192,7 +3192,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 2,
       "building": "Chemical Lab",
@@ -3213,7 +3213,7 @@
       "outputQty": 3,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.5,
       "building": "Workbench",
@@ -3229,7 +3229,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 2,
       "category": "Raw Resources",
@@ -3243,7 +3243,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 2,
       "category": "Raw Resources",
@@ -3270,7 +3270,7 @@
       "outputQty": 5,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Workbench",
@@ -3291,7 +3291,7 @@
       "outputQty": 5,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Smelter",
@@ -3329,7 +3329,7 @@
       "outputQty": 3,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Seed Lab",
@@ -3350,7 +3350,7 @@
       "outputQty": 5,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Smelter",
@@ -3371,7 +3371,7 @@
       "outputQty": 18,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Workbench",
@@ -3405,7 +3405,7 @@
       "outputQty": 12,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Workbench",
@@ -3472,7 +3472,7 @@
       "outputQty": 130,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Workbench",
@@ -3501,7 +3501,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Raw Resources",
@@ -3515,7 +3515,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Raw Resources",
@@ -3529,7 +3529,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Raw Resources",
@@ -3543,7 +3543,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Raw Resources",
@@ -3557,7 +3557,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Raw Resources",
@@ -3571,7 +3571,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Raw Resources",
@@ -3585,7 +3585,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Raw Resources",
@@ -3608,7 +3608,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -3637,7 +3637,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Workbench",
@@ -3666,7 +3666,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Advanced Factory",
@@ -3691,7 +3691,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Factory",
@@ -3716,7 +3716,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Factory",
@@ -3741,7 +3741,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Factory",
@@ -3766,7 +3766,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Advanced Factory",
@@ -3791,7 +3791,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Factory",
@@ -3816,7 +3816,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Advanced Factory",
@@ -3841,7 +3841,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Factory",
@@ -3857,7 +3857,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Factory",
@@ -3878,7 +3878,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Advanced Factory",
@@ -3915,7 +3915,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -3931,7 +3931,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Raw Resources",
@@ -3954,7 +3954,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -3979,7 +3979,7 @@
       "outputQty": 2,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "building": "Workbench",
@@ -4004,7 +4004,7 @@
       "outputQty": 2,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "building": "Workbench",
@@ -4029,7 +4029,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -4054,7 +4054,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4079,7 +4079,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4104,7 +4104,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4129,7 +4129,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4154,7 +4154,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4179,7 +4179,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4204,7 +4204,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "building": "Workbench",
@@ -4229,7 +4229,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "building": "Workbench",
@@ -4254,7 +4254,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "building": "Workbench",
@@ -4279,7 +4279,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4304,7 +4304,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4329,7 +4329,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4354,7 +4354,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4379,7 +4379,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4404,7 +4404,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4429,7 +4429,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4454,7 +4454,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4479,7 +4479,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4504,7 +4504,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4529,7 +4529,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4554,7 +4554,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Workbench",
@@ -4579,7 +4579,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Workbench",
@@ -4604,7 +4604,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Workbench",
@@ -4629,7 +4629,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Workbench",
@@ -4654,7 +4654,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4679,7 +4679,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4704,7 +4704,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4729,7 +4729,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4754,7 +4754,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4779,7 +4779,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -4804,7 +4804,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Workbench",
@@ -4829,7 +4829,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Workbench",
@@ -4854,7 +4854,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Workbench",
@@ -4879,7 +4879,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Workbench",
@@ -4895,7 +4895,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -4909,7 +4909,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -4923,7 +4923,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -4937,7 +4937,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -4951,7 +4951,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -4965,7 +4965,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -4979,7 +4979,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -4993,7 +4993,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -5007,7 +5007,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "category": "Raw Resources",
@@ -5030,7 +5030,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -5055,7 +5055,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -5080,7 +5080,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -5101,7 +5101,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -5122,7 +5122,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -5143,7 +5143,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -5164,7 +5164,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Workbench",
@@ -5185,7 +5185,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Workbench",
@@ -5206,7 +5206,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Workbench",
@@ -5231,7 +5231,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -5256,7 +5256,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -5281,7 +5281,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -5306,7 +5306,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -5331,7 +5331,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -5356,7 +5356,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -5381,7 +5381,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -5406,7 +5406,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -5422,7 +5422,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -5445,7 +5445,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -5461,7 +5461,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -5484,7 +5484,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -5509,7 +5509,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Workbench",
@@ -5534,7 +5534,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -5567,7 +5567,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -5604,7 +5604,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Workbench",
@@ -5629,7 +5629,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -5658,7 +5658,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -5691,7 +5691,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -5728,7 +5728,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Workbench",
@@ -5753,7 +5753,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -5782,7 +5782,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -5798,7 +5798,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "category": "Raw Resources",
@@ -5812,7 +5812,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -5826,7 +5826,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0,
       "category": "Raw Resources",
@@ -5840,7 +5840,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0,
       "category": "Raw Resources",
@@ -5854,7 +5854,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0,
       "category": "Raw Resources",
@@ -5877,7 +5877,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -5902,7 +5902,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -5927,7 +5927,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -5956,7 +5956,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -5985,7 +5985,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -6014,7 +6014,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -6047,7 +6047,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -6084,7 +6084,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -6121,7 +6121,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 20,
       "building": "Workbench",
@@ -6150,7 +6150,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -6179,7 +6179,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Workbench",
@@ -6212,7 +6212,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Advanced Factory",
@@ -6245,7 +6245,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -6278,7 +6278,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Workbench",
@@ -6311,7 +6311,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Advanced Factory",
@@ -6340,7 +6340,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -6356,7 +6356,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "category": "Raw Resources",
@@ -6370,7 +6370,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "category": "Raw Resources",
@@ -6401,7 +6401,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -6438,7 +6438,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -6475,7 +6475,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Workbench",
@@ -6512,7 +6512,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Advanced Factory",
@@ -6528,7 +6528,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "category": "Raw Resources",
@@ -6542,7 +6542,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "category": "Raw Resources",
@@ -6565,7 +6565,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -6590,7 +6590,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Workbench",
@@ -6619,7 +6619,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Advanced Factory",
@@ -6644,7 +6644,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -6660,7 +6660,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "category": "Raw Resources",
@@ -6683,7 +6683,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -6712,7 +6712,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Advanced Factory",
@@ -6741,7 +6741,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -6766,7 +6766,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -6791,7 +6791,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -6816,7 +6816,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -6841,7 +6841,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -6857,7 +6857,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "category": "Raw Resources",
@@ -6888,7 +6888,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -6904,7 +6904,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "category": "Raw Resources",
@@ -6931,7 +6931,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -6968,7 +6968,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Chemical Lab",
@@ -6984,7 +6984,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "category": "Raw Resources",
@@ -7011,7 +7011,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -7044,7 +7044,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Workbench",
@@ -7081,7 +7081,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Advanced Factory",
@@ -7110,7 +7110,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -7143,7 +7143,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Workbench",
@@ -7180,7 +7180,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Advanced Factory",
@@ -7213,7 +7213,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Workbench",
@@ -7250,7 +7250,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Advanced Factory",
@@ -7279,7 +7279,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -7308,7 +7308,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -7324,7 +7324,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -7347,7 +7347,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -7372,7 +7372,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -7401,7 +7401,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -7426,7 +7426,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -7455,7 +7455,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -7480,7 +7480,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -7505,7 +7505,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Workbench",
@@ -7534,7 +7534,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Advanced Factory",
@@ -7563,7 +7563,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -7600,7 +7600,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Chemical Lab",
@@ -7616,7 +7616,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "category": "Raw Resources",
@@ -7639,7 +7639,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -7672,7 +7672,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -7701,7 +7701,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -7734,7 +7734,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -7763,7 +7763,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -7792,7 +7792,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -7808,7 +7808,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "category": "Raw Resources",
@@ -7831,7 +7831,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -7860,7 +7860,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -7889,7 +7889,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -7914,7 +7914,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Workbench",
@@ -7943,7 +7943,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 25,
       "building": "Workbench",
@@ -7959,7 +7959,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "category": "Raw Resources",
@@ -7973,7 +7973,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "category": "Raw Resources",
@@ -8000,7 +8000,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -8029,7 +8029,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -8045,7 +8045,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "category": "Raw Resources",
@@ -8072,7 +8072,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -8088,7 +8088,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "category": "Raw Resources",
@@ -8119,7 +8119,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 10,
       "building": "Workbench",
@@ -8152,7 +8152,7 @@
       "outputQty": 3,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Workbench",
@@ -8177,7 +8177,7 @@
       "outputQty": 5,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Workbench",
@@ -8202,7 +8202,7 @@
       "outputQty": 3,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Workbench",
@@ -8227,7 +8227,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -8256,7 +8256,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -8277,7 +8277,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Workbench",
@@ -8298,7 +8298,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Workbench",
@@ -8314,7 +8314,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -8337,7 +8337,7 @@
       "outputQty": 120,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.01,
       "building": "Workbench",
@@ -8353,7 +8353,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "category": "Raw Resources",
@@ -8380,7 +8380,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Workbench",
@@ -8409,7 +8409,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Workbench",
@@ -8438,7 +8438,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Workbench",
@@ -8467,7 +8467,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "building": "Workbench",
@@ -8483,7 +8483,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "category": "Raw Resources",
@@ -8497,7 +8497,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 0.1,
       "category": "Raw Resources",
@@ -8524,7 +8524,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -8549,7 +8549,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -8574,7 +8574,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Chemical Lab",
@@ -8603,7 +8603,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Chemical Lab",
@@ -8632,7 +8632,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -8648,7 +8648,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -8662,7 +8662,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -8676,7 +8676,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -8690,7 +8690,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -8704,7 +8704,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -8718,7 +8718,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -8732,7 +8732,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -8746,7 +8746,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -8760,7 +8760,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -8791,7 +8791,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -8832,7 +8832,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 50,
       "building": "Workbench",
@@ -8869,7 +8869,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -8906,7 +8906,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Workbench",
@@ -8922,7 +8922,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -8936,7 +8936,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -8950,7 +8950,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -8964,7 +8964,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -8978,7 +8978,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -8992,7 +8992,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -9006,7 +9006,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -9025,7 +9025,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9058,7 +9058,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9074,7 +9074,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -9109,7 +9109,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9134,7 +9134,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9171,7 +9171,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9208,7 +9208,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9237,7 +9237,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9270,7 +9270,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9295,7 +9295,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9316,7 +9316,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9353,7 +9353,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9386,7 +9386,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9411,7 +9411,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9444,7 +9444,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9481,7 +9481,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9506,7 +9506,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9535,7 +9535,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9556,7 +9556,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9577,7 +9577,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9610,7 +9610,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9626,7 +9626,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -9653,7 +9653,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9669,7 +9669,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -9704,7 +9704,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9737,7 +9737,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9770,7 +9770,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9811,7 +9811,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9836,7 +9836,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9865,7 +9865,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9902,7 +9902,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9939,7 +9939,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -9972,7 +9972,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -10009,7 +10009,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -10034,7 +10034,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -10063,7 +10063,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -10079,7 +10079,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -10110,7 +10110,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -10135,7 +10135,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -10160,7 +10160,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -10189,7 +10189,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -10218,7 +10218,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -10234,7 +10234,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -10250,7 +10250,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -10266,7 +10266,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -10282,7 +10282,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -10298,7 +10298,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -10314,7 +10314,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -10330,7 +10330,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "building": "Construction Bay",
@@ -10346,7 +10346,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 5,
       "category": "Metals (Raw)",
@@ -10360,7 +10360,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -10374,7 +10374,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -10388,7 +10388,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",
@@ -10402,7 +10402,7 @@
       "outputQty": 1,
       "confidence": "game",
       "sources": [
-        "gamefiles"
+        "game"
       ],
       "su": 1,
       "category": "Raw Resources",

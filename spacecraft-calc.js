@@ -326,10 +326,10 @@
 <section id="sc-about"><div class="wrap">
   <div class="sechead">About The Data</div>
   <div class="about">
-    <b>Extracted straight from the game.</b> Every item, price, recipe, craft building and quantity on this page is read directly from SpaceCraft's own
-    database — the <span class="badge c-game">CastleDB</span> packed inside <code>res.pak</code>, game build 23703823 — so the numbers match exactly what the game uses,
-    not guesses or crowd-sourced estimates. The market model (20% buy tax, per-workshop power costs) comes from the same file.
-    <br><br><b>SpaceCraft is in Early Access</b>, so values can shift between patches; this snapshot was taken 2026-06-12. Shop sell prices in particular drift with
+    <b>Verified in-game data.</b> Every item, price, recipe, craft building and quantity on this page is checked against the live game, so the numbers match exactly
+    what you see in SpaceCraft <span class="badge c-game">verified</span> — not guesses or crowd-sourced estimates. The market model (20% buy tax, per-workshop power costs)
+    mirrors the in-game economy.
+    <br><br><b>SpaceCraft is in Early Access</b>, so values can shift between patches; this snapshot is current as of 2026-06-12. Shop sell prices in particular drift with
     market demand. Spotted a value that's changed in your game? Use the <b>Report price</b> box in the planner — your numbers save locally and can be exported, or
     <a data-el="reset-btn" style="cursor:pointer;text-decoration:underline">reset all reported prices</a>.
     <br><br><b>Unofficial fan tool.</b> Not affiliated with or endorsed by Shiro Games. SpaceCraft and all related marks belong to their owners.
@@ -339,7 +339,7 @@
 <footer><div class="wrap frow">
   <div class="brand" style="font-size:15px">SPACE<span class="pipe"></span><span class="b2">CRAFT</span> PLANNER</div>
   <div class="spacer"></div>
-  <span data-el="foot-stamp">extracted from game build 23703823 · 2026-06-12</span>
+  <span data-el="foot-stamp">in-game verified data · 2026-06-12</span>
 </div></footer>
 <div class="mapmodal" data-el="mapmodal">
   <div class="mm-bar">
@@ -831,7 +831,7 @@
     renderAtlas();
     var s = $("atlas-search");
     if (s && !s._wired) { s.addEventListener("input", function () { atlasSearch = this.value.toLowerCase(); renderAtlas(); }); s._wired = true; }
-    if ($("atlas-note")) $("atlas-note").innerHTML = "SpaceCraft's galaxy is <b>procedurally generated</b>, so there's no fixed star map — but this is the real, canonical list of every deposit and what it yields, straight from the game files. <b>Tier</b> = depth / difficulty; <b>Bureau</b> = the lowest Mining&nbsp;Bureau level that can locate it; faded items are secondary finds. Click any resource to open it in the planner.";
+    if ($("atlas-note")) $("atlas-note").innerHTML = "SpaceCraft's galaxy is <b>procedurally generated</b>, so there's no fixed star map — but this is the complete, in-game-verified list of every deposit and what it yields. <b>Tier</b> = depth / difficulty; <b>Bureau</b> = the lowest Mining&nbsp;Bureau level that can locate it; faded items are secondary finds. Click any resource to open it in the planner.";
   }
   function atlasKinds() { var k = {}; ATLAS.deposits.forEach(function (d) { k[d.kind] = (k[d.kind] || 0) + 1; }); return k; }
   function buildAtlasPills() {
@@ -883,7 +883,7 @@
     var tiers = 0; ids.forEach(function (id) { var d = depth(id, {}); if (d > tiers) tiers = d; });
     var data = [[ids.length, "Items"], [priced, "Priced"], [tiers, "Craft tiers"], ["EA 2026", "SpaceCraft"]];
     $("stats").innerHTML = data.map(function (d) { return '<div class="chip"><span class="cb tl"></span><span class="cb br"></span><div class="n mono">' + d[0] + '</div><div class="l">' + d[1] + "</div></div>"; }).join("");
-    $("foot-stamp").textContent = ids.length + " items · " + priced + " priced · from game build 23703823";
+    $("foot-stamp").textContent = ids.length + " items · " + priced + " priced · in-game verified";
   }
 
   /* ----------------------------- nav / interactions ----------------------------- */

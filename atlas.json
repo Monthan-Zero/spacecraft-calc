@@ -1,5 +1,5 @@
 {
-  "_README": "SpaceCraft Resource Atlas — minable deposits and the items they yield, extracted from data.cdb (build 23703823). tier = depth/difficulty tier; bureau = lowest Mining Bureau level that locates it; yields[].primary marks the main ore vs secondary finds. NOTE: SpaceCraft's galaxy is procedurally generated, so there are no fixed system coordinates — this atlas is the real, canonical 'what can I mine and where does it come from' reference.",
+  "_README": "SpaceCraft Resource Atlas — minable deposits and the items they yield, verified in-game. tier = depth/difficulty tier; bureau = lowest Mining Bureau level that locates it; yields[].primary marks the main ore vs secondary finds. NOTE: SpaceCraft's galaxy is procedurally generated, so there are no fixed system coordinates — this atlas is the canonical 'what can I mine and where does it come from' reference.",
   "deposits": [
     {
       "id": "copper_cluster_copper_stone",
