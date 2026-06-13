@@ -123,7 +123,7 @@
 .scapp .d-raw{background:var(--raw)}.scapp .d-refined{background:var(--refined)}.scapp .d-component{background:var(--component)}.scapp .d-product{background:var(--product)}
 .scapp .t-raw{color:var(--raw)}.scapp .t-refined{color:var(--refined)}.scapp .t-component{color:var(--component)}.scapp .t-product{color:var(--product)}.scapp .t-unknown{color:var(--muted)}
 /* production map */
-.scapp .maplegend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-bottom:10px;font-family:Rajdhani}
+.scapp .maplegend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:11px;color:var(--muted);margin-bottom:10px;font-family:Rajdhani}
 .scapp .mapscroll{overflow:auto;border:1px solid var(--line);border-radius:4px;background:#091523;padding:12px;max-height:600px}
 .scapp .map svg{display:block}
 .scapp .scedge{fill:none;stroke:#33506f;stroke-width:1.7}
@@ -137,6 +137,21 @@
 .scapp .scnode .nm{fill:var(--text);font-weight:600;font-size:12.5px;font-family:Inter}
 .scapp .scnode .nq{fill:var(--primary);font-weight:700;font-size:12.5px;font-family:"JetBrains Mono"}
 .scapp .scnode .nsub{fill:var(--muted);font-size:10.5px;font-family:Inter}
+.scapp .mapexpand{margin-left:auto;background:var(--panel2);border:1px solid var(--line);color:var(--primary);font-family:Rajdhani;font-weight:600;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:5px 11px;border-radius:5px;cursor:pointer}
+.scapp .mapexpand:hover{border-color:var(--primary)}
+.scapp .mapmodal{display:none;position:fixed;inset:0;z-index:9998;background:rgba(4,8,14,.95);flex-direction:column}
+.scapp .mapmodal.open{display:flex}
+.scapp .mm-bar{display:flex;align-items:center;gap:12px;padding:11px 18px;border-bottom:1px solid var(--line);background:var(--panel)}
+.scapp .mm-title{font-family:Orbitron;font-size:15px;font-weight:700;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.scapp .mm-ctl{margin-left:auto;display:flex;gap:8px;flex-shrink:0}
+.scapp .mm-ctl button{min-width:36px;height:34px;padding:0 11px;border:1px solid var(--line);background:var(--panel2);color:var(--primary);border-radius:6px;cursor:pointer;font-size:15px;font-family:"JetBrains Mono";line-height:1}
+.scapp .mm-ctl button:hover{border-color:var(--primary)}
+.scapp .mm-ctl .mm-x{color:var(--bad)}
+.scapp .mm-stage{flex:1;overflow:hidden;position:relative;cursor:grab;touch-action:none;background:#091523}
+.scapp .mm-stage.drag{cursor:grabbing}
+.scapp .mm-canvas{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform}
+.scapp .mm-canvas svg{display:block}
+.scapp .mm-hint{padding:7px 18px;font-size:11px;color:var(--muted);font-family:Rajdhani;letter-spacing:.04em;text-align:center;border-top:1px solid var(--line);background:var(--panel)}
 /* cols / table / tree */
 .scapp .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:900px){.scapp .cols{grid-template-columns:1fr}.scapp .grid{grid-template-columns:repeat(2,1fr)}.scapp select,.scapp input{min-width:160px}.scapp .hud nav{display:none}}
@@ -326,6 +341,19 @@
   <div class="spacer"></div>
   <span data-el="foot-stamp">extracted from game build 23703823 · 2026-06-12</span>
 </div></footer>
+<div class="mapmodal" data-el="mapmodal">
+  <div class="mm-bar">
+    <div class="mm-title" data-el="mm-title">Production map</div>
+    <div class="mm-ctl">
+      <button data-el="mm-fit" type="button" title="Fit to screen">⤢ Fit</button>
+      <button data-el="mm-zout" type="button" title="Zoom out">−</button>
+      <button data-el="mm-zin" type="button" title="Zoom in">+</button>
+      <button data-el="mm-close" class="mm-x" type="button" title="Close (Esc)">✕</button>
+    </div>
+  </div>
+  <div class="mm-stage" data-el="mm-stage"><div class="mm-canvas" data-el="mm-canvas"></div></div>
+  <div class="mm-hint">drag to pan · scroll to zoom · Esc to close</div>
+</div>
 <div class="toast" data-el="toast"></div>`;
 
   /* starfield */
@@ -497,6 +525,47 @@
     });
     out.push("</svg>"); return out.join("");
   }
+  /* ----------------------------- production-map popout ----------------------------- */
+  var mmT = { x: 0, y: 0, s: 1 }, mmDrag = null, mmWired = false, mmSize = { w: 1, h: 1 };
+  function applyMM() { var c = $("mm-canvas"); if (c) c.style.transform = "translate(" + mmT.x.toFixed(1) + "px," + mmT.y.toFixed(1) + "px) scale(" + mmT.s.toFixed(3) + ")"; }
+  function mmFit() {
+    var stage = $("mm-stage"); if (!stage) return;
+    var sw = stage.clientWidth || 1, sh = stage.clientHeight || 1;
+    var fit = Math.min(sw / mmSize.w, sh / mmSize.h); if (!isFinite(fit) || fit <= 0) fit = 1;
+    fit = Math.min(fit * 0.96, 1.6);
+    mmT.s = fit; mmT.x = (sw - mmSize.w * fit) / 2; mmT.y = (sh - mmSize.h * fit) / 2; applyMM();
+  }
+  function mmZoom(f, cx, cy) {
+    var stage = $("mm-stage"); if (!stage) return;
+    if (cx == null) { cx = stage.clientWidth / 2; cy = stage.clientHeight / 2; }
+    var ns = Math.max(0.1, Math.min(6, mmT.s * f));
+    mmT.x = cx - (cx - mmT.x) * (ns / mmT.s); mmT.y = cy - (cy - mmT.y) * (ns / mmT.s); mmT.s = ns; applyMM();
+  }
+  function openMapModal() {
+    var src = $("map") && $("map").querySelector("svg"); if (!src) return;
+    var clone = src.cloneNode(true);
+    mmSize.w = parseFloat(src.getAttribute("width")) || src.getBoundingClientRect().width || 800;
+    mmSize.h = parseFloat(src.getAttribute("height")) || src.getBoundingClientRect().height || 400;
+    var cv = $("mm-canvas"); cv.innerHTML = ""; cv.appendChild(clone);
+    var sel = $("item"), nm = (sel && RECIPES[sel.value]) ? RECIPES[sel.value].name : "";
+    if ($("mm-title")) $("mm-title").textContent = "Production map" + (nm ? " · " + nm : "");
+    $("mapmodal").classList.add("open");
+    if (!mmWired) { wireMapModal(); mmWired = true; }
+    (window.requestAnimationFrame || function (f) { setTimeout(f, 16); })(mmFit);
+  }
+  function closeMapModal() { var m = $("mapmodal"); if (m) m.classList.remove("open"); }
+  function wireMapModal() {
+    var stage = $("mm-stage");
+    stage.addEventListener("pointerdown", function (e) { mmDrag = { x: e.clientX, y: e.clientY }; stage.classList.add("drag"); try { stage.setPointerCapture(e.pointerId); } catch (x) {} });
+    stage.addEventListener("pointermove", function (e) { if (!mmDrag) return; mmT.x += (e.clientX - mmDrag.x); mmT.y += (e.clientY - mmDrag.y); mmDrag = { x: e.clientX, y: e.clientY }; applyMM(); });
+    var end = function () { mmDrag = null; stage.classList.remove("drag"); };
+    stage.addEventListener("pointerup", end); stage.addEventListener("pointercancel", end); stage.addEventListener("pointerleave", end);
+    stage.addEventListener("wheel", function (e) { e.preventDefault(); var r = stage.getBoundingClientRect(); mmZoom(e.deltaY < 0 ? 1.15 : 1 / 1.15, e.clientX - r.left, e.clientY - r.top); }, { passive: false });
+    $("mm-zin").onclick = function () { mmZoom(1.25); };
+    $("mm-zout").onclick = function () { mmZoom(1 / 1.25); };
+    $("mm-fit").onclick = mmFit;
+    $("mm-close").onclick = closeMapModal;
+  }
   function confBadge(c) { return c ? '<span class="badge c-' + c + '">' + c + "</span>" : ""; }
   function renderTree(node) {
     var q = node.qty === null ? '<span class="qmark">?×</span>' : '<span class="qty">' + fmt(node.qty) + "×</span>";
@@ -526,7 +595,7 @@
   <div class="card"><div class="k">Profit · buy → sell</div><div class="v" data-el="m-bought">—</div><div class="note" data-el="m-bought-note"></div></div>
   <div class="card"><div class="k">Production cost</div><div class="v" data-el="m-cost">—</div><div class="note" data-el="m-cost-note"></div></div>
 </div>
-<div class="maplegend"><span><span class="dot d-raw"></span>Raw</span><span><span class="dot d-refined"></span>Refined</span><span><span class="dot d-component"></span>Component</span><span><span class="dot d-product"></span>Product</span><span>border = confidence</span><span>dashed = unknown qty</span></div>
+<div class="maplegend"><span><span class="dot d-raw"></span>Raw</span><span><span class="dot d-refined"></span>Refined</span><span><span class="dot d-component"></span>Component</span><span><span class="dot d-product"></span>Product</span><span>border = confidence</span><span>dashed = unknown qty</span><button class="mapexpand" data-el="map-expand" type="button" title="Open the full production map in a fullscreen popout">⛶ Expand map</button></div>
 <div class="mapscroll"><div class="map" data-el="map"></div></div>
 <div class="cols" style="margin-top:16px">
   <div><div class="sechead" style="margin-bottom:10px">Total raw materials</div>
@@ -576,6 +645,7 @@
     rows.forEach(function (k) { var rr = RECIPES[k], unit = rr && isNum(rr.value) ? rr.value : null, sub = unit !== null ? unit * raw[k] : null; tb.insertAdjacentHTML("beforeend", '<tr><td><span class="dot ' + dc(rr ? rr.type : "unknown") + '"></span><span class="' + (rr ? tc(rr.type) : "") + '">' + (rr ? rr.name : k) + '</span></td><td class="num">' + fmt(raw[k]) + '</td><td class="num">' + (unit === null ? "—" : fmt(unit)) + '</td><td class="num">' + (sub === null ? "—" : fmt(sub)) + "</td></tr>"); });
     var ub = $("unknown-box"), uk = Object.keys(unknown); ub.innerHTML = uk.length ? "⚠ <b>Unknown amounts:</b> " + uk.map(function (u) { return RECIPES[u] ? RECIPES[u].name : u; }).join(", ") + "." : "";
     $("map").innerHTML = renderMap(g);
+    if ($("map-expand")) $("map-expand").style.display = $("map").querySelector("svg") ? "" : "none";
     var srcSet = gatherSources(node, {}), srcs = Object.keys(srcSet).map(function (a) { return SOURCES[a] || a; });
     $("sources").innerHTML = srcs.length ? srcs.map(function (s, i) { var lbl = "[" + (i + 1) + "] " + s; return /^https?:/.test(s) ? '<a href="' + s + '" target="_blank" rel="noopener">' + esc(lbl) + "</a>" : '<span class="meta">' + esc(lbl) + "</span>"; }).join("<br>") : "<span class='meta'>—</span>";
     if ($("item-input") && document.activeElement !== $("item-input")) $("item-input").value = r.name;
@@ -848,6 +918,8 @@
     $("export-btn").addEventListener("click", exportReported);
     $("share-btn").addEventListener("click", shareLink);
     $("catsearch").addEventListener("input", buildCatalog);
+    if ($("map-expand")) $("map-expand").addEventListener("click", openMapModal);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && $("mapmodal") && $("mapmodal").classList.contains("open")) closeMapModal(); });
     var rst = $("reset-btn"); if (rst) rst.onclick = function () { try { localStorage.removeItem("sc_reported_prices_v1"); } catch (e) {} location.reload(); };
     var inp = $("item-input");
     inp.addEventListener("focus", function () { renderCombo(inp.value); $("item-drop").classList.add("open"); inp.setAttribute("aria-expanded", "true"); inp.select(); });
