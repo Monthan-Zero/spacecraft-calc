@@ -117,6 +117,7 @@
 .scapp .c-medium{color:var(--warn);border-color:rgba(232,194,26,.5)}
 .scapp .c-low{color:var(--bad);border-color:rgba(216,69,58,.5)}
 .scapp .c-reported{color:var(--primary);border-color:rgba(35,198,230,.6)}
+.scapp .c-game{color:var(--good);border-color:rgba(95,224,138,.6);background:rgba(95,224,138,.08)}
 .scapp .flag{color:var(--warn);font-size:12px;cursor:help}
 .scapp .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:middle}
 .scapp .d-raw{background:var(--raw)}.scapp .d-refined{background:var(--refined)}.scapp .d-component{background:var(--component)}.scapp .d-product{background:var(--product)}
@@ -218,35 +219,28 @@
 .scapp .barval{fill:var(--primary);font-size:11px;font-family:"JetBrains Mono"}
 .scapp.view-map > .hero,.scapp.view-map #sc-planner,.scapp.view-map #sc-browse,.scapp.view-map #sc-about,.scapp.view-map #sc-profit{display:none}
 .scapp:not(.view-map) #sc-map{display:none}
-.scapp .maplayout{display:grid;grid-template-columns:1fr 320px;gap:16px}
-@media(max-width:880px){.scapp .maplayout{grid-template-columns:1fr}}
-.scapp .galaxywrap{position:relative;height:600px;background:radial-gradient(900px 600px at 50% 42%,#0c1626,#070b14);border:1px solid var(--line);border-radius:8px;overflow:hidden;cursor:grab;touch-action:none}
-.scapp .galaxywrap.drag{cursor:grabbing}
-.scapp .galaxywrap svg{display:block;width:100%;height:100%}
-.scapp .mapctl{position:absolute;top:10px;right:10px;z-index:5;display:flex;flex-direction:column;gap:6px}
-.scapp .mapctl button{width:34px;height:34px;border:1px solid var(--line);background:rgba(20,32,46,.92);color:var(--primary);border-radius:6px;cursor:pointer;font-size:17px;line-height:1;font-family:"JetBrains Mono"}
-.scapp .mapctl button:hover{border-color:var(--primary)}
-.scapp .maphud{position:absolute;left:10px;bottom:10px;z-index:5;font-size:11px;color:var(--muted);font-family:Rajdhani;letter-spacing:.04em;background:rgba(11,22,34,.7);padding:5px 10px;border-radius:6px;border:1px solid var(--line)}
-.scapp .jump{stroke:rgba(35,198,230,.22);stroke-width:1.4}
-.scapp .sysnode{cursor:pointer}
-.scapp .sysnode .glow{transition:r .15s}
-.scapp .sysnode:hover .glow,.scapp .sysnode.sel .glow{r:19}
-.scapp .sysnode text{fill:var(--text);font-size:12px;font-family:Rajdhani;font-weight:600;pointer-events:none}
-.scapp .sysnode.dim{opacity:.25}
-.scapp .mapside{background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;align-self:start}
-.scapp .mapside .msh{background:var(--panel2);border-bottom:2px solid var(--secondary);padding:12px 14px}
-.scapp .mapside .msh h3{margin:0;font-size:15px;font-family:Orbitron}
-.scapp .mapside .msh .mssub{color:var(--muted);font-size:11px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.06em}
-.scapp .mapside .msb{padding:14px;max-height:540px;overflow:auto}
-.scapp .planet{border:1px solid var(--line);border-left:3px solid var(--refined);border-radius:5px;padding:10px 12px;margin-bottom:10px}
-.scapp .planet .pntop{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
-.scapp .planet .pnn{font-weight:600}
-.scapp .planet .pntype{color:var(--muted);font-size:10px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.06em}
-.scapp .planet .res{display:flex;flex-wrap:wrap;gap:6px}
-.scapp .planet .rchip{font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--line);cursor:pointer;display:flex;align-items:center;gap:5px}
-.scapp .planet .rchip:hover{border-color:var(--primary);color:var(--primary)}
-.scapp .resfilter{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px;align-items:center}
-.scapp .resfilter .rfl{color:var(--muted);font-size:11px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.08em;margin-right:4px}
+.scapp .atlasbar{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.scapp .atlasbar input{flex:1;min-width:220px;max-width:440px;padding:9px 13px;background:var(--panel);border:1px solid var(--line);border-radius:6px;color:var(--text);font-size:14px}
+.scapp .atlasbar input:focus{outline:none;border-color:var(--primary)}
+.scapp .atlas-count{color:var(--muted);font-size:12px;font-family:Rajdhani;letter-spacing:.04em}
+.scapp .atlaspills{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+.scapp .atlaspills .pill{cursor:pointer}
+.scapp .atlaspills .pill .cc{opacity:.6;font-size:10px}
+.scapp .atlasgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.scapp .depcard{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--refined);border-radius:8px;padding:14px}
+.scapp .depcard .dcn{font-weight:700;font-family:Orbitron;font-size:14px}
+.scapp .depcard .dcmeta{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:5px}
+.scapp .depcard .tag{font-size:10px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:20px;border:1px solid var(--line);color:var(--muted)}
+.scapp .depcard .tag.tier{color:var(--primary);border-color:rgba(35,198,230,.4)}
+.scapp .depcard .tag.bureau{color:var(--secondary);border-color:rgba(242,168,29,.4)}
+.scapp .depcard .dcdesc{color:var(--muted);font-size:12px;line-height:1.5;margin:9px 0 11px}
+.scapp .depcard .yields{display:flex;flex-wrap:wrap;gap:6px}
+.scapp .depcard .ych{font-size:11.5px;padding:4px 9px;border-radius:6px;border:1px solid var(--line);background:var(--panel2);cursor:pointer;display:flex;align-items:center;gap:6px;transition:border-color .12s}
+.scapp .depcard .ych:hover{border-color:var(--primary)}
+.scapp .depcard .ych.sec{opacity:.7}
+.scapp .depcard .ych .yq{color:var(--muted);font-family:"JetBrains Mono";font-size:10.5px}
+.scapp .depcard .ych .dot{width:7px;height:7px;border-radius:50%}
+.scapp .atlasnote{margin-top:20px;color:var(--muted);font-size:12px;line-height:1.6;border-top:1px solid var(--line);padding-top:14px}
 /* Continuous animations intentionally omitted — they caused full-screen repaints/lag.
    Visuals (starfield, hero glow, hex grid, brackets) remain as static effects. */
 `;
@@ -257,7 +251,7 @@
 <div class="stars" data-el="stars"></div><div class="neb"></div>
 <header class="hud">
   <div class="brand">SPACE<span class="pipe"></span><span class="b2">CRAFT</span> PLANNER</div>
-  <nav><a data-el="nav-planner">Planner</a><a data-el="nav-browse">Recipes</a><a data-el="nav-profit">Profit</a><a data-el="nav-map">Galaxy&nbsp;Map</a><a data-el="nav-about">About&nbsp;Data</a></nav>
+  <nav><a data-el="nav-planner">Planner</a><a data-el="nav-browse">Recipes</a><a data-el="nav-profit">Profit</a><a data-el="nav-map">Resource&nbsp;Atlas</a><a data-el="nav-about">About&nbsp;Data</a></nav>
   <div class="spacer"></div>
   <button class="btn" data-el="nav-launch">Launch Planner</button>
 </header>
@@ -296,32 +290,31 @@
   <div class="sechead">Profit Analyzer</div>
   <div class="charts" data-el="charts"></div>
   <div class="sechead" style="margin-top:30px">Full Ranking</div>
-  <div class="pnote"><b>Mine → sell</b> = mine the raw ore yourself (free) and only pay processing taxes. <b>Buy → sell</b> = buy the raw materials at market. <b>Profit / Cplx</b> = profit per unit of complexity — the best value for effort. Click a column to sort; click an item to open it in the planner.</div>
+  <div class="pnote"><b>Mine → sell</b> = mine the raw materials yourself (free) and sell the finished item. <b>Buy → sell</b> = buy the raw materials at market (incl. 20% buy tax) and sell. <b>Power ⚡</b> = energy to run the crafts. <b>Profit / Cplx</b> = profit per unit of complexity — the best value for effort. Click a column to sort; click an item to open it in the planner.</div>
   <div class="pnote" data-el="pcount" style="margin-bottom:10px"></div>
   <div class="panel lit"><div class="pbody"><div class="pscroll"><table class="ptable" data-el="ptable"></table></div></div></div>
 </div></section>
 
 <section id="sc-map"><div class="wrap" style="max-width:1320px">
-  <div class="sechead">Galaxy Map <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-family:Inter;font-size:12px">— sample systems · drag to pan · scroll to zoom · click a system</span></div>
-  <div class="maplayout">
-    <div class="galaxywrap" data-el="galaxywrap">
-      <div class="mapctl"><button data-el="zin" title="Zoom in">+</button><button data-el="zout" title="Zoom out">−</button><button data-el="zreset" title="Reset view">⟲</button></div>
-      <div class="maphud" data-el="maphud"></div>
-      <svg data-el="galaxy" xmlns="http://www.w3.org/2000/svg"></svg>
-    </div>
-    <div class="mapside" data-el="mapside"></div>
+  <div class="sechead">Resource Atlas <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-family:Inter;font-size:12px">— every minable deposit and what it yields · click an item to open it in the planner</span></div>
+  <div class="atlasbar">
+    <input type="text" data-el="atlas-search" placeholder="Search deposits or resources…" autocomplete="off" />
+    <span class="atlas-count" data-el="atlas-count"></span>
   </div>
-  <div class="resfilter" data-el="resfilter"></div>
+  <div class="atlaspills" data-el="atlas-pills"></div>
+  <div class="atlasgrid" data-el="atlasgrid"></div>
+  <div class="atlasnote" data-el="atlas-note"></div>
 </div></section>
 
 <section id="sc-about"><div class="wrap">
   <div class="sechead">About The Data</div>
   <div class="about">
-    <b>SpaceCraft is in Early Access</b>, so recipe quantities and store prices are still being discovered. Every item here is tagged
-    <span class="badge c-high">high</span> <span class="badge c-medium">medium</span> <span class="badge c-low">low</span> confidence, sourced from
-    official Shiro devblogs, a community Steam guide, and the Solar Alpha datamined wiki. Unknown amounts show as <span class="qmark" style="color:var(--warn)">?</span>
-    rather than being guessed, and a <span class="flag">⚑ conflict</span> flag marks numbers sources disagree on.
-    <br><br>Spotted a wrong value? Use the <b>Report price</b> box in the planner — your numbers save locally and can be exported, or <a data-el="reset-btn" style="cursor:pointer;text-decoration:underline">reset all reported prices</a>.
+    <b>Extracted straight from the game.</b> Every item, price, recipe, craft building and quantity on this page is read directly from SpaceCraft's own
+    database — the <span class="badge c-game">CastleDB</span> packed inside <code>res.pak</code>, game build 23703823 — so the numbers match exactly what the game uses,
+    not guesses or crowd-sourced estimates. The market model (20% buy tax, per-workshop power costs) comes from the same file.
+    <br><br><b>SpaceCraft is in Early Access</b>, so values can shift between patches; this snapshot was taken 2026-06-12. Shop sell prices in particular drift with
+    market demand. Spotted a value that's changed in your game? Use the <b>Report price</b> box in the planner — your numbers save locally and can be exported, or
+    <a data-el="reset-btn" style="cursor:pointer;text-decoration:underline">reset all reported prices</a>.
     <br><br><b>Unofficial fan tool.</b> Not affiliated with or endorsed by Shiro Games. SpaceCraft and all related marks belong to their owners.
   </div>
 </div></section>
@@ -329,7 +322,7 @@
 <footer><div class="wrap frow">
   <div class="brand" style="font-size:15px">SPACE<span class="pipe"></span><span class="b2">CRAFT</span> PLANNER</div>
   <div class="spacer"></div>
-  <span data-el="foot-stamp">data-driven · community sourced</span>
+  <span data-el="foot-stamp">extracted from game build 23703823 · 2026-06-12</span>
 </div></footer>
 <div class="toast" data-el="toast"></div>`;
 
@@ -352,8 +345,8 @@
   var toastT; function toast(m) { var t = $("toast"); if (!t) return; t.textContent = m; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove("show"); }, 2400); }
 
   /* ----------------------------- data ----------------------------- */
-  var RECIPES = {}, SOURCES = {}, pendingScroll = null;
-  var WORLD = { systems: [] }, mapT = { x: 0, y: 0, s: 1 }, mapSel = null, resFilter = null, mapDrag = null, mapBuilt = false;
+  var RECIPES = {}, SOURCES = {}, CONSTS = {}, BUYMULT = 1, pendingScroll = null;
+  var ATLAS = { deposits: [] }, atlasFilter = "all", atlasSearch = "";
   var LS_KEY = "sc_reported_prices_v1";
   function loadReported() { try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch (e) { return {}; } }
   function applyReported() { var rep = loadReported(); for (var id in rep) { if (RECIPES[id]) { RECIPES[id].value = rep[id]; RECIPES[id].confidence = "reported"; RECIPES[id].userReported = true; } } }
@@ -379,12 +372,12 @@
   var DATA_URL = SELF.split(/[?#]/)[0].replace(/[^\/]*$/, "recipes.json");
 
   fetch(DATA_URL, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-    .then(function (data) { SOURCES = data.sources || {}; RECIPES = data.recipes || {}; applyReported(); initPlanner(); })
-    .catch(function (e) { var pb = $("plannerbody"); if (pb) pb.innerHTML = '<div class="loading" style="color:var(--bad)">⚠ Could not load recipe data (' + esc(e.message) + ').<br>Check recipes.json.</div>'; });
+    .then(function (data) { SOURCES = data.sources || {}; RECIPES = data.recipes || {}; CONSTS = data.constants || {}; BUYMULT = 1 + (isNum(CONSTS.marketBuyTaxPercent) ? CONSTS.marketBuyTaxPercent / 100 : 0); applyReported(); initPlanner(); })
+    .catch(function (e) { try { window.__loadErr = (e && e.stack) || String(e); } catch (_) {} var pb = $("plannerbody"); if (pb) pb.innerHTML = '<div class="loading" style="color:var(--bad)">⚠ Could not load recipe data (' + esc(e.message) + ').<br>Check recipes.json.</div>'; });
 
-  var WORLD_URL = SELF.split(/[?#]/)[0].replace(/[^\/]*$/, "world.json");
-  fetch(WORLD_URL, { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : { systems: [] }; })
-    .then(function (w) { WORLD = (w && w.systems) ? w : { systems: [] }; if (currentView() === "map") buildMap(); })
+  var ATLAS_URL = SELF.split(/[?#]/)[0].replace(/[^\/]*$/, "atlas.json");
+  fetch(ATLAS_URL, { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : { deposits: [] }; })
+    .then(function (w) { ATLAS = (w && w.deposits) ? w : { deposits: [] }; if (currentView() === "map") buildAtlas(); })
     .catch(function () {});
 
   /* ----------------------------- engine ----------------------------- */
@@ -410,7 +403,7 @@
   function setOf(a) { var o = {}; for (var i = 0; i < a.length; i++) o[a[i]] = 1; return o; }
   function rawCost(raw) { var c = 0, mv = false; for (var k in raw) { var r = RECIPES[k]; if (r && isNum(r.value)) c += r.value * raw[k]; else mv = true; } return { cost: c, missingValue: mv }; }
   function graphCosts(g) {
-    var tax = 0, taxComplete = true, time = 0;
+    var tax = 0, taxComplete = true, time = 0, power = 0;
     for (var id in g.nodes) {
       var n = g.nodes[id], r = RECIPES[id];
       if (!r || !r.inputs || !r.inputs.length) continue; // raw/leaf — no craft step
@@ -418,8 +411,9 @@
       var crafts = n.need / (r.outputQty || 1);
       if (isNum(r.craftTax)) tax += r.craftTax * crafts; else taxComplete = false;
       if (isNum(r.craftTime)) time += r.craftTime * crafts;
+      if (isNum(r.power)) power += r.power * crafts;
     }
-    return { tax: tax, taxComplete: taxComplete, time: time };
+    return { tax: tax, taxComplete: taxComplete, time: time, power: power };
   }
   // structural complexity: chain depth + craft steps + distinct raw inputs (qty-independent)
   function complexityOf(id) {
@@ -545,7 +539,7 @@
     var qty = Math.max(1, parseFloat($("qty").value) || 1);
     var res = expand(id, qty, {}), node = res.node, raw = res.raw, unknown = res.unknown, incomplete = res.incomplete;
     var rc = rawCost(raw), cost = rc.cost, missingValue = rc.missingValue;
-    var g = buildGraph(id, qty), gc = graphCosts(g), tax = gc.tax, prodCost = cost + tax;
+    var g = buildGraph(id, qty), gc = graphCosts(g), tax = gc.tax, buyCost = cost * BUYMULT, prodCost = buyCost + tax;
     $("sel-name").textContent = r.name; $("sel-name").className = tc(r.type);
     $("sel-conf").className = "badge c-" + r.confidence; $("sel-conf").textContent = r.confidence + (r.userReported ? " (you)" : "");
     $("sel-building").textContent = r.building ? "built at " + r.building : "";
@@ -564,12 +558,12 @@
     var costPartial = incomplete || missingValue || !gc.taxComplete;
     // Production cost (buying materials) = raw market cost + craft taxes
     $("m-cost").textContent = hasRaw ? (costPartial ? "≥ " : "") + credits(prodCost) : "—";
-    $("m-cost-note").textContent = (costPartial ? "partial · " : "") + "raw " + credits(cost) + " + tax " + credits(tax) + (gc.time ? " · ~" + fmt(gc.time) + "s" : "");
+    $("m-cost-note").textContent = (costPartial ? "partial · " : "") + "materials " + credits(buyCost) + (BUYMULT > 1 ? " (incl. " + fmt((BUYMULT - 1) * 100) + "% buy tax)" : "") + (gc.power ? " · ⚡" + fmt(gc.power) : "") + (gc.time ? " · ~" + fmt(gc.time) + "s" : "");
     // Profit if you MINE the ore yourself (raw is free) = sell − craft taxes
     var minedOK = sell !== null && !taxPartial;
     var mined = minedOK ? sell - tax : null, mEl = $("m-mined");
     mEl.textContent = minedOK ? credits(mined) : "—"; mEl.className = "v " + (minedOK ? (mined >= 0 ? "good" : "bad") : "");
-    $("m-mined-note").textContent = sell === null ? "needs a price" : !minedOK ? "needs full recipe" : (fmt(sell ? mined / sell * 100 : 0) + "% margin · ore mined free");
+    $("m-mined-note").textContent = sell === null ? "needs a price" : !minedOK ? "needs full recipe" : "all profit · raw materials mined free";
     // Profit if you BUY the materials = sell − raw cost − craft taxes
     var boughtOK = sell !== null && !costPartial && hasRaw, bought = boughtOK ? sell - prodCost : null, bEl = $("m-bought");
     bEl.textContent = boughtOK ? credits(bought) : "—"; bEl.className = "v " + (boughtOK ? (bought >= 0 ? "good" : "bad") : "");
@@ -641,16 +635,16 @@
       var rc = rawCost(ex.raw); if (rc.missingValue) return;               // all raw prices known
       var g = buildGraph(id, 1), gc = graphCosts(g); if (!gc.taxComplete) return;
       var units = 0; for (var k in ex.raw) units += ex.raw[k];
-      var mined = r.value - gc.tax, bought = r.value - rc.cost - gc.tax;
+      var mined = r.value - gc.tax, bought = r.value - rc.cost * BUYMULT - gc.tax;
       var cx = complexityOf(id).score;
-      rows.push({ id: id, name: r.name, cat: r.category || "", sell: r.value, raw: rc.cost, tax: gc.tax, mined: mined, bought: bought, margin: r.value ? mined / r.value * 100 : 0, units: units, cplx: cx, ppc: cx ? mined / cx : 0 });
+      rows.push({ id: id, name: r.name, cat: r.category || "", sell: r.value, raw: rc.cost, tax: gc.tax, power: gc.power, mined: mined, bought: bought, margin: r.value ? bought / r.value * 100 : 0, units: units, cplx: cx, ppc: cx ? mined / cx : 0 });
     });
     return rows;
   }
   function renderProfit() {
     var key = psort.key, dir = psort.dir;
     var rows = profitRows.slice().sort(function (a, b) { var x = a[key], y = b[key]; if (typeof x === "string") return x.localeCompare(y) * dir; return (x < y ? -1 : x > y ? 1 : 0) * dir; });
-    var cols = [["name", "Item", 0], ["cat", "Category", 0], ["cplx", "Complexity", 1], ["mined", "Mine→Sell ⊙", 1], ["margin", "Margin %", 1], ["ppc", "Profit / Cplx", 1], ["bought", "Buy→Sell ⊙", 1], ["sell", "Sell ⊙", 1], ["raw", "Raw cost ⊙", 1], ["tax", "Craft tax ⊙", 1], ["units", "Raw units", 1]];
+    var cols = [["name", "Item", 0], ["cat", "Category", 0], ["cplx", "Complexity", 1], ["mined", "Mine→Sell ⊙", 1], ["margin", "Buy margin %", 1], ["ppc", "Profit / Cplx", 1], ["bought", "Buy→Sell ⊙", 1], ["sell", "Sell ⊙", 1], ["raw", "Raw cost ⊙", 1], ["power", "Power ⚡", 1], ["units", "Raw units", 1]];
     var h = '<thead><tr>' + cols.map(function (c) { var ar = key === c[0] ? (dir < 0 ? " ▼" : " ▲") : ""; return '<th class="' + (c[2] ? "num" : "") + '" data-k="' + c[0] + '">' + c[1] + ar + '</th>'; }).join("") + '</tr></thead><tbody>';
     h += rows.map(function (r) {
       return '<tr><td><span class="pn" data-id="' + r.id + '">' + esc(r.name) + '</span></td>'
@@ -660,7 +654,7 @@
         + '<td class="num ' + (r.margin >= 0 ? "pos" : "neg") + '">' + fmt(r.margin) + '%</td>'
         + '<td class="num ' + (r.ppc >= 0 ? "pos" : "neg") + '">' + fmt(r.ppc) + '</td>'
         + '<td class="num ' + (r.bought >= 0 ? "pos" : "neg") + '">' + fmt(r.bought) + '</td>'
-        + '<td class="num">' + fmt(r.sell) + '</td><td class="num">' + fmt(r.raw) + '</td><td class="num">' + fmt(r.tax) + '</td><td class="num">' + fmt(r.units) + '</td></tr>';
+        + '<td class="num">' + fmt(r.sell) + '</td><td class="num">' + fmt(r.raw) + '</td><td class="num">' + fmt(r.power) + '</td><td class="num">' + fmt(r.units) + '</td></tr>';
     }).join("") + '</tbody>';
     $("ptable").innerHTML = h;
     Array.prototype.forEach.call($("ptable").querySelectorAll("th"), function (th) { th.onclick = function () { var k = th.getAttribute("data-k"); if (psort.key === k) psort.dir *= -1; else { psort.key = k; psort.dir = (k === "name" || k === "cat") ? 1 : -1; } renderProfit(); }; });
@@ -726,7 +720,7 @@
     if (nm) nm.style.color = v === "map" ? "var(--primary)" : "";
     if (npl) npl.style.color = v === "home" ? "var(--primary)" : "";
     if (v !== "home") window.scrollTo(0, 0);
-    if (v === "map" && WORLD.systems.length) buildMap();
+    if (v === "map" && ATLAS.deposits.length) buildAtlas();
   }
   function route() {
     applyView();
@@ -738,79 +732,66 @@
     }
   }
 
-  /* ----------------------------- galaxy map ----------------------------- */
-  function buildMap() {
-    var svg = $("galaxy"), wrap = $("galaxywrap"); if (!svg || !wrap || !WORLD.systems.length) return;
-    var W = wrap.clientWidth || 900, H = wrap.clientHeight || 600;
-    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
-    var xs = WORLD.systems.map(function (s) { return s.x; }), ys = WORLD.systems.map(function (s) { return s.y; });
-    var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs), minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
-    var gw = (maxX - minX) || 1, gh = (maxY - minY) || 1, pad = 110;
-    var fit = Math.min((W - pad * 2) / gw, (H - pad * 2) / gh); if (!isFinite(fit) || fit <= 0) fit = 1;
-    mapT.s = Math.min(fit, 1.4);
-    mapT.x = W / 2 - ((minX + maxX) / 2) * mapT.s;
-    mapT.y = H / 2 - ((minY + maxY) / 2) * mapT.s;
-    drawGalaxy(); applyMapT(); buildResFilter();
-    var planetN = WORLD.systems.reduce(function (a, s) { return a + (s.planets ? s.planets.length : 0); }, 0);
-    if ($("maphud")) $("maphud").textContent = WORLD.systems.length + " systems · " + planetN + " planets · sample data";
-    if (!mapSel && $("mapside")) $("mapside").innerHTML = '<div class="msh"><h3>The Galaxy</h3><div class="mssub">' + WORLD.systems.length + ' systems</div></div><div class="msb foot">Click a star system to view its planets and what you can mine there.</div>';
-    if (!wrap._wired) { wireMap(wrap, svg); wrap._wired = true; }
-    mapBuilt = true;
+  /* ----------------------------- resource atlas ----------------------------- */
+  function buildAtlas() {
+    if (!$("atlasgrid")) return;
+    buildAtlasPills();
+    renderAtlas();
+    var s = $("atlas-search");
+    if (s && !s._wired) { s.addEventListener("input", function () { atlasSearch = this.value.toLowerCase(); renderAtlas(); }); s._wired = true; }
+    if ($("atlas-note")) $("atlas-note").innerHTML = "SpaceCraft's galaxy is <b>procedurally generated</b>, so there's no fixed star map — but this is the real, canonical list of every deposit and what it yields, straight from the game files. <b>Tier</b> = depth / difficulty; <b>Bureau</b> = the lowest Mining&nbsp;Bureau level that can locate it; faded items are secondary finds. Click any resource to open it in the planner.";
   }
-  function drawGalaxy() {
-    var svg = $("galaxy"), byId = {}; WORLD.systems.forEach(function (s) { byId[s.id] = s; });
-    var p = ['<g data-el="galaxy-g">'], done = {};
-    WORLD.systems.forEach(function (s) { (s.links || []).forEach(function (lid) { var key = [s.id, lid].sort().join("|"); if (done[key]) return; done[key] = 1; var t = byId[lid]; if (!t) return; p.push('<line class="jump" x1="' + s.x + '" y1="' + s.y + '" x2="' + t.x + '" y2="' + t.y + '"/>'); }); });
-    WORLD.systems.forEach(function (s) {
-      var match = !resFilter || (s.planets || []).some(function (pl) { return (pl.resources || []).indexOf(resFilter) >= 0; });
-      p.push('<g class="sysnode' + (mapSel === s.id ? ' sel' : '') + (resFilter && !match ? ' dim' : '') + '" data-sys="' + s.id + '" transform="translate(' + s.x + ',' + s.y + ')">');
-      p.push('<circle class="glow" r="13" fill="' + (s.star || "#F2D24A") + '" fill-opacity=".18"/>');
-      p.push('<circle r="6" fill="' + (s.star || "#F2D24A") + '"/><circle r="6" fill="none" stroke="rgba(255,255,255,.5)"/>');
-      p.push('<text y="26" text-anchor="middle">' + esc(s.name) + '</text></g>');
-    });
-    p.push('</g>'); svg.innerHTML = p.join("");
-    Array.prototype.forEach.call(svg.querySelectorAll(".sysnode"), function (g) { g.addEventListener("click", function () { selectSystem(g.getAttribute("data-sys")); }); });
+  function atlasKinds() { var k = {}; ATLAS.deposits.forEach(function (d) { k[d.kind] = (k[d.kind] || 0) + 1; }); return k; }
+  function buildAtlasPills() {
+    var counts = atlasKinds(), kinds = Object.keys(counts).sort();
+    var defs = [["all", "All", ATLAS.deposits.length]].concat(kinds.map(function (k) { return [k, k, counts[k]]; }));
+    $("atlas-pills").innerHTML = defs.map(function (d) { return '<span class="pill' + (d[0] === atlasFilter ? " on" : "") + '" data-k="' + esc(d[0]) + '">' + esc(d[1]) + ' <span class="cc">' + d[2] + '</span></span>'; }).join("");
+    Array.prototype.forEach.call($("atlas-pills").querySelectorAll(".pill"), function (p) { p.onclick = function () { atlasFilter = p.getAttribute("data-k"); buildAtlasPills(); renderAtlas(); }; });
   }
-  function applyMapT() { var g = $("galaxy") && $("galaxy").querySelector('[data-el="galaxy-g"]'); if (g) g.setAttribute("transform", "translate(" + mapT.x.toFixed(1) + "," + mapT.y.toFixed(1) + ") scale(" + mapT.s.toFixed(3) + ")"); }
-  function svgPt(svg, ev) { var r = svg.getBoundingClientRect(), k = svg.viewBox.baseVal.width / (r.width || 1); return { x: (ev.clientX - r.left) * k, y: (ev.clientY - r.top) * k }; }
-  function wireMap(wrap, svg) {
-    wrap.addEventListener("pointerdown", function (e) { mapDrag = svgPt(svg, e); wrap.classList.add("drag"); try { wrap.setPointerCapture(e.pointerId); } catch (x) {} });
-    wrap.addEventListener("pointermove", function (e) { if (!mapDrag) return; var p = svgPt(svg, e); mapT.x += (p.x - mapDrag.x); mapT.y += (p.y - mapDrag.y); mapDrag = p; applyMapT(); });
-    var end = function (e) { mapDrag = null; wrap.classList.remove("drag"); };
-    wrap.addEventListener("pointerup", end); wrap.addEventListener("pointercancel", end); wrap.addEventListener("pointerleave", end);
-    wrap.addEventListener("wheel", function (e) { e.preventDefault(); var p = svgPt(svg, e), f = e.deltaY < 0 ? 1.15 : 1 / 1.15, ns = Math.max(0.3, Math.min(4, mapT.s * f)); mapT.x = p.x - (p.x - mapT.x) * (ns / mapT.s); mapT.y = p.y - (p.y - mapT.y) * (ns / mapT.s); mapT.s = ns; applyMapT(); }, { passive: false });
-    if ($("zin")) $("zin").onclick = function () { zoomBtn(1.25); };
-    if ($("zout")) $("zout").onclick = function () { zoomBtn(1 / 1.25); };
-    if ($("zreset")) $("zreset").onclick = function () { buildMap(); };
+  function depMatches(d) {
+    if (atlasFilter !== "all" && d.kind !== atlasFilter) return false;
+    if (!atlasSearch) return true;
+    if ((d.name || "").toLowerCase().indexOf(atlasSearch) >= 0) return true;
+    return (d.yields || []).some(function (y) { return (y.name || "").toLowerCase().indexOf(atlasSearch) >= 0; });
   }
-  function zoomBtn(f) { var svg = $("galaxy"), cx = svg.viewBox.baseVal.width / 2, cy = svg.viewBox.baseVal.height / 2, ns = Math.max(0.3, Math.min(4, mapT.s * f)); mapT.x = cx - (cx - mapT.x) * (ns / mapT.s); mapT.y = cy - (cy - mapT.y) * (ns / mapT.s); mapT.s = ns; applyMapT(); }
-  function selectSystem(id) {
-    var s = null; WORLD.systems.forEach(function (x) { if (x.id === id) s = x; }); if (!s) return; mapSel = id;
-    Array.prototype.forEach.call($("galaxy").querySelectorAll(".sysnode"), function (g) { g.classList.toggle("sel", g.getAttribute("data-sys") === id); });
-    var h = '<div class="msh"><h3>' + esc(s.name) + '</h3><div class="mssub">' + (s.planets ? s.planets.length : 0) + ' planets</div></div><div class="msb">';
-    (s.planets || []).forEach(function (pl) {
-      h += '<div class="planet"><div class="pntop"><span class="pnn">' + esc(pl.name) + '</span><span class="pntype">' + esc(pl.type || "planet") + '</span></div>';
-      h += (pl.resources && pl.resources.length) ? '<div class="res">' + pl.resources.map(function (rid) { var r = RECIPES[rid]; return '<span class="rchip" data-res="' + rid + '"><span class="dot ' + dc(r ? r.type : "raw") + '"></span>' + esc(r ? r.name : rid) + '</span>'; }).join("") + '</div>' : '<div class="foot">No mineable resources listed.</div>';
-      h += '</div>';
-    });
-    h += '</div>'; $("mapside").innerHTML = h;
-    Array.prototype.forEach.call($("mapside").querySelectorAll(".rchip[data-res]"), function (c) { c.onclick = function () { selectItem(c.getAttribute("data-res")); }; });
-  }
-  function buildResFilter() {
-    var set = {}; WORLD.systems.forEach(function (s) { (s.planets || []).forEach(function (pl) { (pl.resources || []).forEach(function (r) { set[r] = 1; }); }); });
-    var ids = Object.keys(set).sort(function (a, b) { return (RECIPES[a] ? RECIPES[a].name : a).localeCompare(RECIPES[b] ? RECIPES[b].name : b); });
-    var h = '<span class="rfl">Highlight resource</span><span class="pill' + (!resFilter ? " on" : "") + '" data-res="">All</span>';
-    h += ids.map(function (r) { return '<span class="pill' + (resFilter === r ? " on" : "") + '" data-res="' + r + '">' + esc(RECIPES[r] ? RECIPES[r].name : r) + '</span>'; }).join("");
-    $("resfilter").innerHTML = h;
-    Array.prototype.forEach.call($("resfilter").querySelectorAll(".pill[data-res]"), function (p) { p.onclick = function () { resFilter = p.getAttribute("data-res") || null; buildResFilter(); drawGalaxy(); applyMapT(); }; });
+  function renderAtlas() {
+    var list = ATLAS.deposits.filter(depMatches);
+    if ($("atlas-count")) $("atlas-count").textContent = list.length + " of " + ATLAS.deposits.length + " deposits";
+    $("atlasgrid").innerHTML = list.map(function (d) {
+      var border = d.color ? ' style="border-left-color:' + esc(d.color) + '"' : "";
+      var tags = "";
+      if (isNum(d.tier)) tags += '<span class="tag tier">Tier ' + d.tier + '</span>';
+      if (isNum(d.bureau)) tags += '<span class="tag bureau">Bureau ' + d.bureau + '</span>';
+      tags += '<span class="tag">' + esc(d.kind) + '</span>';
+      var yields = (d.yields || []).map(function (y) {
+        var r = RECIPES[y.item], dotc = r ? dc(r.type) : "d-raw";
+        var qty = (y.qtyMin === y.qtyMax) ? ("×" + y.qtyMin) : ("×" + y.qtyMin + "–" + y.qtyMax);
+        return '<span class="ych' + (y.primary ? "" : " sec") + '" data-id="' + esc(y.item) + '" title="' + esc(y.name) + (isNum(y.value) ? " · " + credits(y.value) + " each" : "") + '"><span class="dot ' + dotc + '"></span>' + esc(y.name) + ' <span class="yq">' + qty + '</span></span>';
+      }).join("");
+      return '<div class="depcard"' + border + '><div class="dcn">' + esc(d.name) + '</div><div class="dcmeta">' + tags + '</div>'
+        + (d.desc ? '<div class="dcdesc">' + esc(d.desc) + '</div>' : '<div style="height:9px"></div>')
+        + '<div class="yields">' + yields + '</div></div>';
+    }).join("") || '<div class="foot">No deposits match.</div>';
+    Array.prototype.forEach.call($("atlasgrid").querySelectorAll(".ych[data-id]"), function (c) { c.onclick = function () { selectItem(c.getAttribute("data-id")); }; });
   }
 
   function buildStats() {
     var ids = Object.keys(RECIPES), priced = ids.filter(function (id) { return isNum(RECIPES[id].value); }).length;
-    var tiers = 0; ids.forEach(function (id) { (function t(x, d) { var r = RECIPES[x]; if (r && r.inputs && r.inputs.length) r.inputs.forEach(function (i) { t(i.id, d + 1); }); else if (d > tiers) tiers = d; })(id, 1); });
-    var data = [[ids.length, "Recipes"], [priced, "Priced items"], [tiers, "Resource tiers"], ["EA 2026", "SpaceCraft"]];
+    // max craft-chain depth — memoized + cycle-guarded (real data has bottle/recycle loops)
+    var dm = {};
+    function depth(id, stack) {
+      if (dm[id] !== undefined) return dm[id];
+      if (stack[id]) return 1;            // back-edge in a cycle — treat as leaf
+      var r = RECIPES[id];
+      if (!r || !r.inputs || !r.inputs.length) return (dm[id] = 1);
+      stack[id] = 1; var d = 1;
+      r.inputs.forEach(function (i) { var c = depth(i.id, stack) + 1; if (c > d) d = c; });
+      stack[id] = 0; return (dm[id] = d);
+    }
+    var tiers = 0; ids.forEach(function (id) { var d = depth(id, {}); if (d > tiers) tiers = d; });
+    var data = [[ids.length, "Items"], [priced, "Priced"], [tiers, "Craft tiers"], ["EA 2026", "SpaceCraft"]];
     $("stats").innerHTML = data.map(function (d) { return '<div class="chip"><span class="cb tl"></span><span class="cb br"></span><div class="n mono">' + d[0] + '</div><div class="l">' + d[1] + "</div></div>"; }).join("");
-    $("foot-stamp").textContent = ids.length + " recipes · " + priced + " priced · community sourced";
+    $("foot-stamp").textContent = ids.length + " items · " + priced + " priced · from game build 23703823";
   }
 
   /* ----------------------------- nav / interactions ----------------------------- */

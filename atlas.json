@@ -1,0 +1,2518 @@
+{
+  "_README": "SpaceCraft Resource Atlas — minable deposits and the items they yield, extracted from data.cdb (build 23703823). tier = depth/difficulty tier; bureau = lowest Mining Bureau level that locates it; yields[].primary marks the main ore vs secondary finds. NOTE: SpaceCraft's galaxy is procedurally generated, so there are no fixed system coordinates — this atlas is the real, canonical 'what can I mine and where does it come from' reference.",
+  "deposits": [
+    {
+      "id": "copper_cluster_copper_stone",
+      "name": "Cupric Stone",
+      "tier": 1,
+      "kind": "Metal",
+      "desc": "Although it's not completely pure, this ore is only exploited for its copper, and contains no other ore that could be efficiently harvested.",
+      "color": "#F68567",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "copper_ore",
+          "name": "Copper Ore",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 3
+        }
+      ]
+    },
+    {
+      "id": "iron_cluster_iron_stone",
+      "name": "Ferric Stone",
+      "tier": 1,
+      "kind": "Metal",
+      "desc": "Although it's not completely pure, this ore is only exploited for its iron, and contains no other ore that could be efficiently harvested.",
+      "color": "#949494",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "iron_ore",
+          "name": "Iron Ore",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 2.16
+        }
+      ]
+    },
+    {
+      "id": "sulfur_stone",
+      "name": "Sulphuric Stone",
+      "tier": 1,
+      "kind": "Mineral",
+      "desc": "Named after its principal component, this ore is also rich in other crystals, including pyrite and vanadium.",
+      "color": "#B4D23F",
+      "bureau": 2,
+      "yields": [
+        {
+          "item": "sulfur",
+          "name": "Sulfur",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": true,
+          "value": 0.7
+        },
+        {
+          "item": "pyrite",
+          "name": "Pyrite",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 10
+        },
+        {
+          "item": "cinnabar",
+          "name": "Cinnabar",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 21.4
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "vanadium_ore",
+          "name": "Vanadium Ore",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 5.6
+        }
+      ]
+    },
+    {
+      "id": "copper_cluster_native_copper",
+      "name": "Brassy Outcrop",
+      "tier": 2,
+      "kind": "Metal",
+      "desc": "Commonly found within the same clusters as cupric stones, these impure outcrops combine smaller copper nuggets with other crystals like quartz or azurite.",
+      "color": "#F68567",
+      "bureau": 1,
+      "yields": [
+        {
+          "item": "copper_nugget",
+          "name": "Copper Nugget",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": true,
+          "value": 1.6
+        },
+        {
+          "item": "copper_ore",
+          "name": "Copper Ore",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 3
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 11
+        },
+        {
+          "item": "graphite_crystal",
+          "name": "Graphite Crystal",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 9
+        },
+        {
+          "item": "azurite_stone",
+          "name": "Azurite Stone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 45
+        },
+        {
+          "item": "malachite_stone",
+          "name": "Malachite Stone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 40
+        }
+      ]
+    },
+    {
+      "id": "carbon_cluster_coal",
+      "name": "Coal Clump",
+      "tier": 2,
+      "kind": "Mineral",
+      "desc": "This ore contains several forms of carbonite crystals, ranging from coal and graphite to small diamonds.",
+      "color": "#676666",
+      "bureau": 1,
+      "yields": [
+        {
+          "item": "carbon",
+          "name": "a-Carbon",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 1.5
+        },
+        {
+          "item": "graphite_crystal",
+          "name": "Graphite Crystal",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 9
+        },
+        {
+          "item": "diamond",
+          "name": "Diamond",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 400
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "vanadium_ore",
+          "name": "Vanadium Ore",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 5.6
+        }
+      ]
+    },
+    {
+      "id": "iron_cluster_nickel_iron",
+      "name": "Ferrous Outcrop",
+      "tier": 2,
+      "kind": "Metal",
+      "desc": "Commonly found within the same clusters as ferric stones, these impure outcrops combine smaller iron nuggets with other crystals like quartz or hematite.",
+      "color": "#868281",
+      "bureau": 1,
+      "yields": [
+        {
+          "item": "iron_nugget",
+          "name": "Iron Nugget",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": true,
+          "value": 1.14
+        },
+        {
+          "item": "iron_ore",
+          "name": "Iron Ore",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 2.16
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 11
+        },
+        {
+          "item": "hematite",
+          "name": "Hematite",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 7
+        },
+        {
+          "item": "graphite_crystal",
+          "name": "Graphite Crystal",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 9
+        },
+        {
+          "item": "pyrite",
+          "name": "Pyrite",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 10
+        }
+      ]
+    },
+    {
+      "id": "quartz_grey",
+      "name": "Gray Quartz",
+      "tier": 2,
+      "kind": "Crystal",
+      "desc": "The coloration of quartz is determined by its impurities. Rare impurities can actually make it more valuable, but this one just has ordinary impurities.",
+      "color": "#6D5E5E",
+      "bureau": 1,
+      "yields": [
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 11
+        }
+      ]
+    },
+    {
+      "id": "silicate_sandstone",
+      "name": "Sandstone Mound",
+      "tier": 2,
+      "kind": "Mineral",
+      "desc": "Although this sedimentary rock can be used in its current state, it also contains large quantities of quartz, aquamarine and iron, among other minerals.",
+      "color": "#EABDB1",
+      "bureau": 1,
+      "yields": [
+        {
+          "item": "sandstone",
+          "name": "Silicate",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 0.62
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "hudge_crystal",
+          "name": "Marvelous Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 100
+        },
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 11
+        },
+        {
+          "item": "iron_nugget",
+          "name": "Iron Nugget",
+          "qtyMin": 4,
+          "qtyMax": 7,
+          "primary": false,
+          "value": 1.14
+        },
+        {
+          "item": "kaolinite",
+          "name": "Kaolinite",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 5
+        },
+        {
+          "item": "titanium_nugget",
+          "name": "Titanium Nugget",
+          "qtyMin": 4,
+          "qtyMax": 7,
+          "primary": false,
+          "value": 1.8
+        },
+        {
+          "item": "aluminium_nugget",
+          "name": "Aluminum Nugget",
+          "qtyMin": 4,
+          "qtyMax": 7,
+          "primary": false,
+          "value": 1.92
+        },
+        {
+          "item": "aquamarine",
+          "name": "Aquamarine",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 12
+        },
+        {
+          "item": "emerald",
+          "name": "Emerald",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 130
+        }
+      ]
+    },
+    {
+      "id": "iron_carbon_cluster_siderite",
+      "name": "Siderite",
+      "tier": 2,
+      "kind": "Metal",
+      "desc": "Named after iron, its principal component, this ore is also rich in carbon and can contain quartz, graphite and hematite.",
+      "color": "#B2A859",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "iron_ore",
+          "name": "Iron Ore",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 2.16
+        },
+        {
+          "item": "calcite",
+          "name": "Calcite",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 3.74
+        },
+        {
+          "item": "carbon",
+          "name": "a-Carbon",
+          "qtyMin": 1,
+          "qtyMax": 3,
+          "primary": true,
+          "value": 1.5
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 11
+        },
+        {
+          "item": "hematite",
+          "name": "Hematite",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 7
+        },
+        {
+          "item": "graphite_crystal",
+          "name": "Graphite Crystal",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 9
+        },
+        {
+          "item": "pyrite",
+          "name": "Pyrite",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 10
+        }
+      ]
+    },
+    {
+      "id": "alu_cluster_underwater_native",
+      "name": "Aluminum Reduction",
+      "tier": 3,
+      "kind": "Metal",
+      "desc": "Under the influence of deep submarine current, aluminium can be found in native form.",
+      "color": "#FFFFFF",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "aluminium_nugget",
+          "name": "Aluminum Nugget",
+          "qtyMin": 5,
+          "qtyMax": 7,
+          "primary": true,
+          "value": 1.92
+        },
+        {
+          "item": "aquamarine",
+          "name": "Aquamarine",
+          "qtyMin": 1,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 12
+        },
+        {
+          "item": "emerald",
+          "name": "Emerald",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 130
+        }
+      ]
+    },
+    {
+      "id": "alu_iron_cluster_bauxite",
+      "name": "Bauxite Rock",
+      "tier": 3,
+      "kind": "Metal",
+      "desc": "This sedimentary stone is incredibly rich in diverse crystals, ranging from calcite to emerald.",
+      "color": "#7D5A40",
+      "bureau": 1,
+      "yields": [
+        {
+          "item": "aluminium_ore",
+          "name": "Aluminum Ore",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 3.58
+        },
+        {
+          "item": "iron_ore",
+          "name": "Iron Ore",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 2.16
+        },
+        {
+          "item": "sandstone",
+          "name": "Silicate",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 0.62
+        },
+        {
+          "item": "calcite",
+          "name": "Calcite",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 3.74
+        },
+        {
+          "item": "iron_nugget",
+          "name": "Iron Nugget",
+          "qtyMin": 2,
+          "qtyMax": 5,
+          "primary": true,
+          "value": 1.14
+        },
+        {
+          "item": "aluminium_nugget",
+          "name": "Aluminum Nugget",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": true,
+          "value": 1.92
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "hudge_crystal",
+          "name": "Marvelous Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 100
+        },
+        {
+          "item": "aquamarine",
+          "name": "Aquamarine",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 12
+        },
+        {
+          "item": "hematite",
+          "name": "Hematite",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 7
+        },
+        {
+          "item": "kaolinite",
+          "name": "Kaolinite",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 5
+        },
+        {
+          "item": "vanadium_ore",
+          "name": "Vanadium Ore",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 5.6
+        },
+        {
+          "item": "turquoise",
+          "name": "Turquoise",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 15
+        },
+        {
+          "item": "emerald",
+          "name": "Emerald",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 130
+        },
+        {
+          "item": "pyrite",
+          "name": "Pyrite",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 10
+        },
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 11
+        }
+      ]
+    },
+    {
+      "id": "uranium_vanadium_cluster_carnotite",
+      "name": "Carnotite Cluster",
+      "tier": 3,
+      "kind": "Metal",
+      "desc": null,
+      "color": "#CCFF00",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "vanadium_ore",
+          "name": "Vanadium Ore",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": true,
+          "value": 5.6
+        }
+      ]
+    },
+    {
+      "id": "copper_cluster_chalcocite",
+      "name": "Chalcocite",
+      "tier": 3,
+      "kind": "Metal",
+      "desc": "An especially profitable copper ore, chalcocite is rich in copper, but can also contain a large variety of other crystals.",
+      "color": "#706E8B",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "copper_nugget",
+          "name": "Copper Nugget",
+          "qtyMin": 4,
+          "qtyMax": 9,
+          "primary": true,
+          "value": 1.6
+        },
+        {
+          "item": "copper_ore",
+          "name": "Copper Ore",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": true,
+          "value": 3
+        },
+        {
+          "item": "pyrite",
+          "name": "Pyrite",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 10
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "hudge_crystal",
+          "name": "Marvelous Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 100
+        },
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 11
+        },
+        {
+          "item": "iron_nugget",
+          "name": "Iron Nugget",
+          "qtyMin": 4,
+          "qtyMax": 7,
+          "primary": false,
+          "value": 1.14
+        },
+        {
+          "item": "titanium_nugget",
+          "name": "Titanium Nugget",
+          "qtyMin": 4,
+          "qtyMax": 7,
+          "primary": false,
+          "value": 1.8
+        },
+        {
+          "item": "aluminium_nugget",
+          "name": "Aluminum Nugget",
+          "qtyMin": 4,
+          "qtyMax": 7,
+          "primary": false,
+          "value": 1.92
+        },
+        {
+          "item": "aquamarine",
+          "name": "Aquamarine",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 12
+        },
+        {
+          "item": "malachite_stone",
+          "name": "Malachite Stone",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 40
+        },
+        {
+          "item": "azurite_stone",
+          "name": "Azurite Stone",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 45
+        },
+        {
+          "item": "emerald",
+          "name": "Emerald",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 130
+        }
+      ]
+    },
+    {
+      "id": "copper_iron_cluster_chalcopyrite",
+      "name": "Chalcopyrite",
+      "tier": 3,
+      "kind": "Metal",
+      "desc": "Formerly known as \"yellow copper\", this ore is much more diverse than the name suggests, containing substantial quantities of pyrite, graphite, quartz and iron.",
+      "color": "#B0C26A",
+      "bureau": 1,
+      "yields": [
+        {
+          "item": "copper_ore",
+          "name": "Copper Ore",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 3
+        },
+        {
+          "item": "pyrite",
+          "name": "Pyrite",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 10
+        },
+        {
+          "item": "sandstone",
+          "name": "Silicate",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 0.62
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 11
+        },
+        {
+          "item": "graphite_crystal",
+          "name": "Graphite Crystal",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 9
+        },
+        {
+          "item": "azurite_stone",
+          "name": "Azurite Stone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 45
+        },
+        {
+          "item": "malachite_stone",
+          "name": "Malachite Stone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 40
+        },
+        {
+          "item": "iron_nugget",
+          "name": "Iron Nugget",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 1.14
+        }
+      ]
+    },
+    {
+      "id": "elmerium_cluster_elmerite_night",
+      "name": "Elmerite",
+      "tier": 3,
+      "kind": "Metal",
+      "desc": "Essential to contemporary industry, elmerium can only be found in these strange clusters that appear on the dark side of celestial objects.",
+      "color": "#A562DE",
+      "bureau": 4,
+      "yields": [
+        {
+          "item": "elmerium_nugget",
+          "name": "Elmerium Nugget",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": true,
+          "value": 5.3
+        },
+        {
+          "item": "sandstone",
+          "name": "Silicate",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 0.62
+        }
+      ]
+    },
+    {
+      "id": "graphite_cluster",
+      "name": "Graphite",
+      "tier": 3,
+      "kind": "Crystal",
+      "desc": "This pure graphite ore is the most stable form of carbon.",
+      "color": "#676666",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "graphite_crystal",
+          "name": "Graphite Crystal",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": true,
+          "value": 9
+        }
+      ]
+    },
+    {
+      "id": "elmerium_cluster_elmerite_day",
+      "name": "Hollow Outcrop",
+      "tier": 3,
+      "kind": "Other",
+      "desc": "Commonly found within the same clusters as elmerite, these impure outcrops combine smaller elmerium fragments with chunks of sandstone.",
+      "color": "#AC97BD",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "elmerium_shavings",
+          "name": "Elmerium Dust",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 0.3
+        },
+        {
+          "item": "sandstone",
+          "name": "Silicate",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 0.62
+        }
+      ]
+    },
+    {
+      "id": "vanadium_cluster_patronite",
+      "name": "Patronite",
+      "tier": 3,
+      "kind": "Metal",
+      "desc": "This ore, mostly made up of vanadium and sulfur, can contain crystals ranging from quartz to diamond.",
+      "color": "#90A666",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "vanadium_ore",
+          "name": "Vanadium Ore",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 5.6
+        },
+        {
+          "item": "sulfur",
+          "name": "Sulfur",
+          "qtyMin": 7,
+          "qtyMax": 9,
+          "primary": true,
+          "value": 0.7
+        },
+        {
+          "item": "carbon",
+          "name": "a-Carbon",
+          "qtyMin": 5,
+          "qtyMax": 7,
+          "primary": false,
+          "value": 1.5
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "hudge_crystal",
+          "name": "Marvelous Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 100
+        },
+        {
+          "item": "cinnabar",
+          "name": "Cinnabar",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 21.4
+        },
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 11
+        },
+        {
+          "item": "graphite_crystal",
+          "name": "Graphite Crystal",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 9
+        },
+        {
+          "item": "pyrite",
+          "name": "Pyrite",
+          "qtyMin": 2,
+          "qtyMax": 5,
+          "primary": false,
+          "value": 10
+        },
+        {
+          "item": "diamond",
+          "name": "Diamond",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 400
+        }
+      ]
+    },
+    {
+      "id": "pyrite",
+      "name": "Pyrite Formation",
+      "tier": 3,
+      "kind": "Crystal",
+      "desc": "Pyrite is a simple and common iron sulfide. Because of its yellow shine, it has often been mistaken for gold.",
+      "color": "#C5C57F",
+      "bureau": 2,
+      "yields": [
+        {
+          "item": "pyrite",
+          "name": "Pyrite",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 10
+        }
+      ]
+    },
+    {
+      "id": "quartz_red",
+      "name": "Red Quartz",
+      "tier": 3,
+      "kind": "Crystal",
+      "desc": "The coloration of quartz is determined by its impurities. This one has exactly the kind of impurities that can make quartz more valuable.",
+      "color": "#B54350",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 2,
+          "qtyMax": 5,
+          "primary": true,
+          "value": 11
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "hudge_crystal",
+          "name": "Marvelous Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 100
+        }
+      ]
+    },
+    {
+      "id": "alu_cluster_turquoise_stone",
+      "name": "Turquoise Stone",
+      "tier": 3,
+      "kind": "Mineral",
+      "desc": "Turquoise is too valuable in itself to be broken down into separate elements, even though it contains large quantities of copper and aluminum.",
+      "color": "#09E4FE",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "turquoise",
+          "name": "Turquoise",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 15
+        }
+      ]
+    },
+    {
+      "id": "carbon_cluster_vitrous",
+      "name": "Vitreous Carbon",
+      "tier": 3,
+      "kind": "Mineral",
+      "desc": "This carbon ore contains a surprisingly high amount of graphite.",
+      "color": "#676666",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "carbon",
+          "name": "a-Carbon",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": true,
+          "value": 1.5
+        },
+        {
+          "item": "graphite_crystal",
+          "name": "Graphite Crystal",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 9
+        },
+        {
+          "item": "diamond",
+          "name": "Diamond",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 400
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 35
+        }
+      ]
+    },
+    {
+      "id": "alu_cluster_white_feldspar",
+      "name": "White Feldspar Mound",
+      "tier": 3,
+      "kind": "Metal",
+      "desc": "This ore, mostly made up of aluminum and sandstone, can contain crystals ranging from aquamarine to emerald.",
+      "color": "#EADECD",
+      "bureau": 2,
+      "yields": [
+        {
+          "item": "aluminium_ore",
+          "name": "Aluminum Ore",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 3.58
+        },
+        {
+          "item": "sandstone",
+          "name": "Silicate",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 0.62
+        },
+        {
+          "item": "aluminium_nugget",
+          "name": "Aluminum Nugget",
+          "qtyMin": 3,
+          "qtyMax": 5,
+          "primary": false,
+          "value": 1.92
+        },
+        {
+          "item": "kaolinite",
+          "name": "Kaolinite",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 5
+        },
+        {
+          "item": "aquamarine",
+          "name": "Aquamarine",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 12
+        },
+        {
+          "item": "emerald",
+          "name": "Emerald",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 130
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 11
+        }
+      ]
+    },
+    {
+      "id": "quartz_white",
+      "name": "White Quartz",
+      "tier": 3,
+      "kind": "Crystal",
+      "desc": "The coloration of quartz is determined by its impurities. Rare impurities can actually make it more valuable, but this one has none.",
+      "color": "#EADED6",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": true,
+          "value": 11
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "hudge_crystal",
+          "name": "Marvelous Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 100
+        }
+      ]
+    },
+    {
+      "id": "alu_cluster_aquamarine",
+      "name": "Aquamarine",
+      "tier": 4,
+      "kind": "Crystal",
+      "desc": "Although it's not completely pure, this ore only contains crystals that are at least as valuable as pure aquamarine.",
+      "color": "#B5F6FE",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "aquamarine",
+          "name": "Aquamarine",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 12
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "hudge_crystal",
+          "name": "Marvelous Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 100
+        },
+        {
+          "item": "emerald",
+          "name": "Emerald",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 130
+        }
+      ]
+    },
+    {
+      "id": "alu_titane_cluster_augurite",
+      "name": "Augurite",
+      "tier": 4,
+      "kind": "Metal",
+      "desc": "This volcanic rock is often rich in aluminium and titanium.",
+      "color": "#FFFFFF",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "aluminium_nugget",
+          "name": "Aluminum Nugget",
+          "qtyMin": 4,
+          "qtyMax": 5,
+          "primary": true,
+          "value": 1.92
+        },
+        {
+          "item": "titanium_ore",
+          "name": "Titanium Ore",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 3.36
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "hudge_crystal",
+          "name": "Marvelous Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 100
+        },
+        {
+          "item": "aquamarine",
+          "name": "Aquamarine",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 12
+        },
+        {
+          "item": "emerald",
+          "name": "Emerald",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 130
+        },
+        {
+          "item": "pyrite",
+          "name": "Pyrite",
+          "qtyMin": 1,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 10
+        },
+        {
+          "item": "diamond",
+          "name": "Diamond",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 400
+        }
+      ]
+    },
+    {
+      "id": "copper_cluster_azurite",
+      "name": "Azurite",
+      "tier": 4,
+      "kind": "Crystal",
+      "desc": "Azurite crystal is too valuable in itself to be broken down into separate elements, even though it contains large quantities of copper and carbon.",
+      "color": "#3E56D4",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "azurite_stone",
+          "name": "Azurite Stone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 45
+        }
+      ]
+    },
+    {
+      "id": "cinnabar",
+      "name": "Cinnabar",
+      "tier": 4,
+      "kind": "Mineral",
+      "desc": "This mineral is a crystal of mercury sulfide. It was widely used as pigment because of its bright red color, before the high toxicity or mercury was recognized.",
+      "color": "#A55E5D",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "cinnabar",
+          "name": "Cinnabar",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 21.4
+        }
+      ]
+    },
+    {
+      "id": "alu_cluster_emerald",
+      "name": "Emerald",
+      "tier": 4,
+      "kind": "Crystal",
+      "desc": "This beryl variety is too valuable in itself to be broken down into separate elements, even though it contains large quantities of aluminum and silicon.",
+      "color": "#3C975A",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "emerald",
+          "name": "Emerald",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 130
+        }
+      ]
+    },
+    {
+      "id": "iron_cluster_magnetite",
+      "name": "Magnetite",
+      "tier": 4,
+      "kind": "Metal",
+      "desc": "Named after its principal component, this ore is also rich in other crystals including quartz, graphite and even diamond.",
+      "color": "#A1AEC4",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "iron_nugget",
+          "name": "Iron Nugget",
+          "qtyMin": 4,
+          "qtyMax": 5,
+          "primary": true,
+          "value": 1.14
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "hudge_crystal",
+          "name": "Marvelous Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 100
+        },
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 11
+        },
+        {
+          "item": "hematite",
+          "name": "Hematite",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 7
+        },
+        {
+          "item": "graphite_crystal",
+          "name": "Graphite Crystal",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 9
+        },
+        {
+          "item": "pyrite",
+          "name": "Pyrite",
+          "qtyMin": 1,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 10
+        },
+        {
+          "item": "titanium_nugget",
+          "name": "Titanium Nugget",
+          "qtyMin": 3,
+          "qtyMax": 4,
+          "primary": false,
+          "value": 1.8
+        },
+        {
+          "item": "diamond",
+          "name": "Diamond",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 400
+        }
+      ]
+    },
+    {
+      "id": "copper_cluster_malachite",
+      "name": "Malachite",
+      "tier": 4,
+      "kind": "Crystal",
+      "desc": "Malachite crystal is too valuable in itself to be broken down into separate elements, even though it contains large quantities of copper and carbon.",
+      "color": "#00CF88",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "malachite_stone",
+          "name": "Malachite Stone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 40
+        }
+      ]
+    },
+    {
+      "id": "iron_cluster_specularite",
+      "name": "S-Iron Cluster",
+      "tier": 4,
+      "kind": "Metal",
+      "desc": null,
+      "color": "#CECECE",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "iron_nugget",
+          "name": "Iron Nugget",
+          "qtyMin": 8,
+          "qtyMax": 12,
+          "primary": true,
+          "value": 1.14
+        },
+        {
+          "item": "sulfur",
+          "name": "Sulfur",
+          "qtyMin": 5,
+          "qtyMax": 6,
+          "primary": false,
+          "value": 0.7
+        }
+      ]
+    },
+    {
+      "id": "copper_cluster_tenorite",
+      "name": "Tenorite",
+      "tier": 4,
+      "kind": "Metal",
+      "desc": "A rare and hard ore of copper, tenorite is sometimes called black copper. It often contains precious inclusions.",
+      "color": "#743423",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "copper_nugget",
+          "name": "Copper Nugget",
+          "qtyMin": 4,
+          "qtyMax": 5,
+          "primary": true,
+          "value": 1.6
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "hudge_crystal",
+          "name": "Marvelous Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 100
+        },
+        {
+          "item": "platinum_ore",
+          "name": "Platinum Ore",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 6
+        },
+        {
+          "item": "azurite_stone",
+          "name": "Azurite Stone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 45
+        },
+        {
+          "item": "malachite_stone",
+          "name": "Malachite Stone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 40
+        }
+      ]
+    },
+    {
+      "id": "titane_cluster_titanite",
+      "name": "Titanite",
+      "tier": 4,
+      "kind": "Metal",
+      "desc": "Typically found on asteroids, this ore is an aggregate of small titanium nuggets.",
+      "color": "#A1AEC4",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "titanium_nugget",
+          "name": "Titanium Nugget",
+          "qtyMin": 4,
+          "qtyMax": 5,
+          "primary": true,
+          "value": 1.8
+        }
+      ]
+    },
+    {
+      "id": "iron_titane_cluster_titanomagnetite",
+      "name": "Titanomagnetite",
+      "tier": 4,
+      "kind": "Metal",
+      "desc": "Essentially made up of iron and titanium, this ore is also rich in hematite, quartz and graphite.",
+      "color": "#A1AEC4",
+      "bureau": 4,
+      "yields": [
+        {
+          "item": "iron_nugget",
+          "name": "Iron Nugget",
+          "qtyMin": 4,
+          "qtyMax": 5,
+          "primary": true,
+          "value": 1.14
+        },
+        {
+          "item": "titanium_ore",
+          "name": "Titanium Ore",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 3.36
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "hudge_crystal",
+          "name": "Marvelous Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 100
+        },
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 11
+        },
+        {
+          "item": "hematite",
+          "name": "Hematite",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 7
+        },
+        {
+          "item": "graphite_crystal",
+          "name": "Graphite Crystal",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 9
+        },
+        {
+          "item": "pyrite",
+          "name": "Pyrite",
+          "qtyMin": 1,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 10
+        },
+        {
+          "item": "diamond",
+          "name": "Diamond",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 400
+        }
+      ]
+    },
+    {
+      "id": "alu_cluster_turquoise",
+      "name": "Turquoise Clump",
+      "tier": 4,
+      "kind": "Mineral",
+      "desc": "Commonly found within the same clusters as turquoise stones, these impure clumps can contain varying proportions of aquamarine and emerald.",
+      "color": "#09E4FE",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "turquoise",
+          "name": "Turquoise",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": true,
+          "value": 15
+        },
+        {
+          "item": "aquamarine",
+          "name": "Aquamarine",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 12
+        },
+        {
+          "item": "emerald",
+          "name": "Emerald",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 130
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "hudge_crystal",
+          "name": "Marvelous Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 100
+        }
+      ]
+    },
+    {
+      "id": "vanadium_cluster_vanadinite",
+      "name": "Vanadinite",
+      "tier": 4,
+      "kind": "Metal",
+      "desc": "This common vanadium chlorure is easy to recognize with its characteristic shape and color.",
+      "color": "#DE7222",
+      "bureau": 4,
+      "yields": [
+        {
+          "item": "vanadium_ore",
+          "name": "Vanadium Ore",
+          "qtyMin": 1,
+          "qtyMax": 3,
+          "primary": true,
+          "value": 5.6
+        }
+      ]
+    },
+    {
+      "id": "zirconium_cluster_zircon",
+      "name": "Zircon",
+      "tier": 4,
+      "kind": "Metal",
+      "desc": "Named after its principal component, zircon was formerly traded as a gemstone, but has become essential for industrial uses, and nuclear reactors in particular.",
+      "color": "#B26D5E",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "zirconium_nugget",
+          "name": "Zirconium Nugget",
+          "qtyMin": 5,
+          "qtyMax": 9,
+          "primary": true,
+          "value": 5.6
+        },
+        {
+          "item": "calcite",
+          "name": "Calcite",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 3.74
+        },
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 11
+        }
+      ]
+    },
+    {
+      "id": "platinum_cluster_cooperite",
+      "name": "Cooperite",
+      "tier": 5,
+      "kind": "Metal",
+      "desc": "One of the most common planetary platinium ore, cooperite is also a source of a much more mundane element, sulfur.",
+      "color": "#B4BB91",
+      "bureau": 4,
+      "yields": [
+        {
+          "item": "platinum_ore",
+          "name": "Platinum Ore",
+          "qtyMin": 2,
+          "qtyMax": 5,
+          "primary": true,
+          "value": 6
+        },
+        {
+          "item": "sulfur",
+          "name": "Sulfur",
+          "qtyMin": 7,
+          "qtyMax": 9,
+          "primary": true,
+          "value": 0.7
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "hudge_crystal",
+          "name": "Marvelous Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 100
+        },
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 11
+        },
+        {
+          "item": "platinum_nugget",
+          "name": "Platinum Nugget",
+          "qtyMin": 3,
+          "qtyMax": 8,
+          "primary": false,
+          "value": 3.2
+        },
+        {
+          "item": "graphite_crystal",
+          "name": "Graphite Crystal",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 9
+        },
+        {
+          "item": "pyrite",
+          "name": "Pyrite",
+          "qtyMin": 1,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 10
+        },
+        {
+          "item": "diamond",
+          "name": "Diamond",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 400
+        }
+      ]
+    },
+    {
+      "id": "platinum_cluster_platinomagnetite",
+      "name": "Plagnetite",
+      "tier": 5,
+      "kind": "Metal",
+      "desc": "Generally found in asteroids, this formation contains an equal amount of iron and platinium.",
+      "color": "#B4BB91",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "platinum_nugget",
+          "name": "Platinum Nugget",
+          "qtyMin": 4,
+          "qtyMax": 5,
+          "primary": true,
+          "value": 3.2
+        },
+        {
+          "item": "iron_nugget",
+          "name": "Iron Nugget",
+          "qtyMin": 4,
+          "qtyMax": 5,
+          "primary": true,
+          "value": 1.14
+        }
+      ]
+    },
+    {
+      "id": "tungsten_cluster_underwater_native",
+      "name": "Tungsten Reduction",
+      "tier": 5,
+      "kind": "Metal",
+      "desc": "Under the influence of deep submarine current, tungsten can be found in native form.",
+      "color": "#5F6948",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "tungsten_nugget",
+          "name": "Tungsten Nugget",
+          "qtyMin": 5,
+          "qtyMax": 7,
+          "primary": true,
+          "value": 3.2
+        },
+        {
+          "item": "aquamarine",
+          "name": "Aquamarine",
+          "qtyMin": 1,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 12
+        },
+        {
+          "item": "diamond",
+          "name": "Diamond",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 400
+        }
+      ]
+    },
+    {
+      "id": "iron_tungsten_cluster_wolframite",
+      "name": "Wolframite",
+      "tier": 5,
+      "kind": "Metal",
+      "desc": "Wolframite get its name from wolfram, an ancient name of tungsten, its more remarkable component.",
+      "color": "#748254",
+      "bureau": 4,
+      "yields": [
+        {
+          "item": "iron_nugget",
+          "name": "Iron Nugget",
+          "qtyMin": 4,
+          "qtyMax": 5,
+          "primary": true,
+          "value": 1.14
+        },
+        {
+          "item": "tungsten_ore",
+          "name": "Tungsten Ore",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 6
+        },
+        {
+          "item": "big_crystal",
+          "name": "Beautiful Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 3,
+          "primary": false,
+          "value": 35
+        },
+        {
+          "item": "hudge_crystal",
+          "name": "Marvelous Gemstone",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 100
+        },
+        {
+          "item": "quartz",
+          "name": "Quartz",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 11
+        },
+        {
+          "item": "hematite",
+          "name": "Hematite",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 7
+        },
+        {
+          "item": "graphite_crystal",
+          "name": "Graphite Crystal",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 9
+        },
+        {
+          "item": "pyrite",
+          "name": "Pyrite",
+          "qtyMin": 1,
+          "qtyMax": 2,
+          "primary": false,
+          "value": 10
+        },
+        {
+          "item": "diamond",
+          "name": "Diamond",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": false,
+          "value": 400
+        }
+      ]
+    },
+    {
+      "id": "uranium_cluster_uraninite",
+      "name": "Uraninite Outcrop",
+      "tier": 6,
+      "kind": "Metal",
+      "desc": "This crystalline ore is the purest natural occurrence of uranium.",
+      "color": "#818286",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "uranium_nugget",
+          "name": "Uranium Nugget",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": true,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "diamond_cluster",
+      "name": "Gigantic Diamonds",
+      "tier": 7,
+      "kind": "Crystal",
+      "desc": "Had these crystals been discovered in the Milky Way era, they would have severely disrupted the global economy.",
+      "color": "#FFFFFF",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "diamond",
+          "name": "Diamond",
+          "qtyMin": 2,
+          "qtyMax": 3,
+          "primary": true,
+          "value": 400
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_deco_05",
+      "name": "Big Intake Vent",
+      "tier": null,
+      "kind": "Other",
+      "desc": "[TODO: should be removed after next wipe]",
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "metal_sheet_1",
+          "name": "Metal Sheet",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 3
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_black_box",
+      "name": "Black Box",
+      "tier": null,
+      "kind": "Other",
+      "desc": null,
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "wreck_black_box",
+          "name": "Black Box",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_titanium_beam",
+      "name": "Heavy-Duty Beam",
+      "tier": null,
+      "kind": "Other",
+      "desc": null,
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "beam_2",
+          "name": "Heavy-Duty Beam",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 50
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_steel_hull_scraps",
+      "name": "Hull Steel Scraps",
+      "tier": null,
+      "kind": "Other",
+      "desc": null,
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "steel_hull_scraps",
+          "name": "Wrecked Hull",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 7.8
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_deco_04",
+      "name": "Intake Vent",
+      "tier": null,
+      "kind": "Other",
+      "desc": "[TODO: should be removed after next wipe]",
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "metal_sheet_1",
+          "name": "Metal Sheet",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 3
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_coil",
+      "name": "Magnetic Coil",
+      "tier": null,
+      "kind": "Other",
+      "desc": null,
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "coil",
+          "name": "Magnetic Coil",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 9.5
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_iron_sheet",
+      "name": "Metal Sheet",
+      "tier": null,
+      "kind": "Other",
+      "desc": null,
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "metal_sheet_1",
+          "name": "Metal Sheet",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 3
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_microchip",
+      "name": "Microchip",
+      "tier": null,
+      "kind": "Other",
+      "desc": null,
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "micro_chip",
+          "name": "Microchip",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 1.34
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_motor",
+      "name": "Motor",
+      "tier": null,
+      "kind": "Other",
+      "desc": null,
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "motor",
+          "name": "Motor",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 59
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_zirconium_tube",
+      "name": "Pressure-tight Tube",
+      "tier": null,
+      "kind": "Other",
+      "desc": null,
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "pipe_2",
+          "name": "Pressure-tight Pipe",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 12.9
+        }
+      ]
+    },
+    {
+      "id": "rockwood_root",
+      "name": "Rockwood Root",
+      "tier": null,
+      "kind": "Organic",
+      "desc": null,
+      "color": null,
+      "bureau": null,
+      "yields": [
+        {
+          "item": "rockwood_seed",
+          "name": "Rockwood Nut",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_deco_01",
+      "name": "Round Hatch",
+      "tier": null,
+      "kind": "Other",
+      "desc": "[TODO: should be removed after next wipe]",
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "metal_sheet_1",
+          "name": "Metal Sheet",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 3
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_solar_cell",
+      "name": "Solar Cell",
+      "tier": null,
+      "kind": "Other",
+      "desc": null,
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "solar_cell",
+          "name": "Solar Cell",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 6.2
+        }
+      ]
+    },
+    {
+      "id": "space_wheat_root",
+      "name": "Spacekorn Root",
+      "tier": null,
+      "kind": "Organic",
+      "desc": null,
+      "color": null,
+      "bureau": null,
+      "yields": [
+        {
+          "item": "space_wheat_seed",
+          "name": "Spacekorn Seed",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_wing_01",
+      "name": "Spoilers",
+      "tier": null,
+      "kind": "Other",
+      "desc": "[TODO: should be removed after next wipe]",
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "metal_sheet_1",
+          "name": "Metal Sheet",
+          "qtyMin": 2,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 3
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_wing_02",
+      "name": "Spoilers",
+      "tier": null,
+      "kind": "Other",
+      "desc": "[TODO: should be removed after next wipe]",
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "metal_sheet_1",
+          "name": "Metal Sheet",
+          "qtyMin": 2,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 3
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_plate_1",
+      "name": "Stainless Plate",
+      "tier": null,
+      "kind": "Other",
+      "desc": null,
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "plate_1",
+          "name": "Stainless Plate",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 14.7
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_steel_scraps",
+      "name": "Steel Scraps",
+      "tier": null,
+      "kind": "Other",
+      "desc": null,
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "steel_scraps",
+          "name": "Steel Scraps",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 7.8
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_steel_beam",
+      "name": "Structural Beam",
+      "tier": null,
+      "kind": "Other",
+      "desc": null,
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "beam_1",
+          "name": "Structural Beam",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 21.8
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_system_scraps",
+      "name": "System Scraps",
+      "tier": null,
+      "kind": "Other",
+      "desc": null,
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "system_scraps",
+          "name": "Huge Electronics Scraps",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 8.1
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_copper_tube",
+      "name": "Watertight Tube",
+      "tier": null,
+      "kind": "Other",
+      "desc": null,
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "pipe_1",
+          "name": "Watertight Pipe",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 4.16
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_wing_04",
+      "name": "Wings",
+      "tier": null,
+      "kind": "Other",
+      "desc": "[TODO: should be removed after next wipe]",
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "metal_sheet_1",
+          "name": "Metal Sheet",
+          "qtyMin": 2,
+          "qtyMax": 2,
+          "primary": true,
+          "value": 3
+        }
+      ]
+    },
+    {
+      "id": "ship_wreck_wire",
+      "name": "Wire",
+      "tier": null,
+      "kind": "Other",
+      "desc": null,
+      "color": "#FF0000",
+      "bureau": null,
+      "yields": [
+        {
+          "item": "wire",
+          "name": "Wire",
+          "qtyMin": 1,
+          "qtyMax": 1,
+          "primary": true,
+          "value": 2.08
+        }
+      ]
+    }
+  ]
+}
