@@ -934,7 +934,7 @@
       }).join("");
     var ub = $("unknown-box"), uk = Object.keys(unknown); ub.innerHTML = uk.length ? "⚠ <b>Unknown amounts:</b> " + uk.map(function (u) { return RECIPES[u] ? RECIPES[u].name : u; }).join(", ") + "." : "";
     $("map").innerHTML = renderMap(g);
-    Array.prototype.forEach.call($("map").querySelectorAll(".scnode[data-id]"), function (g2) { g2.addEventListener("click", function () { var nid = g2.getAttribute("data-id"); if (nid && nid !== id && RECIPES[nid]) selectItem(nid); }); });
+    Array.prototype.forEach.call($("map").querySelectorAll(".scnode[data-id]"), function (g2) { g2.addEventListener("click", function () { var nid = g2.getAttribute("data-id"); var s = $("item"), nm = (s && RECIPES[s.value]) ? RECIPES[s.value].name : ""; openMapModal("map", "Production map" + (nm ? " · " + nm : "")); if (nid && RECIPES[nid]) { showNodeDetail(nid); highlightConn(nid); } }); });
     if ($("map-expand")) $("map-expand").style.display = $("map").querySelector("svg") ? "" : "none";
     var srcSet = gatherSources(node, {}), srcs = Object.keys(srcSet).map(function (a) { return SOURCES[a] || a; });
     $("sources").innerHTML = srcs.length ? srcs.map(function (s, i) { var lbl = "[" + (i + 1) + "] " + s; return /^https?:/.test(s) ? '<a href="' + s + '" target="_blank" rel="noopener">' + esc(lbl) + "</a>" : '<span class="meta">' + esc(lbl) + "</span>"; }).join("<br>") : "<span class='meta'>—</span>";
