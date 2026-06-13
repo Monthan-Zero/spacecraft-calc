@@ -176,6 +176,7 @@
 .scapp .mm-detail .mdx:hover{color:var(--text)}
 .scapp .mm-detail h3{font-family:Orbitron;font-size:15px;margin:0 24px 6px 0;color:var(--text)}
 .scapp .mm-detail .md-sum{color:var(--muted);font-size:12.5px;line-height:1.55;margin:9px 0 13px}
+.scapp .mm-detail .md-desc{color:var(--text);font-size:13px;line-height:1.62;font-style:italic;border-left:2px solid var(--primary);padding-left:11px;margin:11px 0 13px;opacity:.92}
 .scapp .mm-detail .md-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
 .scapp .mm-detail .md-stat{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:7px 9px}
 .scapp .mm-detail .md-stat .k{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.05em;font-family:Rajdhani}
@@ -817,6 +818,7 @@
       '<span class="badge" style="border-color:' + typeC + ';color:' + typeC + '">' + cap(r.type || "item") + '</span> ' +
       (confLabel ? '<span class="badge c-' + (r.confidence || "low") + '">' + esc(confLabel) + '</span>' : '') +
       '</div></div></div>' +
+      (r.desc ? '<div class="md-desc">' + esc(r.desc) + '</div>' : '') +
       '<div class="md-sum">' + esc(sum) + '</div>' + stats + inputsHTML + unlock + altsNote;
   }
   function showNodeDetail(id) {
