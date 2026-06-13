@@ -1,0 +1,22 @@
+{
+  "_README": "Public roadmap for the SpaceCraft Planner. The dev curates this file — community requests arrive by email and only appear here once added, so nothing user-typed is auto-published. status: planned | in-progress | considering | done.",
+  "updated": "2026-06-13",
+  "items": [
+    { "id": "redesign", "title": "Professional 'Command Console' redesign", "category": "Polish", "status": "done", "note": "Refined palette, typography, hairline UI, hover-only glow." },
+    { "id": "requests", "title": "Public roadmap + feature request form", "category": "Feature", "status": "done", "note": "This page — submit ideas and track what's coming." },
+    { "id": "factory", "title": "Factory automation planner", "category": "Feature", "status": "done", "note": "Target item + rate/hour → building counts, raw rates, power, factory map." },
+    { "id": "robustness", "title": "Data-integrity & input-validation pass", "category": "Bug", "status": "done", "note": "Escaping, price validation, safe local saves, no jarring reloads." },
+    { "id": "factory-share", "title": "Shareable factory plan links", "category": "Feature", "status": "planned", "note": "Copy a link that reopens your exact factory build." },
+    { "id": "where-to-mine", "title": "'Where to mine' links from raw materials", "category": "Feature", "status": "planned", "note": "Jump from any raw input to the sectors/deposits that yield it." },
+    { "id": "compare", "title": "Side-by-side item comparison", "category": "Feature", "status": "planned", "note": "Compare two production chains at once." },
+    { "id": "copy-build", "title": "Copy factory build list to clipboard", "category": "Quality of Life", "status": "planned", "note": "Paste a clean build summary into Discord." },
+    { "id": "skeletons", "title": "Loading skeletons instead of text spinner", "category": "Quality of Life", "status": "planned", "note": "Layout appears instantly on slow connections." },
+    { "id": "quick-search", "title": "Ctrl+K / '/' quick item search", "category": "Quality of Life", "status": "planned", "note": "Jump to any item from anywhere." },
+    { "id": "mobile-nav", "title": "Mobile bottom navigation bar", "category": "Quality of Life", "status": "planned", "note": "Thumb-friendly nav on phones." },
+    { "id": "favorites", "title": "Favorites / pinned items", "category": "Quality of Life", "status": "considering", "note": "Star items for a quick-access dashboard." },
+    { "id": "techtree", "title": "Tech Tree navigator (permits)", "category": "Feature", "status": "considering", "note": "Interactive permit/unlock map with prerequisites." },
+    { "id": "mining-bureau", "title": "Mining Bureau progression ladder", "category": "Feature", "status": "considering", "note": "What unlocks to mine at each bureau level." },
+    { "id": "contracts", "title": "Contract & profit browser", "category": "Feature", "status": "considering", "note": "Find the best-paying delivery contracts." },
+    { "id": "farming", "title": "Farm yield simulator", "category": "Feature", "status": "considering", "note": "Plan crops, enrichments and yields/hour." }
+  ]
+}

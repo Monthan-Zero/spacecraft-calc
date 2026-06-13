@@ -24,9 +24,10 @@
 
   /* ----------------------------- styles ----------------------------- */
   var CSS = `
-.scapp{--bg:#0B1622;--bg2:#0E1830;--panel:#14202E;--panel2:#1E3540;--line:#2A3A48;--text:#E6ECF2;--muted:#8DA0B3;
-  --primary:#23C6E6;--secondary:#F2A81D;--warm:#C66B33;--good:#5FE08A;--bad:#D8453A;--warn:#E8C21A;
-  --raw:#C66B33;--refined:#23C6E6;--component:#7A5CC4;--product:#F2A81D;
+.scapp{--bg:#08101B;--bg2:#0D1825;--panel:#111D2E;--panel2:#18273A;--line:#223847;--text:#E0E8F0;--muted:#8B9AAA;
+  --primary:#1A9FD8;--secondary:#E8A71D;--warm:#B85D28;--good:#4FD084;--bad:#D03A2E;--warn:#D8B81A;
+  --raw:#B85D28;--refined:#1A9FD8;--component:#6B4FA8;--product:#E8A71D;
+  --glow-primary:rgba(26,159,216,.15);--hover-highlight:rgba(26,159,216,.08);--border-accent:rgba(26,159,216,.22);
   position:relative;display:block;min-height:100vh;background:var(--bg);color:var(--text);
   font-family:Inter,system-ui,-apple-system,sans-serif;line-height:1.5;overflow-x:hidden;font-size:15px}
 .scapp *{box-sizing:border-box}
@@ -40,31 +41,32 @@
 .scapp .hex{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='32' viewBox='0 0 28 32'><path d='M14 0 L28 8 L28 24 L14 32 L0 24 L0 8 Z' fill='none' stroke='rgba(35,198,230,0.10)' stroke-width='1'/></svg>")}
 /* HUD bar */
 .scapp .hud{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:18px;padding:11px 22px;
-  background:#0D1826;border-bottom:1px solid rgba(35,198,230,.35)}
-.scapp .brand{font-family:Orbitron;font-weight:700;font-size:18px;letter-spacing:.12em;display:flex;align-items:center;gap:9px}
-.scapp .brand .pipe{width:2px;height:18px;background:var(--secondary);box-shadow:0 0 7px rgba(242,168,29,.8);display:inline-block}
+  background:#0A1420;border-bottom:1px solid var(--line)}
+.scapp .brand{font-family:Orbitron;font-weight:700;font-size:17px;letter-spacing:.10em;display:flex;align-items:center;gap:9px}
+.scapp .brand .pipe{width:2px;height:17px;background:var(--secondary);display:inline-block;border-radius:1px}
 .scapp .brand .b2{color:var(--primary)}
-.scapp .hud nav{display:flex;gap:18px;margin-left:8px}
-.scapp .hud nav a{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.08em;font-family:Rajdhani;font-weight:600}
+.scapp .hud nav{display:flex;gap:20px;margin-left:8px}
+.scapp .hud nav a{color:#9AABB8;font-size:12px;text-transform:uppercase;letter-spacing:.06em;font-family:Rajdhani;font-weight:600;padding:4px 0;border-bottom:1px solid transparent;transition:color .15s,border-color .15s}
 .scapp .hud nav a:hover{color:var(--primary)}
+.scapp .hud nav a.navon{color:var(--primary);border-bottom-color:var(--primary)}
 .scapp .hud .spacer{flex:1}
 .scapp .btn{font-family:Rajdhani;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:13px;cursor:pointer;
-  border-radius:4px;padding:9px 18px;border:1px solid var(--primary);background:rgba(35,198,230,.12);color:var(--primary);
-  box-shadow:0 0 14px rgba(35,198,230,.18);transition:background .15s,box-shadow .15s,transform .15s}
-.scapp .btn:hover{background:rgba(35,198,230,.22);box-shadow:0 0 20px rgba(35,198,230,.35);transform:translateY(-1px)}
-.scapp .btn.amber{border-color:var(--secondary);color:var(--secondary);background:rgba(242,168,29,.10);box-shadow:0 0 14px rgba(242,168,29,.16)}
+  border-radius:6px;padding:9px 18px;border:1px solid var(--primary);background:rgba(26,159,216,.08);color:var(--primary);
+  transition:background .2s,box-shadow .2s,transform .2s,border-color .2s}
+.scapp .btn:hover{background:rgba(26,159,216,.14);box-shadow:0 0 14px rgba(26,159,216,.28);transform:translateY(-1px)}
+.scapp .btn:focus-visible{outline:none;box-shadow:0 0 0 2px rgba(26,159,216,.3)}
+.scapp .btn.amber{border-color:var(--secondary);color:var(--secondary);background:rgba(232,167,29,.09)}
 .scapp .btn.amber:hover{background:rgba(242,168,29,.2)}
 .scapp .btn.ghost{border-color:var(--line);color:var(--muted);background:transparent;box-shadow:none}
 .scapp .btn.ghost:hover{color:var(--text);border-color:var(--muted)}
 /* hero */
 .scapp .hero{position:relative;padding:84px 0 64px;text-align:center}
-.scapp .hero .eyebrow{font-family:Rajdhani;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--primary);font-size:13px;margin-bottom:16px}
-.scapp .hero h1{font-size:clamp(30px,5.2vw,58px);font-weight:700;line-height:1.04;margin:0 0 18px;color:#fff;text-shadow:0 0 18px rgba(242,168,29,.35)}
+.scapp .hero .eyebrow{font-family:Rajdhani;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--primary);font-size:12px;margin-bottom:16px}
+.scapp .hero h1{font-size:clamp(30px,5.2vw,52px);font-weight:700;line-height:1.06;letter-spacing:.03em;margin:0 0 18px;color:#fff;text-shadow:0 0 12px rgba(26,159,216,.25)}
 .scapp .hero h1 .v{color:var(--secondary)}
 .scapp .hero p.sub{max-width:680px;margin:0 auto 28px;color:var(--muted);font-size:16px;line-height:1.6}
 .scapp .hero .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.scapp .hero .divider{width:220px;height:2px;margin:34px auto 0;position:relative;background:linear-gradient(90deg,transparent,rgba(35,198,230,.5),transparent);overflow:hidden}
-.scapp .hero .divider::after{content:"";position:absolute;top:0;left:30%;width:40%;height:100%;background:linear-gradient(90deg,transparent,var(--primary),transparent)}
+.scapp .hero .divider{width:220px;height:1px;margin:34px auto 0;background:rgba(26,159,216,.22)}
 /* stat strip */
 .scapp .stats{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:34px 0 8px}
 .scapp .chip{position:relative;padding:12px 20px;background:rgba(20,32,46,.7);border:1px solid var(--line);border-radius:4px;text-align:center;min-width:130px}
@@ -75,11 +77,11 @@
 .scapp .chip .cb.br{bottom:-1px;right:-1px;border-bottom:2px solid var(--primary);border-right:2px solid var(--primary)}
 /* section + panel */
 .scapp section{position:relative;padding:46px 0}
-.scapp .sechead{font-size:13px;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);margin:0 0 18px;display:flex;align-items:center;gap:10px}
+.scapp .sechead{font-size:13px;font-weight:600;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.08em;color:var(--text);margin:0 0 18px;display:flex;align-items:center;gap:10px}
 .scapp .sechead::before{content:"";width:2px;height:15px;background:var(--secondary);box-shadow:0 0 6px rgba(242,168,29,.7)}
 .scapp .panel{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:5px;overflow:hidden}
-.scapp .panel.lit{box-shadow:0 0 0 1px rgba(35,198,230,.12),0 0 28px rgba(35,198,230,.07)}
-.scapp .ph{position:relative;z-index:1;display:flex;align-items:center;gap:10px;padding:11px 16px;background:var(--panel2);border-bottom:2px solid var(--secondary)}
+.scapp .panel.lit{box-shadow:0 0 0 1px rgba(26,159,216,.12),inset 0 0 1px rgba(26,159,216,.08)}
+.scapp .ph{position:relative;z-index:1;display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--panel2);border-bottom:1px solid rgba(26,159,216,.15)}
 .scapp .ph h3{margin:0;font-size:13px;text-transform:uppercase;letter-spacing:.14em;color:var(--text)}
 .scapp .ph .sub{font-family:Inter;font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-size:12px;margin-left:auto}
 .scapp .pbody{position:relative;z-index:1;padding:18px}
@@ -94,15 +96,16 @@
 .scapp .controls{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:18px}
 .scapp .field{display:flex;flex-direction:column;gap:6px}
 .scapp label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-family:Rajdhani;font-weight:600}
-.scapp select,.scapp input{background:var(--bg2);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:4px;font-size:15px;min-width:240px;outline:none;font-family:Inter}
+.scapp select,.scapp input{background:var(--bg2);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:6px;font-size:15px;min-width:240px;outline:none;font-family:Inter;transition:border-color .15s,box-shadow .15s}
 .scapp input[type=number]{min-width:100px}
-.scapp select:focus,.scapp input:focus{border-color:var(--primary);box-shadow:0 0 0 1px rgba(35,198,230,.4)}
+.scapp select:focus,.scapp input:focus{border-color:var(--primary);box-shadow:0 0 0 1px rgba(26,159,216,.18)}
 .scapp .titlerow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0 14px}
 .scapp .titlerow h2{margin:0;font-size:20px;font-family:Orbitron;font-weight:600}
 /* metric cards */
 .scapp .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
-.scapp .card{position:relative;background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:13px 15px;overflow:hidden}
-.scapp .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--primary);opacity:.65}
+.scapp .card{position:relative;background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:14px 16px;overflow:hidden;transition:border-color .15s,background .15s}
+.scapp .card:hover{border-color:var(--primary);background:rgba(26,159,216,.04)}
+.scapp .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--primary);opacity:.5}
 .scapp .card .k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-family:Rajdhani;font-weight:600}
 .scapp .card .v{font-family:"JetBrains Mono";font-size:22px;font-weight:600;margin-top:5px}
 .scapp .card .note{font-size:11px;color:var(--muted);margin-top:3px}
@@ -218,7 +221,7 @@
 .scapp .comboitem .ci-cat{color:var(--muted);font-size:10px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.04em}
 .scapp .comboitem .ci-val{color:var(--primary);font-family:"JetBrains Mono";font-size:12px}
 .scapp .comboitem .ci-r{display:flex;gap:8px;align-items:center;white-space:nowrap}
-.scapp.view-profit > .hero,.scapp.view-profit #sc-planner,.scapp.view-profit #sc-browse,.scapp.view-profit #sc-about{display:none}
+.scapp.view-profit > .hero,.scapp.view-profit #sc-planner,.scapp.view-profit #sc-browse,.scapp.view-profit #sc-about,.scapp.view-profit #sc-roadmap{display:none}
 .scapp:not(.view-profit) #sc-profit{display:none}
 .scapp .charts{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 @media(max-width:900px){.scapp .charts{grid-template-columns:1fr}}
@@ -237,9 +240,9 @@
 .scapp .bar{opacity:.82}
 .scapp .barlbl{fill:var(--text);font-size:11px}
 .scapp .barval{fill:var(--primary);font-size:11px;font-family:"JetBrains Mono"}
-.scapp.view-map > .hero,.scapp.view-map #sc-planner,.scapp.view-map #sc-browse,.scapp.view-map #sc-about,.scapp.view-map #sc-profit{display:none}
+.scapp.view-map > .hero,.scapp.view-map #sc-planner,.scapp.view-map #sc-browse,.scapp.view-map #sc-about,.scapp.view-map #sc-profit,.scapp.view-map #sc-roadmap{display:none}
 .scapp:not(.view-map) #sc-map{display:none}
-.scapp.view-factory > .hero,.scapp.view-factory #sc-planner,.scapp.view-factory #sc-browse,.scapp.view-factory #sc-about{display:none}
+.scapp.view-factory > .hero,.scapp.view-factory #sc-planner,.scapp.view-factory #sc-browse,.scapp.view-factory #sc-about,.scapp.view-factory #sc-roadmap{display:none}
 .scapp:not(.view-factory) #sc-factory{display:none}
 .scapp .facbar{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end;margin-bottom:20px}
 .scapp .facbar select{min-width:240px}
@@ -319,6 +322,31 @@
 .scapp .sectorside .dcmeta{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:7px}
 /* Continuous animations intentionally omitted — they caused full-screen repaints/lag.
    Visuals (starfield, hero glow, hex grid, brackets) remain as static effects. */
+.scapp .catcard:hover{transform:translateY(-1px)}
+@media(prefers-reduced-motion:reduce){.scapp *{transition:none!important;animation:none!important}}
+.scapp .rmwrap{display:grid;grid-template-columns:360px 1fr;gap:22px;align-items:start}
+@media(max-width:820px){.scapp .rmwrap{grid-template-columns:1fr}}
+.scapp textarea{background:var(--bg2);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:6px;font-size:14px;font-family:Inter;width:100%;resize:vertical;outline:none;transition:border-color .15s,box-shadow .15s}
+.scapp textarea:focus{border-color:var(--primary);box-shadow:0 0 0 1px rgba(26,159,216,.18)}
+.scapp .rmform .field{display:block}
+.scapp .rmform .field input,.scapp .rmform .field select{width:100%;min-width:0}
+.scapp .rq-mail{color:var(--primary)}
+.scapp .rmcount{color:var(--muted);font-size:12px;font-family:Rajdhani;letter-spacing:.04em}
+.scapp .rmhead{margin-bottom:14px}
+.scapp .rmgroup{margin-bottom:18px}
+.scapp .rmgh{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.scapp .rmgc{color:var(--muted);font-size:11px;font-family:"JetBrains Mono"}
+.scapp .rmchip{font-size:10px;font-family:Rajdhani;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:20px;border:1px solid var(--line);color:var(--muted)}
+.scapp .rmchip.rm-in-progress{color:var(--primary);border-color:rgba(26,159,216,.5)}
+.scapp .rmchip.rm-planned{color:var(--secondary);border-color:rgba(232,167,29,.5)}
+.scapp .rmchip.rm-done{color:var(--good);border-color:rgba(79,208,132,.5)}
+.scapp .rmcard{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--line);border-radius:6px;padding:11px 13px;margin-bottom:8px}
+.scapp .rmcard.rmb-in-progress{border-left-color:var(--primary)}
+.scapp .rmcard.rmb-planned{border-left-color:var(--secondary)}
+.scapp .rmcard.rmb-done{border-left-color:var(--good)}
+.scapp .rmtitle{font-weight:600;font-size:14px}
+.scapp .rmcat{color:var(--muted);font-size:10px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.05em;margin-left:6px}
+.scapp .rmnote{color:var(--muted);font-size:12.5px;margin-top:4px;line-height:1.5}
 `;
   if (!document.getElementById("sc-app-styles")) { var st = document.createElement("style"); st.id = "sc-app-styles"; st.textContent = CSS; document.head.appendChild(st); }
 
@@ -327,7 +355,7 @@
 <div class="stars" data-el="stars"></div><div class="neb"></div>
 <header class="hud">
   <div class="brand">SPACE<span class="pipe"></span><span class="b2">CRAFT</span> PLANNER</div>
-  <nav><a data-el="nav-planner">Planner</a><a data-el="nav-browse">Recipes</a><a data-el="nav-profit">Profit</a><a data-el="nav-factory">Factory</a><a data-el="nav-map">Galaxy</a><a data-el="nav-about">About&nbsp;Data</a></nav>
+  <nav><a data-el="nav-planner">Planner</a><a data-el="nav-browse">Recipes</a><a data-el="nav-profit">Profit</a><a data-el="nav-factory">Factory</a><a data-el="nav-map">Galaxy</a><a data-el="nav-roadmap">Roadmap</a><a data-el="nav-about">About&nbsp;Data</a></nav>
   <div class="spacer"></div>
   <button class="btn" data-el="nav-launch">Launch Planner</button>
 </header>
@@ -417,6 +445,24 @@
   </div>
 </div></section>
 
+<section id="sc-roadmap"><div class="wrap">
+  <div class="sechead">Roadmap &amp; Requests</div>
+  <div class="rmwrap">
+    <div class="rmform panel lit" style="padding:18px">
+      <h3 style="font-family:Orbitron;font-size:15px;margin:0 0 4px;color:var(--text)">Request a feature</h3>
+      <p style="color:var(--muted);font-size:13px;margin:0 0 14px;line-height:1.5">Tell us what would help you in-game. Requests reach us by email; the best ones get added to the roadmap.</p>
+      <div class="field"><label>Type</label><select data-el="rq-cat"><option>Feature</option><option>Quality of Life</option><option>Data fix</option><option>Bug</option></select></div>
+      <div class="field" style="margin-top:10px"><label>Title</label><input data-el="rq-title" type="text" maxlength="80" placeholder="e.g. Add a contract profit browser"></div>
+      <div class="field" style="margin-top:10px"><label>Details</label><textarea data-el="rq-body" maxlength="600" rows="4" placeholder="What should it do? Why would it help?"></textarea></div>
+      <div style="margin-top:13px;display:flex;align-items:center;gap:12px;flex-wrap:wrap"><button class="btn amber" data-el="rq-send" type="button">✉ Send request</button><span style="color:var(--muted);font-size:12px">or email <span class="rq-mail">mbcarlisle07@gmail.com</span></span></div>
+    </div>
+    <div class="rmlist">
+      <div class="rmhead"><span class="rmcount" data-el="rm-updated"></span></div>
+      <div data-el="rm-list"><div class="loading">Loading roadmap…</div></div>
+    </div>
+  </div>
+</div></section>
+
 <footer><div class="wrap frow">
   <div class="brand" style="font-size:15px">SPACE<span class="pipe"></span><span class="b2">CRAFT</span> PLANNER</div>
   <div class="spacer"></div>
@@ -450,23 +496,27 @@
   function fmt(n) { return (Math.round(n * 100) / 100).toLocaleString(undefined, { maximumFractionDigits: 2 }); }
   function credits(n) { return isNum(n) ? "⊙ " + fmt(n) : "—"; }
   function tc(t) { return "t-" + t; } function dc(t) { return "d-" + t; }
-  function typeColor(t) { return ({ raw: "#C66B33", refined: "#23C6E6", component: "#7A5CC4", product: "#F2A81D", unknown: "#8DA0B3" })[t] || "#8DA0B3"; }
+  function typeColor(t) { return ({ raw: "#B85D28", refined: "#1A9FD8", component: "#6B4FA8", product: "#E8A71D", unknown: "#8B9AAA" })[t] || "#8B9AAA"; }
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
   function trunc(s, n) { s = String(s); return s.length > n ? s.slice(0, n - 1) + "…" : s; }
   var toastT; function toast(m) { var t = $("toast"); if (!t) return; t.textContent = m; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove("show"); }, 2400); }
 
   /* ----------------------------- data ----------------------------- */
-  var RECIPES = {}, SOURCES = {}, CONSTS = {}, BUYMULT = 1, pendingScroll = null, facPendingItem = null;
+  var RECIPES = {}, SOURCES = {}, CONSTS = {}, BUYMULT = 1, pendingScroll = null, facPendingItem = null, ORIGVAL = {};
   var ATLAS = { deposits: [] }, atlasFilter = "all", atlasSearch = "", galaxyWired = false, galT = { x: 0, y: 0, s: 1 }, galDrag = null, galWired = false, sectorSel = null, facWired = false;
   var LS_KEY = "sc_reported_prices_v1";
   function loadReported() { try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch (e) { return {}; } }
   function applyReported() { var rep = loadReported(); for (var id in rep) { if (RECIPES[id]) { RECIPES[id].value = rep[id]; RECIPES[id].confidence = "reported"; RECIPES[id].userReported = true; } } }
   function reportPrice(id, val) {
     var rep = loadReported();
-    if (val === null) { delete rep[id]; localStorage.setItem(LS_KEY, JSON.stringify(rep)); location.reload(); return; }
-    rep[id] = val; localStorage.setItem(LS_KEY, JSON.stringify(rep));
-    if (RECIPES[id]) { RECIPES[id].value = val; RECIPES[id].confidence = "reported"; RECIPES[id].userReported = true; }
-    populate(); compute(); buildCatalog(); toast("Saved ⊙" + fmt(val) + " for " + (RECIPES[id] ? RECIPES[id].name : id));
+    if (val === null) delete rep[id]; else rep[id] = val;
+    try { localStorage.setItem(LS_KEY, JSON.stringify(rep)); } catch (e) { toast("Couldn't save — browser storage may be full"); return; }
+    if (RECIPES[id]) {
+      if (val === null) { RECIPES[id].value = ORIGVAL[id]; RECIPES[id].confidence = "game"; RECIPES[id].userReported = false; }
+      else { RECIPES[id].value = val; RECIPES[id].confidence = "reported"; RECIPES[id].userReported = true; }
+    }
+    populate(); compute(); buildCatalog(); buildProfit();
+    toast(val === null ? "Price cleared" : "Saved ⊙" + fmt(val) + " for " + (RECIPES[id] ? RECIPES[id].name : id));
   }
   function exportReported() {
     var rep = loadReported(), ids = Object.keys(rep);
@@ -483,13 +533,18 @@
   var DATA_URL = SELF.split(/[?#]/)[0].replace(/[^\/]*$/, "recipes.json");
 
   fetch(DATA_URL, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-    .then(function (data) { SOURCES = data.sources || {}; RECIPES = data.recipes || {}; CONSTS = data.constants || {}; BUYMULT = 1 + (isNum(CONSTS.marketBuyTaxPercent) ? CONSTS.marketBuyTaxPercent / 100 : 0); applyReported(); initPlanner(); })
+    .then(function (data) { SOURCES = data.sources || {}; RECIPES = data.recipes || {}; CONSTS = data.constants || {}; BUYMULT = 1 + (isNum(CONSTS.marketBuyTaxPercent) ? CONSTS.marketBuyTaxPercent / 100 : 0); ORIGVAL = {}; for (var _k in RECIPES) ORIGVAL[_k] = RECIPES[_k].value; applyReported(); initPlanner(); })
     .catch(function (e) { try { window.__loadErr = (e && e.stack) || String(e); } catch (_) {} var pb = $("plannerbody"); if (pb) pb.innerHTML = '<div class="loading" style="color:var(--bad)">⚠ Could not load recipe data (' + esc(e.message) + ').<br>Check recipes.json.</div>'; });
 
   var ATLAS_URL = SELF.split(/[?#]/)[0].replace(/[^\/]*$/, "atlas.json");
   fetch(ATLAS_URL, { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : { deposits: [] }; })
     .then(function (w) { ATLAS = (w && w.deposits) ? w : { deposits: [] }; if (currentView() === "map") buildGalaxy(); })
     .catch(function () {});
+  var ROADMAP = { items: [] };
+  var ROADMAP_URL = SELF.split(/[?#]/)[0].replace(/[^\/]*$/, "roadmap.json");
+  fetch(ROADMAP_URL, { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : { items: [] }; })
+    .then(function (w) { ROADMAP = (w && w.items) ? w : { items: [] }; buildRoadmap(); })
+    .catch(function () { ROADMAP = { items: [] }; buildRoadmap(); });
 
   /* ----------------------------- engine ----------------------------- */
   function expand(id, qty, seen) {
@@ -715,7 +770,7 @@
     $("m-sell-note").textContent = r.userReported ? "you reported this price" : sell === null ? "report it below ↓" : "store base price";
     var rb = $("report-box"), cur = isNum(r.value) ? r.value : "";
     rb.innerHTML = '<input type="number" min="0" step="0.01" data-el="price-input" placeholder="⊙ per unit" value="' + cur + '"><button class="minibtn" data-el="price-save">' + (isNum(r.value) ? "Update" : "Report") + '</button>' + (r.userReported ? '<button class="minibtn" data-el="price-clear">clear</button>' : "");
-    $("price-save").onclick = function () { var v = parseFloat($("price-input").value); if (!isNaN(v) && v >= 0) reportPrice(id, v); };
+    $("price-save").onclick = function () { var v = parseFloat($("price-input").value); if (!isFinite(v) || v < 0 || v > 1e12) { toast("Enter a valid price (0–1,000,000,000,000)"); return; } reportPrice(id, v); };
     var pc = $("price-clear"); if (pc) pc.onclick = function () { reportPrice(id, null); };
     var hasRaw = Object.keys(raw).length > 0;
     var taxPartial = incomplete || !gc.taxComplete;
@@ -732,10 +787,13 @@
     var boughtOK = sell !== null && !costPartial && hasRaw, bought = boughtOK ? sell - prodCost : null, bEl = $("m-bought");
     bEl.textContent = boughtOK ? credits(bought) : "—"; bEl.className = "v " + (boughtOK ? (bought >= 0 ? "good" : "bad") : "");
     $("m-bought-note").textContent = sell === null ? "needs a price" : !boughtOK ? "needs material prices" : "after buying materials";
-    var tb = $("raw-table").querySelector("tbody"); tb.innerHTML = "";
+    var tb = $("raw-table").querySelector("tbody");
     var rows = Object.keys(raw).sort(function (a, b) { return raw[b] - raw[a]; });
-    if (!rows.length) tb.innerHTML = '<tr><td colspan="4" class="meta">No quantified raw materials.</td></tr>';
-    rows.forEach(function (k) { var rr = RECIPES[k], unit = rr && isNum(rr.value) ? rr.value : null, sub = unit !== null ? unit * raw[k] : null; tb.insertAdjacentHTML("beforeend", '<tr><td><span class="dot ' + dc(rr ? rr.type : "unknown") + '"></span><span class="' + (rr ? tc(rr.type) : "") + '">' + (rr ? rr.name : k) + '</span></td><td class="num">' + fmt(raw[k]) + '</td><td class="num">' + (unit === null ? "—" : fmt(unit)) + '</td><td class="num">' + (sub === null ? "—" : fmt(sub)) + "</td></tr>"); });
+    tb.innerHTML = !rows.length ? '<tr><td colspan="4" class="meta">No quantified raw materials.</td></tr>'
+      : rows.map(function (k) {
+        var rr = RECIPES[k], unit = rr && isNum(rr.value) ? rr.value : null, sub = unit !== null ? unit * raw[k] : null;
+        return '<tr><td><span class="dot ' + dc(rr ? rr.type : "unknown") + '"></span><span class="' + (rr ? tc(rr.type) : "") + '">' + esc(rr ? rr.name : k) + '</span></td><td class="num">' + fmt(raw[k]) + '</td><td class="num">' + (unit === null ? "—" : fmt(unit)) + '</td><td class="num">' + (sub === null ? "—" : fmt(sub)) + "</td></tr>";
+      }).join("");
     var ub = $("unknown-box"), uk = Object.keys(unknown); ub.innerHTML = uk.length ? "⚠ <b>Unknown amounts:</b> " + uk.map(function (u) { return RECIPES[u] ? RECIPES[u].name : u; }).join(", ") + "." : "";
     $("map").innerHTML = renderMap(g);
     if ($("map-expand")) $("map-expand").style.display = $("map").querySelector("svg") ? "" : "none";
@@ -902,11 +960,9 @@
     root.classList.toggle("view-profit", v === "profit");
     root.classList.toggle("view-map", v === "map");
     root.classList.toggle("view-factory", v === "factory");
-    var np = $("nav-profit"), npl = $("nav-planner"), nm = $("nav-map"), nf = $("nav-factory");
-    if (np) np.style.color = v === "profit" ? "var(--primary)" : "";
-    if (nm) nm.style.color = v === "map" ? "var(--primary)" : "";
-    if (nf) nf.style.color = v === "factory" ? "var(--primary)" : "";
-    if (npl) npl.style.color = v === "home" ? "var(--primary)" : "";
+    var navmap = { profit: "nav-profit", map: "nav-map", factory: "nav-factory" };
+    ["nav-profit", "nav-map", "nav-factory"].forEach(function (n) { var e = $(n); if (e) e.classList.remove("navon"); });
+    if (navmap[v] && $(navmap[v])) $(navmap[v]).classList.add("navon");
     if (v !== "home") window.scrollTo(0, 0);
     if (v === "map" && ATLAS.deposits.length) buildGalaxy();
     if (v === "factory") buildFactory();
@@ -921,6 +977,31 @@
     }
   }
 
+  /* ----------------------------- roadmap & requests ----------------------------- */
+  function buildRoadmap() {
+    var el = $("rm-list"); if (!el) return;
+    var items = (ROADMAP && ROADMAP.items) ? ROADMAP.items : [];
+    if ($("rm-updated")) $("rm-updated").textContent = (ROADMAP && ROADMAP.updated) ? ("Last updated " + ROADMAP.updated) : "";
+    if (!items.length) { el.innerHTML = '<div class="foot">Roadmap coming soon — be the first to suggest something.</div>'; return; }
+    var order = ["in-progress", "planned", "considering", "done"], labels = { "in-progress": "In progress", planned: "Planned", considering: "Considering", done: "Shipped" };
+    el.innerHTML = order.map(function (st) {
+      var grp = items.filter(function (i) { return i.status === st; });
+      if (!grp.length) return "";
+      return '<div class="rmgroup"><div class="rmgh"><span class="rmchip rm-' + st + '">' + labels[st] + '</span><span class="rmgc">' + grp.length + '</span></div>'
+        + grp.map(function (i) { return '<div class="rmcard rmb-' + st + '"><div class="rmtitle">' + esc(i.title || "") + (i.category ? '<span class="rmcat">' + esc(i.category) + '</span>' : "") + '</div>' + (i.note ? '<div class="rmnote">' + esc(i.note) + '</div>' : "") + '</div>'; }).join("")
+        + '</div>';
+    }).join("");
+  }
+  function sendRequest() {
+    var cat = ($("rq-cat") || {}).value || "Feature";
+    var title = (($("rq-title") || {}).value || "").trim();
+    var body = (($("rq-body") || {}).value || "").trim();
+    if (title.length < 3) { toast("Add a short title first"); if ($("rq-title")) $("rq-title").focus(); return; }
+    var subj = encodeURIComponent("[SpaceCraft Planner] " + cat + ": " + title.slice(0, 80));
+    var bd = encodeURIComponent((body || "(no details given)").slice(0, 600) + "\n\n— sent from spacecraftplanner.com");
+    window.location.href = "mailto:mbcarlisle07@gmail.com?subject=" + subj + "&body=" + bd;
+    toast("Opening your email app…");
+  }
   /* ----------------------------- factory / automation planner ----------------------------- */
   function buildFactory() {
     var sel = $("fac-item"); if (!sel || !Object.keys(RECIPES).length) return;
@@ -1000,7 +1081,7 @@
     if ($("tab-sectors")) $("tab-sectors").classList.toggle("on", sec);
     if ($("tab-deposits")) $("tab-deposits").classList.toggle("on", !sec);
   }
-  function tierColor(t) { return ["#6FB1E0", "#5FE08A", "#23C6E6", "#F2A81D", "#E06A4A", "#7A5CC4"][t] || "#7A5CC4"; }
+  function tierColor(t) { return ["#6FB1E0", "#4FD084", "#1A9FD8", "#E8A71D", "#D8643F", "#6B4FA8"][t] || "#6B4FA8"; }
   function buildSectors() {
     if (!$("galaxysvg") || !ATLAS.sectors) return;
     drawSectorMap();
@@ -1195,7 +1276,7 @@
     $("catsearch").addEventListener("input", buildCatalog);
     if ($("map-expand")) $("map-expand").addEventListener("click", function () { var s = $("item"), nm = (s && RECIPES[s.value]) ? RECIPES[s.value].name : ""; openMapModal("map", "Production map" + (nm ? " · " + nm : "")); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && $("mapmodal") && $("mapmodal").classList.contains("open")) closeMapModal(); });
-    var rst = $("reset-btn"); if (rst) rst.onclick = function () { try { localStorage.removeItem("sc_reported_prices_v1"); } catch (e) {} location.reload(); };
+    var rst = $("reset-btn"); if (rst) rst.onclick = function () { try { localStorage.removeItem(LS_KEY); } catch (e) {} for (var k in RECIPES) { if (RECIPES[k].userReported) { RECIPES[k].value = ORIGVAL[k]; RECIPES[k].confidence = "game"; RECIPES[k].userReported = false; } } populate(); compute(); buildCatalog(); buildProfit(); toast("All reported prices reset"); };
     var inp = $("item-input");
     inp.addEventListener("focus", function () { renderCombo(inp.value); $("item-drop").classList.add("open"); inp.setAttribute("aria-expanded", "true"); inp.select(); });
     inp.addEventListener("input", function () { renderCombo(inp.value); $("item-drop").classList.add("open"); });
@@ -1208,6 +1289,8 @@
     $("cta-browse").onclick = homeScroll("#sc-browse");
     $("nav-browse").onclick = homeScroll("#sc-browse");
     $("nav-about").onclick = homeScroll("#sc-about");
+    if ($("nav-roadmap")) $("nav-roadmap").onclick = homeScroll("#sc-roadmap");
+    if ($("rq-send")) $("rq-send").onclick = sendRequest;
     $("nav-profit").onclick = function (e) { e.preventDefault(); location.hash = "#profit"; };
     $("nav-factory").onclick = function (e) { e.preventDefault(); location.hash = "#factory"; };
     $("nav-map").onclick = function (e) { e.preventDefault(); location.hash = "#map"; };
