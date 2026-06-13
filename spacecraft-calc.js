@@ -554,7 +554,7 @@
     return { nodes: nodes, edges: edges, maxTier: tier(targetId) };
   }
 
-  function renderMap(g) {
+  function renderMap(g, fac) {
     var ids = Object.keys(g.nodes); if (!ids.length) return '<div class="foot">Nothing to map.</div>';
     var W = 170, H = 60, GX = 88, GY = 20, PAD = 14, maxTier = g.maxTier || 0;
     var tiers = {};
@@ -594,9 +594,17 @@
     });
     ids.forEach(function (id) {
       var n = g.nodes[id], r = RECIPES[id] || {}, q = pos[id], conf = r.confidence || "low";
-      var qty = (n.need > 0) ? ((n.unknown ? "≥" : "") + fmt(n.need) + "×") : "?×";
-      var val = isNum(r.value) ? credits(r.value) + " ea" : "price n/a", sub = (r.building ? trunc(r.building, 15) + " · " : "") + val;
-      var title = esc((r.name || id) + " — need " + qty + (r.building ? " · " + r.building : "") + (isNum(r.value) ? " · " + credits(r.value) + " each" : ""));
+      var qty, sub, title;
+      if (fac) {
+        var fi = fac[id] || {};
+        qty = (n.need > 0) ? (fmt(n.need) + "/hr") : "?";
+        sub = (fi.buildings != null ? "×" + fi.buildings + " " : "") + (r.building ? trunc(r.building, 15) : "raw input");
+        title = esc((r.name || id) + " — " + qty + (fi.buildings != null ? " · ×" + fi.buildings + " " + r.building : (r.building ? " · " + r.building : "")) + (fi.power ? " · ⚡" + fmt(fi.power) : ""));
+      } else {
+        qty = (n.need > 0) ? ((n.unknown ? "≥" : "") + fmt(n.need) + "×") : "?×";
+        var val = isNum(r.value) ? credits(r.value) + " ea" : "price n/a"; sub = (r.building ? trunc(r.building, 15) + " · " : "") + val;
+        title = esc((r.name || id) + " — need " + qty + (r.building ? " · " + r.building : "") + (isNum(r.value) ? " · " + credits(r.value) + " each" : ""));
+      }
       out.push('<g class="scnode c-' + conf + '" transform="translate(' + q.x + ',' + q.y + ')"><title>' + title + '</title>');
       out.push('<rect class="box" width="' + W + '" height="' + H + '" rx="4"/>');
       out.push('<rect x="1.5" y="1.5" width="' + (W - 3) + '" height="4" rx="1" fill="' + typeColor(r.type || "unknown") + '"/>');
@@ -622,14 +630,14 @@
     var ns = Math.max(0.1, Math.min(6, mmT.s * f));
     mmT.x = cx - (cx - mmT.x) * (ns / mmT.s); mmT.y = cy - (cy - mmT.y) * (ns / mmT.s); mmT.s = ns; applyMM();
   }
-  function openMapModal() {
-    var src = $("map") && $("map").querySelector("svg"); if (!src) return;
+  function openMapModal(srcSel, titleText) {
+    srcSel = (typeof srcSel === "string") ? srcSel : "map";
+    var src = $(srcSel) && $(srcSel).querySelector("svg"); if (!src) return;
     var clone = src.cloneNode(true);
     mmSize.w = parseFloat(src.getAttribute("width")) || src.getBoundingClientRect().width || 800;
     mmSize.h = parseFloat(src.getAttribute("height")) || src.getBoundingClientRect().height || 400;
     var cv = $("mm-canvas"); cv.innerHTML = ""; cv.appendChild(clone);
-    var sel = $("item"), nm = (sel && RECIPES[sel.value]) ? RECIPES[sel.value].name : "";
-    if ($("mm-title")) $("mm-title").textContent = "Production map" + (nm ? " · " + nm : "");
+    if ($("mm-title")) $("mm-title").textContent = titleText || "Production map";
     $("mapmodal").classList.add("open");
     if (!mmWired) { wireMapModal(); mmWired = true; }
     (window.requestAnimationFrame || function (f) { setTimeout(f, 16); })(mmFit);
@@ -931,7 +939,7 @@
     renderFactory();
   }
   function computeFactory(id, rate) {
-    var g = buildGraph(id, rate), steps = [], raws = [], byBldg = {}, totalPower = 0, totalBuildings = 0, anyNoTime = false;
+    var g = buildGraph(id, rate), steps = [], raws = [], byBldg = {}, byId = {}, totalPower = 0, totalBuildings = 0, anyNoTime = false;
     Object.keys(g.nodes).forEach(function (nid) {
       var n = g.nodes[nid], r = RECIPES[nid]; if (!(n.need > 0)) return;
       if (r && r.inputs && r.inputs.length) {
@@ -939,6 +947,7 @@
         if (isNum(ct) && ct > 0) buildings = Math.ceil(craftsHr * ct / 3600); else anyNoTime = true;
         if (buildings && isNum(r.power)) power = buildings * r.power;
         totalPower += power; if (buildings) { totalBuildings += buildings; byBldg[r.building] = (byBldg[r.building] || 0) + buildings; }
+        byId[nid] = { buildings: buildings, power: power, rate: n.need };
         steps.push({ id: nid, name: r.name, rate: n.need, building: r.building, buildings: buildings, power: power, tier: n.tier });
       } else {
         raws.push({ id: nid, name: (RECIPES[nid] && RECIPES[nid].name) || nid, rate: n.need, value: RECIPES[nid] ? RECIPES[nid].value : null });
@@ -946,7 +955,7 @@
     });
     steps.sort(function (a, b) { return b.tier - a.tier || a.name.localeCompare(b.name); });
     raws.sort(function (a, b) { return b.rate - a.rate; });
-    return { steps: steps, raws: raws, byBldg: byBldg, totalPower: totalPower, totalBuildings: totalBuildings, anyNoTime: anyNoTime };
+    return { steps: steps, raws: raws, byBldg: byBldg, byId: byId, g: g, totalPower: totalPower, totalBuildings: totalBuildings, anyNoTime: anyNoTime };
   }
   function facCard(k, v, sub) { return '<div class="card"><div class="k">' + esc(k) + '</div><div class="v primary">' + v + '</div><div class="note">' + esc(sub) + "</div></div>"; }
   function renderFactory() {
@@ -962,6 +971,9 @@
     var bk = Object.keys(fc.byBldg).sort(function (a, b) { return fc.byBldg[b] - fc.byBldg[a]; });
     if (bk.length) h += '<div class="sechead2">Buildings needed</div><div class="facbldgs">' + bk.map(function (b) { return '<span class="facbtag">' + esc(b) + " <b>×" + fc.byBldg[b] + "</b></span>"; }).join("") + "</div>";
     if (fc.anyNoTime) h += '<div class="facnote">Constructed buildings / seeds have no auto-craft time, so they show without a building count.</div>';
+    h += '<div class="sechead2">Factory map</div>';
+    h += '<div class="maplegend"><span><span class="dot d-raw"></span>Raw</span><span><span class="dot d-refined"></span>Refined</span><span><span class="dot d-component"></span>Component</span><span><span class="dot d-product"></span>Product</span><span>node = ×buildings · rate/hr</span><button class="mapexpand" data-el="fac-expand" type="button" title="Open the factory map fullscreen">⛶ Expand map</button></div>';
+    h += '<div class="mapscroll"><div class="map" data-el="fac-map">' + renderMap(fc.g, fc.byId) + '</div></div>';
     h += '<div class="sechead2">Production line</div><table class="factbl"><thead><tr><th>Make</th><th>Building</th><th class="num">Buildings</th><th class="num">Rate / hr</th><th class="num">Power</th></tr></thead><tbody>';
     h += fc.steps.map(function (s) { return '<tr><td><span class="pn" data-id="' + s.id + '">' + esc(s.name) + '</span></td><td>' + esc(s.building || "—") + '</td><td class="num">' + (s.buildings != null ? "×" + s.buildings : "—") + '</td><td class="num">' + fmt(s.rate) + '</td><td class="num">' + (s.power ? "⚡" + fmt(s.power) : "—") + "</td></tr>"; }).join("");
     h += "</tbody></table>";
@@ -970,6 +982,7 @@
     h += "</tbody></table>";
     out.innerHTML = h;
     Array.prototype.forEach.call(out.querySelectorAll(".pn[data-id]"), function (c) { c.onclick = function () { selectItem(c.getAttribute("data-id")); }; });
+    if ($("fac-expand")) $("fac-expand").onclick = function () { openMapModal("fac-map", "Factory map" + (r ? " · " + r.name : "")); };
   }
   /* ----------------------------- galaxy: sectors + atlas ----------------------------- */
   function buildGalaxy() {
@@ -1180,7 +1193,7 @@
     if ($("go-factory")) $("go-factory").onclick = function () { facPendingItem = $("item").value || null; location.hash = "#factory"; };
     if ($("go-profit")) $("go-profit").onclick = function () { location.hash = "#profit"; };
     $("catsearch").addEventListener("input", buildCatalog);
-    if ($("map-expand")) $("map-expand").addEventListener("click", openMapModal);
+    if ($("map-expand")) $("map-expand").addEventListener("click", function () { var s = $("item"), nm = (s && RECIPES[s.value]) ? RECIPES[s.value].name : ""; openMapModal("map", "Production map" + (nm ? " · " + nm : "")); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && $("mapmodal") && $("mapmodal").classList.contains("open")) closeMapModal(); });
     var rst = $("reset-btn"); if (rst) rst.onclick = function () { try { localStorage.removeItem("sc_reported_prices_v1"); } catch (e) {} location.reload(); };
     var inp = $("item-input");
