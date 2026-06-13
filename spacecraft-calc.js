@@ -139,6 +139,9 @@
 .scapp .scnode .nsub{fill:var(--muted);font-size:10.5px;font-family:Inter}
 .scapp .mapexpand{margin-left:auto;background:var(--panel2);border:1px solid var(--line);color:var(--primary);font-family:Rajdhani;font-weight:600;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:5px 11px;border-radius:5px;cursor:pointer}
 .scapp .mapexpand:hover{border-color:var(--primary)}
+.scapp .cta-stack{margin-left:auto;display:flex;flex-direction:column;gap:7px;align-self:flex-end}
+.scapp .cta-stack .btn{font-size:12px;padding:8px 13px;white-space:nowrap}
+@media(max-width:760px){.scapp .cta-stack{margin-left:0;width:100%}}
 .scapp .mapmodal{display:none;position:fixed;inset:0;z-index:9998;background:rgba(4,8,14,.95);flex-direction:column}
 .scapp .mapmodal.open{display:flex}
 .scapp .mm-bar{display:flex;align-items:center;gap:12px;padding:11px 18px;border-bottom:1px solid var(--line);background:var(--panel)}
@@ -347,7 +350,7 @@
   <div class="sechead">Production Planner</div>
   <div class="panel lit brk" data-el="planner">
     <span class="cb tl"></span><span class="cb tr"></span><span class="cb bl"></span><span class="cb br"></span>
-    <div class="ph"><h3>Supply Chain</h3><span class="sub">raw materials → final product · prices in credits (⊙)</span><button class="btn" data-el="ph-profit" style="margin-left:auto;padding:6px 12px;font-size:12px">📊 See in Profit Analyzer →</button></div>
+    <div class="ph"><h3>Supply Chain</h3><span class="sub">raw materials → final product · prices in credits (⊙)</span></div>
     <div class="pbody" data-el="plannerbody"><div class="loading">▣ Initialising telemetry…</div></div>
   </div>
 </div></section>
@@ -453,7 +456,7 @@
   var toastT; function toast(m) { var t = $("toast"); if (!t) return; t.textContent = m; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove("show"); }, 2400); }
 
   /* ----------------------------- data ----------------------------- */
-  var RECIPES = {}, SOURCES = {}, CONSTS = {}, BUYMULT = 1, pendingScroll = null;
+  var RECIPES = {}, SOURCES = {}, CONSTS = {}, BUYMULT = 1, pendingScroll = null, facPendingItem = null;
   var ATLAS = { deposits: [] }, atlasFilter = "all", atlasSearch = "", galaxyWired = false, galT = { x: 0, y: 0, s: 1 }, galDrag = null, galWired = false, sectorSel = null, facWired = false;
   var LS_KEY = "sc_reported_prices_v1";
   function loadReported() { try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch (e) { return {}; } }
@@ -665,6 +668,10 @@
   <div class="field"><label>Quantity</label><input data-el="qty" type="number" min="1" step="1" value="1" aria-label="Quantity"></div>
   <div class="field"><label>&nbsp;</label><button class="minibtn" data-el="share-btn" style="padding:10px 14px" title="Copy a shareable link to this item">⧉ Share</button></div>
   <div class="field"><label>&nbsp;</label><button class="minibtn" data-el="export-btn" style="padding:10px 14px">⤓ Export prices</button></div>
+  <div class="cta-stack">
+    <button class="btn" data-el="go-factory" type="button">⚙ See Factory Automation Guide →</button>
+    <button class="btn" data-el="go-profit" type="button">📊 See in Profit Analyzer →</button>
+  </div>
 </div>
 <div class="titlerow"><h2 data-el="sel-name">—</h2><span class="badge" data-el="sel-conf"></span><span class="badge" data-el="sel-cplx"></span><span class="meta" data-el="sel-building" style="color:var(--muted);font-size:13px"></span><span class="flag" data-el="sel-conflict" title=""></span></div>
 <div class="grid">
@@ -920,6 +927,7 @@
       if ($("fac-rate")) $("fac-rate").addEventListener("input", renderFactory);
       facWired = true;
     }
+    if (facPendingItem) { var fok = false, oi; for (oi = 0; oi < sel.options.length; oi++) if (sel.options[oi].value === facPendingItem) { fok = true; break; } if (fok) sel.value = facPendingItem; facPendingItem = null; }
     renderFactory();
   }
   function computeFactory(id, rate) {
@@ -1169,6 +1177,8 @@
     $("qty").addEventListener("input", compute);
     $("export-btn").addEventListener("click", exportReported);
     $("share-btn").addEventListener("click", shareLink);
+    if ($("go-factory")) $("go-factory").onclick = function () { facPendingItem = $("item").value || null; location.hash = "#factory"; };
+    if ($("go-profit")) $("go-profit").onclick = function () { location.hash = "#profit"; };
     $("catsearch").addEventListener("input", buildCatalog);
     if ($("map-expand")) $("map-expand").addEventListener("click", openMapModal);
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && $("mapmodal") && $("mapmodal").classList.contains("open")) closeMapModal(); });
