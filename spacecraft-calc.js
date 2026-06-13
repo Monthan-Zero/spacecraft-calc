@@ -160,7 +160,17 @@
 .scapp .mm-hint{padding:7px 18px;font-size:11px;color:var(--muted);font-family:Rajdhani;letter-spacing:.04em;text-align:center;border-top:1px solid var(--line);background:var(--panel)}
 /* cols / table / tree */
 .scapp .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:900px){.scapp .cols{grid-template-columns:1fr}.scapp .grid{grid-template-columns:repeat(2,1fr)}.scapp select,.scapp input{min-width:160px}.scapp .hud nav{display:none}}
+@media(max-width:900px){.scapp .cols{grid-template-columns:1fr}.scapp .grid{grid-template-columns:repeat(2,1fr)}.scapp select,.scapp input{min-width:160px}}
+.scapp .navtoggle{display:none;background:transparent;border:1px solid var(--line);color:var(--primary);width:40px;height:36px;border-radius:6px;font-size:18px;cursor:pointer;line-height:1;flex-shrink:0}
+.scapp .navtoggle:hover{border-color:var(--primary)}
+@media(max-width:860px){
+  .scapp .hud nav{display:none}
+  .scapp .hud.navopen nav{display:flex;flex-direction:column;gap:0;position:absolute;top:100%;left:0;right:0;background:#0A1420;border-bottom:1px solid var(--line);box-shadow:0 10px 22px rgba(0,0,0,.45);padding:4px 0;z-index:40}
+  .scapp .hud.navopen nav a{padding:13px 22px;border-bottom:1px solid rgba(255,255,255,.05)}
+  .scapp .hud.navopen nav a.navon{border-bottom-color:var(--primary)}
+  .scapp .navtoggle{display:inline-flex;align-items:center;justify-content:center}
+  .scapp .hud .nlaunch{display:none}
+}
 .scapp table{width:100%;border-collapse:collapse;font-size:14px}
 .scapp th,.scapp td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
 .scapp th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-family:Rajdhani;font-weight:600}
@@ -244,6 +254,8 @@
 .scapp:not(.view-map) #sc-map{display:none}
 .scapp.view-factory > .hero,.scapp.view-factory #sc-planner,.scapp.view-factory #sc-browse,.scapp.view-factory #sc-about,.scapp.view-factory #sc-roadmap{display:none}
 .scapp:not(.view-factory) #sc-factory{display:none}
+.scapp.view-roadmap > .hero,.scapp.view-roadmap #sc-planner,.scapp.view-roadmap #sc-browse,.scapp.view-roadmap #sc-about{display:none}
+.scapp:not(.view-roadmap) #sc-roadmap{display:none}
 .scapp .facbar{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end;margin-bottom:20px}
 .scapp .facbar select{min-width:240px}
 .scapp .facrate{display:flex;align-items:center;gap:8px}
@@ -355,9 +367,10 @@
 <div class="stars" data-el="stars"></div><div class="neb"></div>
 <header class="hud">
   <div class="brand">SPACE<span class="pipe"></span><span class="b2">CRAFT</span> PLANNER</div>
-  <nav><a data-el="nav-planner">Planner</a><a data-el="nav-browse">Recipes</a><a data-el="nav-profit">Profit</a><a data-el="nav-factory">Factory</a><a data-el="nav-map">Galaxy</a><a data-el="nav-roadmap">Roadmap</a><a data-el="nav-about">About&nbsp;Data</a></nav>
   <div class="spacer"></div>
-  <button class="btn" data-el="nav-launch">Launch Planner</button>
+  <nav data-el="nav"><a data-el="nav-planner">Planner</a><a data-el="nav-browse">Recipes</a><a data-el="nav-profit">Profit</a><a data-el="nav-factory">Factory</a><a data-el="nav-map">Atlas</a><a data-el="nav-roadmap">Roadmap</a><a data-el="nav-about">About&nbsp;Data</a></nav>
+  <button class="btn nlaunch" data-el="nav-launch">Launch&nbsp;Planner</button>
+  <button class="navtoggle" data-el="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">☰</button>
 </header>
 
 <section class="hero hex">
@@ -400,7 +413,7 @@
 </div></section>
 
 <section id="sc-map"><div class="wrap" style="max-width:1320px">
-  <div class="sechead">Galaxy <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-family:Inter;font-size:12px">— minable deposits and what they yield · interactive galaxy map in the works</span></div>
+  <div class="sechead">Resource Atlas <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-family:Inter;font-size:12px">— every minable deposit and what it yields · galaxy map in the works</span></div>
   <div class="gtabs">
     <button class="gtab" data-el="tab-sectors" data-tab="sectors" type="button">Galaxy Map</button>
     <button class="gtab on" data-el="tab-deposits" data-tab="deposits" type="button">Resource Atlas</button>
@@ -948,11 +961,13 @@
       + '<div class="chartcard"><h4>Top 12 · Mine→Sell profit</h4><div class="chs">Most profit per unit if you mine the ore yourself</div>' + chartBars(profitRows) + '</div>';
     Array.prototype.forEach.call(el.querySelectorAll("[data-id]"), function (n) { n.style.cursor = "pointer"; n.addEventListener("click", function () { selectItem(n.getAttribute("data-id")); }); });
   }
+  function closeNav() { var hud = root.querySelector(".hud"); if (hud) hud.classList.remove("navopen"); }
   function currentView() {
     var p = location.pathname, h = location.hash;
     if (/\/profit/i.test(p) || /^#\/?profit/i.test(h)) return "profit";
-    if (/\/(map|galaxy)/i.test(p) || /^#\/?(map|galaxy)/i.test(h)) return "map";
+    if (/\/(map|galaxy|atlas)/i.test(p) || /^#\/?(map|galaxy|atlas)/i.test(h)) return "map";
     if (/\/factory/i.test(p) || /^#\/?factory/i.test(h)) return "factory";
+    if (/\/roadmap/i.test(p) || /^#\/?roadmap/i.test(h)) return "roadmap";
     return "home";
   }
   function applyView() {
@@ -960,12 +975,15 @@
     root.classList.toggle("view-profit", v === "profit");
     root.classList.toggle("view-map", v === "map");
     root.classList.toggle("view-factory", v === "factory");
-    var navmap = { profit: "nav-profit", map: "nav-map", factory: "nav-factory" };
-    ["nav-profit", "nav-map", "nav-factory"].forEach(function (n) { var e = $(n); if (e) e.classList.remove("navon"); });
+    root.classList.toggle("view-roadmap", v === "roadmap");
+    var navmap = { profit: "nav-profit", map: "nav-map", factory: "nav-factory", roadmap: "nav-roadmap" };
+    ["nav-profit", "nav-map", "nav-factory", "nav-roadmap"].forEach(function (n) { var e = $(n); if (e) e.classList.remove("navon"); });
     if (navmap[v] && $(navmap[v])) $(navmap[v]).classList.add("navon");
     if (v !== "home") window.scrollTo(0, 0);
     if (v === "map" && ATLAS.deposits.length) buildGalaxy();
     if (v === "factory") buildFactory();
+    if (v === "roadmap") buildRoadmap();
+    closeNav();
   }
   function route() {
     applyView();
@@ -1282,18 +1300,21 @@
     inp.addEventListener("input", function () { renderCombo(inp.value); $("item-drop").classList.add("open"); });
     inp.addEventListener("blur", function () { setTimeout(function () { $("item-drop").classList.remove("open"); inp.setAttribute("aria-expanded", "false"); }, 160); });
     inp.addEventListener("keydown", function (e) { if (e.key === "Enter") { var m = comboMatches(inp.value); if (m.length) { $("item-drop").classList.remove("open"); selectItem(m[0]); inp.blur(); } } else if (e.key === "Escape") { $("item-drop").classList.remove("open"); inp.blur(); } });
-    var homeScroll = function (sec) { return function (e) { if (e) e.preventDefault(); if (root.classList.contains("view-profit")) { pendingScroll = sec; location.hash = ""; } else scrollTo(sec); }; };
-    $("nav-planner").onclick = function (e) { e.preventDefault(); if (root.classList.contains("view-profit")) location.hash = ""; else window.scrollTo({ top: 0, behavior: "smooth" }); };
+    // home-section links: work from ANY view (return home, then scroll to the section)
+    var homeScroll = function (sec) { return function (e) { if (e) e.preventDefault(); closeNav(); if (currentView() !== "home") { pendingScroll = sec; location.hash = ""; } else scrollTo(sec); }; };
+    var goView = function (hash) { return function (e) { if (e) e.preventDefault(); closeNav(); location.hash = hash; }; };
+    $("nav-planner").onclick = function (e) { e.preventDefault(); closeNav(); if (currentView() !== "home") location.hash = ""; window.scrollTo({ top: 0, behavior: "smooth" }); };
     $("nav-launch").onclick = homeScroll("#sc-planner");
     $("cta-launch").onclick = homeScroll("#sc-planner");
     $("cta-browse").onclick = homeScroll("#sc-browse");
     $("nav-browse").onclick = homeScroll("#sc-browse");
     $("nav-about").onclick = homeScroll("#sc-about");
-    if ($("nav-roadmap")) $("nav-roadmap").onclick = homeScroll("#sc-roadmap");
+    $("nav-profit").onclick = goView("#profit");
+    $("nav-factory").onclick = goView("#factory");
+    $("nav-map").onclick = goView("#atlas");
+    if ($("nav-roadmap")) $("nav-roadmap").onclick = goView("#roadmap");
+    if ($("nav-toggle")) $("nav-toggle").onclick = function () { var hud = root.querySelector(".hud"); if (hud) hud.classList.toggle("navopen"); };
     if ($("rq-send")) $("rq-send").onclick = sendRequest;
-    $("nav-profit").onclick = function (e) { e.preventDefault(); location.hash = "#profit"; };
-    $("nav-factory").onclick = function (e) { e.preventDefault(); location.hash = "#factory"; };
-    $("nav-map").onclick = function (e) { e.preventDefault(); location.hash = "#map"; };
     if ($("ph-profit")) $("ph-profit").onclick = function () { location.hash = "#profit"; };
     window.addEventListener("hashchange", route);
     populate();
