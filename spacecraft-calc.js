@@ -262,6 +262,8 @@
 .scapp:not(.view-factory) #sc-factory{display:none}
 .scapp.view-roadmap > .hero,.scapp.view-roadmap #sc-planner,.scapp.view-roadmap #sc-browse,.scapp.view-roadmap #sc-about{display:none}
 .scapp:not(.view-roadmap) #sc-roadmap{display:none}
+.scapp.view-requests > .hero,.scapp.view-requests #sc-planner,.scapp.view-requests #sc-browse,.scapp.view-requests #sc-about{display:none}
+.scapp:not(.view-requests) #sc-requests{display:none}
 .scapp .facbar{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end;margin-bottom:20px}
 .scapp .facbar select{min-width:240px}
 .scapp .facrate{display:flex;align-items:center;gap:8px}
@@ -348,7 +350,15 @@
 .scapp textarea:focus{border-color:var(--primary);box-shadow:0 0 0 1px rgba(26,159,216,.18)}
 .scapp .rmform .field{display:block}
 .scapp .rmform .field input,.scapp .rmform .field select{width:100%;min-width:0}
-.scapp .rq-mail{color:var(--primary)}
+.scapp .rqpage{display:grid;grid-template-columns:1fr 320px;gap:22px;align-items:start}
+@media(max-width:820px){.scapp .rqpage{grid-template-columns:1fr}}
+.scapp .rqaside{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px}
+.scapp .rqaside h4{margin:0 0 10px;font-family:Orbitron;font-size:13px;color:var(--text)}
+.scapp .rqaside ol{margin:0;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.7}
+.scapp .rqaside .rqlink{display:inline-block;margin-top:14px;color:var(--primary);font-size:13px;cursor:pointer;text-decoration:none;font-weight:600}
+.scapp .rqaside .rqlink:hover{text-decoration:underline}
+.scapp .rqcta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin-bottom:20px}
+.scapp .rqcta .rqctatxt{color:var(--muted);font-size:13px;flex:1;min-width:180px}
 .scapp .rmcount{color:var(--muted);font-size:12px;font-family:Rajdhani;letter-spacing:.04em}
 .scapp .rmhead{margin-bottom:14px}
 .scapp .rmgroup{margin-bottom:18px}
@@ -374,7 +384,7 @@
 <header class="hud">
   <div class="brand">SPACE<span class="pipe"></span><span class="b2">CRAFT</span> PLANNER</div>
   <div class="spacer"></div>
-  <nav data-el="nav"><a data-el="nav-planner">Planner</a><a data-el="nav-browse">Recipes</a><a data-el="nav-profit">Profit</a><a data-el="nav-factory">Factory</a><a data-el="nav-map">Atlas</a><a data-el="nav-roadmap">Roadmap</a><a data-el="nav-about">About&nbsp;Data</a></nav>
+  <nav data-el="nav"><a data-el="nav-planner">Planner</a><a data-el="nav-browse">Recipes</a><a data-el="nav-profit">Profit</a><a data-el="nav-factory">Factory</a><a data-el="nav-map">Atlas</a><a data-el="nav-roadmap">Roadmap</a><a data-el="nav-requests">Request</a><a data-el="nav-about">About&nbsp;Data</a></nav>
   <button class="btn nlaunch" data-el="nav-launch">Launch&nbsp;Planner</button>
   <button class="navtoggle" data-el="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">☰</button>
 </header>
@@ -464,21 +474,38 @@
   </div>
 </div></section>
 
-<section id="sc-roadmap"><div class="wrap">
-  <div class="sechead">Roadmap &amp; Requests</div>
-  <div class="rmwrap">
-    <div class="rmform panel lit" style="padding:18px">
-      <h3 style="font-family:Orbitron;font-size:15px;margin:0 0 4px;color:var(--text)">Request a feature</h3>
-      <p style="color:var(--muted);font-size:13px;margin:0 0 14px;line-height:1.5">Tell us what would help you in-game. Requests reach us by email; the best ones get added to the roadmap.</p>
+<section id="sc-requests"><div class="wrap">
+  <div class="sechead">Request a Feature</div>
+  <div class="rqpage">
+    <div class="rmform panel lit" style="padding:20px">
+      <h3 style="font-family:Orbitron;font-size:15px;margin:0 0 4px;color:var(--text)">Tell us what would help</h3>
+      <p style="color:var(--muted);font-size:13px;margin:0 0 14px;line-height:1.5">Got an idea for the planner? Submitting opens a quick GitHub ticket we review — the best ideas land on the roadmap.</p>
       <div class="field"><label>Type</label><select data-el="rq-cat"><option>Feature</option><option>Quality of Life</option><option>Data fix</option><option>Bug</option></select></div>
       <div class="field" style="margin-top:10px"><label>Title</label><input data-el="rq-title" type="text" maxlength="80" placeholder="e.g. Add a contract profit browser"></div>
       <div class="field" style="margin-top:10px"><label>Details</label><textarea data-el="rq-body" maxlength="600" rows="4" placeholder="What should it do? Why would it help?"></textarea></div>
-      <div style="margin-top:13px;display:flex;align-items:center;gap:12px;flex-wrap:wrap"><button class="btn amber" data-el="rq-send" type="button">✉ Send request</button><span style="color:var(--muted);font-size:12px">or email <span class="rq-mail">mbcarlisle07@gmail.com</span></span></div>
+      <div style="margin-top:13px;display:flex;align-items:center;gap:12px;flex-wrap:wrap"><button class="btn amber" data-el="rq-send" type="button">Submit suggestion →</button><span style="color:var(--muted);font-size:12px">opens a GitHub ticket — no sign-in info shared</span></div>
     </div>
-    <div class="rmlist">
-      <div class="rmhead"><span class="rmcount" data-el="rm-updated"></span></div>
-      <div data-el="rm-list"><div class="loading">Loading roadmap…</div></div>
+    <div class="rqaside">
+      <h4>How it works</h4>
+      <ol>
+        <li>Pick a type and describe your idea.</li>
+        <li>Submitting opens a pre-filled GitHub ticket in a new tab.</li>
+        <li>We review every ticket; popular ideas move to the roadmap.</li>
+      </ol>
+      <a class="rqlink" data-el="rq-toroadmap">See the roadmap →</a>
     </div>
+  </div>
+</div></section>
+
+<section id="sc-roadmap"><div class="wrap">
+  <div class="sechead">Roadmap</div>
+  <div class="rqcta">
+    <span class="rqctatxt">Want to shape what gets built next? Send us your idea.</span>
+    <button class="btn amber" data-el="rm-torequest" type="button">Request a feature →</button>
+  </div>
+  <div class="rmlist">
+    <div class="rmhead"><span class="rmcount" data-el="rm-updated"></span></div>
+    <div data-el="rm-list"><div class="loading">Loading roadmap…</div></div>
   </div>
 </div></section>
 
@@ -981,6 +1008,7 @@
     if (/\/(map|galaxy|atlas)/i.test(p) || /^#\/?(map|galaxy|atlas)/i.test(h)) return "map";
     if (/\/factory/i.test(p) || /^#\/?factory/i.test(h)) return "factory";
     if (/\/roadmap/i.test(p) || /^#\/?roadmap/i.test(h)) return "roadmap";
+    if (/\/(request|requests|suggest)/i.test(p) || /^#\/?(request|requests|suggest)/i.test(h)) return "requests";
     return "home";
   }
   function applyView() {
@@ -989,8 +1017,9 @@
     root.classList.toggle("view-map", v === "map");
     root.classList.toggle("view-factory", v === "factory");
     root.classList.toggle("view-roadmap", v === "roadmap");
-    var navmap = { profit: "nav-profit", map: "nav-map", factory: "nav-factory", roadmap: "nav-roadmap" };
-    ["nav-profit", "nav-map", "nav-factory", "nav-roadmap"].forEach(function (n) { var e = $(n); if (e) e.classList.remove("navon"); });
+    root.classList.toggle("view-requests", v === "requests");
+    var navmap = { profit: "nav-profit", map: "nav-map", factory: "nav-factory", roadmap: "nav-roadmap", requests: "nav-requests" };
+    ["nav-profit", "nav-map", "nav-factory", "nav-roadmap", "nav-requests"].forEach(function (n) { var e = $(n); if (e) e.classList.remove("navon"); });
     if (navmap[v] && $(navmap[v])) $(navmap[v]).classList.add("navon");
     if (v !== "home") window.scrollTo(0, 0);
     if (v === "map" && ATLAS.deposits.length) buildGalaxy();
@@ -1028,10 +1057,10 @@
     var title = (($("rq-title") || {}).value || "").trim();
     var body = (($("rq-body") || {}).value || "").trim();
     if (title.length < 3) { toast("Add a short title first"); if ($("rq-title")) $("rq-title").focus(); return; }
-    var subj = encodeURIComponent("[SpaceCraft Planner] " + cat + ": " + title.slice(0, 80));
-    var bd = encodeURIComponent((body || "(no details given)").slice(0, 600) + "\n\n— sent from spacecraftplanner.com");
-    window.location.href = "mailto:mbcarlisle07@gmail.com?subject=" + subj + "&body=" + bd;
-    toast("Opening your email app…");
+    var t = encodeURIComponent("[" + cat + "] " + title.slice(0, 80));
+    var b = encodeURIComponent("**Type:** " + cat + "\n\n" + (body || "(no details given)").slice(0, 600) + "\n\n_Submitted via spacecraftplanner.com_");
+    window.open("https://github.com/Monthan-Zero/spacecraft-calc/issues/new?title=" + t + "&body=" + b, "_blank", "noopener");
+    toast("Opening a GitHub ticket for your suggestion…");
   }
   /* ----------------------------- factory / automation planner ----------------------------- */
   function buildFactory() {
@@ -1326,6 +1355,9 @@
     $("nav-factory").onclick = goView("#factory");
     $("nav-map").onclick = goView("#atlas");
     if ($("nav-roadmap")) $("nav-roadmap").onclick = goView("#roadmap");
+    if ($("nav-requests")) $("nav-requests").onclick = goView("#requests");
+    if ($("rm-torequest")) $("rm-torequest").onclick = goView("#requests");
+    if ($("rq-toroadmap")) $("rq-toroadmap").onclick = goView("#roadmap");
     if ($("nav-toggle")) $("nav-toggle").onclick = function () { var hud = root.querySelector(".hud"); if (hud) hud.classList.toggle("navopen"); };
     if ($("rq-send")) $("rq-send").onclick = sendRequest;
     if ($("ph-profit")) $("ph-profit").onclick = function () { location.hash = "#profit"; };
