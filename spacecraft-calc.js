@@ -211,7 +211,9 @@
 .scapp .ax{stroke:var(--line)}
 .scapp .axt{fill:var(--muted);font-size:10px;font-family:"JetBrains Mono"}
 .scapp .axlbl{fill:var(--muted);font-size:10px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.06em}
+.scapp .pt{cursor:pointer}
 .scapp .pt:hover{stroke:#fff;stroke-width:1.5}
+.scapp .sweet{fill:var(--good);font-size:9px;font-family:Rajdhani;font-weight:600;letter-spacing:.04em;opacity:.8;pointer-events:none}
 .scapp .ptlbl{fill:var(--muted);font-size:9.5px;font-family:Inter;pointer-events:none}
 .scapp .barrow:hover .bar{opacity:1}
 .scapp .bar{opacity:.82}
@@ -669,18 +671,38 @@
   }
   function chartScatter(rows) {
     if (!rows.length) return '<div class="foot">No data.</div>';
-    var W = 460, H = 340, pl = 46, pr = 14, pt = 14, pb = 38;
+    var W = 460, H = 340, pl = 46, pr = 14, pt = 24, pb = 38;
+    var plotW = W - pl - pr, plotH = H - pt - pb;
+    // X = linear complexity (integer columns). Y = log10 profit — the tail spans ~7 orders of
+    // magnitude (median ~195, max ~306k), so a linear axis collapses everything onto the floor.
     var maxX = Math.max(5, Math.max.apply(null, rows.map(function (r) { return r.cplx; })));
     var maxY = Math.max(10, Math.max.apply(null, rows.map(function (r) { return r.mined; })));
-    var sx = function (v) { return pl + v / maxX * (W - pl - pr); }, sy = function (v) { return H - pb - v / maxY * (H - pt - pb); };
+    var log10 = function (v) { return Math.log(v) / Math.LN10; };
+    var loMin = 0, loMax = Math.ceil(log10(maxY)); if (loMax <= loMin) loMax = loMin + 1;
+    var sx = function (v) { return pl + v / maxX * plotW; };
+    var sy = function (v) { return H - pb - (log10(v < 1 ? 1 : v) - loMin) / (loMax - loMin) * plotH; };
+    var tickLbl = function (v) { return v >= 1e6 ? fmt(v / 1e6) + "M" : v >= 1e3 ? fmt(v / 1e3) + "k" : fmt(v); };
     var s = ['<svg viewBox="0 0 ' + W + ' ' + H + '">'];
-    s.push('<rect x="' + pl + '" y="' + pt + '" width="' + ((W - pl - pr) * 0.42).toFixed(0) + '" height="' + ((H - pt - pb) * 0.5).toFixed(0) + '" fill="rgba(95,224,138,.06)"/>');
-    for (var i = 0; i <= 4; i++) { var yv = maxY * i / 4, y = sy(yv); s.push('<line class="ax" x1="' + pl + '" y1="' + y.toFixed(1) + '" x2="' + (W - pr) + '" y2="' + y.toFixed(1) + '" stroke-opacity="' + (i ? ".2" : ".5") + '"/>'); s.push('<text class="axt" x="' + (pl - 6) + '" y="' + (y + 3).toFixed(1) + '" text-anchor="end">' + fmt(yv) + '</text>'); }
+    // value-for-effort cue: a subtle wash brightening toward the top-left (more profit, less effort)
+    s.push('<defs><linearGradient id="scvfe" x1="1" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#5FE08A" stop-opacity="0"/><stop offset="1" stop-color="#5FE08A" stop-opacity=".13"/></linearGradient></defs>');
+    s.push('<rect x="' + pl + '" y="' + pt + '" width="' + plotW + '" height="' + plotH + '" fill="url(#scvfe)"/>');
+    s.push('<text class="sweet" x="' + (pl + 7) + '" y="' + (pt + 12) + '">↖ better value · more profit, less effort</text>');
+    // log decade gridlines + Y ticks (1, 10, 100, 1k, 10k, 100k …)
+    for (var d = loMin; d <= loMax; d++) { var yv = Math.pow(10, d), y = sy(yv); s.push('<line class="ax" x1="' + pl + '" y1="' + y.toFixed(1) + '" x2="' + (W - pr) + '" y2="' + y.toFixed(1) + '" stroke-opacity="' + (d === loMin ? ".5" : ".16") + '"/>'); s.push('<text class="axt" x="' + (pl - 6) + '" y="' + (y + 3).toFixed(1) + '" text-anchor="end">' + tickLbl(yv) + '</text>'); }
+    // linear X ticks
     for (var j = 0; j <= 4; j++) { var xv = maxX * j / 4, x = sx(xv); s.push('<text class="axt" x="' + x.toFixed(1) + '" y="' + (H - pb + 14) + '" text-anchor="middle">' + Math.round(xv) + '</text>'); }
     s.push('<text class="axlbl" x="' + ((pl + W - pr) / 2).toFixed(0) + '" y="' + (H - 3) + '" text-anchor="middle">Complexity →</text>');
-    s.push('<text class="axlbl" transform="translate(11,' + ((pt + H - pb) / 2).toFixed(0) + ') rotate(-90)" text-anchor="middle">Mine→Sell profit ⊙</text>');
-    rows.forEach(function (r) { var c = typeColor((RECIPES[r.id] || {}).type || "product"); s.push('<circle class="pt" data-id="' + r.id + '" cx="' + sx(r.cplx).toFixed(1) + '" cy="' + sy(r.mined).toFixed(1) + '" r="5" fill="' + c + '" fill-opacity=".85"><title>' + esc(r.name + " · profit ⊙" + fmt(r.mined) + " · complexity " + r.cplx) + '</title></circle>'); });
-    rows.slice().sort(function (a, b) { return b.ppc - a.ppc; }).slice(0, 4).forEach(function (r) { s.push('<text class="ptlbl" x="' + (sx(r.cplx) + 7).toFixed(1) + '" y="' + (sy(r.mined) + 3).toFixed(1) + '">' + esc(trunc(r.name, 15)) + '</text>'); });
+    s.push('<text class="axlbl" transform="translate(11,' + ((pt + H - pb) / 2).toFixed(0) + ') rotate(-90)" text-anchor="middle">Mine→Sell profit ⊙ (log)</text>');
+    rows.forEach(function (r) { var c = typeColor((RECIPES[r.id] || {}).type || "product"); s.push('<circle class="pt" data-id="' + r.id + '" cx="' + sx(r.cplx).toFixed(1) + '" cy="' + sy(r.mined).toFixed(1) + '" r="4" fill="' + c + '" fill-opacity=".72"><title>' + esc(r.name + " · profit ⊙" + fmt(r.mined) + " · complexity " + r.cplx + " · ⊙" + fmt(r.ppc) + "/cplx") + '</title></circle>'); });
+    // label best value-for-effort (top ppc) + the single biggest-profit item, de-duped, edge-flipped
+    var labeled = {}, lbl = [];
+    rows.slice().sort(function (a, b) { return b.ppc - a.ppc; }).slice(0, 4).forEach(function (r) { if (!labeled[r.id]) { labeled[r.id] = 1; lbl.push(r); } });
+    var topP = rows.slice().sort(function (a, b) { return b.mined - a.mined; })[0];
+    if (topP && !labeled[topP.id]) { labeled[topP.id] = 1; lbl.push(topP); }
+    var anchors = lbl.map(function (r) { var px = sx(r.cplx); return { name: r.name, px: px, py: sy(r.mined), right: px < W - 78 }; });
+    anchors.sort(function (a, b) { return a.py - b.py; });          // greedy vertical de-collide (same-complexity items stack)
+    var lastY = -99; anchors.forEach(function (a) { var ly = a.py + 3; if (ly - lastY < 11) ly = lastY + 11; a.ly = ly; lastY = ly; });
+    anchors.forEach(function (a) { s.push('<text class="ptlbl" x="' + (a.right ? a.px + 7 : a.px - 7).toFixed(1) + '" y="' + a.ly.toFixed(1) + '" text-anchor="' + (a.right ? "start" : "end") + '">' + esc(trunc(a.name, 15)) + '</text>'); });
     s.push('</svg>'); return s.join('');
   }
   function chartBars(rows) {
@@ -701,7 +723,7 @@
   function buildCharts() {
     var el = $("charts"); if (!el) return;
     el.innerHTML =
-      '<div class="chartcard"><h4>Profit vs Complexity</h4><div class="chs">Top-left (green) = best value for effort — high profit, low complexity</div>' + chartScatter(profitRows) + '</div>'
+      '<div class="chartcard"><h4>Profit vs Complexity</h4><div class="chs">Profit axis is log-scaled (it spans tiny to ~300k). Toward the top-left = best value for effort — more profit, less complexity. Labels mark the top value-for-effort items.</div>' + chartScatter(profitRows) + '</div>'
       + '<div class="chartcard"><h4>Top 12 · Mine→Sell profit</h4><div class="chs">Most profit per unit if you mine the ore yourself</div>' + chartBars(profitRows) + '</div>';
     Array.prototype.forEach.call(el.querySelectorAll("[data-id]"), function (n) { n.style.cursor = "pointer"; n.addEventListener("click", function () { selectItem(n.getAttribute("data-id")); }); });
   }
