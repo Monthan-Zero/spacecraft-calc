@@ -161,7 +161,7 @@
 .scapp .mm-ctl button{min-width:36px;height:34px;padding:0 11px;border:1px solid var(--line);background:var(--panel2);color:var(--primary);border-radius:6px;cursor:pointer;font-size:15px;font-family:"JetBrains Mono";line-height:1}
 .scapp .mm-ctl button:hover{border-color:var(--primary)}
 .scapp .mm-ctl .mm-x{color:var(--bad)}
-.scapp .mm-stage{flex:1;overflow:hidden;position:relative;cursor:grab;touch-action:none;background:#091523}
+.scapp .mm-stage{flex:1;overflow:hidden;position:relative;cursor:grab;touch-action:none;background:#091523;-webkit-user-select:none;-ms-user-select:none;user-select:none}
 .scapp .mm-stage.drag{cursor:grabbing}
 .scapp .mm-canvas{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform}
 .scapp .mm-canvas svg{display:block}
@@ -748,7 +748,7 @@
   function closeMapModal() { var m = $("mapmodal"); if (m) m.classList.remove("open"); }
   function wireMapModal() {
     var stage = $("mm-stage");
-    stage.addEventListener("pointerdown", function (e) { mmDrag = { x: e.clientX, y: e.clientY }; stage.classList.add("drag"); try { stage.setPointerCapture(e.pointerId); } catch (x) {} });
+    stage.addEventListener("pointerdown", function (e) { e.preventDefault(); mmDrag = { x: e.clientX, y: e.clientY }; stage.classList.add("drag"); try { stage.setPointerCapture(e.pointerId); } catch (x) {} });
     stage.addEventListener("pointermove", function (e) { if (!mmDrag) return; mmT.x += (e.clientX - mmDrag.x); mmT.y += (e.clientY - mmDrag.y); mmDrag = { x: e.clientX, y: e.clientY }; applyMM(); });
     var end = function () { mmDrag = null; stage.classList.remove("drag"); };
     stage.addEventListener("pointerup", end); stage.addEventListener("pointercancel", end); stage.addEventListener("pointerleave", end);
