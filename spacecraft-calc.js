@@ -261,6 +261,10 @@
 .scapp .gtabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
 .scapp .gtab{background:var(--panel2);border:1px solid var(--line);color:var(--muted);font-family:Rajdhani;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding:8px 16px;border-radius:6px;cursor:pointer}
 .scapp .gtab.on{color:var(--primary);border-color:var(--primary);background:rgba(35,198,230,.08)}
+.scapp .comingsoon{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:320px;padding:44px 22px;border:1px dashed var(--line);border-radius:10px;background:radial-gradient(620px 320px at 50% 38%,#0c1626,#070b12)}
+.scapp .comingsoon .cs-ic{font-size:44px;margin-bottom:14px;opacity:.85}
+.scapp .comingsoon .cs-h{font-family:Orbitron;font-size:20px;font-weight:700;color:var(--text);margin-bottom:9px}
+.scapp .comingsoon .cs-p{color:var(--muted);font-size:13px;max-width:470px;line-height:1.65}
 .scapp .depcard .secsub{font-size:10px;font-family:Rajdhani;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:11px 0 7px}
 .scapp .depcard .secsub.mut{margin:11px 0 0;font-style:italic}
 .scapp .depcard .tag.sta{color:var(--secondary);border-color:rgba(242,168,29,.45)}
@@ -346,22 +350,19 @@
 </div></section>
 
 <section id="sc-map"><div class="wrap" style="max-width:1320px">
-  <div class="sechead">Galaxy <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-family:Inter;font-size:12px">— the 24 sectors are the same on every server; the systems inside them are generated per-server</span></div>
+  <div class="sechead">Galaxy <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-family:Inter;font-size:12px">— minable deposits and what they yield · interactive galaxy map in the works</span></div>
   <div class="gtabs">
-    <button class="gtab on" data-el="tab-sectors" data-tab="sectors" type="button">Sectors</button>
-    <button class="gtab" data-el="tab-deposits" data-tab="deposits" type="button">Resource Atlas</button>
+    <button class="gtab" data-el="tab-sectors" data-tab="sectors" type="button">Galaxy Map</button>
+    <button class="gtab on" data-el="tab-deposits" data-tab="deposits" type="button">Resource Atlas</button>
   </div>
-  <div data-el="pane-sectors">
-    <div class="galaxylayout">
-      <div class="galaxymap" data-el="galaxywrap">
-        <div class="mapctl"><button data-el="g-zin" type="button" title="Zoom in">+</button><button data-el="g-zout" type="button" title="Zoom out">−</button><button data-el="g-fit" type="button" title="Reset view">⤢</button></div>
-        <svg data-el="galaxysvg" xmlns="http://www.w3.org/2000/svg"></svg>
-      </div>
-      <div class="sectorside" data-el="sector-detail"></div>
+  <div data-el="pane-sectors" style="display:none">
+    <div class="comingsoon">
+      <div class="cs-ic">🛰</div>
+      <div class="cs-h">Galaxy map — coming soon</div>
+      <div class="cs-p">We're rebuilding the galaxy map with real, community-sourced system data. In the meantime, the <b>Resource Atlas</b> tab has every minable deposit and exactly what it yields.</div>
     </div>
-    <div class="atlasnote" data-el="sector-note"></div>
   </div>
-  <div data-el="pane-deposits" style="display:none">
+  <div data-el="pane-deposits">
     <div class="atlasbar">
       <input type="text" data-el="atlas-search" placeholder="Search deposits or resources…" autocomplete="off" />
       <span class="atlas-count" data-el="atlas-count"></span>
